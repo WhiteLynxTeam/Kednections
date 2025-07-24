@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Kednections</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- TODO: Текст для fragment_auth -->
+    <string name="email">email</string>
+    <string name="password">пароль</string>
+    <string name="resume">продолжить</string>
+    <string name="text_description">тапнул — со всем согласился</string>
+
 </resources>

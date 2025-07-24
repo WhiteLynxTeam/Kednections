@@ -1,9 +1,10 @@
-package com.kednections
+package com.kednections.view
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.ViewCompat
 import com.kednections.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //темные иконки для светлого фона нижнего navigation_bar
+        val windowInsetsController = ViewCompat.getWindowInsetsController(window.decorView)
+        windowInsetsController?.isAppearanceLightNavigationBars = true
 
     }
 }

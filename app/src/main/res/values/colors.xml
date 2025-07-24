@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="text_hint_auth_input_layout">#808080</color>
+    <color name="border_auth_input_layout">#C0C0C0</color>
+    <color name="bg_text_description">#FFF200</color>
+    <color name="text_description">#0C0705</color>
+    <color name="transparent">#99000000</color>
+    <color name="navigation_bar_color">#797979</color>
+    <color name="btn_resume_text_color">#E6E4E4</color>
+
 </resources>
