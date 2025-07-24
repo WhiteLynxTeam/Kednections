@@ -2,6 +2,7 @@ package com.kednections.di
 
 import android.content.Context
 import com.kednections.App
+import com.kednections.di.modules.MainModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -13,6 +14,7 @@ import javax.inject.Singleton
     //Внедряем все модули, нужные для этого компонента
     modules = [
         AndroidInjectionModule::class,
+        MainModule::class
     ]
 )
 

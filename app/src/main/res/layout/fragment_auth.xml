@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.auth.AuthFragment">
+
+    <ImageView
+        android:id="@+id/background_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_auth"
+        android:scaleType="fitXY"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.95"
+        android:layout_marginBottom="5dp"
+        android:hint="@string/email"
+        android:textColorHint="@color/text_hint_auth_input_layout"
+        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:background="@drawable/bg_auth_input"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/password"
+        app:endIconMode="password_toggle"
+        android:textColorHint="@color/text_hint_auth_input_layout"
+        app:endIconTint="@color/text_hint_auth_input_layout"
+        app:layout_constraintEnd_toEndOf="@id/email"
+        app:layout_constraintStart_toStartOf="@id/email"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_center">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:background="@drawable/bg_auth_input"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_title_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.131" />
+
+    <ImageView
+        android:id="@+id/img_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_auth_title"
+        app:layout_constraintStart_toStartOf="@id/email"
+        app:layout_constraintTop_toTopOf="@id/guideline_title_margin"
+        app:layout_constraintEnd_toEndOf="@id/email"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-10dp"
+        android:layout_marginEnd="-10dp"
+        android:textAlignment="center"
+        android:text="@string/text_description"
+        android:textColor="@color/text_description"
+        android:rotation="10"
+        android:background="@color/bg_text_description"
+        app:layout_constraintTop_toBottomOf="@id/img_title"
+        app:layout_constraintBottom_toTopOf="@id/email"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_resume"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/border_auth_input_layout"
+        android:textColor="@color/btn_resume_text_color"
+        android:text="@string/resume"
+        app:layout_constraintStart_toStartOf="@id/email"
+        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintEnd_toEndOf="@id/email"/>
+
+    <ImageView
+        android:id="@+id/img_or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:src="@drawable/img_or"
+        app:layout_constraintTop_toBottomOf="@id/btn_resume"
+        app:layout_constraintEnd_toEndOf="@+id/btn_resume"/>
+
+    <ImageView
+        android:id="@+id/ic_vk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_vk"
+        app:layout_constraintStart_toStartOf="@id/email"
+        app:layout_constraintTop_toBottomOf="@id/img_or"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ic_yandex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_yandex"
+        app:layout_constraintStart_toStartOf="@id/email"
+        app:layout_constraintBottom_toTopOf="@id/ic_vk"/>
+
+    <ImageView
+        android:id="@+id/ic_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_google"
+        app:layout_constraintStart_toStartOf="@id/email"
+        app:layout_constraintTop_toBottomOf="@id/ic_vk"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
