@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.kednections.databinding.FragmentAuthBinding
 import com.kednections.utils.startMarquee
 import dagger.android.support.AndroidSupportInjection
@@ -41,6 +42,9 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel =
+            ViewModelProvider(this, vmFactory)[AuthViewModel::class.java]
+
         val textView = binding.textDescription
         val container = binding.textHorizontalScroll
 
@@ -65,12 +69,33 @@ class AuthFragment : Fragment() {
         binding.etEmail.addTextChangedListener(watcher)
         binding.etPassword.addTextChangedListener(watcher)
 
-    }
-        viewModel =
-            ViewModelProvider(this, vmFactory)[AuthViewModel::class.java]
-
         binding.icGoogle.setOnClickListener {
-            viewModel.signInWithGoogle(requireContext())
+            viewModel.signInWithGoogle(
+                context = requireContext(),
+                onSuccess = { user ->
+                    if (user != null) {
+                        user.email?.let { email ->
+                            Snackbar.make(
+                                binding.root,
+                                email,
+                                Snackbar.LENGTH_INDEFINITE
+                            ).setAction("Done") {
+
+                            }.show()
+                        }
+                    }
+                },
+                onFailure = { e ->
+                    Snackbar.make(
+                        binding.root,
+                        "ошибка аутентификации",
+                        Snackbar.LENGTH_INDEFINITE
+                    ).setAction("Done") {
+
+                    }.show()
+                },
+            )
+
             return@setOnClickListener
         }
     }

@@ -3,6 +3,7 @@ package com.kednections.di
 import android.content.Context
 import com.kednections.App
 import com.kednections.di.modules.AuthModule
+import com.kednections.di.modules.AppModule
 import com.kednections.di.modules.MainModule
 import dagger.BindsInstance
 import dagger.Component
@@ -12,11 +13,11 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    //Внедряем все модули, нужные для этого компонента
     modules = [
         AndroidInjectionModule::class,
         MainModule::class,
-        AuthModule::class
+        AuthModule::class,
+        AppModule::class,
     ]
 )
 

@@ -29,8 +29,8 @@ class AuthViewModel(
 
     fun signInWithGoogle(
         context: Context,
-//        onSuccess: (user: FirebaseUser?) -> Unit,
-//        onFailure: (Exception) -> Unit
+        onSuccess: (user: FirebaseUser?) -> Unit,
+        onFailure: (Exception) -> Unit
     ) {
         viewModelScope.launch {
             try {
@@ -60,21 +60,25 @@ class AuthViewModel(
                 val authResult = authFirebase.signInWithCredential(firebaseCredential).await()
                 if(authResult != null){
                     println("signInWithGoogle:success")
-//                    onSuccess(authResult.user)
+                    println("signInWithGoogle:authFirebase - ${authResult.user?.email}")
+
+                    onSuccess(authResult.user)
 
 //                    authFirebase.currentUser?.email?.let { saveEmailPrefUseCase(it) }
 //
 //                    _isAuth.emit(Pair(true,""))
                 }else{
                     println("signInWithGoogle:failure")
-//                    onFailure(Exception("User is null"))
+                    onFailure(Exception("User is null"))
                 }
 
             } catch (e: GetCredentialException) {
                 println("catch signInWithGoogle:failure -> onFailure: ${e.errorMessage}")
                 val ex = e.errorMessage
-                if (ex?.contains("No credentials available", false) == true) {}
-//                onFailure(e)
+                if (ex?.contains("No credentials available", false) == true) {
+                    onFailure(Exception("No credentials available"))
+                }
+                onFailure(e)
 //                _isAuth.emit(Pair(false,"Credentials are missing. Add google account."))
             }
         }

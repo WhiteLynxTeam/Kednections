@@ -52,6 +52,6 @@ class AuthModule {
 
     companion object {
         const val WEB_CLIENT_ID =
-            "1085539908512-ic6ii8n566vj4hujljjmo51g368nmjgc.apps.googleusercontent.com"
+            "1085539908512-rl3upol0ar4ci67d09lhsnv81m1p8feh.apps.googleusercontent.com"
     }
 }
