@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -51,6 +52,14 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    /** Firebase */
+    implementation(libs.firebase.auth.ktx)
+
+    /** Google, service */
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
 
     /** ROOM */
     implementation(libs.room.runtime)
