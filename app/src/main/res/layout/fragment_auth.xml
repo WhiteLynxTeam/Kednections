@@ -81,18 +81,26 @@
         app:layout_constraintTop_toTopOf="@id/guideline_title_margin"
         app:layout_constraintEnd_toEndOf="@id/email"/>
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/text_horizontal_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="-10dp"
         android:layout_marginEnd="-10dp"
-        android:textAlignment="center"
-        android:text="@string/text_description"
-        android:textColor="@color/text_description"
-        android:rotation="10"
         android:background="@color/bg_text_description"
+        android:rotation="9"
         app:layout_constraintTop_toBottomOf="@id/img_title"
-        app:layout_constraintBottom_toTopOf="@id/email"/>
+        app:layout_constraintBottom_toTopOf="@id/email">
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_description"
+            android:textColor="@color/text_description"
+            />
+
+    </FrameLayout>
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -100,9 +108,10 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="@color/border_auth_input_layout"
+        android:background="@drawable/btn_resume_background"
         android:textColor="@color/btn_resume_text_color"
         android:text="@string/resume"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toBottomOf="@id/password"
         app:layout_constraintEnd_toEndOf="@id/email"/>
