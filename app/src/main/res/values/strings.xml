@@ -7,6 +7,17 @@
     <string name="email">email</string>
     <string name="password">пароль</string>
     <string name="resume">продолжить</string>
-    <string name="text_description">тапнул — со всем согласился</string>
+    <string name="text_description_for_auth_fragment">тапнул — со всем согласился</string>
+
+    <string name="count">1/5</string>
+
+    <!-- TODO: Текст для fragment_auth -->
+    <string name="last_name_first_name">Фамилия Имя*</string>
+    <string name="text_description_for_nickname_fragment">что отображать в профиле?</string>
+    <string name="nick">ник</string>
+
+    <!-- TODO: Текст для fragment_auth -->
+    <string name="text_description_for_avatar_fragment">выбери или загрузи свое</string>
+    <string name="face">лицо</string>
 
 </resources>

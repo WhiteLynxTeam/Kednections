@@ -1,4 +1,4 @@
-package com.kednections.view
+package com.kednections.view.activity
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle

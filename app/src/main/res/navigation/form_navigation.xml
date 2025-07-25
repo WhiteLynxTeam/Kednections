@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/form_navigation"
+    app:startDestination="@id/nickNameFragment">
+
+    <fragment
+        android:id="@+id/nickNameFragment"
+        android:name="com.kednections.view.form.nickname.NickNameFragment"
+        android:label="fragment_nick_name"
+        tools:layout="@layout/fragment_nick_name" >
+        <action
+            android:id="@+id/action_nickNameFragment_to_avatarFragment"
+            app:destination="@id/avatarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/avatarFragment"
+        android:name="com.kednections.view.form.avatar.AvatarFragment"
+        android:label="fragment_avatar"
+        tools:layout="@layout/fragment_avatar" />
+</navigation>
