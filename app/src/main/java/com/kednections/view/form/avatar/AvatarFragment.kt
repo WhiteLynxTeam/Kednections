@@ -17,6 +17,7 @@ import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
 import dagger.android.support.AndroidSupportInjection
 
+
 class AvatarFragment : Fragment() {
 
     private var _binding: FragmentAvatarBinding? = null
@@ -59,7 +60,7 @@ class AvatarFragment : Fragment() {
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    viewModel.decreaseProgress()
+                    //viewModel.decreaseProgress()
                     findNavController().popBackStack()
                 }
             })
@@ -88,6 +89,11 @@ class AvatarFragment : Fragment() {
 
         binding.add.setOnClickListener {
             animImageAdd(it)
+        }
+
+        binding.btnResume.setOnClickListener {
+            findNavController().navigate(R.id.action_avatarFragment_to_specializationFragment)
+            viewModel.increaseProgress()
         }
     }
 }

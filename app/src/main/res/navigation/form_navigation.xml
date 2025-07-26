@@ -18,5 +18,14 @@
         android:id="@+id/avatarFragment"
         android:name="com.kednections.view.form.avatar.AvatarFragment"
         android:label="fragment_avatar"
-        tools:layout="@layout/fragment_avatar" />
+        tools:layout="@layout/fragment_avatar" >
+        <action
+            android:id="@+id/action_avatarFragment_to_specializationFragment"
+            app:destination="@id/specializationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/specializationFragment"
+        android:name="com.kednections.view.form.specialization.SpecializationFragment"
+        android:label="fragment_specialization"
+        tools:layout="@layout/fragment_specialization" />
 </navigation>
