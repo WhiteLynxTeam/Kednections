@@ -51,6 +51,92 @@
 
     </FrameLayout>
 
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        app:constraint_referenced_ids="add_ava,ava_1,ava_2,ava_3,ava_4,ava_5,ava_6,ava_7,ava_8"
+        app:flow_wrapMode="chain"
+        app:flow_horizontalStyle="spread_inside"
+        app:flow_verticalGap="12dp"
+        app:layout_constraintStart_toStartOf="@id/tv_face"
+        app:layout_constraintTop_toBottomOf="@id/img_logo"
+        app:layout_constraintBottom_toTopOf="@id/btn_resume"
+        app:layout_constraintEnd_toEndOf="@id/tv_face"/>
+
+    <FrameLayout
+        android:id="@+id/add_ava"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/border"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/bg_add_avatar"
+            app:layout_constraintWidth_percent="0.28"/>
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_baseline_add_24"/>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/ava_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_ava_1"
+        app:layout_constraintWidth_percent="0.28"/>
+
+    <ImageView
+        android:id="@+id/ava_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_ava_2"
+        app:layout_constraintWidth_percent="0.28"/>
+
+    <ImageView
+        android:id="@+id/ava_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_ava_3"
+        app:layout_constraintWidth_percent="0.28"/>
+
+    <ImageView
+        android:id="@+id/ava_4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_ava_4"
+        app:layout_constraintWidth_percent="0.28"/>
+
+    <ImageView
+        android:id="@+id/ava_5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_ava_5"
+        app:layout_constraintWidth_percent="0.28"/>
+
+    <ImageView
+        android:id="@+id/ava_6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_ava_6"
+        app:layout_constraintWidth_percent="0.28"/>
+
+    <ImageView
+        android:id="@+id/ava_7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_ava_7"
+        app:layout_constraintWidth_percent="0.28"/>
+
+    <ImageView
+        android:id="@+id/ava_8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_ava_8"
+        app:layout_constraintWidth_percent="0.28"/>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         android:layout_width="0dp"
