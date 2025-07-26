@@ -64,7 +64,7 @@ class NickNameFragment : Fragment() {
 
         binding.btnResume.setOnClickListener {
             findNavController().navigate(R.id.action_nickNameFragment_to_avatarFragment)
-            viewModel.increaseProgress()
+//            viewModel.increaseProgress()
         }
 
 

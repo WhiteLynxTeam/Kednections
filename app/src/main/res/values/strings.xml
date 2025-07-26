@@ -20,4 +20,8 @@
     <string name="text_description_for_avatar_fragment">выбери или загрузи свое</string>
     <string name="face">лицо</string>
 
+    <!-- TODO: Текст для fragment_specialization -->
+    <string name="text_description_for_specialization_fragment">держи себя в руках — выбери до 3</string>
+    <string name="whos_by_suit">Кто по масти?</string>
+
 </resources>

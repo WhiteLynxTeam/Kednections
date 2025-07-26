@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.form.specialization.SpecializationFragment">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_logo_avatar_fragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_suit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/nauryz_red_keds"
+        android:text="@string/whos_by_suit"
+        android:textColor="@color/text_description"
+        android:textSize="42sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.95" />
+
+    <FrameLayout
+        android:id="@+id/text_horizontal_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-10dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="-10dp"
+        android:background="@color/bg_text_description"
+        android:rotation="5"
+        app:layout_constraintBottom_toBottomOf="@id/img_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_description_for_specialization_fragment"
+            android:textColor="@color/text_description" />
+
+    </FrameLayout>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_specialization"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:constraint_referenced_ids="t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12"
+        app:flow_horizontalStyle="spread_inside"
+        app:flow_wrapMode="chain"
+        app:layout_constraintEnd_toEndOf="@id/tv_suit"
+        app:layout_constraintStart_toStartOf="@id/tv_suit"
+        app:layout_constraintBottom_toTopOf="@id/btn_resume"
+        app:layout_constraintTop_toBottomOf="@id/img_logo" />
+
+    <TextView
+        android:id="@+id/t1"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.28"
+        android:text="арт-директор" />
+
+    <TextView
+        android:id="@+id/t2"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.28"
+        android:text="иллюстратор" />
+
+    <TextView
+        android:id="@+id/t3"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.28"
+        android:text="3d-дизайнер" />
+
+    <TextView
+        android:id="@+id/t4"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.28"
+        android:text="веб-дизайнер" />
+
+    <TextView
+        android:id="@+id/t5"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.28"
+        android:text="гейм-дизайнер" />
+
+    <TextView
+        android:id="@+id/t6"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.28"
+        android:text="художник" />
+
+    <TextView
+        android:id="@+id/t7"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.42"
+        android:text="графический дизайнер" />
+
+    <TextView
+        android:id="@+id/t8"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.49"
+        android:text="дизайнер интерьера" />
+
+    <TextView
+        android:id="@+id/t9"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.49"
+        android:text="дизайнер интерфейсов" />
+
+    <TextView
+        android:id="@+id/t10"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.42"
+        android:text="дизайнер одежды" />
+
+    <TextView
+        android:id="@+id/t11"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.49"
+        android:text="дизайнер полиграфии" />
+
+    <TextView
+        android:id="@+id/t12"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.42"
+        android:text="дизайнер презентаций" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_resume"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/btn_resume_background"
+        android:enabled="false"
+        android:text="@string/resume"
+        android:textColor="@color/btn_resume_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_suit"
+        app:layout_constraintStart_toStartOf="@id/tv_suit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

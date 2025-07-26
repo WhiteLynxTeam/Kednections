@@ -1,5 +1,6 @@
 package com.kednections.view.activity
 
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -48,7 +49,7 @@ class FormActivity : AppCompatActivity() {
         }
 
         binding.imgBack.setOnClickListener {
-            navController.popBackStack()
+            handleBackPressed()
         }
 
             //темные иконки для светлого фона нижнего navigation_bar
@@ -56,4 +57,31 @@ class FormActivity : AppCompatActivity() {
         windowInsetsController?.isAppearanceLightNavigationBars = true
 
     }
+
+    fun handleBackPressed() {
+        val navController = supportFragmentManager.findFragmentById(R.id.fragment_placeholder)
+            ?.let { it as? NavHostFragment }
+            ?.navController
+
+        // Проверка, можно ли вернуться назад
+        if (navController?.previousBackStackEntry != null) {
+            // Уменьшаем прогресс только на определённых экранах
+            when (navController.currentDestination?.id) {
+                R.id.specializationFragment, -> {
+                    viewModel.decreaseProgress()
+                }
+            }
+
+            navController.popBackStack()
+        } else {
+            finish()
+        }
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        handleBackPressed()
+    }
+
 }

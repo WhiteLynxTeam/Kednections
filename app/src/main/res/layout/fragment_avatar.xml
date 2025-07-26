@@ -23,6 +23,7 @@
         app:layout_constraintWidth_percent="0.95"
         android:fontFamily="@font/nauryz_red_keds"
         android:text="@string/face"
+        android:textColor="@color/text_description"
         android:textSize="42sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
