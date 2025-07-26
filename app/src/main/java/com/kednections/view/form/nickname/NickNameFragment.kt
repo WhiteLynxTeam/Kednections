@@ -57,6 +57,7 @@ class NickNameFragment : Fragment() {
             image1 = binding.nameSwitcher,
             image2 = binding.nickSwitcher,
             actionButton = binding.btnResume,
+            length1 = 1,
             length2 = 1
         )
         validatorSwitcher.attach()
@@ -69,4 +70,6 @@ class NickNameFragment : Fragment() {
 
 
     }
+
 }
+

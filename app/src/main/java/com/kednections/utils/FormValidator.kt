@@ -10,7 +10,7 @@ class FormValidator(
     private val field2: EditText,
     private val actionButton: Button,
     private val length1: Int = 1,
-    private val length2: Int = 8
+    private val length2: Int = 6
 ) {
 
     // Основная логика активации кнопки
