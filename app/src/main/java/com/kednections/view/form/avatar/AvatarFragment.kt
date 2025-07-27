@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -55,15 +54,6 @@ class AvatarFragment : Fragment() {
 
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
-
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    //viewModel.decreaseProgress()
-                    findNavController().popBackStack()
-                }
-            })
 
         // Назначаем каждому ImageView обработчик клика
         imageMap.forEach { (imageView, imagePair) ->

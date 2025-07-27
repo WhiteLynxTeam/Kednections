@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.form.geolocation.GeolocationFragment">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_logo_geolocation_fragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_where_are_you"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/nauryz_red_keds"
+        android:text="@string/where_are_you"
+        android:textColor="@color/text_description"
+        android:textSize="42sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.95" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_geolocation"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintStart_toStartOf="@id/tv_where_are_you"
+        app:layout_constraintTop_toBottomOf="@id/tv_where_are_you"
+        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"/>
+
+    <TextView
+        android:id="@+id/tv_your_here"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_medium"
+        android:textColor="@color/text_hint_auth_input_layout"
+        android:textStyle="bold"
+        android:text="@string/your_here"
+        app:layout_constraintStart_toStartOf="@id/et_geolocation"
+        app:layout_constraintTop_toBottomOf="@id/et_geolocation"/>
+
+    <FrameLayout
+        android:id="@+id/text_horizontal_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-10dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="-10dp"
+        android:background="@color/bg_text_description"
+        android:rotation="12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_your_here"
+        app:layout_constraintBottom_toTopOf="@id/btn_resume">
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fill_it_out_later"
+            android:textColor="@color/text_description" />
+
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_resume"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/btn_resume_background"
+        android:textColor="@color/btn_resume_text_color"
+        android:text="@string/resume"
+        android:enabled="false"
+        app:layout_constraintStart_toStartOf="@id/tv_where_are_you"
+        app:layout_constraintBottom_toTopOf="@id/skipped"
+        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"/>
+
+    <TextView
+        android:id="@+id/skipped"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/skip"
+        android:textColor="#FFF200"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

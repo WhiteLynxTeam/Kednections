@@ -6,21 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentNickNameBinding
 import com.kednections.utils.FormValidator
 import com.kednections.utils.SwitcherValidator
 import com.kednections.utils.startMarquee
-import com.kednections.view.activity.FormActivityViewModel
 import dagger.android.support.AndroidSupportInjection
 
 class NickNameFragment : Fragment() {
 
     private var _binding: FragmentNickNameBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: FormActivityViewModel by activityViewModels()
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -64,10 +61,7 @@ class NickNameFragment : Fragment() {
 
         binding.btnResume.setOnClickListener {
             findNavController().navigate(R.id.action_nickNameFragment_to_avatarFragment)
-//            viewModel.increaseProgress()
         }
-
-
 
     }
 
