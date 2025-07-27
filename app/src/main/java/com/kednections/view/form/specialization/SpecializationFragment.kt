@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.kednections.R
 import com.kednections.databinding.FragmentSpecializationBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
@@ -20,6 +23,9 @@ class SpecializationFragment : Fragment() {
     private var _binding: FragmentSpecializationBinding? = null
     private val binding get() = _binding!!
     private val viewModel: FormActivityViewModel by activityViewModels()
+
+    private lateinit var selectedViews: MutableSet<TextView>
+    private val maxSelection = 3
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -38,17 +44,63 @@ class SpecializationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        selectedViews = mutableSetOf()
+
+        val specializationIds = listOf(
+            R.id.tv_art_director, R.id.tv_illustrator, R.id.tv_3d_designer,
+            R.id.tv_web_designer, R.id.tv_game_designer, R.id.tv_artist,
+            R.id.tv_graphic_designer, R.id.tv_interior_designer, R.id.tv_ui_designer,
+            R.id.tv_fashion_designer, R.id.tv_print_designer, R.id.tv_presentation_designer,
+            R.id.tv_communication_designer, R.id.tv_brand_designer, R.id.tv_landscape_designer,
+            R.id.tv_designer, R.id.tv_product_designer, R.id.tv_ux_ui_designer,
+            R.id.tv_industrial_designer, R.id.tv_fpx_designer, R.id.tv_ai_designer,
+            R.id.tv_ar_vr_designer, R.id.tv_motion_designer, R.id.tv_smm_designer
+        )
+
+        val resumeButton = view.findViewById<AppCompatButton>(R.id.btn_resume)
+
+        specializationIds.forEach { id ->
+            val textView = view.findViewById<TextView>(id)
+            textView.setOnClickListener {
+                if (selectedViews.contains(textView)) {
+                    deselectView(textView)
+                    selectedViews.remove(textView)
+                } else {
+                    if (selectedViews.size >= maxSelection) {
+                        showLimitReachedDialog()
+                        return@setOnClickListener
+                    }
+                    // Select
+                    selectView(textView)
+                    selectedViews.add(textView)
+                }
+
+                resumeButton.isEnabled = selectedViews.isNotEmpty()
+            }
+        }
+
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    viewModel.decreaseProgress()
-                    findNavController().popBackStack()
-                }
-            })
 
+        binding.btnResume.setOnClickListener {
+            findNavController().navigate(R.id.action_specializationFragment_to_geolocationFragment)
+            viewModel.increaseProgress()
+        }
+
+    }
+
+    private fun selectView(view: TextView) {
+        view.setBackgroundResource(R.drawable.bg_for_text_specializations_selected)
+        view.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+    }
+
+    private fun deselectView(view: TextView) {
+        view.setBackgroundResource(R.drawable.bg_for_text_specializations)
+        view.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_description))
+    }
+
+    private fun showLimitReachedDialog() {
+        LimitReachedDialog().show(parentFragmentManager, "LimitDialog")
     }
 }

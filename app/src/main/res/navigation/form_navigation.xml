@@ -27,5 +27,14 @@
         android:id="@+id/specializationFragment"
         android:name="com.kednections.view.form.specialization.SpecializationFragment"
         android:label="fragment_specialization"
-        tools:layout="@layout/fragment_specialization" />
+        tools:layout="@layout/fragment_specialization" >
+        <action
+            android:id="@+id/action_specializationFragment_to_geolocationFragment"
+            app:destination="@id/geolocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/geolocationFragment"
+        android:name="com.kednections.view.form.geolocation.GeolocationFragment"
+        android:label="fragment_geolocation"
+        tools:layout="@layout/fragment_geolocation" />
 </navigation>

@@ -70,6 +70,9 @@ class FormActivity : AppCompatActivity() {
                 R.id.specializationFragment, -> {
                     viewModel.decreaseProgress()
                 }
+                R.id.geolocationFragment, -> {
+                    viewModel.decreaseProgress()
+                }
             }
 
             navController.popBackStack()

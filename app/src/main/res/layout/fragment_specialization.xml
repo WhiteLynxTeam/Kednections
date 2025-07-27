@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/img_logo_avatar_fragment"
+        android:src="@drawable/img_logo_specialization_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,86 +55,158 @@
         android:id="@+id/flow_specialization"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        app:constraint_referenced_ids="t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12"
-        app:flow_horizontalStyle="spread_inside"
+        app:constraint_referenced_ids="tv_art_director,tv_illustrator,tv_3d_designer,tv_web_designer,tv_game_designer,tv_artist,tv_graphic_designer,tv_interior_designer,tv_ui_designer,tv_fashion_designer,tv_print_designer,tv_presentation_designer,tv_communication_designer,tv_brand_designer,tv_landscape_designer,tv_designer,tv_product_designer,tv_ux_ui_designer,tv_industrial_designer,tv_fpx_designer,tv_ai_designer,tv_ar_vr_designer,tv_motion_designer,tv_smm_designer"
         app:flow_wrapMode="chain"
-        app:layout_constraintEnd_toEndOf="@id/tv_suit"
+        app:flow_horizontalStyle="spread_inside"
+        app:layout_constraintTop_toBottomOf="@id/img_logo"
         app:layout_constraintStart_toStartOf="@id/tv_suit"
-        app:layout_constraintBottom_toTopOf="@id/btn_resume"
-        app:layout_constraintTop_toBottomOf="@id/img_logo" />
+        app:layout_constraintEnd_toEndOf="@id/tv_suit"
+        app:layout_constraintBottom_toTopOf="@id/btn_resume" />
 
     <TextView
-        android:id="@+id/t1"
+        android:id="@+id/tv_art_director"
         style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.28"
-        android:text="арт-директор" />
+        app:layout_constraintWidth_percent="0.3"
+        android:text="@string/art_director" />
 
     <TextView
-        android:id="@+id/t2"
+        android:id="@+id/tv_illustrator"
         style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.28"
-        android:text="иллюстратор" />
+        app:layout_constraintWidth_percent="0.3"
+        android:text="@string/illustrator" />
 
     <TextView
-        android:id="@+id/t3"
+        android:id="@+id/tv_3d_designer"
         style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.28"
-        android:text="3d-дизайнер" />
+        app:layout_constraintWidth_percent="0.3"
+        android:text="@string/three_d_designer" />
 
     <TextView
-        android:id="@+id/t4"
+        android:id="@+id/tv_web_designer"
         style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.28"
-        android:text="веб-дизайнер" />
+        app:layout_constraintWidth_percent="0.3"
+        android:text="@string/web_designer" />
 
     <TextView
-        android:id="@+id/t5"
+        android:id="@+id/tv_game_designer"
         style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.28"
-        android:text="гейм-дизайнер" />
+        app:layout_constraintWidth_percent="0.3"
+        android:text="@string/game_designer" />
 
     <TextView
-        android:id="@+id/t6"
+        android:id="@+id/tv_artist"
         style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.28"
-        android:text="художник" />
+        app:layout_constraintWidth_percent="0.3"
+        android:text="@string/artist" />
 
     <TextView
-        android:id="@+id/t7"
-        style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.42"
-        android:text="графический дизайнер" />
-
-    <TextView
-        android:id="@+id/t8"
-        style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.49"
-        android:text="дизайнер интерьера" />
-
-    <TextView
-        android:id="@+id/t9"
-        style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.49"
-        android:text="дизайнер интерфейсов" />
-
-    <TextView
-        android:id="@+id/t10"
+        android:id="@+id/tv_graphic_designer"
         style="@style/text_specializations"
         app:layout_constraintWidth_percent="0.42"
-        android:text="дизайнер одежды" />
+        android:text="@string/graphic_designer" />
 
     <TextView
-        android:id="@+id/t11"
+        android:id="@+id/tv_interior_designer"
         style="@style/text_specializations"
         app:layout_constraintWidth_percent="0.49"
-        android:text="дизайнер полиграфии" />
+        android:text="@string/interior_designer" />
 
     <TextView
-        android:id="@+id/t12"
+        android:id="@+id/tv_ui_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.49"
+        android:text="@string/ui_designer" />
+
+    <TextView
+        android:id="@+id/tv_fashion_designer"
         style="@style/text_specializations"
         app:layout_constraintWidth_percent="0.42"
-        android:text="дизайнер презентаций" />
+        android:text="@string/fashion_designer" />
+
+    <TextView
+        android:id="@+id/tv_print_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.44"
+        android:text="@string/print_designer" />
+
+    <TextView
+        android:id="@+id/tv_presentation_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.47"
+        android:text="@string/presentation_designer" />
+
+    <TextView
+        android:id="@+id/tv_communication_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.5"
+        android:text="@string/communication_designer" />
+
+    <TextView
+        android:id="@+id/tv_brand_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.4"
+        android:text="@string/brand_designer" />
+
+    <TextView
+        android:id="@+id/tv_landscape_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.47"
+        android:text="@string/landscape_designer" />
+
+    <TextView
+        android:id="@+id/tv_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.44"
+        android:text="@string/designer" />
+
+    <TextView
+        android:id="@+id/tv_product_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.48"
+        android:text="@string/product_designer" />
+
+    <TextView
+        android:id="@+id/tv_ux_ui_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.43"
+        android:text="@string/ux_ui_designer" />
+
+    <TextView
+        android:id="@+id/tv_industrial_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.5"
+        android:text="@string/industrial_designer" />
+
+    <TextView
+        android:id="@+id/tv_fpx_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.41"
+        android:text="@string/fpx_designer" />
+
+    <TextView
+        android:id="@+id/tv_ai_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.43"
+        android:text="@string/ai_designer" />
+
+    <TextView
+        android:id="@+id/tv_ar_vr_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.48"
+        android:text="@string/ar_vr_designer" />
+
+    <TextView
+        android:id="@+id/tv_motion_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.45"
+        android:text="@string/motion_designer" />
+
+    <TextView
+        android:id="@+id/tv_smm_designer"
+        style="@style/text_specializations"
+        app:layout_constraintWidth_percent="0.46"
+        android:text="@string/smm_designer" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"

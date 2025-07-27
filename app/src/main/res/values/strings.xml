@@ -16,12 +16,45 @@
     <string name="text_description_for_nickname_fragment">что отображать в профиле?</string>
     <string name="nick">ник</string>
 
-    <!-- TODO: Текст для fragment_auth -->
+    <!-- TODO: Текст для fragment_avatar -->
     <string name="text_description_for_avatar_fragment">выбери или загрузи свое</string>
     <string name="face">лицо</string>
+    <string name="skip">пропустить</string>
 
     <!-- TODO: Текст для fragment_specialization -->
     <string name="text_description_for_specialization_fragment">держи себя в руках — выбери до 3</string>
     <string name="whos_by_suit">Кто по масти?</string>
+    <string name="art_director">арт-директор</string>
+    <string name="illustrator">иллюстратор</string>
+    <string name="three_d_designer">3d-дизайнер</string>
+    <string name="web_designer">веб-дизайнер</string>
+    <string name="game_designer">гейм-дизайнер</string>
+    <string name="artist">художник</string>
+    <string name="graphic_designer">графический дизайнер</string>
+    <string name="interior_designer">дизайнер интерьера</string>
+    <string name="ui_designer">дизайнер интерфейсов</string>
+    <string name="fashion_designer">дизайнер одежды</string>
+    <string name="print_designer">дизайнер полиграфии</string>
+    <string name="presentation_designer">дизайнер презентаций</string>
+    <string name="communication_designer">коммуникационный дизайнер</string>
+    <string name="brand_designer">бренд-дизанер</string>
+    <string name="landscape_designer">ландшафтный дизайнер</string>
+    <string name="designer">дизайнер</string>
+    <string name="product_designer">продуктовый дизайнер</string>
+    <string name="ux_ui_designer">ux/ui-дизайнер</string>
+    <string name="industrial_designer">промышленный дизайнер</string>
+    <string name="fpx_designer">fpx-дизайнер</string>
+    <string name="ai_designer">ai-дизайнер</string>
+    <string name="ar_vr_designer">ar/vr-дизайнер</string>
+    <string name="motion_designer">motion-дизайнер</string>
+    <string name="smm_designer">smm-дизанер</string>
+
+    <!-- TODO: Текст для fragment_geolocation -->
+    <string name="whoa_take_it_easy">воу, полегче</string>
+    <string name="choose_only_3">Выбери только 3</string>
+    <string name="where_are_you">где ты?</string>
+    <string name="your_here">ты тут?</string>
+    <string name="fill_it_out_later">заполнишь потом</string>
+
 
 </resources>
