@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 class WelcomeFragment : Fragment() {
     private var _binding: FragmentWelcomeBinding? = null
     private val binding get() = _binding!!
+    //[green] Посмотреть. Вроде через di Dagger должно подтягиваться. Не помню. Уточнить.
     private lateinit var auth: FirebaseAuth
     private lateinit var appPreferences: AppPreferences
 
