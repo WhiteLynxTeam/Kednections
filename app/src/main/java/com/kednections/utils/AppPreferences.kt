@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 // Класс для хранения настроек приложения
+// [yellow] Перенести функционал di Dagger2
 class AppPreferences(context: Context) {
     private val prefs: SharedPreferences =
         context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
