@@ -9,6 +9,7 @@ import com.kednections.view.form.geolocation.GeolocationFragment
 import com.kednections.view.form.nickname.NickNameFragment
 import com.kednections.view.form.purposes.PurposesFragment
 import com.kednections.view.form.specialization.SpecializationFragment
+import com.kednections.view.welcome.WelcomeFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -33,6 +34,9 @@ interface MainModule {
     fun bindGeolocationFragment(): GeolocationFragment
 
     @ContributesAndroidInjector
+    fun bindWelcomeFragment(): WelcomeFragment
+  
+    @ContributesAndroidInjector
     fun bindPurposesFragment(): PurposesFragment
 
     @ContributesAndroidInjector
@@ -40,5 +44,6 @@ interface MainModule {
 
     @ContributesAndroidInjector
     fun bindAboutFragment(): AboutFragment
+
 
 }

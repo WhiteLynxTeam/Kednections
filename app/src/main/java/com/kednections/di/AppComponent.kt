@@ -4,7 +4,10 @@ import android.content.Context
 import com.kednections.App
 import com.kednections.di.modules.AuthModule
 import com.kednections.di.modules.AppModule
+import com.kednections.di.modules.DataModule
+import com.kednections.di.modules.DomainModule
 import com.kednections.di.modules.MainModule
+import com.kednections.di.modules.SharedPreferencesModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -15,9 +18,12 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
-        MainModule::class,
-        AuthModule::class,
         AppModule::class,
+        AuthModule::class,
+        DataModule::class,
+        DomainModule::class,
+        MainModule::class,
+        SharedPreferencesModule::class,
     ]
 )
 
