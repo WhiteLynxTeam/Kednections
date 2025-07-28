@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.form.purposes.PurposesFragment">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_logo_avatar_fragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_purposes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintWidth_percent="0.95"
+        android:fontFamily="@font/nauryz_red_keds"
+        android:text="@string/purposes"
+        android:textColor="@color/text_description"
+        android:textSize="42sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/text_horizontal_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="-10dp"
+        android:layout_marginEnd="-10dp"
+        android:background="@color/bg_text_description"
+        android:rotation="-12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/img_logo"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_description_for_purposes_fragment"
+            android:textColor="@color/text_description"
+            />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/view_company"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintBottom_toTopOf="@id/btn_resume"
+        app:layout_constraintEnd_toEndOf="@id/tv_purposes"
+        app:layout_constraintStart_toStartOf="@id/tv_purposes"
+        app:layout_constraintTop_toBottomOf="@id/img_logo" />
+
+    <ImageView
+        android:id="@+id/iv_company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_company"
+        app:layout_constraintStart_toStartOf="@id/view_company"
+        app:layout_constraintTop_toTopOf="@id/view_company"
+        app:layout_constraintBottom_toBottomOf="@id/view_company"/>
+
+    <LinearLayout
+        android:id="@+id/text_company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/iv_company"
+        app:layout_constraintTop_toTopOf="@id/view_company"
+        app:layout_constraintBottom_toBottomOf="@id/view_company">
+
+        <TextView
+            android:id="@+id/tv_company_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/looking_for_a_company"
+            android:textColor="@color/text_description"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_company_purposes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/for_walks_and_hikes_for_events"
+            android:textColor="@color/bg_specialization_selected"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkbox_company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_company"
+        app:layout_constraintEnd_toEndOf="@id/view_company"
+        app:layout_constraintBottom_toBottomOf="@id/view_company"/>
+
+    <View
+        android:id="@+id/view_romance"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintBottom_toTopOf="@id/view_company"
+        app:layout_constraintEnd_toEndOf="@id/tv_purposes"
+        app:layout_constraintStart_toStartOf="@id/tv_purposes" />
+
+    <ImageView
+        android:id="@+id/iv_romance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_romance"
+        app:layout_constraintStart_toStartOf="@id/view_romance"
+        app:layout_constraintTop_toTopOf="@id/view_romance"
+        app:layout_constraintBottom_toBottomOf="@id/view_romance"/>
+
+    <LinearLayout
+        android:id="@+id/text_romance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/iv_romance"
+        app:layout_constraintTop_toTopOf="@id/view_romance"
+        app:layout_constraintBottom_toBottomOf="@id/view_romance">
+
+        <TextView
+            android:id="@+id/tv_romance_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/looking_for_romance"
+            android:textColor="@color/text_description"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_romance_purposes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/i_am_open_to_relationships"
+            android:textColor="@color/bg_specialization_selected"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkbox_romance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_romance"
+        app:layout_constraintEnd_toEndOf="@id/view_romance"
+        app:layout_constraintBottom_toBottomOf="@id/view_romance"/>
+
+    <View
+        android:id="@+id/view_friends"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintBottom_toTopOf="@id/view_romance"
+        app:layout_constraintEnd_toEndOf="@id/tv_purposes"
+        app:layout_constraintStart_toStartOf="@id/tv_purposes"/>
+
+    <ImageView
+        android:id="@+id/iv_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_friends"
+        app:layout_constraintStart_toStartOf="@id/view_friends"
+        app:layout_constraintTop_toTopOf="@id/view_friends"
+        app:layout_constraintBottom_toBottomOf="@id/view_friends"/>
+
+    <LinearLayout
+        android:id="@+id/text_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/iv_friends"
+        app:layout_constraintTop_toTopOf="@id/view_friends"
+        app:layout_constraintBottom_toBottomOf="@id/view_friends">
+
+        <TextView
+            android:id="@+id/tv_friends_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/looking_for_friends"
+            android:textColor="@color/text_description"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_friends_purposes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/communicate_and_share_ideas"
+            android:textColor="@color/bg_specialization_selected"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkbox_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_friends"
+        app:layout_constraintEnd_toEndOf="@id/view_friends"
+        app:layout_constraintBottom_toBottomOf="@id/view_friends"/>
+
+    <View
+        android:id="@+id/view_looking_team"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintEnd_toEndOf="@id/tv_purposes"
+        app:layout_constraintStart_toStartOf="@id/tv_purposes"
+        app:layout_constraintTop_toBottomOf="@id/view_company" />
+
+    <ImageView
+        android:id="@+id/iv_looking_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_looking_team"
+        app:layout_constraintStart_toStartOf="@id/view_looking_team"
+        app:layout_constraintTop_toTopOf="@id/view_looking_team"
+        app:layout_constraintBottom_toBottomOf="@id/view_looking_team"/>
+
+    <LinearLayout
+        android:id="@+id/text_looking_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/iv_looking_team"
+        app:layout_constraintTop_toTopOf="@id/view_looking_team"
+        app:layout_constraintBottom_toBottomOf="@id/view_looking_team">
+
+        <TextView
+            android:id="@+id/tv_looking_team_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/looking_for_a_team"
+            android:textColor="@color/text_description"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_looking_team_purposes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/i_want_to_join_the_project"
+            android:textColor="@color/bg_specialization_selected"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkbox_looking_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_looking_team"
+        app:layout_constraintEnd_toEndOf="@id/view_looking_team"
+        app:layout_constraintBottom_toBottomOf="@id/view_looking_team"/>
+
+    <View
+        android:id="@+id/view_assembling_team"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintEnd_toEndOf="@id/tv_purposes"
+        app:layout_constraintStart_toStartOf="@id/tv_purposes"
+        app:layout_constraintTop_toBottomOf="@id/view_looking_team" />
+
+    <ImageView
+        android:id="@+id/iv_assembling_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_assembling_team"
+        app:layout_constraintStart_toStartOf="@id/view_assembling_team"
+        app:layout_constraintTop_toTopOf="@id/view_assembling_team"
+        app:layout_constraintBottom_toBottomOf="@id/view_assembling_team"/>
+
+    <LinearLayout
+        android:id="@+id/text_assembling_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/iv_assembling_team"
+        app:layout_constraintTop_toTopOf="@id/view_assembling_team"
+        app:layout_constraintBottom_toBottomOf="@id/view_assembling_team">
+
+        <TextView
+            android:id="@+id/tv_assembling_team_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/assembling_team"
+            android:textColor="@color/text_description"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_assembling_team_purposes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/looking_for_people_to_join_my_project"
+            android:textColor="@color/bg_specialization_selected"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkbox_assembling_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_assembling_team"
+        app:layout_constraintEnd_toEndOf="@id/view_assembling_team"
+        app:layout_constraintBottom_toBottomOf="@id/view_assembling_team"/>
+
+
+    <!--    <LinearLayout-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:background="@drawable/bg_auth_input"-->
+<!--        app:layout_constraintStart_toStartOf="@id/tv_purposes"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/img_logo"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/tv_purposes"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/btn_resume">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_friends"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="ищу друзей"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="общаться и делиться идеями"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <CheckBox-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--    </LinearLayout>-->
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_resume"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/btn_resume_background"
+        android:enabled="false"
+        android:text="@string/resume"
+        android:textColor="@color/btn_resume_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_purposes"
+        app:layout_constraintStart_toStartOf="@id/tv_purposes" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
