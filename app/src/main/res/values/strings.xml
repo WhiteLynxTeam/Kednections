@@ -56,5 +56,22 @@
     <string name="your_here">ты тут?</string>
     <string name="fill_it_out_later">заполнишь потом</string>
 
+    <!-- TODO: Текст для fragment_purposes -->
+    <string name="purposes">Цели</string>
+    <string name="text_description_for_purposes_fragment">можно несколько</string>
+    <string name="looking_for_friends">ищу друзей</string>
+    <string name="communicate_and_share_ideas">общаться и делиться идеями</string>
+    <string name="i_am_open_to_relationships">открыт(а) к отношениям</string>
+    <string name="looking_for_romance">ищу романтику</string>
+    <string name="looking_for_a_company">ищу компанию</string>
+    <string name="for_walks_and_hikes_for_events">для прогулок и походов на ивенты</string>
+    <string name="i_want_to_join_the_project">хочу присоединиться к проекту</string>
+    <string name="looking_for_a_team">ищу команду</string>
+    <string name="assembling_team">собираю команду</string>
+    <string name="looking_for_people_to_join_my_project">ищу людей в свой проект</string>
+    <string name="how_to_communicate">Как общаться?</string>
+    <string name="text_hint_about">В жизни каждого человека бывают моменты, когда зашел не в ту дверь — так я попал в дизайн...</string>
+    <string name="char_count">0/200</string>
+
 
 </resources>

@@ -36,5 +36,32 @@
         android:id="@+id/geolocationFragment"
         android:name="com.kednections.view.form.geolocation.GeolocationFragment"
         android:label="fragment_geolocation"
-        tools:layout="@layout/fragment_geolocation" />
+        tools:layout="@layout/fragment_geolocation" >
+        <action
+            android:id="@+id/action_geolocationFragment_to_purposesFragment"
+            app:destination="@id/purposesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/purposesFragment"
+        android:name="com.kednections.view.form.purposes.PurposesFragment"
+        android:label="fragment_purposes"
+        tools:layout="@layout/fragment_purposes" >
+        <action
+            android:id="@+id/action_purposesFragment_to_chooseCommunicateFragment"
+            app:destination="@id/chooseCommunicateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseCommunicateFragment"
+        android:name="com.kednections.view.form.choose_communicate.ChooseCommunicateFragment"
+        android:label="fragment_choose_communicate"
+        tools:layout="@layout/fragment_choose_communicate" >
+        <action
+            android:id="@+id/action_chooseCommunicateFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.kednections.view.form.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

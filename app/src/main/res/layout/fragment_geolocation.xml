@@ -82,7 +82,7 @@
         android:background="@drawable/btn_resume_background"
         android:textColor="@color/btn_resume_text_color"
         android:text="@string/resume"
-        android:enabled="false"
+        android:enabled="true"
         app:layout_constraintStart_toStartOf="@id/tv_where_are_you"
         app:layout_constraintBottom_toTopOf="@id/skipped"
         app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"/>

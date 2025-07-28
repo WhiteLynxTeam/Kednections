@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -57,8 +56,6 @@ class SpecializationFragment : Fragment() {
             R.id.tv_ar_vr_designer, R.id.tv_motion_designer, R.id.tv_smm_designer
         )
 
-        val resumeButton = view.findViewById<AppCompatButton>(R.id.btn_resume)
-
         specializationIds.forEach { id ->
             val textView = view.findViewById<TextView>(id)
             textView.setOnClickListener {
@@ -75,7 +72,7 @@ class SpecializationFragment : Fragment() {
                     selectedViews.add(textView)
                 }
 
-                resumeButton.isEnabled = selectedViews.isNotEmpty()
+                binding.btnResume.isEnabled = selectedViews.isNotEmpty()
             }
         }
 

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.form.choose_communicate.ChooseCommunicateFragment">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_logo_communicate_fragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_communicate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintWidth_percent="0.95"
+        android:fontFamily="@font/nauryz_red_keds"
+        android:text="@string/how_to_communicate"
+        android:textColor="@color/text_description"
+        android:textSize="42sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_online"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintTop_toBottomOf="@id/img_logo"
+        app:layout_constraintEnd_toEndOf="@id/tv_how_to_communicate"
+        app:layout_constraintStart_toStartOf="@id/tv_how_to_communicate"/>
+
+    <ImageView
+        android:id="@+id/iv_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_online"
+        app:layout_constraintStart_toStartOf="@id/view_online"
+        app:layout_constraintTop_toTopOf="@id/view_online"
+        app:layout_constraintBottom_toBottomOf="@id/view_online"/>
+
+    <LinearLayout
+        android:id="@+id/text_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/iv_online"
+        app:layout_constraintTop_toTopOf="@id/view_online"
+        app:layout_constraintBottom_toBottomOf="@id/view_online">
+
+        <TextView
+            android:id="@+id/tv_online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="только онлайн"
+            android:textColor="@color/text_description"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_online_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
+            android:text="чат, мемы стикеры"
+            android:textColor="@color/bg_specialization_selected"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkbox_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_online"
+        app:layout_constraintEnd_toEndOf="@id/view_online"
+        app:layout_constraintBottom_toBottomOf="@id/view_online"/>
+
+
+    <View
+        android:id="@+id/view_offline"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintTop_toBottomOf="@id/view_online"
+        app:layout_constraintEnd_toEndOf="@id/tv_how_to_communicate"
+        app:layout_constraintStart_toStartOf="@id/tv_how_to_communicate"/>
+
+    <ImageView
+        android:id="@+id/iv_offline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_offline"
+        app:layout_constraintStart_toStartOf="@id/view_offline"
+        app:layout_constraintTop_toTopOf="@id/view_offline"
+        app:layout_constraintBottom_toBottomOf="@id/view_offline"/>
+
+    <LinearLayout
+        android:id="@+id/text_offline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/iv_offline"
+        app:layout_constraintTop_toTopOf="@id/view_offline"
+        app:layout_constraintBottom_toBottomOf="@id/view_offline">
+
+        <TextView
+            android:id="@+id/tv_offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="готов(а) к встречам"
+            android:textColor="@color/text_description"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_offline_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
+            android:text="не против пообщаться вживую"
+            android:textColor="@color/bg_specialization_selected"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkbox_offline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_offline"
+        app:layout_constraintEnd_toEndOf="@id/view_offline"
+        app:layout_constraintBottom_toBottomOf="@id/view_offline"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_resume"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/btn_resume_background"
+        android:enabled="false"
+        android:text="@string/resume"
+        android:textColor="@color/btn_resume_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_how_to_communicate"
+        app:layout_constraintStart_toStartOf="@id/tv_how_to_communicate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

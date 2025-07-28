@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.form.about.AboutFragment">
+
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/img_bg_about"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <FrameLayout
+        android:id="@+id/text_horizontal_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="-10dp"
+        android:layout_marginEnd="-10dp"
+        android:background="@color/bg_text_description"
+        android:rotation="15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_description_for_avatar_fragment"
+            android:textColor="@color/text_description"
+            />
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/et_about"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="@string/text_hint_about"
+        android:background="@drawable/bg_auth_input"
+        android:gravity="start|top"
+        android:padding="16dp"
+        android:maxLength="200"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintWidth_percent="0.95"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:fontFamily="@font/raleway_medium"
+        android:textColor="@color/text_description"
+        android:textColorHint="@color/text_hint_auth_input_layout"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/text_horizontal_scroll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_char_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/char_count"
+        android:textSize="14sp"
+        android:textColor="@color/text_hint_auth_input_layout"
+        app:layout_constraintTop_toBottomOf="@id/et_about"
+        app:layout_constraintEnd_toEndOf="@id/et_about"
+        android:layout_marginTop="8dp" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_resume"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintWidth_percent="0.95"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/btn_resume_background"
+        android:textColor="@color/btn_resume_text_color"
+        android:text="@string/resume"
+        android:enabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/skipped"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/skipped"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/skip"
+        android:textColor="#FFF200"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
