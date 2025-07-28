@@ -4,6 +4,7 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import com.google.firebase.auth.FirebaseAuth
 import com.kednections.view.auth.AuthViewModel
+import com.kednections.view.welcome.WelcomeViewModel
 import dagger.Module
 import dagger.Provides
 
@@ -19,5 +20,12 @@ class AppModule() {
         authFirebase = authFirebase,
         credentialManager = credentialManager,
         request = request,
+    )
+
+    @Provides
+    fun provideWelcomeViewModelFactory(
+
+    ) = WelcomeViewModel.Factory(
+
     )
 }

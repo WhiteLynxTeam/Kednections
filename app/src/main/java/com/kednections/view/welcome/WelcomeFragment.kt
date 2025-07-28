@@ -12,20 +12,31 @@ import com.google.firebase.auth.FirebaseAuth
 import com.kednections.R
 import com.kednections.databinding.FragmentWelcomeBinding
 import com.kednections.utils.AppPreferences
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class WelcomeFragment : Fragment() {
     private var _binding: FragmentWelcomeBinding? = null
     private val binding get() = _binding!!
-    //[green] Посмотреть. Вроде через di Dagger должно подтягиваться. Не помню. Уточнить.
+    //[yellow] FirebaseAuth перенести во вьюмодель данного фрагмента, подтягивается через di
     private lateinit var auth: FirebaseAuth
+    //[yellow] Эту удалить. Работаем по чистой архитектуре со слоями, вместо прямой ссылки на
+    //sharedPreferences работаем с помощью usecase и repository, storage
     private lateinit var appPreferences: AppPreferences
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        //Обязательно требуется для di:
+        AndroidSupportInjection.inject(this)
+        //Не забываем добавлять фрагмент в MainModule. Без этого будет краш по di
+        //На будущее, сейчас я добавил
+
+        /* Должны быть во вьюмодели.*/
         auth = FirebaseAuth.getInstance()
+        //вместо этого usecase, которые используем во фрагменте
         appPreferences = AppPreferences(requireContext())
+        /**/
     }
 
     override fun onCreateView(
@@ -40,6 +51,8 @@ class WelcomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*[green] Добавляем переменную вьюмодель, см. аналогию в др. фрагментах*/
+
         lifecycleScope.launch {
             // Задержка для показа welcome-экрана (3 секунды)
             delay(3000)
@@ -48,7 +61,9 @@ class WelcomeFragment : Fragment() {
         }
     }
 
+
     private fun checkUserStateAndNavigate() {
+        /*[green] логика должна быть во вьюмодели. Эти переменные будут во вьюмодели*/
         val currentUser = auth.currentUser
         val isFirstRun = appPreferences.isFirstRun
 
