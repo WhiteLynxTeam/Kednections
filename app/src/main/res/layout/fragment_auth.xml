@@ -72,24 +72,22 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.131" />
 
-    <ImageView
-        android:id="@+id/img_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_auth_title"
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/title_fragments"
+        android:textAlignment="center"
+        android:text="@string/connect"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toTopOf="@id/guideline_title_margin"
         app:layout_constraintEnd_toEndOf="@id/email"/>
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-10dp"
-        android:layout_marginEnd="-10dp"
-        android:background="@color/bg_text_description"
+        style="@style/tv_running_line"
         android:rotation="9"
-        app:layout_constraintTop_toBottomOf="@id/img_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintBottom_toTopOf="@id/email">
 
         <TextView
@@ -105,13 +103,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        style="@style/btn_resume_style"
         android:layout_marginTop="20dp"
-        android:background="@drawable/btn_resume_background"
-        android:textColor="@color/btn_resume_text_color"
-        android:text="@string/resume"
-        android:enabled="false"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toBottomOf="@id/password"
         app:layout_constraintEnd_toEndOf="@id/email"/>
