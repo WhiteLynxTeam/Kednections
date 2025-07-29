@@ -17,12 +17,10 @@
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-10dp"
-        android:layout_marginEnd="-10dp"
-        android:background="@color/bg_text_description"
+        style="@style/tv_running_line"
         android:rotation="-5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/img_logo">
 
         <TextView
@@ -93,13 +91,6 @@
         app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/nick"/>
 
-<!--    <ImageSwitcher-->
-<!--        android:id="@+id/switcher"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toTopOf="@id/image"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/name"/>-->
-
     <ImageView
         android:id="@+id/nick_switcher"
         android:layout_width="wrap_content"
@@ -118,13 +109,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        style="@style/btn_resume_style"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/btn_resume_background"
-        android:textColor="@color/btn_resume_text_color"
-        android:text="@string/resume"
-        android:enabled="false"
         app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/name"/>

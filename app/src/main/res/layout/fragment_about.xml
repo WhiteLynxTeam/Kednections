@@ -18,15 +18,12 @@
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/tv_running_line"
         android:layout_marginTop="100dp"
-        android:layout_marginStart="-10dp"
-        android:layout_marginEnd="-10dp"
-        android:background="@color/bg_text_description"
         android:rotation="15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:id="@+id/text_description"
@@ -73,14 +70,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        style="@style/btn_resume_style"
         app:layout_constraintWidth_percent="0.95"
         android:layout_marginBottom="14dp"
-        android:background="@drawable/btn_resume_background"
-        android:textColor="@color/btn_resume_text_color"
-        android:text="@string/resume"
-        android:enabled="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/skipped"
         app:layout_constraintEnd_toEndOf="parent"/>

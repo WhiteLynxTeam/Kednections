@@ -17,13 +17,9 @@
 
     <TextView
         android:id="@+id/tv_suit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        style="@style/title_fragments"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/nauryz_red_keds"
         android:text="@string/whos_by_suit"
-        android:textColor="@color/text_description"
-        android:textSize="42sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,13 +27,10 @@
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-10dp"
+        style="@style/tv_running_line"
         android:layout_marginTop="35dp"
-        android:layout_marginEnd="-10dp"
-        android:background="@color/bg_text_description"
         android:rotation="5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/img_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -210,13 +203,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        style="@style/btn_resume_style"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/btn_resume_background"
-        android:enabled="false"
-        android:text="@string/resume"
-        android:textColor="@color/btn_resume_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/tv_suit"
         app:layout_constraintStart_toStartOf="@id/tv_suit" />

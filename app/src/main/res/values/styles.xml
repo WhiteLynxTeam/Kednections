@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <style name="btn_resume_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/btn_resume_background</item>
+        <item name="android:textColor">@color/btn_resume_text_color</item>
+        <item name="android:text">@string/resume</item>
+        <item name="android:enabled">false</item>
+    </style>
+    
+    <style name="title_fragments">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/nauryz_red_keds</item>
+        <item name="android:textSize">42sp</item>
+        <item name="android:textColor">@color/text_description</item>
+    </style>
+    
+    <style name="tv_running_line">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">-10dp</item>
+        <item name="android:layout_marginEnd">-10dp</item>
+        <item name="android:background">@color/bg_text_description</item>
+    </style>
+    
     <style name="text_specializations">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
