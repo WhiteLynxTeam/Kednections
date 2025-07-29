@@ -80,6 +80,7 @@
         android:id="@+id/checkbox_online"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:buttonTint="@color/checkbox_color_selector"
         app:layout_constraintTop_toTopOf="@id/view_online"
         app:layout_constraintEnd_toEndOf="@id/view_online"
         app:layout_constraintBottom_toBottomOf="@id/view_online"/>
@@ -140,6 +141,7 @@
         android:id="@+id/checkbox_offline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:buttonTint="@color/checkbox_color_selector"
         app:layout_constraintTop_toTopOf="@id/view_offline"
         app:layout_constraintEnd_toEndOf="@id/view_offline"
         app:layout_constraintBottom_toBottomOf="@id/view_offline"/>
