@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.form.geolocation.GeolocationFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_image_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.86" />
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="fitXY"
         android:src="@drawable/img_logo_geolocation_fragment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_image_bottom" />
 
     <TextView
         android:id="@+id/tv_where_are_you"
@@ -30,9 +39,9 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="@drawable/bg_auth_input"
+        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"
         app:layout_constraintStart_toStartOf="@id/tv_where_are_you"
-        app:layout_constraintTop_toBottomOf="@id/tv_where_are_you"
-        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_where_are_you" />
 
     <TextView
         android:id="@+id/tv_your_here"
@@ -41,21 +50,21 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/raleway_medium"
+        android:text="@string/your_here"
         android:textColor="@color/text_hint_auth_input_layout"
         android:textStyle="bold"
-        android:text="@string/your_here"
         app:layout_constraintStart_toStartOf="@id/et_geolocation"
-        app:layout_constraintTop_toBottomOf="@id/et_geolocation"/>
+        app:layout_constraintTop_toBottomOf="@id/et_geolocation" />
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
         style="@style/tv_running_line"
         android:layout_marginTop="35dp"
         android:rotation="12"
+        app:layout_constraintBottom_toTopOf="@id/btn_resume"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_your_here"
-        app:layout_constraintBottom_toTopOf="@id/btn_resume">
+        app:layout_constraintTop_toBottomOf="@id/tv_your_here">
 
         <TextView
             android:id="@+id/text_description"
@@ -71,9 +80,9 @@
         style="@style/btn_resume_style"
         android:layout_marginBottom="14dp"
         android:enabled="true"
-        app:layout_constraintStart_toStartOf="@id/tv_where_are_you"
         app:layout_constraintBottom_toTopOf="@id/skipped"
-        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"/>
+        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"
+        app:layout_constraintStart_toStartOf="@id/tv_where_are_you" />
 
     <TextView
         android:id="@+id/skipped"
@@ -83,8 +92,8 @@
         android:text="@string/skip"
         android:textColor="#FFF200"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
