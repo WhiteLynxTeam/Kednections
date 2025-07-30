@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_medium"
             android:text="@string/for_walks_and_hikes_for_events"
-            android:textColor="@color/bg_specialization_selected"
+            android:textColor="@color/color_2"
             android:textSize="12sp"/>
 
     </LinearLayout>
@@ -162,7 +162,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_medium"
             android:text="@string/i_am_open_to_relationships"
-            android:textColor="@color/bg_specialization_selected"
+            android:textColor="@color/color_2"
             android:textSize="12sp"/>
 
     </LinearLayout>
@@ -222,7 +222,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_medium"
             android:text="@string/communicate_and_share_ideas"
-            android:textColor="@color/bg_specialization_selected"
+            android:textColor="@color/color_2"
             android:textSize="12sp"/>
 
     </LinearLayout>
@@ -282,7 +282,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_medium"
             android:text="@string/i_want_to_join_the_project"
-            android:textColor="@color/bg_specialization_selected"
+            android:textColor="@color/color_2"
             android:textSize="12sp"/>
 
     </LinearLayout>
@@ -342,7 +342,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_medium"
             android:text="@string/looking_for_people_to_join_my_project"
-            android:textColor="@color/bg_specialization_selected"
+            android:textColor="@color/color_2"
             android:textSize="12sp"/>
 
     </LinearLayout>

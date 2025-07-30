@@ -5,8 +5,8 @@
 
 
     <color name="background_color">#F5F5F5</color>
-    <color name="text_hint_auth_input_layout">#808080</color>
-    <color name="border_auth_input_layout">#C0C0C0</color>
+    <color name="color_4">#808080</color>
+    <color name="color_1">#C0C0C0</color>
     <color name="bg_text_description">#FFF200</color>
     <color name="text_description">#0C0705</color>
     <color name="transparent">#99000000</color>
@@ -15,6 +15,6 @@
     <color name="btn_resume_text_color">#E6E4E4</color>
     <color name="count_form_color">#1E1E1E</color>
     <color name="dialog_limit_text_color">#242424</color>
-    <color name="bg_specialization_selected">#606060</color>
+    <color name="color_2">#606060</color>
 
 </resources>

@@ -31,7 +31,7 @@
         app:layout_constraintWidth_percent="0.95"
         android:layout_marginBottom="5dp"
         android:hint="@string/email"
-        android:textColorHint="@color/text_hint_auth_input_layout"
+        android:textColorHint="@color/color_4"
         app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -53,8 +53,8 @@
         android:layout_marginTop="5dp"
         android:hint="@string/password"
         app:endIconMode="password_toggle"
-        android:textColorHint="@color/text_hint_auth_input_layout"
-        app:endIconTint="@color/text_hint_auth_input_layout"
+        android:textColorHint="@color/color_4"
+        app:endIconTint="@color/color_4"
         app:layout_constraintEnd_toEndOf="@id/email"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_center">

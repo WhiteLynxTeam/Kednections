@@ -85,6 +85,11 @@ class AvatarFragment : Fragment() {
             findNavController().navigate(R.id.action_avatarFragment_to_specializationFragment)
             viewModel.increaseProgress()
         }
+
+        binding.skipped.setOnClickListener {
+            findNavController().navigate(R.id.action_avatarFragment_to_specializationFragment)
+            viewModel.increaseProgress()
+        }
     }
 }
 

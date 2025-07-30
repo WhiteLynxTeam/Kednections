@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_medium"
             android:text="чат, мемы стикеры"
-            android:textColor="@color/bg_specialization_selected"
+            android:textColor="@color/color_2"
             android:textSize="12sp"/>
 
     </LinearLayout>
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_medium"
             android:text="не против пообщаться вживую"
-            android:textColor="@color/bg_specialization_selected"
+            android:textColor="@color/color_2"
             android:textSize="12sp"/>
 
     </LinearLayout>
