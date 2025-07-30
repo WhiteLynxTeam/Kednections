@@ -65,7 +65,7 @@
         android:maxLines="5"
         android:fontFamily="@font/raleway_medium"
         android:textColor="@color/text_description"
-        android:textColorHint="@color/text_hint_auth_input_layout"
+        android:textColorHint="@color/color_4"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/text_horizontal_scroll"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:text="@string/char_count"
         android:textSize="14sp"
-        android:textColor="@color/text_hint_auth_input_layout"
+        android:textColor="@color/color_4"
         app:layout_constraintTop_toBottomOf="@id/et_about"
         app:layout_constraintEnd_toEndOf="@id/et_about"
         android:layout_marginTop="8dp" />

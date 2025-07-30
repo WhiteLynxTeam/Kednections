@@ -5,6 +5,7 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import com.kednections.R
 
 class SwitcherValidator(
@@ -15,6 +16,7 @@ class SwitcherValidator(
     private val image2: ImageView,
     private val length1: Int = 1,
     private val length2: Int = 8,
+    private val switcherBorder: LinearLayout,
     private val invalidImageRes1: Int = R.drawable.ic_name_switcher,
     private val invalidImageRes2: Int = R.drawable.ic_nick_switcher,
     private val validImageRes1: Int = R.drawable.ic_name_switcher_enabled,
@@ -43,6 +45,10 @@ class SwitcherValidator(
     private fun updateVisualStates() {
         val nameValidNow = (field1.text?.length ?: 0) >= length1
         val nickValidNow = (field2.text?.length ?: 0) >= length2
+
+        if (isNameValid && isNickValid) {
+            switcherBorder.setBackgroundResource(R.drawable.bg_switcher_border)
+        } else switcherBorder.setBackgroundResource(R.drawable.bg_auth_input)
 
         // Автоустановка selectedImageView если ранее ничего не выбрано
         if (selectedImageView == null) {

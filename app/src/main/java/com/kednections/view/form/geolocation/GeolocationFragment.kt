@@ -44,6 +44,11 @@ class GeolocationFragment : Fragment() {
             findNavController().navigate(R.id.action_geolocationFragment_to_purposesFragment)
             viewModel.increaseProgress()
         }
+
+        binding.skipped.setOnClickListener {
+            findNavController().navigate(R.id.action_geolocationFragment_to_purposesFragment)
+            viewModel.increaseProgress()
+        }
     }
 
 }

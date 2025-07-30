@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="@color/bg_specialization_selected" /> <!-- Цвет фона -->
+    <solid android:color="@color/color_2" /> <!-- Цвет фона -->
 
     <corners android:radius="12dp" />
     <padding android:left="10dp" android:top="6dp" android:bottom="10dp" android:right="10dp"/>

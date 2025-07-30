@@ -57,7 +57,7 @@
         app:layout_constraintWidth_percent="0.95"
         android:layout_marginBottom="5dp"
         android:hint="@string/last_name_first_name"
-        android:textColorHint="@color/text_hint_auth_input_layout"
+        android:textColorHint="@color/color_4"
         app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:hint="@string/nick"
-        android:textColorHint="@color/text_hint_auth_input_layout"
+        android:textColorHint="@color/color_4"
         app:layout_constraintEnd_toEndOf="@id/name"
         app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_center">
@@ -101,21 +101,28 @@
         app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/nick"/>
 
-    <ImageView
-        android:id="@+id/nick_switcher"
+    <LinearLayout
+        android:id="@+id/switcher_border"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_nick_switcher"
-        app:layout_constraintTop_toTopOf="@id/image"
-        app:layout_constraintEnd_toEndOf="@id/name"/>
+        android:padding="6dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintTop_toTopOf="@+id/image"
+        app:layout_constraintEnd_toEndOf="@id/name">
 
-    <ImageView
-        android:id="@+id/name_switcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_name_switcher"
-        app:layout_constraintTop_toTopOf="@id/image"
-        app:layout_constraintEnd_toStartOf="@id/nick_switcher"/>
+        <ImageView
+            android:id="@+id/nick_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_nick_switcher"/>
+
+        <ImageView
+            android:id="@+id/name_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_name_switcher"/>
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
