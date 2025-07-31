@@ -11,6 +11,7 @@
     <string name="password">пароль</string>
     <string name="resume">продолжить</string>
     <string name="text_description_for_auth_fragment">тапнул — со всем согласился</string>
+    <string name="or">или</string>
 
     <!-- TODO: Текст для fragment_nickname -->
     <string name="last_name_first_name">Фамилия Имя*</string>
@@ -40,7 +41,7 @@
     <string name="communication_designer">коммуникационный дизайнер</string>
     <string name="brand_designer">бренд-дизанер</string>
     <string name="landscape_designer">ландшафтный дизайнер</string>
-    <string name="designer">дизайнер</string>
+    <string name="designer">местами дизайнер</string>
     <string name="product_designer">продуктовый дизайнер</string>
     <string name="ux_ui_designer">ux/ui-дизайнер</string>
     <string name="industrial_designer">промышленный дизайнер</string>
@@ -73,6 +74,7 @@
     <string name="how_to_communicate">Как общаться?</string>
     <string name="text_hint_about">В жизни каждого человека бывают моменты, когда зашел не в ту дверь — так я попал в дизайн...</string>
     <string name="char_count">0/200</string>
+
 
 
 </resources>

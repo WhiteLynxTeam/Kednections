@@ -24,16 +24,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_title_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.051" />
 
     <TextView
         android:id="@+id/tv_purposes"
         style="@style/title_fragments"
-        android:layout_marginTop="10dp"
-        app:layout_constraintWidth_percent="0.95"
+        app:layout_constraintWidth_percent="0.911"
+        app:layout_constraintHeight_percent="0.15"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="32sp"
+        app:autoSizeMaxTextSize="44sp"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/purposes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/guideline_title_margin" />
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
@@ -356,50 +366,22 @@
         app:layout_constraintEnd_toEndOf="@id/view_assembling_team"
         app:layout_constraintBottom_toBottomOf="@id/view_assembling_team"/>
 
-
-    <!--    <LinearLayout-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="80dp"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:background="@drawable/bg_auth_input"-->
-<!--        app:layout_constraintStart_toStartOf="@id/tv_purposes"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/img_logo"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/tv_purposes"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/btn_resume">-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_friends"/>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="ищу друзей"/>-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="общаться и делиться идеями"/>-->
-
-<!--        </LinearLayout>-->
-
-<!--        <CheckBox-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"/>-->
-
-<!--    </LinearLayout>-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_btn_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.892" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.068"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeStepGranularity="1sp"
+        app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
         app:layout_constraintEnd_toEndOf="@id/tv_purposes"
         app:layout_constraintStart_toStartOf="@id/tv_purposes" />
 

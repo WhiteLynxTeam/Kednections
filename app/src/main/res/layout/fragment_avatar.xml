@@ -13,6 +13,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.209" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_title_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.051" />
+
     <ImageView
         android:id="@+id/img_logo"
         android:layout_width="0dp"
@@ -27,22 +34,31 @@
     <TextView
         android:id="@+id/tv_face"
         style="@style/title_fragments"
-        android:layout_marginTop="10dp"
-        app:layout_constraintWidth_percent="0.95"
+        app:layout_constraintWidth_percent="0.881"
+        app:layout_constraintHeight_percent="0.15"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="32sp"
+        app:autoSizeMaxTextSize="44sp"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/face"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/guideline_title_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_yellow_text_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.115" />
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
         style="@style/tv_running_line"
-        android:layout_marginTop="20dp"
-        android:rotation="-5"
+        android:rotation="-3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/img_logo"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/guideline_yellow_text_margin">
 
         <TextView
             android:id="@+id/text_description"
@@ -69,96 +85,136 @@
 
     <FrameLayout
         android:id="@+id/add_ava"
-        android:layout_width="100dp"
-        android:layout_height="100dp">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:minHeight="100dp"
+        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintWidth_percent="0.278">
         <ImageView
             android:id="@+id/border"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/bg_add_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/img_bg_add_avatar"
             app:layout_constraintWidth_percent="0.28"/>
         <ImageView
             android:id="@+id/add"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/ic_baseline_add_24"/>
     </FrameLayout>
 
     <ImageView
         android:id="@+id/ava_1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:minHeight="100dp"
+        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintWidth_percent="0.278"
         android:src="@drawable/img_ava_1"
-        app:layout_constraintWidth_percent="0.28"/>
+        />
 
     <ImageView
         android:id="@+id/ava_2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_ava_2"
-        app:layout_constraintWidth_percent="0.28"/>
+        android:layout_height="0dp"
+        android:minHeight="100dp"
+        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintWidth_percent="0.278"
+        android:src="@drawable/img_ava_2"/>
 
     <ImageView
         android:id="@+id/ava_3"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_ava_3"
-        app:layout_constraintWidth_percent="0.28"/>
+        android:layout_height="0dp"
+        android:minHeight="100dp"
+        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintWidth_percent="0.278"
+        android:src="@drawable/img_ava_3"/>
 
     <ImageView
         android:id="@+id/ava_4"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_ava_4"
-        app:layout_constraintWidth_percent="0.28"/>
+        android:layout_height="0dp"
+        android:minHeight="100dp"
+        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintWidth_percent="0.278"
+        android:src="@drawable/img_ava_4"/>
 
     <ImageView
         android:id="@+id/ava_5"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_ava_5"
-        app:layout_constraintWidth_percent="0.28"/>
+        android:layout_height="0dp"
+        android:minHeight="100dp"
+        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintWidth_percent="0.278"
+        android:src="@drawable/img_ava_5"/>
 
     <ImageView
         android:id="@+id/ava_6"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_ava_6"
-        app:layout_constraintWidth_percent="0.28"/>
+        android:layout_height="0dp"
+        android:minHeight="100dp"
+        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintWidth_percent="0.278"
+        android:src="@drawable/img_ava_6"/>
 
     <ImageView
         android:id="@+id/ava_7"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_ava_7"
-        app:layout_constraintWidth_percent="0.28"/>
+        android:layout_height="0dp"
+        android:minHeight="100dp"
+        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintWidth_percent="0.278"
+        android:src="@drawable/img_ava_7"/>
 
     <ImageView
         android:id="@+id/ava_8"
         android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:minHeight="100dp"
+        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintWidth_percent="0.278"
+        android:src="@drawable/img_ava_8"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_btn_margin"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/img_ava_8"
-        app:layout_constraintWidth_percent="0.28"/>
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.813" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        android:layout_marginBottom="14dp"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="@id/tv_face"
+        app:layout_constraintHeight_percent="0.068"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tv_face"
-        app:layout_constraintBottom_toTopOf="@id/skipped"
-        app:layout_constraintEnd_toEndOf="@id/tv_face"/>
+        app:layout_constraintTop_toTopOf="@id/guideline_btn_margin" />
 
     <TextView
         android:id="@+id/skipped"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintHeight_percent="0.068"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:fontFamily="@font/raleway_medium"
+        android:textStyle="bold"
         android:text="@string/skip"
         android:textColor="#FFF200"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeMaxTextSize="14sp"
+        app:autoSizeStepGranularity="1sp"
+        app:layout_constraintStart_toStartOf="@id/btn_resume"
+        app:layout_constraintTop_toBottomOf="@id/btn_resume"
+        app:layout_constraintEnd_toEndOf="@id/btn_resume"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

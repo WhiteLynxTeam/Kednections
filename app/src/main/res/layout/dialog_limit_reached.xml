@@ -23,6 +23,7 @@
         android:id="@+id/tv_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:text="@string/choose_only_3"
         android:textSize="16sp"
@@ -33,9 +34,9 @@
 
     <ImageView
         android:id="@+id/iv_closed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="12dp"
         android:src="@drawable/ic_close_dialog"
         app:layout_constraintTop_toTopOf="@id/tv_title"
         app:layout_constraintEnd_toEndOf="parent"/>
