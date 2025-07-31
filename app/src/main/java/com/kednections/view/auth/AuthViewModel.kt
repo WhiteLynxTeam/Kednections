@@ -11,8 +11,13 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.kednections.domain.models.User
+import com.kednections.domain.usecase.user.LoginUserApiUseCase
+import com.kednections.domain.usecase.user.RegisterUserApiUseCase
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -21,11 +26,35 @@ class AuthViewModel(
     private val authFirebase: FirebaseAuth,
     private val credentialManager: CredentialManager,
     private val request: GetCredentialRequest,
-) : ViewModel() {
+    private val loginUserApiUseCase: LoginUserApiUseCase,
+    private val registerUserApiUseCase: RegisterUserApiUseCase,
+
+    ) : ViewModel() {
 
     private var _currentUser = MutableStateFlow<FirebaseUser?>(null)
     val currentUser: SharedFlow<FirebaseUser?>
         get() = _currentUser.asStateFlow()
+
+    private var _isRegistry = MutableSharedFlow<Boolean>()
+    val isRegistry: SharedFlow<Boolean>
+        get() = _isRegistry.asSharedFlow()
+
+    private var _isLogin = MutableSharedFlow<Boolean>()
+    val isLogin: SharedFlow<Boolean>
+        get() = _isLogin.asSharedFlow()
+
+    fun login(user: User) {
+        viewModelScope.launch {
+
+            _isLogin.emit(loginUserApiUseCase(user) != null)
+        }
+    }
+
+    fun register(user: User) {
+        viewModelScope.launch {
+            _isRegistry.emit(registerUserApiUseCase(user) != null)
+        }
+    }
 
     fun signInWithGoogle(
         context: Context,
@@ -58,7 +87,7 @@ class AuthViewModel(
                 println("signInWithGoogle:authFirebase - ${authFirebase.currentUser?.metadata}")
 
                 val authResult = authFirebase.signInWithCredential(firebaseCredential).await()
-                if(authResult != null){
+                if (authResult != null) {
                     println("signInWithGoogle:success")
                     println("signInWithGoogle:authFirebase - ${authResult.user?.email}")
 
@@ -67,7 +96,7 @@ class AuthViewModel(
 //                    authFirebase.currentUser?.email?.let { saveEmailPrefUseCase(it) }
 //
 //                    _isAuth.emit(Pair(true,""))
-                }else{
+                } else {
                     println("signInWithGoogle:failure")
                     onFailure(Exception("User is null"))
                 }
@@ -88,13 +117,17 @@ class AuthViewModel(
         private val authFirebase: FirebaseAuth,
         private val credentialManager: CredentialManager,
         private val request: GetCredentialRequest,
+        private val loginUserApiUseCase: LoginUserApiUseCase,
+        private val registerUserApiUseCase: RegisterUserApiUseCase,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(AuthViewModel::class.java)) {
                 return AuthViewModel(
                     authFirebase = authFirebase,
                     credentialManager = credentialManager,
-                    request = request
+                    request = request,
+                    loginUserApiUseCase = loginUserApiUseCase,
+                    registerUserApiUseCase = registerUserApiUseCase,
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")

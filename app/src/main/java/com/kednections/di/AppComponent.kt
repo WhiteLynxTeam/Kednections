@@ -7,6 +7,7 @@ import com.kednections.di.modules.AppModule
 import com.kednections.di.modules.DataModule
 import com.kednections.di.modules.DomainModule
 import com.kednections.di.modules.MainModule
+import com.kednections.di.modules.RemoteModule
 import com.kednections.di.modules.SharedPreferencesModule
 import dagger.BindsInstance
 import dagger.Component
@@ -23,6 +24,7 @@ import javax.inject.Singleton
         DataModule::class,
         DomainModule::class,
         MainModule::class,
+        RemoteModule::class,
         SharedPreferencesModule::class,
     ]
 )

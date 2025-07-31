@@ -8,12 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.kednections.databinding.FragmentAuthBinding
+import com.kednections.domain.models.User
 import com.kednections.utils.FormValidator
 import com.kednections.utils.startMarquee
+import com.kednections.utils.uiextensions.showSnackbarLong
 import com.kednections.view.activity.FormActivity
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AuthFragment : Fragment() {
@@ -46,6 +50,24 @@ class AuthFragment : Fragment() {
         viewModel =
             ViewModelProvider(this, vmFactory)[AuthViewModel::class.java]
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isRegistry.collect {
+                if (it) startActivity(Intent(requireActivity(), FormActivity::class.java))
+                else {
+                    showSnackbarLong("Ошибка регистрации.")
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isLogin.collect {
+                if (it) startActivity(Intent(requireActivity(), FormActivity::class.java))
+                else {
+                    showSnackbarLong("Ошибка авторизации.")
+                }
+            }
+        }
+
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
@@ -59,7 +81,20 @@ class AuthFragment : Fragment() {
         validator.attach()
 
         binding.btnResume.setOnClickListener {
-            startActivity(Intent(requireActivity(), FormActivity::class.java))
+            if (binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString()
+                    .isEmpty()
+            ) {
+                showSnackbarLong("Заполните поля.")
+                return@setOnClickListener
+            }
+
+            viewModel.login(
+                User(
+                    username = binding.etEmail.text.toString(),
+                    password = binding.etPassword.text.toString(),
+                )
+            )
+//            startActivity(Intent(requireActivity(), FormActivity::class.java))
         }
 
         binding.icGoogle.setOnClickListener {
