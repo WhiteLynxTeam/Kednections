@@ -7,7 +7,21 @@
     tools:context=".view.form.choose_communicate.ChooseCommunicateFragment">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_image_margin"
+        android:id="@+id/guideline_margin_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.069" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_margin_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.291" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_view_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -20,19 +34,30 @@
         android:scaleType="fitXY"
         android:src="@drawable/img_logo_communicate_fragment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_margin_top"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin"/>
+        app:layout_constraintBottom_toBottomOf="@id/guideline_margin_bottom"/>
+
+<!--    <androidx.constraintlayout.widget.Guideline-->
+<!--        android:id="@+id/guideline_title_margin"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintGuide_percent="0.051" />-->
 
     <TextView
         android:id="@+id/tv_how_to_communicate"
         style="@style/title_fragments"
-        android:layout_marginTop="10dp"
-        app:layout_constraintWidth_percent="0.95"
+        app:layout_constraintWidth_percent="0.881"
+        app:layout_constraintHeight_percent="0.15"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="32sp"
+        app:autoSizeMaxTextSize="44sp"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/how_to_communicate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/guideline_margin_top" />
 
     <View
         android:id="@+id/view_online"
@@ -84,7 +109,7 @@
 
     </LinearLayout>
 
-    <CheckBox
+    <RadioButton
         android:id="@+id/checkbox_online"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -145,7 +170,7 @@
 
     </LinearLayout>
 
-    <CheckBox
+    <RadioButton
         android:id="@+id/checkbox_offline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -154,11 +179,23 @@
         app:layout_constraintEnd_toEndOf="@id/view_offline"
         app:layout_constraintBottom_toBottomOf="@id/view_offline"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_btn_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.892" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
+        app:layout_constraintHeight_percent="0.062"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeStepGranularity="1sp"
+        app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
         app:layout_constraintEnd_toEndOf="@id/tv_how_to_communicate"
         app:layout_constraintStart_toStartOf="@id/tv_how_to_communicate" />
 

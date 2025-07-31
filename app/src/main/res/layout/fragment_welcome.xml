@@ -12,7 +12,7 @@
         android:id="@+id/background_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/bg_welcome"
+        android:src="@drawable/img_bg_welcome"
         android:layout_marginBottom="133dp"
         android:scaleType="fitXY"/>
 

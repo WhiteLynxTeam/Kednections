@@ -6,40 +6,81 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.auth.AuthFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_margin_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.011" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_margin_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.979" />
+
     <ImageView
         android:id="@+id/background_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/bg_auth"
+        android:src="@drawable/img_bg_auth"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_margin_top"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="@id/guideline_margin_bottom"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_center"
+        android:id="@+id/guideline_yellow_text_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.295" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_et_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.423" />
+
+    <FrameLayout
+        android:id="@+id/text_horizontal_scroll"
+        style="@style/tv_running_line"
+        android:rotation="9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_yellow_text_margin">
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/text_description_for_auth_fragment"
+            android:textColor="@color/text_description" />
+
+    </FrameLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.95"
-        android:layout_marginBottom="5dp"
-        android:hint="@string/email"
-        android:textColorHint="@color/color_4"
-        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_center"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.911"
+        app:layout_constraintHeight_percent="0.068"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toTopOf="@id/guideline_et_mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="@string/email"
+            android:textColorHint="@color/color_4"
+            android:maxLines="1"
             android:textSize="12sp"
             android:background="@drawable/bg_auth_input"
             android:inputType="text" />
@@ -49,20 +90,23 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:hint="@string/password"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.068"
+        android:layout_marginTop="10dp"
+        app:hintEnabled="false"
         app:endIconMode="password_toggle"
-        android:textColorHint="@color/color_4"
         app:endIconTint="@color/color_4"
         app:layout_constraintEnd_toEndOf="@id/email"
         app:layout_constraintStart_toStartOf="@id/email"
-        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_center">
+        app:layout_constraintTop_toBottomOf="@id/email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="@string/password"
+            android:textColorHint="@color/color_4"
+            android:maxLines="1"
             android:textSize="12sp"
             android:background="@drawable/bg_auth_input"
             android:inputType="textPassword" />
@@ -74,59 +118,63 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.131" />
+        app:layout_constraintGuide_percent="0.158" />
 
     <TextView
         android:id="@+id/tv_title"
         style="@style/title_fragments"
+        app:layout_constraintWidth_percent="0.881"
+        app:layout_constraintHeight_percent="0.15"
         android:textAlignment="center"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="32sp"
+        app:autoSizeMaxTextSize="44sp"
+        app:autoSizeStepGranularity="1sp"
         android:text="@string/connect"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toTopOf="@id/guideline_title_margin"
         app:layout_constraintEnd_toEndOf="@id/email"/>
 
-    <FrameLayout
-        android:id="@+id/text_horizontal_scroll"
-        style="@style/tv_running_line"
-        android:rotation="9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        app:layout_constraintBottom_toTopOf="@id/email">
-
-        <TextView
-            android:id="@+id/text_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/text_description_for_auth_fragment"
-            android:textColor="@color/text_description"
-            />
-
-    </FrameLayout>
-
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintHeight_percent="0.062"
         android:layout_marginTop="20dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeStepGranularity="1sp"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toBottomOf="@id/password"
         app:layout_constraintEnd_toEndOf="@id/email"/>
 
-    <ImageView
+    <TextView
         android:id="@+id/img_or"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:src="@drawable/img_or"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintWidth_percent="0.139"
+        app:layout_constraintHeight_percent="0.04"
+        android:maxLines="1"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="24sp"
+        app:autoSizeMaxTextSize="32sp"
+        app:autoSizeStepGranularity="1sp"
+        android:textColor="@color/text_description"
+        android:fontFamily="@font/nauryz_red_keds"
+        android:text="@string/or"
         app:layout_constraintTop_toBottomOf="@id/btn_resume"
         app:layout_constraintEnd_toEndOf="@+id/btn_resume"/>
 
     <ImageView
         android:id="@+id/ic_vk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintWidth_percent="0.122"
         android:src="@drawable/ic_vk"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toBottomOf="@id/img_or"
@@ -134,20 +182,24 @@
 
     <ImageView
         android:id="@+id/ic_yandex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.06"
         android:layout_marginBottom="10dp"
         android:src="@drawable/ic_yandex"
         app:layout_constraintStart_toStartOf="@id/email"
+        app:layout_constraintEnd_toEndOf="@id/ic_vk"
         app:layout_constraintBottom_toTopOf="@id/ic_vk"/>
 
     <ImageView
         android:id="@+id/ic_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.06"
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_google"
         app:layout_constraintStart_toStartOf="@id/email"
-        app:layout_constraintTop_toBottomOf="@id/ic_vk"/>
+        app:layout_constraintTop_toBottomOf="@id/ic_vk"
+        app:layout_constraintEnd_toEndOf="@id/ic_vk"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

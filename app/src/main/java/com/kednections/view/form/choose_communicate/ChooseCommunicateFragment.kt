@@ -39,14 +39,14 @@ class ChooseCommunicateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val items = listOf(
-            PurposeItem(
+            RadioButtonItem(
                 view = binding.viewOnline,
                 checkbox = binding.checkboxOnline,
                 imageView = binding.ivOnline,
                 selectedIcon = R.drawable.ic_online_selected,
                 unselectedIcon = R.drawable.ic_online
             ),
-            PurposeItem(
+            RadioButtonItem(
                 view = binding.viewOffline,
                 checkbox = binding.checkboxOffline,
                 imageView = binding.ivOffline,
@@ -69,8 +69,8 @@ class ChooseCommunicateFragment : Fragment() {
     }
 
     private fun handleSingleSelection(
-        allItems: List<PurposeItem>,
-        selectedItem: PurposeItem,
+        allItems: List<RadioButtonItem>,
+        selectedItem: RadioButtonItem,
         isChecked: Boolean
     ) {
         if (isChecked) {
@@ -107,4 +107,12 @@ class ChooseCommunicateFragment : Fragment() {
 
         binding.btnResume.isEnabled = isAnyChecked
     }
+
+    data class RadioButtonItem(
+        val view: View,
+        val checkbox: android.widget.RadioButton,
+        val imageView: android.widget.ImageView,
+        val selectedIcon: Int,
+        val unselectedIcon: Int
+    )
 }

@@ -46,10 +46,6 @@ class SwitcherValidator(
         val nameValidNow = (field1.text?.length ?: 0) >= length1
         val nickValidNow = (field2.text?.length ?: 0) >= length2
 
-        if (isNameValid && isNickValid) {
-            switcherBorder.setBackgroundResource(R.drawable.bg_switcher_border)
-        } else switcherBorder.setBackgroundResource(R.drawable.bg_auth_input)
-
         // Автоустановка selectedImageView если ранее ничего не выбрано
         if (selectedImageView == null) {
             if (nameValidNow && !isNameValid) {
@@ -61,6 +57,10 @@ class SwitcherValidator(
 
         isNameValid = nameValidNow
         isNickValid = nickValidNow
+
+        if (isNameValid && isNickValid) {
+            switcherBorder.setBackgroundResource(R.drawable.bg_switcher_border)
+        } else switcherBorder.setBackgroundResource(R.drawable.bg_auth_input)
 
         actionButton.isEnabled = isNameValid && isNickValid
 

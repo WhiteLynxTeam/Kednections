@@ -13,6 +13,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.86" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_title_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.065" />
+
     <ImageView
         android:id="@+id/img_logo"
         android:layout_width="0dp"
@@ -27,44 +34,80 @@
     <TextView
         android:id="@+id/tv_where_are_you"
         style="@style/title_fragments"
-        android:layout_marginTop="40dp"
+        app:layout_constraintWidth_percent="0.881"
+        app:layout_constraintHeight_percent="0.15"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="32sp"
+        app:autoSizeMaxTextSize="44sp"
+        app:autoSizeStepGranularity="2sp"
         android:text="@string/where_are_you"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.95" />
+        app:layout_constraintTop_toTopOf="@id/guideline_title_margin"
+         />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_geolocation"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_et_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.157" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/geolocation"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_auth_input"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.911"
+        app:layout_constraintHeight_percent="0.072"
+        android:textColorHint="@color/color_4"
         app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"
-        app:layout_constraintStart_toStartOf="@id/tv_where_are_you"
-        app:layout_constraintTop_toBottomOf="@id/tv_where_are_you" />
+        app:layout_constraintTop_toBottomOf="@id/guideline_et_margin"
+        app:layout_constraintStart_toStartOf="@id/tv_where_are_you">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_geolocation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:background="@drawable/bg_auth_input"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_text_here_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.083" />
 
     <TextView
         android:id="@+id/tv_your_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/your_here"
         android:textColor="@color/color_4"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/et_geolocation"
-        app:layout_constraintTop_toBottomOf="@id/et_geolocation" />
+        app:layout_constraintStart_toStartOf="@id/guideline_text_here_margin"
+        app:layout_constraintTop_toBottomOf="@id/geolocation" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_yellow_text_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.485" />
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
         style="@style/tv_running_line"
         android:layout_marginTop="35dp"
         android:rotation="12"
-        app:layout_constraintBottom_toTopOf="@id/btn_resume"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_your_here">
+        app:layout_constraintTop_toBottomOf="@id/guideline_yellow_text_margin">
 
         <TextView
             android:id="@+id/text_description"
@@ -75,25 +118,45 @@
 
     </FrameLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_btn_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.813" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
+        app:layout_constraintHeight_percent="0.068"
         android:layout_marginBottom="14dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeStepGranularity="1sp"
         android:enabled="true"
-        app:layout_constraintBottom_toTopOf="@id/skipped"
-        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"
-        app:layout_constraintStart_toStartOf="@id/tv_where_are_you" />
+        app:layout_constraintStart_toStartOf="@id/tv_where_are_you"
+        app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
+        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"/>
 
     <TextView
         android:id="@+id/skipped"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintHeight_percent="0.068"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:fontFamily="@font/raleway_medium"
+        android:textStyle="bold"
         android:text="@string/skip"
         android:textColor="#FFF200"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeMaxTextSize="14sp"
+        app:autoSizeStepGranularity="1sp"
+        app:layout_constraintStart_toStartOf="@id/btn_resume"
+        app:layout_constraintTop_toBottomOf="@id/btn_resume"
+        app:layout_constraintEnd_toEndOf="@id/btn_resume"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
