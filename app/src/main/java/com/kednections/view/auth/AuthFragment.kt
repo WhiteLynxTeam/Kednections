@@ -14,7 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.kednections.R
 import com.kednections.databinding.FragmentAuthBinding
 import com.kednections.domain.models.User
-import com.kednections.utils.FormValidator
+import com.kednections.utils.AuthValidator
 import com.kednections.utils.startMarquee
 import com.kednections.utils.uiextensions.showSnackbarLong
 import com.kednections.view.activity.FormActivity
@@ -73,14 +73,24 @@ class AuthFragment : Fragment() {
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
-        //функция смены цвета фона и текста для кнопки "продолжить"
-        val validator = FormValidator(
+        val validatorSwitcher = AuthValidator(
             field1 = binding.etEmail,
             field2 = binding.etPassword,
+            image1 = binding.logInSwitcher,
+            image2 = binding.regSwitcher,
             actionButton = binding.btnResume,
-            length2 = 1
+            length1 = 1,
+            length2 = 1,
+            switcherBorder = binding.switcherBorder,
+            image1Top = R.drawable.ic_login_switcher_top,
+            image1Bottom = R.drawable.ic_login_switcher_bottom,
+            image1SelectedTop = R.drawable.ic_login_switcher_selected_top,
+            image1SelectedBottom = R.drawable.ic_login_switcher_selected_bottom,
+            image2Bottom = R.drawable.ic_reg_switcher_bottom,
+            image2SelectedTop = R.drawable.ic_reg_switcher_selected_top,
+            image2SelectedBottom = R.drawable.ic_reg_switcher_selected_bottom
         )
-        validator.attach()
+        validatorSwitcher.attach()
 
         binding.btnResume.setOnClickListener {
             if (binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString()

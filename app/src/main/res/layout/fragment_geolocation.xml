@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.157" />
+        app:layout_constraintGuide_percent="0.18" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/geolocation"
@@ -85,7 +85,6 @@
         android:id="@+id/tv_your_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/your_here"
         android:textColor="@color/color_4"
@@ -128,7 +127,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        app:layout_constraintHeight_percent="0.068"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeMaxTextSize="16sp"

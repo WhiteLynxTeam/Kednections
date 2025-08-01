@@ -191,8 +191,6 @@
         app:autoSizeStepGranularity="1sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="@id/tv_face"
-        app:layout_constraintHeight_percent="0.068"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tv_face"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin" />
 

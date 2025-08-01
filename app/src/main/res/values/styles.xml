@@ -12,6 +12,7 @@
         <item name="android:textColor">@color/btn_resume_text_color</item>
         <item name="android:text">@string/resume</item>
         <item name="android:enabled">false</item>
+        <item name="layout_constraintHeight_percent">0.062</item>
     </style>
     
     <style name="title_fragments">

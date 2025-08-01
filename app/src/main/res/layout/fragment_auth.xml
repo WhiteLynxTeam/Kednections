@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.423" />
+        app:layout_constraintGuide_percent="0.452" />
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
@@ -68,7 +68,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth_percent="0.911"
-        app:layout_constraintHeight_percent="0.068"
+        app:layout_constraintHeight_percent="0.062"
         app:hintEnabled="false"
         app:layout_constraintTop_toTopOf="@id/guideline_et_mail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +91,7 @@
         android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.068"
+        app:layout_constraintHeight_percent="0.062"
         android:layout_marginTop="10dp"
         app:hintEnabled="false"
         app:endIconMode="password_toggle"
@@ -112,6 +112,31 @@
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/switcher_border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:padding="4dp"
+        android:background="@drawable/bg_switcher"
+        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintBottom_toTopOf="@id/email">
+
+        <ImageView
+            android:id="@+id/log_in_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_login_switcher_bottom"/>
+
+        <ImageView
+            android:id="@+id/reg_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_reg_switcher_top"/>
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_title_margin"
@@ -138,7 +163,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        app:layout_constraintHeight_percent="0.068"
         android:gravity="center"
         android:layout_marginTop="20dp"
         app:autoSizeTextType="uniform"
