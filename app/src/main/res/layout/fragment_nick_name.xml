@@ -129,13 +129,13 @@
             android:id="@+id/nick_switcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_nick_switcher"/>
+            android:src="@drawable/ic_nick_switcher_bottom"/>
 
         <ImageView
             android:id="@+id/name_switcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_name_switcher"/>
+            android:src="@drawable/ic_name_switcher_top"/>
 
     </LinearLayout>
 
