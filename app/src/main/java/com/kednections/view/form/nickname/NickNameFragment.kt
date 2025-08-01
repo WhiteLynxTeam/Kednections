@@ -12,6 +12,7 @@ import com.kednections.databinding.FragmentNickNameBinding
 import com.kednections.utils.FormValidator
 import com.kednections.utils.SwitcherValidator
 import com.kednections.utils.startMarquee
+import com.kednections.view.activity.FormActivity
 import dagger.android.support.AndroidSupportInjection
 
 class NickNameFragment : Fragment() {
@@ -64,6 +65,9 @@ class NickNameFragment : Fragment() {
             findNavController().navigate(R.id.action_nickNameFragment_to_avatarFragment)
         }
 
+        (activity as FormActivity).setUIVisibility(
+            showHeader = true
+        )
     }
 
 }

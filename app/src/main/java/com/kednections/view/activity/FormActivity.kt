@@ -3,6 +3,7 @@ package com.kednections.view.activity
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
@@ -85,12 +86,19 @@ class FormActivity : AppCompatActivity() {
         } else {
             finish()
         }
+
+
+
     }
 
     @SuppressLint("MissingSuperCall")
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         handleBackPressed()
+    }
+
+    fun setUIVisibility(showHeader: Boolean) {
+        binding.header.visibility = if (showHeader) View.VISIBLE else View.GONE
     }
 
 }

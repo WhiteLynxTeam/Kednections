@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.kednections.R
 import com.kednections.databinding.FragmentAuthBinding
 import com.kednections.domain.models.User
 import com.kednections.utils.FormValidator
@@ -94,7 +96,7 @@ class AuthFragment : Fragment() {
                     password = binding.etPassword.text.toString(),
                 )
             )
-//            startActivity(Intent(requireActivity(), FormActivity::class.java))
+//            findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
         }
 
         binding.icGoogle.setOnClickListener {
@@ -126,5 +128,10 @@ class AuthFragment : Fragment() {
 
             return@setOnClickListener
         }
+
+        (activity as FormActivity).setUIVisibility(
+            showHeader = false
+        )
+
     }
 }

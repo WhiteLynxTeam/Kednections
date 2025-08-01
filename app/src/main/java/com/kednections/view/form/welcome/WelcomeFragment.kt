@@ -1,4 +1,4 @@
-package com.kednections.view.welcome
+package com.kednections.view.form.welcome
 
 import android.content.Context
 import android.os.Bundle
@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.kednections.R
 import com.kednections.databinding.FragmentWelcomeBinding
 import com.kednections.utils.AppPreferences
+import com.kednections.view.activity.FormActivity
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -59,6 +60,11 @@ class WelcomeFragment : Fragment() {
 
             checkUserStateAndNavigate()
         }
+
+        (activity as FormActivity).setUIVisibility(
+            showHeader = false
+        )
+
     }
 
 
@@ -80,7 +86,7 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun navigateToAuth() {
-        findNavController().navigate(R.id.action_welcome_to_auth)
+        findNavController().navigate(R.id.action_welcomeFragment_to_authFragment)
     }
 
     override fun onDestroyView() {

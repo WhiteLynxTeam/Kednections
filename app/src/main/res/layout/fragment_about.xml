@@ -99,7 +99,6 @@
         app:autoSizeMinTextSize="8sp"
         app:autoSizeMaxTextSize="16sp"
         app:autoSizeStepGranularity="1sp"
-        android:enabled="true"
         app:layout_constraintStart_toStartOf="@id/et_about"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
         app:layout_constraintEnd_toEndOf="@id/et_about"/>
