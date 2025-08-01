@@ -17,12 +17,14 @@ class SwitcherValidator(
     private val length1: Int = 1,
     private val length2: Int = 8,
     private val switcherBorder: LinearLayout,
-    private val invalidImageRes1: Int = R.drawable.ic_name_switcher_top,
-    private val invalidImageRes2: Int = R.drawable.ic_nick_switcher_bottom,
-    private val validImageRes1: Int = R.drawable.ic_name_switcher_enabled,
-    private val validImageRes2: Int = R.drawable.ic_nick_switcher_enabled,
-    private val selectedImageRes1: Int = R.drawable.ic_name_switcher_selected,
-    private val selectedImageRes2: Int = R.drawable.ic_nick_switcher_selected
+    private val validImageRes1Bottom: Int = R.drawable.ic_name_switcher_selected_bottom,
+    private val validImageRes2Bottom: Int = R.drawable.ic_nick_switcher_selected_bottom,
+    private val selectedImageRes1Top: Int = R.drawable.ic_name_switcher_selected_top,
+    private val selectedImageRes2Top: Int = R.drawable.ic_nick_switcher_selected_top,
+    private val invalidImageRes1Top: Int = R.drawable.ic_name_switcher_top,
+    private val invalidImageRes1Bottom: Int = R.drawable.ic_name_switcher_bottom,
+    private val invalidImageRes2Top: Int = R.drawable.ic_nick_switcher_top,
+    private val invalidImageRes2Bottom: Int = R.drawable.ic_nick_switcher_bottom,
 ) {
     private var selectedImageView: ImageView? = null
 
@@ -46,7 +48,6 @@ class SwitcherValidator(
         val nameValidNow = (field1.text?.length ?: 0) >= length1
         val nickValidNow = (field2.text?.length ?: 0) >= length2
 
-        // Автоустановка selectedImageView если ранее ничего не выбрано
         if (selectedImageView == null) {
             if (nameValidNow && !isNameValid) {
                 selectedImageView = image1
@@ -58,53 +59,91 @@ class SwitcherValidator(
         isNameValid = nameValidNow
         isNickValid = nickValidNow
 
-        if (isNameValid && isNickValid) {
+        // Border background
+        if (isNameValid || isNickValid) {
             switcherBorder.setBackgroundResource(R.drawable.bg_switcher_border)
-        } else switcherBorder.setBackgroundResource(R.drawable.bg_auth_input)
+        } else {
+            switcherBorder.setBackgroundResource(R.drawable.bg_auth_input)
+        }
 
         actionButton.isEnabled = isNameValid
 
-        // Логика для image1 (имя)
+        // image1 (имя)
         if (isNameValid) {
-            if (selectedImageView == image1) {
-                image1.setImageResource(selectedImageRes1)
-            } else {
-                image1.setImageResource(validImageRes1)
-            }
+            image1.setImageResource(getValidOrSelectedImage(image1))
             image1.isEnabled = true
         } else {
-            image1.setImageResource(invalidImageRes1)
+            image1.setImageResource(getInvalidImageRes(image1))
             image1.isEnabled = false
             if (selectedImageView == image1) selectedImageView = null
         }
 
-        // Логика для image2 (ник)
+        // image2 (ник)
         if (isNickValid) {
-            if (selectedImageView == image2) {
-                image2.setImageResource(selectedImageRes2)
-            } else {
-                image2.setImageResource(validImageRes2)
-            }
+            image2.setImageResource(getValidOrSelectedImage(image2))
             image2.isEnabled = true
         } else {
-            image2.setImageResource(invalidImageRes2)
+            image2.setImageResource(getInvalidImageRes(image2))
             image2.isEnabled = false
             if (selectedImageView == image2) selectedImageView = null
         }
     }
 
+    private fun getValidOrSelectedImage(image: ImageView): Int {
+        return if (selectedImageView == image) {
+            getSelectedImageRes(image)
+        } else {
+            getValidImageRes(image)
+        }
+    }
+
+    private fun getTopImageView(): ImageView {
+        return when {
+            selectedImageView != null -> selectedImageView!!
+            isNameValid && !isNickValid -> image1
+            !isNameValid && isNickValid -> image2
+            else -> image1 // по умолчанию имя сверху
+        }
+    }
+
+    private fun isTop(image: ImageView): Boolean {
+        return getTopImageView() == image
+    }
+
+    private fun getInvalidImageRes(image: ImageView): Int {
+        return when {
+            image == image1 && isTop(image) -> invalidImageRes1Top
+            image == image1 -> invalidImageRes1Bottom
+            image == image2 && isTop(image) -> invalidImageRes2Top
+            else -> invalidImageRes2Bottom
+        }
+    }
+
+    private fun getValidImageRes(image: ImageView): Int {
+        return when {
+            image == image1 -> validImageRes1Bottom
+            image == image2 -> validImageRes2Bottom
+            else -> error("Unexpected image")
+        }
+    }
+
+    private fun getSelectedImageRes(image: ImageView): Int {
+        return when {
+            image == image1 && isTop(image) -> selectedImageRes1Top
+            image == image2 && isTop(image) -> selectedImageRes2Top
+            else -> error("Selected image must be top")
+        }
+    }
 
     private fun setupClickListeners() {
         image1.setOnClickListener {
             if (!isNameValid) return@setOnClickListener
-
             selectedImageView = image1
             updateVisualStates()
         }
 
         image2.setOnClickListener {
             if (!isNickValid) return@setOnClickListener
-
             selectedImageView = image2
             updateVisualStates()
         }

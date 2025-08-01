@@ -16,5 +16,6 @@
     <color name="count_form_color">#1E1E1E</color>
     <color name="dialog_limit_text_color">#242424</color>
     <color name="color_2">#606060</color>
+    <color name="color_3">#FFF200</color>
 
 </resources>

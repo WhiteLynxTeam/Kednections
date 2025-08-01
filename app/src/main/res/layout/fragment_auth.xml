@@ -138,7 +138,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        android:layout_height="48dp"
+        app:layout_constraintHeight_percent="0.068"
         android:gravity="center"
         android:layout_marginTop="20dp"
         app:autoSizeTextType="uniform"

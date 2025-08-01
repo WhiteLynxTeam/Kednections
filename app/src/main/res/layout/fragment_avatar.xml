@@ -207,7 +207,7 @@
         android:fontFamily="@font/raleway_medium"
         android:textStyle="bold"
         android:text="@string/skip"
-        android:textColor="#FFF200"
+        android:textColor="@color/color_3"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeMaxTextSize="14sp"
