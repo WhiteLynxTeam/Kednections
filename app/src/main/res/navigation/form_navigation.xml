@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/form_navigation"
-    app:startDestination="@id/nickNameFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/nickNameFragment"
@@ -63,5 +63,32 @@
         android:id="@+id/aboutFragment"
         android:name="com.kednections.view.form.about.AboutFragment"
         android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_aboutFragment_to_successRegFragment"
+            app:destination="@id/successRegFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.kednections.view.form.welcome.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.kednections.view.auth.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authFragment_to_nickNameFragment"
+            app:destination="@id/nickNameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successRegFragment"
+        android:name="com.kednections.view.form.success_reg.SuccessRegFragment"
+        android:label="fragment_success_reg"
+        tools:layout="@layout/fragment_success_reg" />
 </navigation>

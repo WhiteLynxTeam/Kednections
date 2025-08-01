@@ -6,7 +6,7 @@
     android:paddingTop="11dp"
     android:id="@+id/welcome"
     android:paddingStart="11dp"
-    tools:context=".view.welcome.WelcomeFragment">
+    tools:context=".view.form.welcome.WelcomeFragment">
 
     <ImageView
         android:id="@+id/background_main"

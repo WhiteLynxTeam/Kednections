@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.kednections.R
 import com.kednections.databinding.FragmentAboutBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
@@ -52,6 +54,15 @@ class AboutFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
+
+        binding.btnResume.setOnClickListener {
+            findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
+        }
+
+        binding.skipped.setOnClickListener {
+            findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
+        }
+
     }
 
 }

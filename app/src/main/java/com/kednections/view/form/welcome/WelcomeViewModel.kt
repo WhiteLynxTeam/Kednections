@@ -1,4 +1,4 @@
-package com.kednections.view.welcome
+package com.kednections.view.form.welcome
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

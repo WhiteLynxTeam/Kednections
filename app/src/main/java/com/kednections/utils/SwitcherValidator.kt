@@ -62,7 +62,7 @@ class SwitcherValidator(
             switcherBorder.setBackgroundResource(R.drawable.bg_switcher_border)
         } else switcherBorder.setBackgroundResource(R.drawable.bg_auth_input)
 
-        actionButton.isEnabled = isNameValid && isNickValid
+        actionButton.isEnabled = isNameValid
 
         // Логика для image1 (имя)
         if (isNameValid) {
