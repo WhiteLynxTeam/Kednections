@@ -29,9 +29,7 @@
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
+        style="@style/img_logo"
         android:src="@drawable/img_logo_specialization_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline_image_margin_top"
@@ -41,13 +39,6 @@
     <TextView
         android:id="@+id/tv_suit"
         style="@style/title_fragments"
-        app:layout_constraintWidth_percent="0.881"
-        app:layout_constraintHeight_percent="0.15"
-        android:gravity="center"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="32sp"
-        app:autoSizeMaxTextSize="44sp"
-        app:autoSizeStepGranularity="2sp"
         android:text="@string/whos_by_suit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +56,6 @@
         style="@style/tv_running_line"
         android:rotation="5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/img_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline_yellow_text_margin">
 
@@ -83,6 +73,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"
+        app:layout_constraintHeight_max="1000dp"
+        app:layout_constraintHeight_min="300dp"
+        app:layout_constraintWidth_max="500dp"
+        app:layout_constraintWidth_min="350dp"
         app:layout_constraintWidth_percent="0.911"
         app:constraint_referenced_ids="tv_art_director,tv_illustrator,tv_3d_designer,tv_web_designer,tv_game_designer,tv_artist,tv_graphic_designer,tv_interior_designer,tv_ui_designer,tv_fashion_designer,tv_print_designer,tv_presentation_designer,tv_communication_designer,tv_brand_designer,tv_landscape_designer,tv_designer,tv_product_designer,tv_ux_ui_designer,tv_industrial_designer,tv_fpx_designer,tv_ai_designer,tv_ar_vr_designer,tv_motion_designer,tv_smm_designer"
         app:flow_wrapMode="chain2"
@@ -95,264 +89,150 @@
     <TextView
         android:id="@+id/tv_art_director"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
-        app:layout_constraintWidth_percent="0.3"
-        android:text="@string/art_director" />
+        app:layout_constraintWidth_max="166dp"
+        android:text="@string/art_director"
+        app:layout_constraintWidth_percent="0.3" />
 
     <TextView
         android:id="@+id/tv_illustrator"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.283"
         android:text="@string/illustrator" />
 
     <TextView
         android:id="@+id/tv_3d_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.278"
         android:text="@string/three_d_designer" />
 
     <TextView
         android:id="@+id/tv_web_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.294"
         android:text="@string/web_designer" />
 
     <TextView
         android:id="@+id/tv_game_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.314"
         android:text="@string/game_designer" />
 
     <TextView
         android:id="@+id/tv_artist"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.228"
         android:text="@string/artist" />
 
     <TextView
         android:id="@+id/tv_graphic_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.439"
         android:text="@string/graphic_designer" />
 
     <TextView
         android:id="@+id/tv_interior_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.43"
         android:text="@string/interior_designer" />
 
     <TextView
         android:id="@+id/tv_ui_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.447"
         android:text="@string/ui_designer" />
 
     <TextView
         android:id="@+id/tv_fashion_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.439"
         android:text="@string/fashion_designer" />
 
     <TextView
         android:id="@+id/tv_print_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.425"
         android:text="@string/print_designer" />
 
     <TextView
         android:id="@+id/tv_presentation_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.439"
         android:text="@string/presentation_designer" />
 
     <TextView
         android:id="@+id/tv_communication_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.55"
         android:text="@string/communication_designer" />
 
     <TextView
         android:id="@+id/tv_brand_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.317"
         android:text="@string/brand_designer" />
 
     <TextView
         android:id="@+id/tv_landscape_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.48"
         android:text="@string/landscape_designer" />
 
     <TextView
         android:id="@+id/tv_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.39"
         android:text="@string/designer" />
 
     <TextView
         android:id="@+id/tv_product_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.45"
         android:text="@string/product_designer" />
 
     <TextView
         android:id="@+id/tv_ux_ui_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.43"
         android:text="@string/ux_ui_designer" />
 
     <TextView
         android:id="@+id/tv_industrial_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.55"
         android:text="@string/industrial_designer" />
 
     <TextView
         android:id="@+id/tv_fpx_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.32"
         android:text="@string/fpx_designer" />
 
     <TextView
         android:id="@+id/tv_ai_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.42"
         android:text="@string/ai_designer" />
 
     <TextView
         android:id="@+id/tv_ar_vr_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.45"
         android:text="@string/ar_vr_designer" />
 
     <TextView
         android:id="@+id/tv_motion_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.48"
         android:text="@string/motion_designer" />
 
     <TextView
         android:id="@+id/tv_smm_designer"
         style="@style/text_specializations"
-        app:layout_constraintHeight_percent="0.045"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="2sp"
         app:layout_constraintWidth_percent="0.38"
         android:text="@string/smm_designer" />
 
@@ -366,12 +246,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        app:layout_constraintHeight_percent="0.062"
-        android:layout_marginBottom="24dp"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeStepGranularity="1sp"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
         app:layout_constraintEnd_toEndOf="@id/tv_suit"
         app:layout_constraintStart_toStartOf="@id/tv_suit" />

@@ -15,9 +15,7 @@
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
+        style="@style/img_logo"
         android:src="@drawable/logo_for_nickname_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,13 +40,6 @@
             />
 
     </FrameLayout>
-
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/guideline_horizontal_center"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintGuide_percent="0.4" />-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_et_name"
@@ -120,36 +111,38 @@
         android:id="@+id/switcher_border"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:background="@drawable/bg_auth_input"
+        android:padding="4dp"
+        android:background="@drawable/bg_switcher"
         app:layout_constraintTop_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="@id/name">
-
-        <ImageView
-            android:id="@+id/nick_switcher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_nick_switcher"/>
 
         <ImageView
             android:id="@+id/name_switcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_name_switcher"/>
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_name_switcher_top"/>
+
+        <ImageView
+            android:id="@+id/nick_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_nick_switcher_bottom"/>
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_btn_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.892" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        app:layout_constraintHeight_percent="0.068"
-        android:layout_marginBottom="24dp"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeStepGranularity="1sp"
         app:layout_constraintStart_toStartOf="@id/name"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
         app:layout_constraintEnd_toEndOf="@id/name"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

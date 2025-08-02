@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_aboutFragment_to_successRegFragment"
             app:destination="@id/successRegFragment" />
+        <action
+            android:id="@+id/action_aboutFragment_to_showCaseFragment"
+            app:destination="@id/showCaseFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -91,4 +94,9 @@
         android:name="com.kednections.view.form.success_reg.SuccessRegFragment"
         android:label="fragment_success_reg"
         tools:layout="@layout/fragment_success_reg" />
+    <fragment
+        android:id="@+id/showCaseFragment"
+        android:name="com.kednections.view.feed.ShowCaseFragment"
+        android:label="fragment_show_case"
+        tools:layout="@layout/fragment_show_case" />
 </navigation>

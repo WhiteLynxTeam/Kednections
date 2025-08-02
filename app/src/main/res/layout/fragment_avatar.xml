@@ -22,9 +22,7 @@
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
+        style="@style/img_logo"
         android:src="@drawable/img_logo_avatar_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,12 +32,6 @@
     <TextView
         android:id="@+id/tv_face"
         style="@style/title_fragments"
-        app:layout_constraintWidth_percent="0.881"
-        app:layout_constraintHeight_percent="0.15"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="32sp"
-        app:autoSizeMaxTextSize="44sp"
-        app:autoSizeStepGranularity="2sp"
         android:text="@string/face"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -186,32 +178,13 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeStepGranularity="1sp"
-        app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="@id/tv_face"
-        app:layout_constraintHeight_percent="0.068"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tv_face"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin" />
 
     <TextView
         android:id="@+id/skipped"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintHeight_percent="0.068"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:fontFamily="@font/raleway_medium"
-        android:textStyle="bold"
-        android:text="@string/skip"
-        android:textColor="#FFF200"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="1sp"
+        style="@style/skip_btn"
         app:layout_constraintStart_toStartOf="@id/btn_resume"
         app:layout_constraintTop_toBottomOf="@id/btn_resume"
         app:layout_constraintEnd_toEndOf="@id/btn_resume"/>

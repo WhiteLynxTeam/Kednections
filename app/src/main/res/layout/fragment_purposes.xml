@@ -15,14 +15,12 @@
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
+        style="@style/img_logo"
         android:src="@drawable/img_logo_avatar_fragment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_title_margin"
@@ -35,25 +33,25 @@
         android:id="@+id/tv_purposes"
         style="@style/title_fragments"
         app:layout_constraintWidth_percent="0.911"
-        app:layout_constraintHeight_percent="0.15"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="32sp"
-        app:autoSizeMaxTextSize="44sp"
-        app:autoSizeStepGranularity="2sp"
         android:text="@string/purposes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline_title_margin" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_yellow_text_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
         style="@style/tv_running_line"
-        android:layout_marginTop="20dp"
-        android:rotation="-12"
+        android:rotation="-8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/img_logo"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/guideline_yellow_text_margin">
 
         <TextView
             android:id="@+id/text_description"
@@ -67,8 +65,7 @@
 
     <View
         android:id="@+id/view_company"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
+        style="@style/purposes_view"
         android:layout_marginBottom="12dp"
         android:background="@drawable/bg_auth_input"
         app:layout_constraintBottom_toTopOf="@id/btn_resume"
@@ -128,13 +125,12 @@
 
     <View
         android:id="@+id/view_romance"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
+        style="@style/purposes_view"
         android:layout_marginBottom="12dp"
         android:background="@drawable/bg_auth_input"
         app:layout_constraintBottom_toTopOf="@id/view_company"
         app:layout_constraintEnd_toEndOf="@id/tv_purposes"
-        app:layout_constraintStart_toStartOf="@id/tv_purposes" />
+        app:layout_constraintStart_toStartOf="@id/tv_purposes"/>
 
     <ImageView
         android:id="@+id/iv_romance"
@@ -188,8 +184,7 @@
 
     <View
         android:id="@+id/view_friends"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
+        style="@style/purposes_view"
         android:layout_marginBottom="12dp"
         android:background="@drawable/bg_auth_input"
         app:layout_constraintBottom_toTopOf="@id/view_romance"
@@ -248,8 +243,7 @@
 
     <View
         android:id="@+id/view_looking_team"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
+        style="@style/purposes_view"
         android:layout_marginTop="12dp"
         android:background="@drawable/bg_auth_input"
         app:layout_constraintEnd_toEndOf="@id/tv_purposes"
@@ -308,8 +302,7 @@
 
     <View
         android:id="@+id/view_assembling_team"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
+        style="@style/purposes_view"
         android:layout_marginTop="12dp"
         android:background="@drawable/bg_auth_input"
         app:layout_constraintEnd_toEndOf="@id/tv_purposes"
@@ -376,11 +369,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        app:layout_constraintHeight_percent="0.068"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeStepGranularity="1sp"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
         app:layout_constraintEnd_toEndOf="@id/tv_purposes"
         app:layout_constraintStart_toStartOf="@id/tv_purposes" />

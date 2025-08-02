@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentAboutBinding
 import com.kednections.utils.startMarquee
+import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
 import dagger.android.support.AndroidSupportInjection
 
@@ -56,12 +57,16 @@ class AboutFragment : Fragment() {
         })
 
         binding.btnResume.setOnClickListener {
-            findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
+            findNavController().navigate(R.id.action_aboutFragment_to_showCaseFragment)
         }
 
         binding.skipped.setOnClickListener {
             findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
         }
+
+        (activity as FormActivity).setUIVisibility(
+            showHeader = true
+        )
 
     }
 

@@ -29,9 +29,7 @@
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
+        style="@style/img_logo"
         android:src="@drawable/img_logo_communicate_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline_margin_top"
@@ -48,12 +46,6 @@
     <TextView
         android:id="@+id/tv_how_to_communicate"
         style="@style/title_fragments"
-        app:layout_constraintWidth_percent="0.881"
-        app:layout_constraintHeight_percent="0.15"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="32sp"
-        app:autoSizeMaxTextSize="44sp"
-        app:autoSizeStepGranularity="2sp"
         android:text="@string/how_to_communicate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -189,12 +181,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        app:layout_constraintHeight_percent="0.062"
-        android:layout_marginBottom="24dp"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeStepGranularity="1sp"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
         app:layout_constraintEnd_toEndOf="@id/tv_how_to_communicate"
         app:layout_constraintStart_toStartOf="@id/tv_how_to_communicate" />

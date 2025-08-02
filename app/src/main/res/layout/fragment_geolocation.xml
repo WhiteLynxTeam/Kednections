@@ -34,12 +34,6 @@
     <TextView
         android:id="@+id/tv_where_are_you"
         style="@style/title_fragments"
-        app:layout_constraintWidth_percent="0.881"
-        app:layout_constraintHeight_percent="0.15"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="32sp"
-        app:autoSizeMaxTextSize="44sp"
-        app:autoSizeStepGranularity="2sp"
         android:text="@string/where_are_you"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.157" />
+        app:layout_constraintGuide_percent="0.18" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/geolocation"
@@ -85,7 +79,6 @@
         android:id="@+id/tv_your_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:fontFamily="@font/raleway_medium"
         android:text="@string/your_here"
         android:textColor="@color/color_4"
@@ -128,12 +121,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        app:layout_constraintHeight_percent="0.068"
-        android:layout_marginBottom="14dp"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeStepGranularity="1sp"
         android:enabled="true"
         app:layout_constraintStart_toStartOf="@id/tv_where_are_you"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
@@ -141,20 +128,7 @@
 
     <TextView
         android:id="@+id/skipped"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintHeight_percent="0.068"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:fontFamily="@font/raleway_medium"
-        android:textStyle="bold"
-        android:text="@string/skip"
-        android:textColor="#FFF200"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="14sp"
-        app:autoSizeStepGranularity="1sp"
+        style="@style/skip_btn"
         app:layout_constraintStart_toStartOf="@id/btn_resume"
         app:layout_constraintTop_toBottomOf="@id/btn_resume"
         app:layout_constraintEnd_toEndOf="@id/btn_resume"/>
