@@ -57,7 +57,7 @@ class AboutFragment : Fragment() {
         })
 
         binding.btnResume.setOnClickListener {
-            findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
+            findNavController().navigate(R.id.action_aboutFragment_to_showCaseFragment)
         }
 
         binding.skipped.setOnClickListener {

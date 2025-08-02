@@ -87,7 +87,7 @@
         <item name="android:layout_height">0dp</item>
         <item name="layout_constraintWidth_min">10dp</item>
         <item name="layout_constraintWidth_max">250dp</item>
-        <item name="layout_constraintHeight_min">20dp</item>
+        <item name="layout_constraintHeight_min">10dp</item>
         <item name="layout_constraintHeight_max">50dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center</item>

@@ -56,7 +56,6 @@
         style="@style/tv_running_line"
         android:rotation="5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/img_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline_yellow_text_margin">
 
@@ -90,36 +89,42 @@
     <TextView
         android:id="@+id/tv_art_director"
         style="@style/text_specializations"
+        app:layout_constraintWidth_max="166dp"
         android:text="@string/art_director"
         app:layout_constraintWidth_percent="0.3" />
 
     <TextView
         android:id="@+id/tv_illustrator"
         style="@style/text_specializations"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.283"
         android:text="@string/illustrator" />
 
     <TextView
         android:id="@+id/tv_3d_designer"
         style="@style/text_specializations"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.278"
         android:text="@string/three_d_designer" />
 
     <TextView
         android:id="@+id/tv_web_designer"
         style="@style/text_specializations"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.294"
         android:text="@string/web_designer" />
 
     <TextView
         android:id="@+id/tv_game_designer"
         style="@style/text_specializations"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.314"
         android:text="@string/game_designer" />
 
     <TextView
         android:id="@+id/tv_artist"
         style="@style/text_specializations"
+        app:layout_constraintWidth_max="166dp"
         app:layout_constraintWidth_percent="0.228"
         android:text="@string/artist" />
 
