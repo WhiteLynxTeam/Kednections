@@ -93,20 +93,20 @@ class AuthFragment : Fragment() {
         validatorSwitcher.attach()
 
         binding.btnResume.setOnClickListener {
-//            if (binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString()
-//                    .isEmpty()
-//            ) {
-//                showSnackbarLong("Заполните поля.")
-//                return@setOnClickListener
-//            }
-//
-//            viewModel.login(
-//                User(
-//                    username = binding.etEmail.text.toString(),
-//                    password = binding.etPassword.text.toString(),
-//                )
-//            )
-            findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
+            if (binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString()
+                    .isEmpty()
+            ) {
+                showSnackbarLong("Заполните поля.")
+                return@setOnClickListener
+            }
+
+            viewModel.login(
+                User(
+                    username = binding.etEmail.text.toString(),
+                    password = binding.etPassword.text.toString(),
+                )
+            )
+//            findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
         }
 
         binding.icGoogle.setOnClickListener {
