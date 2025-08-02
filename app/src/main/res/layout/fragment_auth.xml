@@ -148,13 +148,7 @@
     <TextView
         android:id="@+id/tv_title"
         style="@style/title_fragments"
-        app:layout_constraintWidth_percent="0.881"
-        app:layout_constraintHeight_percent="0.15"
         android:textAlignment="center"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="32sp"
-        app:autoSizeMaxTextSize="44sp"
-        app:autoSizeStepGranularity="1sp"
         android:text="@string/connect"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toTopOf="@id/guideline_title_margin"
@@ -163,12 +157,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        android:gravity="center"
         android:layout_marginTop="20dp"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeStepGranularity="1sp"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toBottomOf="@id/password"
         app:layout_constraintEnd_toEndOf="@id/email"/>

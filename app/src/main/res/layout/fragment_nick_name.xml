@@ -43,13 +43,6 @@
 
     </FrameLayout>
 
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/guideline_horizontal_center"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintGuide_percent="0.4" />-->
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_et_name"
         android:layout_width="wrap_content"
@@ -126,17 +119,17 @@
         app:layout_constraintEnd_toEndOf="@id/name">
 
         <ImageView
-            android:id="@+id/nick_switcher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:src="@drawable/ic_nick_switcher_bottom"/>
-
-        <ImageView
             android:id="@+id/name_switcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
             android:src="@drawable/ic_name_switcher_top"/>
+
+        <ImageView
+            android:id="@+id/nick_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_nick_switcher_bottom"/>
 
     </LinearLayout>
 
@@ -150,10 +143,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="8sp"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeStepGranularity="1sp"
         app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
         app:layout_constraintEnd_toEndOf="@id/name"/>
