@@ -29,9 +29,7 @@
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
+        style="@style/img_logo"
         android:src="@drawable/img_logo_specialization_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline_image_margin_top"
@@ -76,6 +74,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"
+        app:layout_constraintHeight_max="1000dp"
+        app:layout_constraintHeight_min="300dp"
+        app:layout_constraintWidth_max="500dp"
+        app:layout_constraintWidth_min="350dp"
         app:layout_constraintWidth_percent="0.911"
         app:constraint_referenced_ids="tv_art_director,tv_illustrator,tv_3d_designer,tv_web_designer,tv_game_designer,tv_artist,tv_graphic_designer,tv_interior_designer,tv_ui_designer,tv_fashion_designer,tv_print_designer,tv_presentation_designer,tv_communication_designer,tv_brand_designer,tv_landscape_designer,tv_designer,tv_product_designer,tv_ux_ui_designer,tv_industrial_designer,tv_fpx_designer,tv_ai_designer,tv_ar_vr_designer,tv_motion_designer,tv_smm_designer"
         app:flow_wrapMode="chain2"
@@ -88,8 +90,8 @@
     <TextView
         android:id="@+id/tv_art_director"
         style="@style/text_specializations"
-        app:layout_constraintWidth_percent="0.3"
-        android:text="@string/art_director" />
+        android:text="@string/art_director"
+        app:layout_constraintWidth_percent="0.3" />
 
     <TextView
         android:id="@+id/tv_illustrator"

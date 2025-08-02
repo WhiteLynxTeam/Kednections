@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
+    <style name="img_logo">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="layout_constraintWidth_min">340dp</item>
+        <item name="layout_constraintWidth_max">550dp</item>
+        <item name="layout_constraintHeight_min">150dp</item>
+        <item name="layout_constraintHeight_max">600dp</item>
+    </style>
+
     <style name="btn_resume_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintWidth_min">340dp</item>
+        <item name="layout_constraintWidth_max">450dp</item>
+        <item name="layout_constraintHeight_min">40dp</item>
+        <item name="layout_constraintHeight_max">72dp</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingBottom">4dp</item>
         <item name="android:textStyle">bold</item>
@@ -22,6 +36,10 @@
     <style name="skip_btn">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintWidth_min">340dp</item>
+        <item name="layout_constraintWidth_max">450dp</item>
+        <item name="layout_constraintHeight_min">40dp</item>
+        <item name="layout_constraintHeight_max">72dp</item>
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center</item>
@@ -39,6 +57,10 @@
     <style name="title_fragments">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintWidth_min">340dp</item>
+        <item name="layout_constraintWidth_max">550dp</item>
+        <item name="layout_constraintHeight_min">150dp</item>
+        <item name="layout_constraintHeight_max">600dp</item>
         <item name="android:fontFamily">@font/nauryz_red_keds</item>
         <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/text_description</item>
@@ -53,6 +75,8 @@
     <style name="tv_running_line">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintWidth_min">340dp</item>
+        <item name="layout_constraintWidth_max">550dp</item>
         <item name="android:layout_marginStart">-10dp</item>
         <item name="android:layout_marginEnd">-10dp</item>
         <item name="android:background">@color/bg_text_description</item>
@@ -61,6 +85,10 @@
     <style name="text_specializations">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintWidth_min">10dp</item>
+        <item name="layout_constraintWidth_max">250dp</item>
+        <item name="layout_constraintHeight_min">20dp</item>
+        <item name="layout_constraintHeight_max">50dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/bg_for_text_specializations</item>
@@ -70,5 +98,15 @@
         <item name="autoSizeMinTextSize">4sp</item>
         <item name="autoSizeMaxTextSize">14sp</item>
         <item name="autoSizeStepGranularity">1sp</item>
+    </style>
+
+    <style name="purposes_view">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintHeight_percent">0.113</item>
+        <item name="layout_constraintWidth_min">340dp</item>
+        <item name="layout_constraintWidth_max">550dp</item>
+        <item name="layout_constraintHeight_min">40dp</item>
+        <item name="layout_constraintHeight_max">80dp</item>
     </style>
 </resources>
