@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,7 @@ import com.kednections.utils.AuthValidator
 import com.kednections.utils.startMarquee
 import com.kednections.utils.uiextensions.showSnackbarLong
 import com.kednections.view.activity.FormActivity
+import com.kednections.view.activity.FormActivityViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,6 +29,7 @@ class AuthFragment : Fragment() {
     private var _binding: FragmentAuthBinding? = null
     private val binding get() = _binding!!
 
+    private val activityViewModel: FormActivityViewModel by activityViewModels()
     private lateinit var viewModel: AuthViewModel
 
     @Inject
@@ -54,7 +57,7 @@ class AuthFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isRegistry.collect {
-                if (it) startActivity(Intent(requireActivity(), FormActivity::class.java))
+                if (it)  findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
                 else {
                     showSnackbarLong("Ошибка регистрации.")
                 }
@@ -63,7 +66,11 @@ class AuthFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isLogin.collect {
-                if (it) startActivity(Intent(requireActivity(), FormActivity::class.java))
+                if (it) {
+                    //[green] переход на главный экран, а пока сообщение о авторизации
+                    showSnackbarLong("Вы авторизировались.")
+//                    findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
+                }
                 else {
                     showSnackbarLong("Ошибка авторизации.")
                 }
@@ -100,7 +107,7 @@ class AuthFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            viewModel.login(
+            viewModel.register(
                 User(
                     username = binding.etEmail.text.toString(),
                     password = binding.etPassword.text.toString(),
