@@ -5,6 +5,9 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.firebase.auth.FirebaseAuth
+import com.kednections.domain.irepository.AuthRepositoryImpl
+import com.kednections.domain.irepository.IAuthRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import java.security.MessageDigest
@@ -53,5 +56,11 @@ class AuthModule {
     companion object {
         const val WEB_CLIENT_ID =
             "1085539908512-rl3upol0ar4ci67d09lhsnv81m1p8feh.apps.googleusercontent.com"
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(impl: AuthRepositoryImpl): IAuthRepository {
+        return impl
     }
 }

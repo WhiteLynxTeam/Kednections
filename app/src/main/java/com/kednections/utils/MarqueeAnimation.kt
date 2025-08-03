@@ -40,5 +40,4 @@ fun startMarquee(textView: TextView, container: View, speed: Long = 5000L) {
         }
     })
 
-
 }

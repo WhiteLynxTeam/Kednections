@@ -16,8 +16,9 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class AuthViewModel(
+class AuthViewModel @Inject constructor(
     private val authFirebase: FirebaseAuth,
     private val credentialManager: CredentialManager,
     private val request: GetCredentialRequest,

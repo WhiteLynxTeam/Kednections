@@ -34,7 +34,6 @@ class AuthFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentAuthBinding.inflate(inflater, container, false)
         return binding.root
     }
