@@ -1,7 +1,6 @@
 package com.kednections.view.auth
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -57,7 +56,7 @@ class AuthFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isRegistry.collect {
-                if (it)  findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
+                if (it) findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
                 else {
                     showSnackbarLong("Ошибка регистрации.")
                 }
@@ -70,8 +69,7 @@ class AuthFragment : Fragment() {
                     //[green] переход на главный экран, а пока сообщение о авторизации
                     showSnackbarLong("Вы авторизировались.")
 //                    findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
-                }
-                else {
+                } else {
                     showSnackbarLong("Ошибка авторизации.")
                 }
             }
@@ -107,13 +105,32 @@ class AuthFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            viewModel.register(
-                User(
-                    username = binding.etEmail.text.toString(),
-                    password = binding.etPassword.text.toString(),
-                )
-            )
-//            findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
+            when (validatorSwitcher.getGelectedInt()) {
+                0 -> {
+                    viewModel.login(
+                        User(
+                            username = binding.etEmail.text.toString(),
+                            password = binding.etPassword.text.toString(),
+                        )
+                    )
+                }
+
+                1 -> {
+                    activityViewModel.updateData {
+                        it.copy(
+                            username = binding.etEmail.text.toString(),
+                            password = binding.etPassword.text.toString(),
+                        )
+                    }
+                    findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
+                }
+
+                else -> {
+                    //*** переключатель null или цифра выше 1
+                }
+            }
+
+
         }
 
         binding.icGoogle.setOnClickListener {

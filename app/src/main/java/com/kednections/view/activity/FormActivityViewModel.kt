@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class FormActivityViewModel : ViewModel() {
-    private var _regUser = MutableStateFlow<RegUser?>(null)
-    val regUser: StateFlow<RegUser?>
+    private var _regUser = MutableStateFlow(RegUser())
+    val regUser: StateFlow<RegUser>
         get() = _regUser.asStateFlow()
 
     private val _progress = MutableStateFlow(1)
@@ -25,8 +25,9 @@ class FormActivityViewModel : ViewModel() {
         }
     }
 
-    fun updateData(transform: (RegUser?) -> RegUser) {
+    fun updateData(transform: (RegUser) -> RegUser) {
         _regUser.update { current -> transform(current) }
+        println("_regUser ${_regUser.value}")
     }
 
 /*    fun register(user: User) {

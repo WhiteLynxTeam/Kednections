@@ -26,6 +26,7 @@ class AuthValidator(
     private val image2SelectedBottom: Int
 ) {
     private enum class SelectedField { LOGIN, REG }
+
     private var selectedField: SelectedField? = null
 
     fun attach() {
@@ -33,6 +34,13 @@ class AuthValidator(
         field2.addTextChangedListener(watcher)
         updateVisualStates()
         setupClickListeners()
+    }
+
+    //*** [yellow] сделать нормально вынести enum в модели
+    //*** прикрутить интерфейс с событиями onReg и onAuth. Пока так
+    //*** 0 - LOGIN, 1 - REG
+    fun getGelectedInt(): Int? {
+        return selectedField?.ordinal
     }
 
     private val watcher = object : TextWatcher {

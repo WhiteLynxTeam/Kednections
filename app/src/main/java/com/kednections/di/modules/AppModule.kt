@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
 import com.kednections.domain.usecase.user.RegisterUserApiUseCase
 import com.kednections.view.auth.AuthViewModel
+import com.kednections.view.form.nickname.NickNameViewModel
 import com.kednections.view.form.welcome.WelcomeViewModel
 import dagger.Module
 import dagger.Provides
@@ -32,6 +33,13 @@ class AppModule() {
     fun provideWelcomeViewModelFactory(
 
     ) = WelcomeViewModel.Factory(
+
+    )
+
+    @Provides
+    fun provideNickNameViewModelFactory(
+
+    ) = NickNameViewModel.Factory(
 
     )
 }
