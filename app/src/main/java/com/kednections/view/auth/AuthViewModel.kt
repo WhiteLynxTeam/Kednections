@@ -15,10 +15,8 @@ import com.kednections.domain.models.User
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
 import com.kednections.domain.usecase.user.RegisterUserApiUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -31,9 +29,9 @@ class AuthViewModel(
 
     ) : ViewModel() {
 
-    private var _currentUser = MutableStateFlow<FirebaseUser?>(null)
-    val currentUser: SharedFlow<FirebaseUser?>
-        get() = _currentUser.asStateFlow()
+//    private var _currentUser = MutableStateFlow<FirebaseUser?>(null)
+//    val currentUser: SharedFlow<FirebaseUser?>
+//        get() = _currentUser.asStateFlow()
 
     private var _isRegistry = MutableSharedFlow<Boolean>()
     val isRegistry: SharedFlow<Boolean>
@@ -45,14 +43,13 @@ class AuthViewModel(
 
     fun login(user: User) {
         viewModelScope.launch {
-
             _isLogin.emit(loginUserApiUseCase(user) != null)
         }
     }
 
     fun register(user: User) {
         viewModelScope.launch {
-            _isRegistry.emit(registerUserApiUseCase(user) != null)
+            _isRegistry.emit(true)
         }
     }
 
