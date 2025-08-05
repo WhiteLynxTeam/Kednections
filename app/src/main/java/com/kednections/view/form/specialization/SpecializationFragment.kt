@@ -9,19 +9,24 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentSpecializationBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
 import dagger.android.support.AndroidSupportInjection
-import kotlin.getValue
+import javax.inject.Inject
 
 class SpecializationFragment : Fragment() {
 
     private var _binding: FragmentSpecializationBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: FormActivityViewModel by activityViewModels()
+    private val activityViewModel: FormActivityViewModel by activityViewModels()
+    private lateinit var viewModel: SpecializationViewModel
+
+    @Inject
+    lateinit var vmFactory: SpecializationViewModel.Factory
 
     private lateinit var selectedViews: MutableSet<TextView>
     private val maxSelection = 3
@@ -42,6 +47,9 @@ class SpecializationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel =
+            ViewModelProvider(this, vmFactory)[SpecializationViewModel::class.java]
 
         selectedViews = mutableSetOf()
 
@@ -82,7 +90,7 @@ class SpecializationFragment : Fragment() {
 
         binding.btnResume.setOnClickListener {
             findNavController().navigate(R.id.action_specializationFragment_to_geolocationFragment)
-            viewModel.increaseProgress()
+            activityViewModel.increaseProgress()
         }
 
     }

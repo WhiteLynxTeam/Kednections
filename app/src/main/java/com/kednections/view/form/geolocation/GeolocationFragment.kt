@@ -7,18 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentGeolocationBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
 import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class GeolocationFragment : Fragment() {
 
     private var _binding: FragmentGeolocationBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: FormActivityViewModel by activityViewModels()
+    private val activityViewModel: FormActivityViewModel by activityViewModels()
+    private lateinit var viewModel: GeolocationViewModel
+
+    @Inject
+    lateinit var vmFactory: GeolocationViewModel.Factory
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -37,17 +43,20 @@ class GeolocationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel =
+            ViewModelProvider(this, vmFactory)[GeolocationViewModel::class.java]
+
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
         binding.btnResume.setOnClickListener {
             findNavController().navigate(R.id.action_geolocationFragment_to_purposesFragment)
-            viewModel.increaseProgress()
+            activityViewModel.increaseProgress()
         }
 
         binding.skipped.setOnClickListener {
             findNavController().navigate(R.id.action_geolocationFragment_to_purposesFragment)
-            viewModel.increaseProgress()
+            activityViewModel.increaseProgress()
         }
     }
 
