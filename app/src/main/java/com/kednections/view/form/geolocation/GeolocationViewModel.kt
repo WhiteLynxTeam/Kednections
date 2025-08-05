@@ -18,6 +18,8 @@ class GeolocationViewModel(
         get() = _cities.asStateFlow()
 
     init {
+        //[yellow] подгрузку городов реализовать при загрузке приложения и в базу
+        //пока в List
         getCities()
     }
 
