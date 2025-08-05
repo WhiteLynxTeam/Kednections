@@ -1,0 +1,12 @@
+package com.kednections.view.feed
+
+data class Feed(
+    val images: List<ImageDetail>,
+    val city: String,
+    val avatar: Int,
+    val name: String,
+    val specialization: String,
+    var isOnline: Boolean = false,
+    var isSubscribe: Boolean = false
+)
+

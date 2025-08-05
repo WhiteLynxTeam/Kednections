@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.feed.filter.FilterFeedFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/specialization_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintStart_toStartOf="@id/img_back"
+        app:layout_constraintTop_toBottomOf="@id/img_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_resume">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:src="@drawable/img_logo_feed_filter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                app:layout_constraintWidth_percent="0.8"
+                android:fontFamily="@font/nauryz_red_keds"
+                android:text="фильтры"
+                android:textAllCaps="true"
+                android:textColor="@color/text_description"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="42sp"
+                app:autoSizeMinTextSize="32sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@id/img_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/img_logo" />
+
+            <TextView
+                android:id="@+id/tv_geoposition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Геопозиция"
+                android:textColor="@color/text_description"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_logo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/geoposition"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="14dp"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/color_4"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_geoposition">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_geoposition"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_auth_input"
+                    android:hint="Начни вводить город"
+                    android:inputType="textAutoComplete"
+                    android:maxLines="1"
+                    android:textColorHint="@color/color_4" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_communication_format"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Формат общения"
+                android:textColor="@color/text_description"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/geoposition" />
+
+            <RadioButton
+                android:id="@+id/rb_any"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:buttonTint="@color/checkbox_color_selector"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_communication_format" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="любой"
+                android:textColor="@color/text_description"
+                app:layout_constraintBottom_toBottomOf="@id/rb_any"
+                app:layout_constraintStart_toEndOf="@id/rb_any"
+                app:layout_constraintTop_toTopOf="@id/rb_any" />
+
+            <RadioButton
+                android:id="@+id/rb_online_only"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/checkbox_color_selector"
+                app:layout_constraintStart_toStartOf="@id/rb_any"
+                app:layout_constraintTop_toBottomOf="@id/rb_any"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="только онлайн"
+                android:textColor="@color/text_description"
+                app:layout_constraintBottom_toBottomOf="@id/rb_online_only"
+                app:layout_constraintStart_toEndOf="@id/rb_online_only"
+                app:layout_constraintTop_toTopOf="@id/rb_online_only" />
+
+            <RadioButton
+                android:id="@+id/rb_meetings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/checkbox_color_selector"
+                app:layout_constraintStart_toStartOf="@id/rb_any"
+                app:layout_constraintTop_toBottomOf="@id/rb_online_only"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="готов(а) к встречам"
+                android:textColor="@color/text_description"
+                app:layout_constraintBottom_toBottomOf="@id/rb_meetings"
+                app:layout_constraintStart_toEndOf="@id/rb_meetings"
+                app:layout_constraintTop_toTopOf="@id/rb_meetings" />
+
+            <TextView
+                android:id="@+id/tv_specialization"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Специализация"
+                android:textColor="@color/text_description"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rb_meetings" />
+
+            <TextView
+                android:id="@+id/tv_art_director"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/art_director"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_specialization"/>
+
+            <TextView
+                android:id="@+id/tv_illustrator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/illustrator"
+                app:layout_constraintStart_toEndOf="@id/tv_art_director"
+                app:layout_constraintTop_toTopOf="@id/tv_art_director"
+                app:layout_constraintBottom_toBottomOf="@id/tv_art_director"
+                app:layout_constraintEnd_toStartOf="@id/tv_3d_designer"/>
+
+            <TextView
+                android:id="@+id/tv_3d_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/three_d_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_art_director"
+                app:layout_constraintBottom_toBottomOf="@id/tv_art_director"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_web_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/web_designer"
+                app:layout_constraintStart_toStartOf="@id/tv_art_director"
+                app:layout_constraintTop_toBottomOf="@id/tv_art_director"/>
+
+            <TextView
+                android:id="@+id/tv_game_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/game_designer"
+                app:layout_constraintStart_toEndOf="@id/tv_web_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_web_designer"
+                app:layout_constraintEnd_toStartOf="@id/tv_artist"/>
+
+            <TextView
+                android:id="@+id/tv_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/artist" app:layout_constraintTop_toTopOf="@id/tv_web_designer"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_graphic_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/graphic_designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_web_designer"
+                />
+
+            <TextView
+                android:id="@+id/tv_interior_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/interior_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_graphic_designer"
+                app:layout_constraintStart_toEndOf="@id/tv_graphic_designer"/>
+
+            <TextView
+                android:id="@+id/tv_ui_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/ui_designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_graphic_designer"/>
+
+            <TextView
+                android:id="@+id/tv_fashion_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/fashion_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_ui_designer"
+                app:layout_constraintStart_toEndOf="@id/tv_ui_designer"/>
+
+            <TextView
+                android:id="@+id/tv_print_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/print_designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_ui_designer"/>
+
+            <TextView
+                android:id="@+id/tv_presentation_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/presentation_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_print_designer"
+                app:layout_constraintStart_toEndOf="@id/tv_print_designer"/>
+
+            <TextView
+                android:id="@+id/tv_communication_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/communication_designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_print_designer"/>
+
+            <TextView
+                android:id="@+id/tv_brand_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/brand_designer"
+                app:layout_constraintStart_toEndOf="@id/tv_communication_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_communication_designer"/>
+
+            <TextView
+                android:id="@+id/tv_landscape_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/landscape_designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_communication_designer"/>
+
+            <TextView
+                android:id="@+id/tv_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/designer"
+                app:layout_constraintStart_toEndOf="@id/tv_landscape_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_landscape_designer"/>
+
+            <TextView
+                android:id="@+id/tv_product_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/product_designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_landscape_designer"/>
+
+            <TextView
+                android:id="@+id/tv_ux_ui_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/ux_ui_designer"
+                app:layout_constraintStart_toEndOf="@id/tv_product_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_product_designer"/>
+
+            <TextView
+                android:id="@+id/tv_industrial_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/industrial_designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_designer"/>
+
+            <TextView
+                android:id="@+id/tv_fpx_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/fpx_designer"
+                app:layout_constraintStart_toEndOf="@id/tv_industrial_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_industrial_designer"/>
+
+            <TextView
+                android:id="@+id/tv_ai_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/ai_designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_industrial_designer"/>
+
+            <TextView
+                android:id="@+id/tv_ar_vr_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/ar_vr_designer"
+                app:layout_constraintStart_toEndOf="@id/tv_ai_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_ai_designer"/>
+
+            <TextView
+                android:id="@+id/tv_motion_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/motion_designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_ai_designer"/>
+
+            <TextView
+                android:id="@+id/tv_smm_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/bg_for_text_specializations"
+                android:textColor="@color/text_description"
+                android:text="@string/smm_designer"
+                app:layout_constraintTop_toTopOf="@id/tv_motion_designer"
+                app:layout_constraintStart_toEndOf="@id/tv_motion_designer"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/btn_reset"
+        style="@style/skip_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/color_1"
+        android:text="сбросить фильтры"
+        app:layout_constraintEnd_toEndOf="@id/specialization_scroll"
+        app:layout_constraintStart_toStartOf="@id/img_back" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_resume"
+        style="@style/btn_resume_style"
+        android:text="применить"
+        app:layout_constraintStart_toStartOf="@id/btn_reset"
+        app:layout_constraintBottom_toTopOf="@id/btn_reset"
+        app:layout_constraintEnd_toEndOf="@id/btn_reset" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

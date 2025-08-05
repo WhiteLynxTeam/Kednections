@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.google.gms.google.services)
+    id("org.jetbrains.kotlin.plugin.parcelize")
 }
 
 android {
@@ -97,5 +98,7 @@ dependencies {
 
     /** SnapHelper - выравнивание элементов recyclerview */
     implementation(libs.gravitysnaphelper)
+
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
 
 }

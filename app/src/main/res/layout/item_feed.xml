@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_image_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.789" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/img_feed"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/img_feed"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:scaleType="center"-->
+<!--        android:src="@drawable/image"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_geo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <ImageView
+        android:id="@+id/ic_geo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_geo_feed"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_geo"/>
+
+    <TextView
+        android:id="@+id/tv_geo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:textColor="@color/white"
+        android:maxLines="1"
+        android:includeFontPadding="false"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="6sp"
+        app:autoSizeMaxTextSize="10sp"
+        app:autoSizeStepGranularity="1sp"
+        android:fontFamily="@font/nauryz_red_keds"
+        android:text="Санкт-Петербург"
+        app:layout_constraintStart_toEndOf="@id/ic_geo"
+        app:layout_constraintTop_toTopOf="@id/guideline_geo"
+        app:layout_constraintBottom_toBottomOf="@id/ic_geo"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_buttons_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <View
+        android:id="@+id/buttons_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.125"
+        android:textAlignment="center"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/img_feed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/btn_skip"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintWidth_percent="0.433"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHeight_max="64dp"
+        android:src="@drawable/ic_button_skip_for_feed"
+        app:layout_constraintStart_toStartOf="@id/buttons_view"
+        app:layout_constraintTop_toTopOf="@id/buttons_view"
+        app:layout_constraintEnd_toEndOf="@id/guideline_buttons_margin"/>
+
+    <ImageView
+        android:id="@+id/btn_like"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.433"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHeight_max="64dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_button_like_for_feed"
+        app:layout_constraintStart_toStartOf="@id/guideline_buttons_margin"
+        app:layout_constraintTop_toTopOf="@id/buttons_view"
+        app:layout_constraintEnd_toEndOf="@id/buttons_view"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_subscribe_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.493" />
+
+    <TextView
+        android:id="@+id/tv_subscribe_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_description"
+        android:visibility="gone"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="4dp"
+        android:background="@drawable/bg_subscribe_text"
+        android:text="подписка done"
+        app:layout_constraintStart_toStartOf="@id/btn_skip"
+        app:layout_constraintTop_toTopOf="@id/guideline_subscribe_text"
+        app:layout_constraintEnd_toEndOf="@id/btn_like"/>
+
+    <TextView
+        android:id="@+id/tv_write_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_description"
+        android:visibility="gone"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="4dp"
+        android:background="@drawable/bg_subscribe_text"
+        android:text="чат еще не готов"
+        app:layout_constraintStart_toStartOf="@id/btn_skip"
+        app:layout_constraintTop_toTopOf="@id/guideline_subscribe_text"
+        app:layout_constraintEnd_toEndOf="@id/btn_like"/>
+
+    <ImageView
+        android:id="@+id/img_avatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintWidth_percent="0.156"
+        app:layout_constraintHeight_percent="0.092"
+        android:src="@drawable/img_ava_1"
+        app:layout_constraintStart_toStartOf="@id/btn_skip"
+        app:layout_constraintTop_toBottomOf="@id/img_feed"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <View
+        android:id="@+id/is_online"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/bg_oval_orange"
+        app:layout_constraintEnd_toEndOf="@id/img_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:layout_constraintWidth_max="250dp"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:includeFontPadding="false"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeStepGranularity="1sp"
+        android:textColor="@color/text_description"
+        android:fontFamily="@font/nauryz_red_keds"
+        android:text="Креативная фрида"
+        app:layout_constraintStart_toEndOf="@id/img_avatar"
+        app:layout_constraintTop_toTopOf="@id/img_avatar"
+        app:layout_constraintEnd_toStartOf="@id/ic_over_menu"
+        app:layout_constraintBottom_toTopOf="@id/tv_specialization"/>
+
+    <TextView
+        android:id="@+id/tv_specialization"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeMaxTextSize="14sp"
+        app:autoSizeStepGranularity="1sp"
+        android:textColor="@color/color_4"
+        android:text="UX/UI-дизайнер, Веб-дизайнер, продуктовый дизайнер"
+        app:layout_constraintStart_toStartOf="@id/tv_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        app:layout_constraintEnd_toEndOf="@id/tv_name"
+        app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
+
+    <ImageView
+        android:id="@+id/ic_over_menu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.078"
+        app:layout_constraintHeight_percent="0.046"
+        android:src="@drawable/ic_more_vert"
+        app:layout_constraintTop_toTopOf="@id/img_avatar"
+        app:layout_constraintEnd_toEndOf="@id/btn_like"
+        app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
+
+    <View
+        android:id="@+id/view_pop_up"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.556"
+        app:layout_constraintHeight_percent="0.12"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/img_avatar"
+        app:layout_constraintEnd_toEndOf="@id/ic_over_menu"
+        app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
+
+    <LinearLayout
+        android:id="@+id/write"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.06"
+        android:focusable="true"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_feed_pop_up_top"
+        app:layout_constraintStart_toStartOf="@id/view_pop_up"
+        app:layout_constraintTop_toTopOf="@id/view_pop_up"
+        app:layout_constraintEnd_toEndOf="@id/ic_over_menu">
+
+        <ImageView
+            android:id="@+id/ic_write"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:src="@drawable/ic_write"/>
+
+        <TextView
+            android:id="@+id/tv_write"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/text_description"
+            android:text="написать в лс"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/subscribe"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:clickable="true"
+        android:background="@drawable/bg_feed_pop_up_bottom"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintStart_toStartOf="@id/view_pop_up"
+        app:layout_constraintBottom_toBottomOf="@id/view_pop_up"
+        app:layout_constraintEnd_toEndOf="@id/view_pop_up">
+
+        <ImageView
+            android:id="@+id/ic_subscribe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:src="@drawable/ic_subscribe"/>
+
+        <TextView
+            android:id="@+id/tv_subscribe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/text_description"
+            android:text="подписаться"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/imagesProgressContainer"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_margin="18dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:gravity="center"
+        android:progressTint="@color/white"
+        android:progressBackgroundTint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

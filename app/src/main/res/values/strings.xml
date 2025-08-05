@@ -3,6 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- TODO: Текст для form_activity -->
     <string name="count">1/5</string>
 
     <!-- TODO: Текст для fragment_auth -->
@@ -75,5 +76,10 @@
     <string name="text_hint_about">В жизни каждого человека бывают моменты, когда зашел не в ту дверь — так я попал в дизайн...</string>
     <string name="char_count">0/200</string>
 
+    <!-- TODO: Текст для main_activity -->
+    <string name="acquaintances">знакомства</string>
+    <string name="communication">общение</string>
+    <string name="feed">лента</string>
+    <string name="profile">профиль</string>
 
 </resources>
