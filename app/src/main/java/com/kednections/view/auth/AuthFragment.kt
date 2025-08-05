@@ -98,6 +98,8 @@ class AuthFragment : Fragment() {
         validatorSwitcher.attach()
 
         binding.btnResume.setOnClickListener {
+            //[yellow] Сделать проверку на валидность email
+            //[green] посмотреть какое ограничение на максимальное количестов символов для полей
             if (binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString()
                     .isEmpty()
             ) {

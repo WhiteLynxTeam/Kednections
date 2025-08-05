@@ -73,6 +73,8 @@ class NickNameFragment : Fragment() {
         validatorSwitcher.attach()
 
         binding.btnResume.setOnClickListener {
+            //[yellow] отсутствует поля в модели регистрации юзера на сервере
+            //[yellow] флаг, что выбрали - ник или фио
             activityViewModel.updateData {
                 it.copy(
                     fio = binding.etName.text.toString(),

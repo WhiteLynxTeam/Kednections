@@ -1,5 +1,8 @@
 package com.kednections.di.modules
 
+import com.kednections.data.network.api.GeoApi
+import com.kednections.data.network.api.SpecializationsApi
+import com.kednections.data.network.api.TagApi
 import com.kednections.data.network.api.UserApi
 import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import dagger.Module
@@ -41,6 +44,18 @@ class RemoteModule {
     @Provides
     @Singleton
     fun provideUserApi(retrofit: Retrofit): UserApi = retrofit.create(UserApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideGeoApi(retrofit: Retrofit): GeoApi = retrofit.create(GeoApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTagApi(retrofit: Retrofit): TagApi = retrofit.create(TagApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSpecializationsApi(retrofit: Retrofit): SpecializationsApi = retrofit.create(SpecializationsApi::class.java)
 
     companion object {
         private const val HALF_MINUTE_FOR_SLOW_INTERNET = 30L
