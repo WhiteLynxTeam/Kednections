@@ -103,7 +103,7 @@
     <style name="purposes_view">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
-        <item name="layout_constraintHeight_percent">0.113</item>
+        <item name="layout_constraintHeight_percent">0.105</item>
         <item name="layout_constraintWidth_min">340dp</item>
         <item name="layout_constraintWidth_max">550dp</item>
         <item name="layout_constraintHeight_min">40dp</item>

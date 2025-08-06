@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/acquaintances"
+        android:icon="@drawable/ic_menu_acquaintances"
+        android:title="@string/acquaintances"
+        app:showAsAction="withText"/>
+    <item
+        android:id="@+id/feed"
+        android:icon="@drawable/ic_menu_feed"
+        android:title="@string/feed"
+        app:showAsAction="withText"/>
+    <item
+        android:id="@+id/communication"
+        android:icon="@drawable/ic_menu_communication"
+        android:title="@string/communication"
+        app:showAsAction="withText"/>
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_menu_profile"
+        android:title="@string/profile"
+        app:showAsAction="withText"/>
+</menu>
