@@ -14,7 +14,7 @@ class ImagePagerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.dialog_fullscreen_image, parent, false)
+            .inflate(R.layout.item_image_feed, parent, false)
         return ImageViewHolder(view)
     }
 
@@ -28,11 +28,10 @@ class ImagePagerAdapter(
     override fun getItemCount() = images.size
 
     inner class ImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val imageView: ImageView = view.findViewById(R.id.imageView)
+        private val imageView: ImageView = view.findViewById(R.id.img_item)
 
         fun bind(imageDetail: ImageDetail) {
             imageView.setImageResource(imageDetail.imageRes)
-
         }
     }
 }

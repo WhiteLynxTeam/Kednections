@@ -8,15 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
+import com.kednections.R
 import com.kednections.databinding.DialogFullscreenImageBinding
 
 class FullscreenImageDialog : DialogFragment() {
+
     companion object {
-        fun newInstance(imageDetail: ImageDetail): FullscreenImageDialog {
+        fun newInstance(imageList: List<ImageDetail>, startPosition: Int): FullscreenImageDialog {
             return FullscreenImageDialog().apply {
                 arguments = Bundle().apply {
-                    putParcelable("image_detail", imageDetail)
+                    putParcelableArrayList("image_list", ArrayList(imageList))
+                    putInt("start_position", startPosition)
                 }
             }
         }
@@ -34,19 +39,36 @@ class FullscreenImageDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = DialogFullscreenImageBinding.inflate(inflater, container, false)
-        val imageDetail = requireArguments().getParcelable<ImageDetail>("image_detail")!!
+        val imageList = requireArguments().getParcelableArrayList<ImageDetail>("image_list") ?: emptyList()
+        val startPosition = requireArguments().getInt("start_position", 0)
 
-        with(binding) {
-            imageView.setImageResource(imageDetail.imageRes)
-            titleText.text = imageDetail.title
-            descriptionText.text = imageDetail.description
-            likesCount.text = "${imageDetail.likes} likes"
+        val adapter = FullscreenPagerAdapter(imageList) { dismiss() }
+        binding.fullscreenPager.adapter = adapter
+        binding.fullscreenPager.setCurrentItem(startPosition, false)
+        binding.pageIndicator.isVisible = imageList.size > 1
+        binding.pageIndicator.attachTo(binding.fullscreenPager)
 
-            closeButton.setOnClickListener { dismiss() }
-//            likeButton.setOnClickListener {
-//                // Обработка лайка
-//            }
+
+        binding.btnSkip.setImageResource(R.drawable.ic_button_skip_for_feed)
+        binding.btnLike.setImageResource(R.drawable.ic_button_like_for_feed)
+
+        val feedPosition = requireArguments().getInt("feedPosition")
+        binding.btnLike.setOnClickListener {
+            binding.btnLike.setImageResource(R.drawable.ic_button_like_for_feed_pressed)
+            setFragmentResult("fullscreen_result", Bundle().apply {
+                putString("action", "like")
+                putInt("feedPosition", feedPosition)
+            })
         }
+
+        binding.btnSkip.setOnClickListener {
+            binding.btnSkip.setImageResource(R.drawable.ic_button_skip_for_feed_pressed)
+            setFragmentResult("fullscreen_result", Bundle().apply {
+                putString("action", "skip")
+                putInt("feedPosition", feedPosition)
+            })
+        }
+
 
         return binding.root
     }

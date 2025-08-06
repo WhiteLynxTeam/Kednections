@@ -25,17 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/img_feed"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:scaleType="center"-->
-<!--        android:src="@drawable/image"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_geo"
         android:layout_width="wrap_content"
@@ -47,10 +36,12 @@
         android:id="@+id/ic_geo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_goneMarginTop="24dp"
         android:src="@drawable/ic_geo_feed"
         android:layout_marginStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline_geo"/>
+        app:layout_constraintTop_toBottomOf="@id/imagesProgressContainer"/>
 
     <TextView
         android:id="@+id/tv_geo"
@@ -69,7 +60,7 @@
         android:fontFamily="@font/nauryz_red_keds"
         android:text="Санкт-Петербург"
         app:layout_constraintStart_toEndOf="@id/ic_geo"
-        app:layout_constraintTop_toTopOf="@id/guideline_geo"
+        app:layout_constraintTop_toTopOf="@id/ic_geo"
         app:layout_constraintBottom_toBottomOf="@id/ic_geo"/>
 
 

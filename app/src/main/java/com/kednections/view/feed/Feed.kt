@@ -7,6 +7,6 @@ data class Feed(
     val name: String,
     val specialization: String,
     var isOnline: Boolean = false,
-    var isSubscribe: Boolean = false
+    //var isSubscribe: Boolean = false
 )
 

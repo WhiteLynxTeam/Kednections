@@ -22,7 +22,7 @@ class FeedAdapter(
     val items: MutableList<Feed>,
     private val onLike: (Int) -> Unit,
     private val onSkip: (Int) -> Unit,
-    private val onImageClick: (ImageDetail) -> Unit,
+    private val onImageClick: (List<ImageDetail>, Int) -> Unit,
     private val fragment: Fragment
 ) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
 
@@ -77,14 +77,15 @@ class FeedAdapter(
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
 
+
         val item = items[position]
-        var isSubscribe = item.isSubscribe
+        //var isSubscribe = item.isSubscribe
         with(holder.binding) {
             holder.setupImagesProgress(item.images.size)
 
             imgFeed.adapter = ImagePagerAdapter(item.images) { imagePosition ->
                 holder.updateImagesProgress(imagePosition)
-                onImageClick(item.images[imagePosition])
+                onImageClick(item.images, imagePosition)
             }
 
             if (item.images.size > 1) {
@@ -102,41 +103,24 @@ class FeedAdapter(
                 })
             }
 
-
-
-//            imgFeed.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//                override fun onPageSelected(imagePosition: Int) {
-//                    holder.updateImagesProgress(imagePosition)
-//                }
-//
-//                override fun onPageScrollStateChanged(state: Int) {}
-//                override fun onPageScrolled(
-//                    position: Int,
-//                    positionOffset: Float,
-//                    positionOffsetPixels: Int
-//                ) {}
-//            })
-
             tvGeo.text = item.city
             imgAvatar.setImageResource(item.avatar)
             tvName.text = item.name
             tvSpecialization.text = item.specialization
 
-            // Заменяем одинарное изображение на ViewPager2
             imgFeed.adapter = ImagePagerAdapter(item.images) { imagePosition ->
-                // Передаем клик наружу через колбэк
-                onImageClick(item.images[imagePosition])
+                onImageClick(item.images, imagePosition)
             }
-//            imgFeed.setImageResource(item.imageResId)
+
             if (item.isOnline) isOnline.visibility = View.VISIBLE
             else isOnline.visibility = View.GONE
-            if (isSubscribe) {
-                tvSubscribe.text = "отписаться"
-                tvSubscribeDone.text = "отписка done"
-            } else {
-                tvSubscribe.text = "подписаться"
-                tvSubscribeDone.text = "подписка done"
-            }
+//            if (isSubscribe) {
+//                tvSubscribe.text = "отписаться"
+//                tvSubscribeDone.text = "отписка done"
+//            } else {
+//                tvSubscribe.text = "подписаться"
+//                tvSubscribeDone.text = "подписка done"
+//            }
 
             val context = holder.itemView.context
 
@@ -147,28 +131,28 @@ class FeedAdapter(
                 }
             }
 
-            write.setOnClickListener {
-                holder.scope.launch {
-                    tvWriteClick.visibility = View.VISIBLE
-                    delay(300)
-                    viewPopUp.visibility = View.GONE
-                    delay(1700)
-                    tvWriteClick.visibility = View.GONE
-                }
-            }
+//            write.setOnClickListener {
+//                holder.scope.launch {
+//                    tvWriteClick.visibility = View.VISIBLE
+//                    delay(300)
+//                    viewPopUp.visibility = View.GONE
+//                    delay(1700)
+//                    tvWriteClick.visibility = View.GONE
+//                }
+//            }
 
             subscribe.setOnClickListener {
-                isSubscribe = !isSubscribe
-                item.isSubscribe = isSubscribe // Обновляем данные в item
+//                isSubscribe = !isSubscribe
+//                item.isSubscribe = isSubscribe // Обновляем данные в item
 
-                // Обновляем текст
-                if (isSubscribe) {
-                    tvSubscribe.text = "отписаться"
-                    tvSubscribeDone.text = "подписка done"
-                } else {
-                    tvSubscribe.text = "подписаться"
-                    tvSubscribeDone.text = "отписка done"
-                }
+//                // Обновляем текст
+//                if (isSubscribe) {
+//                    tvSubscribe.text = "отписаться"
+//                    tvSubscribeDone.text = "подписка done"
+//                } else {
+//                    tvSubscribe.text = "подписаться"
+//                    tvSubscribeDone.text = "отписка done"
+//                }
 
                 holder.scope.launch {
                     tvSubscribeDone.visibility = View.VISIBLE
