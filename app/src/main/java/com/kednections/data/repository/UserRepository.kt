@@ -1,5 +1,6 @@
 package com.kednections.data.repository
 
+import com.google.firebase.auth.FirebaseUser
 import com.kednections.data.network.api.UserApi
 import com.kednections.data.network.dto.token.response.AuthTokenResponse
 import com.kednections.data.network.dto.user.request.LoginUserRequest
@@ -19,6 +20,10 @@ class UserRepository(
     override suspend fun register(user: User): Result<Token> {
         val result = userApi.register(mapperUserToUserDto(user))
         return result.map { mapperTokenResponseToToken(it) }
+    }
+
+    override fun getCurrentUser(): FirebaseUser? {
+        TODO("Not yet implemented")
     }
 
     private fun mapperTokenResponseToToken(
