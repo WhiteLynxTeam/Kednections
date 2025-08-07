@@ -1,5 +1,6 @@
 package com.kednections.data.repository
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.kednections.data.network.api.UserApi
 import com.kednections.data.network.dto.token.response.AuthTokenResponse
@@ -23,7 +24,7 @@ class UserRepository(
     }
 
     override fun getCurrentUser(): FirebaseUser? {
-        TODO("Not yet implemented")
+        return FirebaseAuth.getInstance().currentUser
     }
 
     private fun mapperTokenResponseToToken(
