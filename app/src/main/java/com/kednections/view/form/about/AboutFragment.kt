@@ -9,19 +9,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentAboutBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
+import com.kednections.view.auth.AuthViewModel
 import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class AboutFragment : Fragment() {
 
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: FormActivityViewModel by activityViewModels()
+
+    private val activityViewModel: FormActivityViewModel by activityViewModels()
+    private lateinit var viewModel: AboutViewModel
+
+    @Inject
+    lateinit var vmFactory: AboutViewModel.Factory
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -40,6 +48,9 @@ class AboutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel =
+            ViewModelProvider(this, vmFactory)[AboutViewModel::class.java]
+
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
@@ -57,11 +68,13 @@ class AboutFragment : Fragment() {
         })
 
         binding.btnResume.setOnClickListener {
-            findNavController().navigate(R.id.action_aboutFragment_to_showCaseFragment)
+
+//            findNavController().navigate(R.id.action_aboutFragment_to_showCaseFragment)
         }
 
         binding.skipped.setOnClickListener {
-            findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
+
+//            findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
         }
 
         (activity as FormActivity).setUIVisibility(
