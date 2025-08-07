@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.kednections.R
+import com.kednections.domain.models.feed.ImageDetail
 
 class ImagePagerAdapter(
     private val images: List<ImageDetail>,

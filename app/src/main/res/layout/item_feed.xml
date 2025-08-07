@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/main">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_image_margin"
@@ -20,6 +19,7 @@
         android:orientation="horizontal"
         android:clickable="true"
         android:focusable="true"
+        android:animateLayoutChanges="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,8 +36,8 @@
         android:id="@+id/ic_geo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_goneMarginTop="24dp"
+        android:layout_marginTop="12dp"
+        app:layout_goneMarginTop="12dp"
         android:src="@drawable/ic_geo_feed"
         android:layout_marginStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,16 +46,16 @@
     <TextView
         android:id="@+id/tv_geo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="6dp"
         android:textColor="@color/white"
+        android:gravity="center_vertical"
         android:maxLines="1"
         android:includeFontPadding="false"
-        android:textAllCaps="true"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="6sp"
-        app:autoSizeMaxTextSize="10sp"
+        app:autoSizeMaxTextSize="12sp"
         app:autoSizeStepGranularity="1sp"
         android:fontFamily="@font/nauryz_red_keds"
         android:text="Санкт-Петербург"
@@ -170,28 +170,28 @@
         android:id="@+id/tv_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        app:layout_constraintWidth_max="250dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintWidth_max="260dp"
         android:maxLines="1"
-        android:textAllCaps="true"
         android:includeFontPadding="false"
         app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="12sp"
-        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeMinTextSize="18sp"
+        app:autoSizeMaxTextSize="24sp"
         app:autoSizeStepGranularity="1sp"
+        android:textStyle="bold"
         android:textColor="@color/text_description"
         android:fontFamily="@font/nauryz_red_keds"
         android:text="Креативная фрида"
         app:layout_constraintStart_toEndOf="@id/img_avatar"
         app:layout_constraintTop_toTopOf="@id/img_avatar"
-        app:layout_constraintEnd_toStartOf="@id/ic_over_menu"
-        app:layout_constraintBottom_toTopOf="@id/tv_specialization"/>
+        app:layout_constraintEnd_toStartOf="@id/ic_over_menu"/>
 
     <TextView
         android:id="@+id/tv_specialization"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:includeFontPadding="false"
+        android:textAllCaps="false"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="8sp"
         app:autoSizeMaxTextSize="14sp"
@@ -219,7 +219,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth_percent="0.556"
-        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHeight_percent="0.146"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="@id/img_avatar"
         app:layout_constraintEnd_toEndOf="@id/ic_over_menu"
@@ -229,10 +229,11 @@
         android:id="@+id/write"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintHeight_percent="0.073"
+        android:gravity="center_vertical"
+        android:minHeight="44dp"
         android:focusable="true"
         android:clickable="true"
-        android:orientation="horizontal"
         android:background="@drawable/bg_feed_pop_up_top"
         app:layout_constraintStart_toStartOf="@id/view_pop_up"
         app:layout_constraintTop_toTopOf="@id/view_pop_up"
@@ -240,60 +241,73 @@
 
         <ImageView
             android:id="@+id/ic_write"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:src="@drawable/ic_write"/>
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_write"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/tv_write"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="8"
-            android:layout_gravity="center"
-            android:textSize="14sp"
+            android:layout_marginStart="12dp"
+            android:includeFontPadding="false"
             android:textColor="@color/text_description"
-            android:text="написать в лс"/>
+            android:text="написать в лс"
+            app:layout_constraintStart_toEndOf="@id/ic_write"
+            app:layout_constraintTop_toTopOf="@id/ic_write"
+            app:layout_constraintBottom_toBottomOf="@id/ic_write"/>
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/subscribe"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="horizontal"
         android:focusable="true"
         android:clickable="true"
+        android:gravity="center_vertical"
         android:background="@drawable/bg_feed_pop_up_bottom"
-        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintHeight_percent="0.073"
+        android:minHeight="44dp"
         app:layout_constraintStart_toStartOf="@id/view_pop_up"
         app:layout_constraintBottom_toBottomOf="@id/view_pop_up"
         app:layout_constraintEnd_toEndOf="@id/view_pop_up">
 
         <ImageView
             android:id="@+id/ic_subscribe"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:src="@drawable/ic_subscribe"/>
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_subscribe"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/tv_subscribe"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="8"
-            android:layout_gravity="center"
-            android:textSize="14sp"
+            android:layout_marginStart="12dp"
+            android:includeFontPadding="false"
             android:textColor="@color/text_description"
-            android:text="подписаться"/>
+            android:text="подписаться"
+            app:layout_constraintStart_toEndOf="@id/ic_subscribe"
+            app:layout_constraintTop_toTopOf="@id/ic_subscribe"
+            app:layout_constraintBottom_toBottomOf="@id/ic_subscribe"/>
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/imagesProgressContainer"
         android:layout_width="0dp"
         android:layout_height="4dp"
-        android:layout_margin="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="18dp"
         android:orientation="horizontal"
         android:visibility="gone"
         android:gravity="center"
@@ -302,5 +316,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
