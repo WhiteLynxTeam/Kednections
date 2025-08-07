@@ -1,4 +1,4 @@
-package com.kednections.view.feed
+package com.kednections.domain.models.feed
 
 data class Feed(
     val images: List<ImageDetail>,

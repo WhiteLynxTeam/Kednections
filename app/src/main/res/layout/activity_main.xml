@@ -35,8 +35,8 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.085"
-        android:minHeight="56dp"
+        app:layout_constraintHeight_percent="0.077"
+        android:minHeight="40dp"
         android:background="@drawable/bottom_nav_background"
         app:itemActiveIndicatorStyle="@android:color/transparent"
         app:itemIconTint="@color/bottom_nav_color"
@@ -45,6 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        style="@style/BottomNavigationStyle"
         app:menu="@menu/main_navigation_menu" />
 
 

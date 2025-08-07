@@ -1,4 +1,4 @@
-package com.kednections.view.feed
+package com.kednections.domain.models.feed
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

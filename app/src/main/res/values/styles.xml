@@ -109,4 +109,18 @@
         <item name="layout_constraintHeight_min">40dp</item>
         <item name="layout_constraintHeight_max">80dp</item>
     </style>
+
+    <style name="BottomNavigationStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:drawablePadding">3dp</item>
+        <item name="itemTextAppearanceActive">@style/BottomNavigationTextAppearance</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavigationTextAppearanceInactive</item>
+    </style>
+
+    <style name="BottomNavigationTextAppearance" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BottomNavigationTextAppearanceInactive" parent="TextAppearance.AppCompat.Caption">
+        <item name="fontFamily">@font/raleway_medium</item>
+    </style>
 </resources>

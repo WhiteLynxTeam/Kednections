@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kednections.databinding.ItemFullscreenPageBinding
+import com.kednections.domain.models.feed.ImageDetail
 
 class FullscreenPagerAdapter(
-    private val items: List<ImageDetail>,
-    private val onClose: () -> Unit
+    private val items: List<ImageDetail>
 ) : RecyclerView.Adapter<FullscreenPagerAdapter.PageViewHolder>() {
 
     inner class PageViewHolder(val binding: ItemFullscreenPageBinding) : RecyclerView.ViewHolder(binding.root)
@@ -21,12 +21,12 @@ class FullscreenPagerAdapter(
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: PageViewHolder, position: Int) {
+
         val item = items[position]
 
         with(holder.binding) {
             imgFullScreens.setImageResource(item.imageRes)
             tvComment.text = item.comment
-            btnClosed.setOnClickListener { onClose()}
         }
     }
 }

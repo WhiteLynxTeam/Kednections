@@ -11,6 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.kednections.R
 import com.kednections.databinding.FragmentFeedBinding
+import com.kednections.domain.models.feed.Feed
+import com.kednections.domain.models.feed.ImageDetail
 import com.kednections.utils.startMarquee
 import com.kednections.view.feed.filter.NothingFilterDialog
 import dagger.android.support.AndroidSupportInjection
@@ -45,9 +47,9 @@ class FeedFragment : Fragment() {
                     comment = "очень длинный комммммент."
                 )
             ),
-            city = "Москва",
+            city = "Комсомольск-на-Амуре",
             avatar = R.drawable.img_ava_1,
-            name = "Дизайнер",
+            name = "дизайнер",
             specialization = "UX/UI дизайнер, Веб-дизайнер, продуктовый дизайнер",
             isOnline = true
         ),
@@ -106,12 +108,10 @@ class FeedFragment : Fragment() {
         parentFragmentManager.setFragmentResultListener("fullscreen_result", viewLifecycleOwner) { _, bundle ->
             val action = bundle.getString("action")
             val feedPosition = bundle.getInt("feedPosition")
-
             lifecycleScope.launch {
-                delay(2000)
+                delay(400)
                 when (action) {
-                    "like" -> removeFeed(feedPosition)
-                    "skip" -> removeFeed(feedPosition)
+                    "like", "skip" -> removeFeed(feedPosition)
                 }
             }
         }
@@ -120,23 +120,18 @@ class FeedFragment : Fragment() {
 
         adapter = FeedAdapter(
             feedList,
-            onLike = { position -> removeFeed(position) },
-            onSkip = { position -> removeFeed(position) },
-            onImageClick = { imageList, position ->
-                FullscreenImageDialog.newInstance(imageList, position)
+            onLike = { position ->
+                removeFeed(position)
+                     },
+            onSkip = { position ->
+                removeFeed(position)
+                     },
+            onImageClick = { imageList, imagePosition, feedPosition ->
+                FullscreenImageDialog.newInstance(imageList, imagePosition, feedPosition)
                     .show(parentFragmentManager, "dialog")
             },
             fragment = this
         )
-
-
-
-//        parentFragmentManager.setFragmentResultListener("fullscreen_result", viewLifecycleOwner) { _, bundle ->
-//            when (bundle.getString("action")) {
-//                "like" -> removeFeed(bundle.getInt("feedPosition"))
-//                "skip" -> removeFeed(bundle.getInt("feedPosition"))
-//            }
-//        }
 
         binding.viewPager.adapter = adapter
         binding.viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
@@ -153,7 +148,8 @@ class FeedFragment : Fragment() {
         if (feedList.isEmpty() || positionToRemove !in feedList.indices) return
 
         val wasLastItem = positionToRemove == feedList.lastIndex
-        adapter.removeAt(positionToRemove)
+        feedList.removeAt(positionToRemove)
+        adapter.notifyItemRemoved(positionToRemove)
 
         if (wasLastItem || feedList.isEmpty()) {
             binding.viewPager.visibility = View.GONE
@@ -164,5 +160,7 @@ class FeedFragment : Fragment() {
             binding.viewPager.setCurrentItem(positionToRemove.coerceAtMost(feedList.size - 1), false)
         }
     }
+
+
 
 }

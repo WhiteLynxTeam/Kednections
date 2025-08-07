@@ -1,6 +1,7 @@
 package com.kednections.view.feed
 
 import android.graphics.Color
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,12 +18,15 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import androidx.core.view.isVisible
+import com.kednections.domain.models.feed.Feed
+import com.kednections.domain.models.feed.ImageDetail
+import java.util.Locale
 
 class FeedAdapter(
     val items: MutableList<Feed>,
     private val onLike: (Int) -> Unit,
     private val onSkip: (Int) -> Unit,
-    private val onImageClick: (List<ImageDetail>, Int) -> Unit,
+    private val onImageClick: (List<ImageDetail>, Int, Int) -> Unit,
     private val fragment: Fragment
 ) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
 
@@ -77,7 +81,6 @@ class FeedAdapter(
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
 
-
         val item = items[position]
         //var isSubscribe = item.isSubscribe
         with(holder.binding) {
@@ -85,7 +88,7 @@ class FeedAdapter(
 
             imgFeed.adapter = ImagePagerAdapter(item.images) { imagePosition ->
                 holder.updateImagesProgress(imagePosition)
-                onImageClick(item.images, imagePosition)
+                onImageClick(item.images, imagePosition, holder.adapterPosition) // Добавляем holder.adapterPosition
             }
 
             if (item.images.size > 1) {
@@ -103,14 +106,14 @@ class FeedAdapter(
                 })
             }
 
-            tvGeo.text = item.city
-            imgAvatar.setImageResource(item.avatar)
-            tvName.text = item.name
-            tvSpecialization.text = item.specialization
-
-            imgFeed.adapter = ImagePagerAdapter(item.images) { imagePosition ->
-                onImageClick(item.images, imagePosition)
+            tvGeo.text = item.city.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
             }
+            imgAvatar.setImageResource(item.avatar)
+            tvName.text = item.name.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+            }
+            tvSpecialization.text = item.specialization
 
             if (item.isOnline) isOnline.visibility = View.VISIBLE
             else isOnline.visibility = View.GONE
@@ -126,20 +129,23 @@ class FeedAdapter(
 
             icOverMenu.setOnClickListener {
                 viewPopUp.visibility = View.VISIBLE
-                main.setOnClickListener {
+                overlay.visibility = View.VISIBLE
+
+                overlay.setOnClickListener {
                     viewPopUp.visibility = View.GONE
+                    overlay.visibility = View.GONE
                 }
             }
 
-//            write.setOnClickListener {
-//                holder.scope.launch {
-//                    tvWriteClick.visibility = View.VISIBLE
-//                    delay(300)
-//                    viewPopUp.visibility = View.GONE
-//                    delay(1700)
-//                    tvWriteClick.visibility = View.GONE
-//                }
-//            }
+            write.setOnClickListener {
+                holder.scope.launch {
+                    //tvWriteClick.visibility = View.VISIBLE
+                    delay(300)
+                    viewPopUp.visibility = View.GONE
+                    //delay(1700)
+                    //tvWriteClick.visibility = View.GONE
+                }
+            }
 
             subscribe.setOnClickListener {
 //                isSubscribe = !isSubscribe
@@ -158,7 +164,7 @@ class FeedAdapter(
                     tvSubscribeDone.visibility = View.VISIBLE
                     delay(300)
                     viewPopUp.visibility = View.GONE
-                    delay(1700)
+                    delay(1500)
                     tvSubscribeDone.visibility = View.GONE
                 }
             }
@@ -208,11 +214,6 @@ class FeedAdapter(
             }
 
         }
-    }
-
-    fun removeAt(position: Int) {
-        items.removeAt(position)
-        notifyItemRemoved(position)
     }
 
     override fun getItemCount(): Int = items.size
