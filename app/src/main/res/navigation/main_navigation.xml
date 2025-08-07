@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.kednections.view.feed.FeedFragment"
+        android:label="fragment_feed"
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_feedFragment_to_filterFeedFragment"
+            app:destination="@id/filterFeedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/acquaintancesFragment"
+        android:name="com.kednections.view.acquaintances.AcquaintancesFragment"
+        android:label="fragment_acquaintances"
+        tools:layout="@layout/fragment_acquaintances" />
+    <fragment
+        android:id="@+id/communicationFragment"
+        android:name="com.kednections.view.communication.CommunicationFragment"
+        android:label="fragment_communication"
+        tools:layout="@layout/fragment_communication" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.kednections.view.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/filterFeedFragment"
+        android:name="com.kednections.view.feed.filter.FilterFeedFragment"
+        android:label="fragment_filter_feed"
+        tools:layout="@layout/fragment_filter_feed" />
+</navigation>

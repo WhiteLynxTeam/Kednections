@@ -1,0 +1,79 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fullscreen_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/fullscreen_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" />
+
+    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+        android:id="@+id/page_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:dotsColor="@color/color_4"
+        app:selectedDotColor="@color/color_7"
+        app:dotsSize="6dp"
+        app:dotsSpacing="6dp"
+        app:layout_constraintTop_toTopOf="@id/bg_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/bg_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.245"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_buttons_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <View
+        android:id="@+id/buttons_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.125"
+        android:textAlignment="center"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/btn_skip"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintWidth_percent="0.433"
+        app:layout_constraintHeight_percent="0.078"
+        app:layout_constraintHeight_max="56dp"
+        android:src="@drawable/ic_button_skip_for_feed"
+        app:layout_constraintStart_toStartOf="@id/buttons_view"
+        app:layout_constraintTop_toTopOf="@id/buttons_view"
+        app:layout_constraintEnd_toEndOf="@id/guideline_buttons_margin"/>
+
+    <ImageView
+        android:id="@+id/btn_like"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.433"
+        app:layout_constraintHeight_percent="0.078"
+        app:layout_constraintHeight_max="56dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_button_like_for_feed"
+        app:layout_constraintStart_toStartOf="@id/guideline_buttons_margin"
+        app:layout_constraintTop_toTopOf="@id/buttons_view"
+        app:layout_constraintEnd_toEndOf="@id/buttons_view"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
