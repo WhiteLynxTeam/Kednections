@@ -5,15 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentGeolocationBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class GeolocationFragment : Fragment() {
@@ -25,6 +28,11 @@ class GeolocationFragment : Fragment() {
 
     @Inject
     lateinit var vmFactory: GeolocationViewModel.Factory
+
+    private var cityAdapter: ArrayAdapter<String>? = null
+    //[yellow] с кастомным адаптером надо еще фильтрацию реализовывать. отложим пока
+    //поработаем со стандартным
+//    private val cityAdapter by lazy { CityAdapter(requireContext(), mutableListOf()) }
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -45,6 +53,19 @@ class GeolocationFragment : Fragment() {
 
         viewModel =
             ViewModelProvider(this, vmFactory)[GeolocationViewModel::class.java]
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.cities.collect { cities ->
+                cityAdapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    cities.map { it.name }
+                )
+                binding.auctvGeolocation.setAdapter(cityAdapter)
+//                cityAdapter.setData(cities)
+//                binding.auctvGeolocation.setAdapter(cityAdapter)
+            }
+        }
 
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)

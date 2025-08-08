@@ -26,7 +26,6 @@ class GeolocationViewModel(
     private fun getCities() {
         viewModelScope.launch {
             _cities.emit(getCitiesApiUseCase())
-            println("_cities = ${_cities.value}")
         }
     }
 

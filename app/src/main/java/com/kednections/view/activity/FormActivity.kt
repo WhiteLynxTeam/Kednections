@@ -14,21 +14,28 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import com.kednections.R
 import com.kednections.databinding.ActivityFormBinding
+import dagger.android.AndroidInjection
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @Suppress("DEPRECATION")
 class FormActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFormBinding
-
+    //[yellow] для каких целей создали вьюмодель?
     private lateinit var viewModel: FormActivityViewModel
 
+    @Inject
+    lateinit var vmFactory: FormActivityViewModel.Factory
+
+    //[green] Почему navController серый, не используется?
     private val navController by lazy {
         NavHostFragment.findNavController(supportFragmentManager.findFragmentById(R.id.fragment_placeholder) as NavHostFragment)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -38,7 +45,7 @@ class FormActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel =
-            ViewModelProvider(this)[FormActivityViewModel::class.java]
+            ViewModelProvider(this, vmFactory)[FormActivityViewModel::class.java]
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
