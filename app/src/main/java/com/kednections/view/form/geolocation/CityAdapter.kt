@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.kednections.domain.models.City
 
-class CityAdapter(context: Context, private val cities: List<City>) :
+class CityAdapter(context: Context, private val cities: MutableList<City>) :
     ArrayAdapter<City>(context, android.R.layout.simple_dropdown_item_1line, cities) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -22,5 +22,11 @@ class CityAdapter(context: Context, private val cities: List<City>) :
         val city = cities[position]
         (view as TextView).text = city.name
         return view
+    }
+
+    fun setData(newcities: List<City>) {
+        clear()
+        addAll(newcities)
+        notifyDataSetChanged()
     }
 }

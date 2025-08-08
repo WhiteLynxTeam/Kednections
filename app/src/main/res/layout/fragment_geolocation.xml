@@ -47,8 +47,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.18" />
 
-<!--
-    <AutoCompleteTextView
+<!--    <AutoCompleteTextView
         android:id="@+id/auctv_geolocation"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -57,8 +56,7 @@
         android:textColorHint="@color/color_4"
         app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"
         app:layout_constraintTop_toBottomOf="@id/guideline_et_margin"
-        app:layout_constraintStart_toStartOf="@id/tv_where_are_you"/>
--->
+        app:layout_constraintStart_toStartOf="@id/tv_where_are_you"/>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/geolocation"

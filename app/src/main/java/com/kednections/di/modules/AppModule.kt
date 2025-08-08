@@ -3,11 +3,6 @@ package com.kednections.di.modules
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.kednections.data.network.api.UserApi
-import com.kednections.data.repository.UserRepository
-import com.kednections.domain.irepository.IUserRepository
-import com.kednections.domain.istorage.IUserStorage
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase

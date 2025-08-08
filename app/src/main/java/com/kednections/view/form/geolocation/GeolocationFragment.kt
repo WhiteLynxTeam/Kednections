@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +29,10 @@ class GeolocationFragment : Fragment() {
     @Inject
     lateinit var vmFactory: GeolocationViewModel.Factory
 
-    private var cityAdapter: CityAdapter? = null
+    private var cityAdapter: ArrayAdapter<String>? = null
+    //[yellow] с кастомным адаптером надо еще фильтрацию реализовывать. отложим пока
+    //поработаем со стандартным
+//    private val cityAdapter by lazy { CityAdapter(requireContext(), mutableListOf()) }
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -52,14 +56,14 @@ class GeolocationFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.cities.collect { cities ->
-                if (cityAdapter == null) {
-                    cityAdapter = CityAdapter(requireContext(), cities)
-                    binding.auctvGeolocation.setAdapter(cityAdapter)
-                } else {
-                    cityAdapter?.clear()
-                    cityAdapter?.addAll(cities)
-                    cityAdapter?.notifyDataSetChanged()
-                }
+                cityAdapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    cities.map { it.name }
+                )
+                binding.auctvGeolocation.setAdapter(cityAdapter)
+//                cityAdapter.setData(cities)
+//                binding.auctvGeolocation.setAdapter(cityAdapter)
             }
         }
 
