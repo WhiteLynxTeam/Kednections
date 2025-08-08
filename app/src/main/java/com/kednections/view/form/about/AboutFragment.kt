@@ -16,7 +16,6 @@ import com.kednections.databinding.FragmentAboutBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
-import com.kednections.view.auth.AuthViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -68,13 +67,13 @@ class AboutFragment : Fragment() {
         })
 
         binding.btnResume.setOnClickListener {
+            findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
 
-//            findNavController().navigate(R.id.action_aboutFragment_to_showCaseFragment)
         }
 
         binding.skipped.setOnClickListener {
 
-//            findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
+            findNavController().navigate(R.id.action_aboutFragment_to_successRegFragment)
         }
 
         (activity as FormActivity).setUIVisibility(
