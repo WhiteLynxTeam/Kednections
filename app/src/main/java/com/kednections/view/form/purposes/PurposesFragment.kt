@@ -7,18 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentPurposesBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
 import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class PurposesFragment : Fragment() {
 
     private var _binding: FragmentPurposesBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: FormActivityViewModel by activityViewModels()
+    private val activityViewModel: FormActivityViewModel by activityViewModels()
+    private lateinit var viewModel: PurposesViewModel
+
+    @Inject
+    lateinit var vmFactory: PurposesViewModel.Factory
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -36,6 +42,9 @@ class PurposesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel =
+            ViewModelProvider(this, vmFactory)[PurposesViewModel::class.java]
 
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
@@ -90,6 +99,12 @@ class PurposesFragment : Fragment() {
         }
 
         binding.btnResume.setOnClickListener {
+            activityViewModel.updateData {
+                it.copy(
+                    //[red] заглушка для проверки регистрации - передаем два первых элемента
+                    tags = viewModel.tags.value.take(2)
+                )
+            }
             findNavController().navigate(R.id.action_purposesFragment_to_chooseCommunicateFragment)
         }
     }

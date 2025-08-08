@@ -79,6 +79,7 @@ class NickNameFragment : Fragment() {
                 it.copy(
                     fio = binding.etName.text.toString(),
                     nick = binding.etNick.text.toString(),
+                    fioOrNick = validatorSwitcher.getSelected() ?: "NAME"
                 )
             }
             findNavController().navigate(R.id.action_nickNameFragment_to_avatarFragment)
