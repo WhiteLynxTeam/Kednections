@@ -52,15 +52,15 @@ class UserRepository(
         user: RegUser
     ): RegUserRequest {
         return RegUserRequest(
-            username = user.username,
+            email = user.username,
             password = user.password,
-            fio = user.fio,
-            nick = user.nick,
-            specializations = user.specializations,
-            city = user.city,
+            username = user.fio,
+            nickname = user.nick,
+            specialization = user.specializations.map { it.id },
+            city = user.city.id,
             description = user.description,
-            tags = user.tags,
-            communicationMethod = user.communicationMethod,
+            tags = user.tags.map { it.id },
+            communication_method = user.communicationMethod,
             photo = user.photo,
             status = user.status,
         )

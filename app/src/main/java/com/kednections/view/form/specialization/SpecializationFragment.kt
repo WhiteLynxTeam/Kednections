@@ -89,6 +89,12 @@ class SpecializationFragment : Fragment() {
 
 
         binding.btnResume.setOnClickListener {
+            activityViewModel.updateData {
+                it.copy(
+                    //[red] заглушка для проверки регистрации - передаем первые три элемента
+                    specializations = viewModel.specializations.value.take(3)
+                )
+            }
             findNavController().navigate(R.id.action_specializationFragment_to_geolocationFragment)
             activityViewModel.increaseProgress()
         }

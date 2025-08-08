@@ -7,19 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentChooseCommunicateBinding
 import com.kednections.view.activity.FormActivityViewModel
 import com.kednections.view.form.purposes.PurposesFragment.PurposeItem
+import com.kednections.view.form.purposes.PurposesViewModel
 import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 
 class ChooseCommunicateFragment : Fragment() {
 
     private var _binding: FragmentChooseCommunicateBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: FormActivityViewModel by activityViewModels()
+    private val activityViewModel: FormActivityViewModel by activityViewModels()
+    private lateinit var viewModel: ChooseCommunicateViewModel
+
+    @Inject
+    lateinit var vmFactory: ChooseCommunicateViewModel.Factory
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -37,6 +44,9 @@ class ChooseCommunicateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel =
+            ViewModelProvider(this, vmFactory)[ChooseCommunicateViewModel::class.java]
 
         val items = listOf(
             RadioButtonItem(
@@ -63,8 +73,15 @@ class ChooseCommunicateFragment : Fragment() {
         }
 
         binding.btnResume.setOnClickListener {
+            activityViewModel.updateData {
+                it.copy(
+                    //[red] заглушка для проверки регистрации - передаем uuid коммуникации
+                    // на сервере нет ручки для получения способов коммуницирования
+                    communicationMethod = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                )
+            }
             findNavController().navigate(R.id.action_chooseCommunicateFragment_to_aboutFragment)
-            viewModel.increaseProgress()
+            activityViewModel.increaseProgress()
         }
     }
 
