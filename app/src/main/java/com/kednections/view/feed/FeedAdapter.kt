@@ -1,7 +1,6 @@
 package com.kednections.view.feed
 
 import android.graphics.Color
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -128,8 +127,8 @@ class FeedAdapter(
             val context = holder.itemView.context
 
             icOverMenu.setOnClickListener {
-                viewPopUp.visibility = View.VISIBLE
                 overlay.visibility = View.VISIBLE
+                viewPopUp.visibility = View.VISIBLE
 
                 overlay.setOnClickListener {
                     viewPopUp.visibility = View.GONE
@@ -139,7 +138,6 @@ class FeedAdapter(
 
             write.setOnClickListener {
                 holder.scope.launch {
-                    //tvWriteClick.visibility = View.VISIBLE
                     delay(300)
                     viewPopUp.visibility = View.GONE
                     //delay(1700)

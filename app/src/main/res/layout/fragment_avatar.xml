@@ -178,6 +178,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
+        android:enabled="true"
         app:layout_constraintEnd_toEndOf="@id/tv_face"
         app:layout_constraintStart_toStartOf="@id/tv_face"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin" />

@@ -103,4 +103,6 @@ dependencies {
 
     implementation("com.tbuonomo:dotsindicator:4.3")
 
+    implementation("com.google.android.exoplayer:exoplayer:2.19.1")
+
 }
