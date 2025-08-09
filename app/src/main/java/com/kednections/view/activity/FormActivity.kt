@@ -87,8 +87,6 @@ class FormActivity : AppCompatActivity() {
             finish()
         }
 
-
-
     }
 
     @SuppressLint("MissingSuperCall")

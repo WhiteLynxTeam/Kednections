@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -50,6 +51,19 @@ class WelcomeFragment : Fragment() {
         // Скрываем заголовок активности (если нужно)
         (activity as FormActivity).setUIVisibility(showHeader = false)
 
+        binding.root.alpha = 0f
+        binding.root.scaleX = 0.9f
+        binding.root.scaleY = 0.9f
+
+        // Запуск анимации
+        binding.root.animate()
+            .alpha(1f)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(1200)
+            .setInterpolator(AccelerateDecelerateInterpolator())
+            .start()
+
         // Запускаем корутину в рамках жизненного цикла фрагмента
         lifecycleScope.launch {
             // Собираем события навигации из ViewModel
@@ -63,7 +77,7 @@ class WelcomeFragment : Fragment() {
 
         // Через 3 секунды вызываем проверку состояния пользователя
         lifecycleScope.launch {
-            delay(3000)
+            delay(2000)
             viewModel.checkUserStateAndNavigate()
         }
     }

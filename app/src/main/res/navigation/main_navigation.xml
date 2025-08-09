@@ -6,6 +6,11 @@
     app:startDestination="@id/feedFragment">
 
     <fragment
+        android:id="@+id/screenSaverFragment"
+        android:name="com.kednections.view.feed.screen_saver.ScreenSaverFragment"
+        android:label="fragment_screen_saver"
+        tools:layout="@layout/fragment_screen_saver" />
+    <fragment
         android:id="@+id/feedFragment"
         android:name="com.kednections.view.feed.FeedFragment"
         android:label="fragment_feed"
@@ -13,6 +18,9 @@
         <action
             android:id="@+id/action_feedFragment_to_filterFeedFragment"
             app:destination="@id/filterFeedFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_screenSaverFragment"
+            app:destination="@id/screenSaverFragment" />
     </fragment>
     <fragment
         android:id="@+id/acquaintancesFragment"
@@ -34,4 +42,5 @@
         android:name="com.kednections.view.feed.filter.FilterFeedFragment"
         android:label="fragment_filter_feed"
         tools:layout="@layout/fragment_filter_feed" />
+
 </navigation>

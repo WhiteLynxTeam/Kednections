@@ -6,6 +6,7 @@ import com.kednections.view.auth.AuthFragment
 import com.kednections.view.communication.CommunicationFragment
 import com.kednections.view.feed.FeedFragment
 import com.kednections.view.feed.filter.FilterFeedFragment
+import com.kednections.view.feed.screen_saver.ScreenSaverFragment
 import com.kednections.view.form.about.AboutFragment
 import com.kednections.view.form.avatar.AvatarFragment
 import com.kednections.view.form.choose_communicate.ChooseCommunicateFragment
@@ -68,4 +69,7 @@ interface MainModule {
 
     @ContributesAndroidInjector
     fun bindFilterFeedFragment(): FilterFeedFragment
+
+    @ContributesAndroidInjector
+    fun bindScreenSaverFragment(): ScreenSaverFragment
 }
