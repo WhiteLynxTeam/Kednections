@@ -100,37 +100,37 @@ class AuthFragment : Fragment() {
         binding.btnResume.setOnClickListener {
             //[yellow] Сделать проверку на валидность email
             //[green] посмотреть какое ограничение на максимальное количестов символов для полей
-//            if (binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString()
-//                    .isEmpty()
-//            ) {
-//                showSnackbarLong("Заполните поля.")
-//                return@setOnClickListener
-//            }
-//
-//            when (validatorSwitcher.getGelectedInt()) {
-//                0 -> {
-//                    viewModel.login(
-//                        User(
-//                            username = binding.etEmail.text.toString(),
-//                            password = binding.etPassword.text.toString(),
-//                        )
-//                    )
-//                }
-//
-//                1 -> {
-//                    activityViewModel.updateData {
-//                        it.copy(
-//                            username = binding.etEmail.text.toString(),
-//                            password = binding.etPassword.text.toString(),
-//                        )
-//                    }
+            if (binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString()
+                    .isEmpty()
+            ) {
+                showSnackbarLong("Заполните поля.")
+                return@setOnClickListener
+            }
+
+            when (validatorSwitcher.getGelectedInt()) {
+                0 -> {
+                    viewModel.login(
+                        User(
+                            username = binding.etEmail.text.toString(),
+                            password = binding.etPassword.text.toString(),
+                        )
+                    )
+                }
+
+                1 -> {
+                    activityViewModel.updateData {
+                        it.copy(
+                            username = binding.etEmail.text.toString(),
+                            password = binding.etPassword.text.toString(),
+                        )
+                    }
                     findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
-//                }
-//
-//                else -> {
-//                    //*** переключатель null или цифра выше 1
-//                }
-//            }
+                }
+
+                else -> {
+                    //*** переключатель null или цифра выше 1
+                }
+            }
 
 
         }

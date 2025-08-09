@@ -73,6 +73,10 @@ class FilterFeedFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        binding.imgLogo.setOnClickListener {
+            findNavController().navigate(R.id.action_filterFeedFragment_to_screenSaverFragment)
+        }
+
         (activity as MainActivity).setUIVisibility(
             showHeader = true
         )

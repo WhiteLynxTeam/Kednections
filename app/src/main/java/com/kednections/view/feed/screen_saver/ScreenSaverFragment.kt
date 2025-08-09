@@ -13,11 +13,11 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.animation.OvershootInterpolator
 import android.widget.ImageButton
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -26,8 +26,6 @@ import com.kednections.R
 import com.kednections.databinding.FragmentScreenSaverBinding
 import com.kednections.view.activity.MainActivity
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class ScreenSaverFragment : Fragment() {
 
@@ -254,9 +252,7 @@ class ScreenSaverFragment : Fragment() {
             val color = ContextCompat.getColor(requireActivity(), colorRes)
             endIcon.imageTintList = ColorStateList.valueOf(color)
         }
-
-
-
+        
         (activity as MainActivity).setUIVisibility(
             showHeader = false
         )

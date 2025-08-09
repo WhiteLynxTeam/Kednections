@@ -9,7 +9,11 @@
         android:id="@+id/screenSaverFragment"
         android:name="com.kednections.view.feed.screen_saver.ScreenSaverFragment"
         android:label="fragment_screen_saver"
-        tools:layout="@layout/fragment_screen_saver" />
+        tools:layout="@layout/fragment_screen_saver" >
+        <action
+            android:id="@+id/action_screenSaverFragment_to_filterFeedFragment"
+            app:destination="@id/filterFeedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.kednections.view.feed.FeedFragment"
@@ -18,9 +22,6 @@
         <action
             android:id="@+id/action_feedFragment_to_filterFeedFragment"
             app:destination="@id/filterFeedFragment" />
-        <action
-            android:id="@+id/action_feedFragment_to_screenSaverFragment"
-            app:destination="@id/screenSaverFragment" />
     </fragment>
     <fragment
         android:id="@+id/acquaintancesFragment"
@@ -41,6 +42,10 @@
         android:id="@+id/filterFeedFragment"
         android:name="com.kednections.view.feed.filter.FilterFeedFragment"
         android:label="fragment_filter_feed"
-        tools:layout="@layout/fragment_filter_feed" />
+        tools:layout="@layout/fragment_filter_feed" >
+        <action
+            android:id="@+id/action_filterFeedFragment_to_screenSaverFragment"
+            app:destination="@id/screenSaverFragment" />
+    </fragment>
 
 </navigation>

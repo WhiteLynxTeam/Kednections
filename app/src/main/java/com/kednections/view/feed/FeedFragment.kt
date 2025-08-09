@@ -170,10 +170,6 @@ class FeedFragment : Fragment() {
             } else findNavController().navigate(R.id.action_feedFragment_to_filterFeedFragment)
         }
 
-        binding.icNotifications.setOnClickListener {
-            findNavController().navigate(R.id.action_feedFragment_to_screenSaverFragment)
-        }
-
     }
 
     private fun removeFeed(positionToRemove: Int) {
