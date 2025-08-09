@@ -25,8 +25,6 @@ class AuthViewModel(
     private val credentialManager: CredentialManager,
     private val request: GetCredentialRequest,
     private val loginUserApiUseCase: LoginUserApiUseCase,
-    private val registerUserApiUseCase: RegisterUserApiUseCase,
-
     ) : ViewModel() {
 
 //    private var _currentUser = MutableStateFlow<FirebaseUser?>(null)
@@ -115,7 +113,6 @@ class AuthViewModel(
         private val credentialManager: CredentialManager,
         private val request: GetCredentialRequest,
         private val loginUserApiUseCase: LoginUserApiUseCase,
-        private val registerUserApiUseCase: RegisterUserApiUseCase,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(AuthViewModel::class.java)) {
@@ -124,7 +121,6 @@ class AuthViewModel(
                     credentialManager = credentialManager,
                     request = request,
                     loginUserApiUseCase = loginUserApiUseCase,
-                    registerUserApiUseCase = registerUserApiUseCase,
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")

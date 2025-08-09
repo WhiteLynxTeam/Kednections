@@ -35,6 +35,11 @@ class NickNameValidator(
         setupClickListeners()
     }
 
+    //*** [yellow] сделать нормально вынести enum в модели
+    fun getSelected(): String? {
+        return selectedField?.name
+    }
+
     private val watcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) = updateVisualStates()
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

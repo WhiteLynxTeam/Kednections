@@ -1,6 +1,7 @@
 package com.kednections.di.modules
 
 import com.kednections.view.acquaintances.AcquaintancesFragment
+import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.MainActivity
 import com.kednections.view.auth.AuthFragment
 import com.kednections.view.communication.CommunicationFragment
@@ -24,6 +25,9 @@ import dagger.android.ContributesAndroidInjector
 interface MainModule {
     @ContributesAndroidInjector
     fun bindMainActivity(): MainActivity
+
+    @ContributesAndroidInjector
+    fun bindFormActivity(): FormActivity
 
     @ContributesAndroidInjector
     fun bindAuthFragment(): AuthFragment

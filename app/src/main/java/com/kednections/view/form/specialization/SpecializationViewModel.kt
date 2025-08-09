@@ -24,7 +24,7 @@ class SpecializationViewModel(
     private fun getSpecialization() {
         viewModelScope.launch {
             _specializations.emit(getSpecializationApiUseCase())
-            //[yellow] реализовывать вывод списка с сервера на экран пока не будет, всего 3 спринта
+            //[yellow] реализовывать вывод списка с сервера на экран пока не будет
             println("_specializations = ${_specializations.value}")
         }
     }
