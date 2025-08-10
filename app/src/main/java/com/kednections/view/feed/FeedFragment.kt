@@ -5,15 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.kednections.R
 import com.kednections.databinding.FragmentFeedBinding
 import com.kednections.domain.models.feed.Feed
 import com.kednections.domain.models.feed.ImageDetail
 import com.kednections.utils.startMarquee
+import com.kednections.view.activity.MainActivity
 import com.kednections.view.feed.filter.NothingFilterDialog
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.delay
@@ -48,7 +51,7 @@ class FeedFragment : Fragment() {
                 )
             ),
             city = "Комсомольск-на-Амуре",
-            avatar = R.drawable.img_ava_1,
+            avatar = R.drawable.img_ava_1_selected,
             name = "дизайнер",
             specialization = "UX/UI дизайнер, Веб-дизайнер, продуктовый дизайнер",
             isOnline = true
@@ -69,7 +72,7 @@ class FeedFragment : Fragment() {
                 )
             ),
             "Москва",
-            R.drawable.img_ava_2_selected,
+            R.drawable.img_ava_8_selected,
             "Креативная фрида 2",
             "UX/UI-дизайнер, продуктовый дизайнер"
         ),
@@ -81,9 +84,34 @@ class FeedFragment : Fragment() {
                 )
             ),
             "Новосибирск",
-            R.drawable.img_ava_3,
+            R.drawable.img_ava_3_selected,
             "Креативная фрида 3",
             "UX/UI-дизайнер, Веб-дизайнер",
+            isOnline = true
+        ),
+        Feed(
+            images = listOf(
+                ImageDetail(
+                    imageRes = R.drawable.image_3,
+                    comment = "Очень-очень-очень-очень-очень-очень-очень-очень, максимально длинный комммммент."
+                ),
+                ImageDetail(
+                    imageRes = R.drawable.image,
+                    comment = "очень-очень-очень-очень-очень-очень, максимально длинный комммммент."
+                ),
+                ImageDetail(
+                    imageRes = R.drawable.image_2,
+                    comment = "Очень-очень-очень, максимально длинный комммммент."
+                ),
+                ImageDetail(
+                    imageRes = R.drawable.image_3,
+                    comment = "очень длинный комммммент."
+                )
+            ),
+            city = "Санкт-Петербург",
+            avatar = R.drawable.img_ava_6_selected,
+            name = "дизайнер",
+            specialization = "UX/UI дизайнер, Веб-дизайнер, продуктовый дизайнер",
             isOnline = true
         ),
     )
@@ -139,7 +167,7 @@ class FeedFragment : Fragment() {
         binding.icFilter.setOnClickListener {
             if (binding.bgTheEnd.isVisible) {
                 NothingFilterDialog().show(parentFragmentManager, "NothingFilterDialog")
-            } //else findNavController().navigate(R.id.action_feedFragment_to_filterFeedFragment)
+            } else findNavController().navigate(R.id.action_feedFragment_to_filterFeedFragment)
         }
 
     }
@@ -159,8 +187,11 @@ class FeedFragment : Fragment() {
         } else {
             binding.viewPager.setCurrentItem(positionToRemove.coerceAtMost(feedList.size - 1), false)
         }
+
+        (activity as MainActivity).setUIVisibility(
+            showHeader = true
+        )
+
     }
-
-
 
 }

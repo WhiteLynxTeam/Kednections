@@ -74,6 +74,7 @@
             android:id="@+id/auctv_geolocation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingStart="14dp"
             android:textSize="12sp"
             android:background="@drawable/bg_auth_input"
             android:inputType="text"/>

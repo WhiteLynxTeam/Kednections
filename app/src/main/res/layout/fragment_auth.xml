@@ -78,12 +78,12 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/email"
-            android:textColorHint="@color/color_4"
-            android:maxLines="1"
-            android:textSize="12sp"
             android:background="@drawable/bg_auth_input"
-            android:inputType="text" />
+            android:hint="@string/email"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColorHint="@color/color_4"
+            android:textSize="12sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

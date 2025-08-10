@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.feed.screen_saver.ScreenSaverFragment">
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/video"
+        app:use_controller="false"
+        android:visibility="visible"
+        android:clickable="false"
+        app:resize_mode="fill"
+        app:surface_type="texture_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_margin_left_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.321" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/img_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentStart="true"
+        app:layout_constraintWidth_percent="0.478"
+        app:layout_constraintHeight_percent="0.316"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="12dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_margin_left_image">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_3"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_margin_right_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.456" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/img_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentStart="true"
+        app:layout_constraintWidth_percent="0.478"
+        app:layout_constraintHeight_percent="0.316"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="12dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintTop_toTopOf="@id/guideline_margin_right_image"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_2"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_true"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.103"
+        android:includeFontPadding="false"
+        android:gravity="center_vertical"
+        app:autoSizeTextType="uniform"
+        android:textAllCaps="true"
+        app:autoSizeMinTextSize="36sp"
+        app:autoSizeMaxTextSize="88sp"
+        app:autoSizeStepGranularity="1sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_description"
+        android:text="тру"
+        android:fontFamily="@font/nauryz_red_keds"
+        app:layout_constraintStart_toStartOf="@id/write_message"
+        app:layout_constraintTop_toBottomOf="@id/ic_closed"
+        app:layout_constraintEnd_toEndOf="@id/write_message"/>
+
+    <TextView
+        android:id="@+id/tv_match"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.103"
+        android:includeFontPadding="false"
+        android:gravity="center_vertical"
+        app:autoSizeTextType="uniform"
+        android:textAllCaps="true"
+        app:autoSizeMinTextSize="36sp"
+        app:autoSizeMaxTextSize="88sp"
+        app:autoSizeStepGranularity="1sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_description"
+        android:text="мэтч"
+        android:fontFamily="@font/nauryz_red_keds"
+        app:layout_constraintStart_toStartOf="@id/write_message"
+        app:layout_constraintTop_toBottomOf="@id/tv_true"
+        app:layout_constraintEnd_toEndOf="@id/write_message"/>
+
+    <TextView
+        android:id="@+id/tv_view_profile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="смотреть профиль"
+        android:textColor="@color/text_description"
+        app:layout_constraintHeight_percent="0.066"
+        app:layout_constraintStart_toStartOf="@id/write_message"
+        app:layout_constraintTop_toBottomOf="@id/write_message"
+        app:layout_constraintEnd_toEndOf="@id/write_message"/>
+
+    <ImageView
+        android:id="@+id/ic_closed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_close_dialog"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_et_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.802" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/write_message"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.911"
+        app:layout_constraintHeight_percent="0.08"
+        android:elevation="10dp"
+        android:imeOptions="actionDone"
+        app:hintEnabled="false"
+        android:textColorHint="@color/color_4"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_send_message"
+        app:endIconTint="@color/icon_send_message_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_et_input"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_write_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="го в лс"
+            android:textColorHint="@color/color_4"
+            app:autoSizeTextType="uniform"
+            android:textAllCaps="true"
+            app:autoSizeMinTextSize="14sp"
+            app:autoSizeMaxTextSize="20sp"
+            app:autoSizeStepGranularity="1sp"
+            android:maxLines="6"
+            android:fontFamily="@font/raleway_medium"
+            android:textColor="@color/text_description"
+            android:textSize="12sp"
+            android:background="@drawable/bg_write_message"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

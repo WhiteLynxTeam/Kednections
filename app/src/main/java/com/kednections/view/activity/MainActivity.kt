@@ -2,6 +2,7 @@ package com.kednections.view.activity
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
@@ -55,5 +56,9 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    fun setUIVisibility(showHeader: Boolean) {
+        binding.bottomNavigation.visibility = if (showHeader) View.VISIBLE else View.GONE
     }
 }

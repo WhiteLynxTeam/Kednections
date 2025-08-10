@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="14dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="18dp"
         app:layout_constraintStart_toStartOf="@id/img_back"
         app:layout_constraintTop_toBottomOf="@id/img_back"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,8 +30,10 @@
                 android:id="@+id/img_logo"
                 android:layout_width="0dp"
                 android:layout_height="110dp"
+                android:layout_marginTop="4dp"
                 android:src="@drawable/img_logo_feed_filter"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,58 +103,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/geoposition" />
 
-            <RadioButton
-                android:id="@+id/rb_any"
+            <RadioGroup
+                android:id="@+id/radio_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:buttonTint="@color/checkbox_color_selector"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_communication_format" />
+                android:layout_marginStart="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_communication_format"
+                app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="любой"
-                android:textColor="@color/text_description"
-                app:layout_constraintBottom_toBottomOf="@id/rb_any"
-                app:layout_constraintStart_toEndOf="@id/rb_any"
-                app:layout_constraintTop_toTopOf="@id/rb_any" />
+                <RadioButton
+                    android:id="@+id/rb_any"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    app:buttonTint="@color/checkbox_color_selector"
+                    android:text="любой"/>
 
-            <RadioButton
-                android:id="@+id/rb_online_only"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:buttonTint="@color/checkbox_color_selector"
-                app:layout_constraintStart_toStartOf="@id/rb_any"
-                app:layout_constraintTop_toBottomOf="@id/rb_any"
-                />
+                <RadioButton
+                    android:id="@+id/rb_online_only"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    app:buttonTint="@color/checkbox_color_selector"
+                    android:text="только онлайн"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="только онлайн"
-                android:textColor="@color/text_description"
-                app:layout_constraintBottom_toBottomOf="@id/rb_online_only"
-                app:layout_constraintStart_toEndOf="@id/rb_online_only"
-                app:layout_constraintTop_toTopOf="@id/rb_online_only" />
+                <RadioButton
+                    android:id="@+id/rb_meetings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    app:buttonTint="@color/checkbox_color_selector"
+                    android:text="готов(а) к встречам"/>
 
-            <RadioButton
-                android:id="@+id/rb_meetings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:buttonTint="@color/checkbox_color_selector"
-                app:layout_constraintStart_toStartOf="@id/rb_any"
-                app:layout_constraintTop_toBottomOf="@id/rb_online_only"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="готов(а) к встречам"
-                android:textColor="@color/text_description"
-                app:layout_constraintBottom_toBottomOf="@id/rb_meetings"
-                app:layout_constraintStart_toEndOf="@id/rb_meetings"
-                app:layout_constraintTop_toTopOf="@id/rb_meetings" />
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/tv_specialization"
@@ -163,13 +147,13 @@
                 android:textColor="@color/text_description"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rb_meetings" />
+                app:layout_constraintTop_toBottomOf="@id/radio_group" />
 
             <TextView
-                android:id="@+id/tv_art_director"
+                android:id="@+id/art_director"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
@@ -179,7 +163,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_specialization"/>
 
             <TextView
-                android:id="@+id/tv_illustrator"
+                android:id="@+id/illustrator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -187,13 +171,13 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/illustrator"
-                app:layout_constraintStart_toEndOf="@id/tv_art_director"
-                app:layout_constraintTop_toTopOf="@id/tv_art_director"
-                app:layout_constraintBottom_toBottomOf="@id/tv_art_director"
-                app:layout_constraintEnd_toStartOf="@id/tv_3d_designer"/>
+                app:layout_constraintStart_toEndOf="@id/art_director"
+                app:layout_constraintTop_toTopOf="@id/art_director"
+                app:layout_constraintBottom_toBottomOf="@id/art_director"
+                app:layout_constraintEnd_toStartOf="@id/three_d_designer"/>
 
             <TextView
-                android:id="@+id/tv_3d_designer"
+                android:id="@+id/three_d_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -201,25 +185,25 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/three_d_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_art_director"
-                app:layout_constraintBottom_toBottomOf="@id/tv_art_director"
+                app:layout_constraintTop_toTopOf="@id/art_director"
+                app:layout_constraintBottom_toBottomOf="@id/art_director"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
-                android:id="@+id/tv_web_designer"
+                android:id="@+id/web_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/web_designer"
-                app:layout_constraintStart_toStartOf="@id/tv_art_director"
-                app:layout_constraintTop_toBottomOf="@id/tv_art_director"/>
+                app:layout_constraintStart_toStartOf="@id/art_director"
+                app:layout_constraintTop_toBottomOf="@id/art_director"/>
 
             <TextView
-                android:id="@+id/tv_game_designer"
+                android:id="@+id/game_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -227,37 +211,38 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/game_designer"
-                app:layout_constraintStart_toEndOf="@id/tv_web_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_web_designer"
-                app:layout_constraintEnd_toStartOf="@id/tv_artist"/>
+                app:layout_constraintStart_toEndOf="@id/web_designer"
+                app:layout_constraintTop_toTopOf="@id/web_designer"
+                app:layout_constraintEnd_toStartOf="@id/artist"/>
 
             <TextView
-                android:id="@+id/tv_artist"
+                android:id="@+id/artist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
-                android:text="@string/artist" app:layout_constraintTop_toTopOf="@id/tv_web_designer"
+                android:text="@string/artist"
+                app:layout_constraintTop_toTopOf="@id/web_designer"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
-                android:id="@+id/tv_graphic_designer"
+                android:id="@+id/graphic_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/graphic_designer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_web_designer"
+                app:layout_constraintTop_toBottomOf="@id/web_designer"
                 />
 
             <TextView
-                android:id="@+id/tv_interior_designer"
+                android:id="@+id/interior_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -266,24 +251,24 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/interior_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_graphic_designer"
-                app:layout_constraintStart_toEndOf="@id/tv_graphic_designer"/>
+                app:layout_constraintTop_toTopOf="@id/graphic_designer"
+                app:layout_constraintStart_toEndOf="@id/graphic_designer"/>
 
             <TextView
-                android:id="@+id/tv_ui_designer"
+                android:id="@+id/ui_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/ui_designer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_graphic_designer"/>
+                app:layout_constraintTop_toBottomOf="@id/graphic_designer"/>
 
             <TextView
-                android:id="@+id/tv_fashion_designer"
+                android:id="@+id/fashion_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -292,24 +277,24 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/fashion_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_ui_designer"
-                app:layout_constraintStart_toEndOf="@id/tv_ui_designer"/>
+                app:layout_constraintTop_toTopOf="@id/ui_designer"
+                app:layout_constraintStart_toEndOf="@id/ui_designer"/>
 
             <TextView
-                android:id="@+id/tv_print_designer"
+                android:id="@+id/print_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/print_designer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_ui_designer"/>
+                app:layout_constraintTop_toBottomOf="@id/ui_designer"/>
 
             <TextView
-                android:id="@+id/tv_presentation_designer"
+                android:id="@+id/presentation_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -318,24 +303,24 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/presentation_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_print_designer"
-                app:layout_constraintStart_toEndOf="@id/tv_print_designer"/>
+                app:layout_constraintTop_toTopOf="@id/print_designer"
+                app:layout_constraintStart_toEndOf="@id/print_designer"/>
 
             <TextView
-                android:id="@+id/tv_communication_designer"
+                android:id="@+id/communication_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/communication_designer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_print_designer"/>
+                app:layout_constraintTop_toBottomOf="@id/print_designer"/>
 
             <TextView
-                android:id="@+id/tv_brand_designer"
+                android:id="@+id/brand_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -344,24 +329,24 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/brand_designer"
-                app:layout_constraintStart_toEndOf="@id/tv_communication_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_communication_designer"/>
+                app:layout_constraintStart_toEndOf="@id/communication_designer"
+                app:layout_constraintTop_toTopOf="@id/communication_designer"/>
 
             <TextView
-                android:id="@+id/tv_landscape_designer"
+                android:id="@+id/landscape_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/landscape_designer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_communication_designer"/>
+                app:layout_constraintTop_toBottomOf="@id/communication_designer"/>
 
             <TextView
-                android:id="@+id/tv_designer"
+                android:id="@+id/designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -370,24 +355,24 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/designer"
-                app:layout_constraintStart_toEndOf="@id/tv_landscape_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_landscape_designer"/>
+                app:layout_constraintStart_toEndOf="@id/landscape_designer"
+                app:layout_constraintTop_toTopOf="@id/landscape_designer"/>
 
             <TextView
-                android:id="@+id/tv_product_designer"
+                android:id="@+id/product_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/product_designer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_landscape_designer"/>
+                app:layout_constraintTop_toBottomOf="@id/landscape_designer"/>
 
             <TextView
-                android:id="@+id/tv_ux_ui_designer"
+                android:id="@+id/ux_ui_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -396,24 +381,24 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/ux_ui_designer"
-                app:layout_constraintStart_toEndOf="@id/tv_product_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_product_designer"/>
+                app:layout_constraintStart_toEndOf="@id/product_designer"
+                app:layout_constraintTop_toTopOf="@id/product_designer"/>
 
             <TextView
-                android:id="@+id/tv_industrial_designer"
+                android:id="@+id/industrial_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/industrial_designer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_product_designer"/>
+                app:layout_constraintTop_toBottomOf="@id/product_designer"/>
 
             <TextView
-                android:id="@+id/tv_fpx_designer"
+                android:id="@+id/fpx_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -422,24 +407,24 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/fpx_designer"
-                app:layout_constraintStart_toEndOf="@id/tv_industrial_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_industrial_designer"/>
+                app:layout_constraintStart_toEndOf="@id/industrial_designer"
+                app:layout_constraintTop_toTopOf="@id/industrial_designer"/>
 
             <TextView
-                android:id="@+id/tv_ai_designer"
+                android:id="@+id/ai_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/ai_designer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_industrial_designer"/>
+                app:layout_constraintTop_toBottomOf="@id/industrial_designer"/>
 
             <TextView
-                android:id="@+id/tv_ar_vr_designer"
+                android:id="@+id/ar_vr_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -448,24 +433,24 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/ar_vr_designer"
-                app:layout_constraintStart_toEndOf="@id/tv_ai_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_ai_designer"/>
+                app:layout_constraintStart_toEndOf="@id/ai_designer"
+                app:layout_constraintTop_toTopOf="@id/ai_designer"/>
 
             <TextView
-                android:id="@+id/tv_motion_designer"
+                android:id="@+id/motion_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/motion_designer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_ai_designer"/>
+                app:layout_constraintTop_toBottomOf="@id/ai_designer"/>
 
             <TextView
-                android:id="@+id/tv_smm_designer"
+                android:id="@+id/smm_designer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -474,8 +459,8 @@
                 android:background="@drawable/bg_for_text_specializations"
                 android:textColor="@color/text_description"
                 android:text="@string/smm_designer"
-                app:layout_constraintTop_toTopOf="@id/tv_motion_designer"
-                app:layout_constraintStart_toEndOf="@id/tv_motion_designer"/>
+                app:layout_constraintTop_toTopOf="@id/motion_designer"
+                app:layout_constraintStart_toEndOf="@id/motion_designer"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
