@@ -51,7 +51,7 @@ class FeedFragment : Fragment() {
                 )
             ),
             city = "Комсомольск-на-Амуре",
-            avatar = R.drawable.img_ava_1,
+            avatar = R.drawable.img_ava_1_selected,
             name = "дизайнер",
             specialization = "UX/UI дизайнер, Веб-дизайнер, продуктовый дизайнер",
             isOnline = true
@@ -72,7 +72,7 @@ class FeedFragment : Fragment() {
                 )
             ),
             "Москва",
-            R.drawable.img_ava_2_selected,
+            R.drawable.img_ava_8_selected,
             "Креативная фрида 2",
             "UX/UI-дизайнер, продуктовый дизайнер"
         ),
@@ -84,7 +84,7 @@ class FeedFragment : Fragment() {
                 )
             ),
             "Новосибирск",
-            R.drawable.img_ava_3,
+            R.drawable.img_ava_3_selected,
             "Креативная фрида 3",
             "UX/UI-дизайнер, Веб-дизайнер",
             isOnline = true
@@ -109,7 +109,7 @@ class FeedFragment : Fragment() {
                 )
             ),
             city = "Санкт-Петербург",
-            avatar = R.drawable.img_ava_6,
+            avatar = R.drawable.img_ava_6_selected,
             name = "дизайнер",
             specialization = "UX/UI дизайнер, Веб-дизайнер, продуктовый дизайнер",
             isOnline = true

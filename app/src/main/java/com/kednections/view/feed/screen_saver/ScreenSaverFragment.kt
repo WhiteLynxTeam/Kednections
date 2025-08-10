@@ -29,6 +29,16 @@ import dagger.android.support.AndroidSupportInjection
 
 class ScreenSaverFragment : Fragment() {
 
+    private val backPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            // Логируем нажатие
+            android.util.Log.d("ScreenSaverFragment", "System back button pressed")
+
+            // Дополнительные действия при нажатии назад
+            findNavController().popBackStack()
+        }
+    }
+
     private var _binding: FragmentScreenSaverBinding? = null
     private val binding get() = _binding!!
 
@@ -252,16 +262,16 @@ class ScreenSaverFragment : Fragment() {
             val color = ContextCompat.getColor(requireActivity(), colorRes)
             endIcon.imageTintList = ColorStateList.valueOf(color)
         }
-        
+
         (activity as MainActivity).setUIVisibility(
             showHeader = false
         )
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
 
 }

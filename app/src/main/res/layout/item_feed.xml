@@ -32,6 +32,21 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.06" />
 
+    <LinearLayout
+        android:id="@+id/imagesProgressContainer"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="18dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:progressTint="@color/white"
+        android:progressBackgroundTint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ImageView
         android:id="@+id/ic_geo"
         android:layout_width="wrap_content"
@@ -227,44 +242,18 @@
         app:layout_constraintEnd_toEndOf="@id/ic_over_menu"
         app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
 
-    <LinearLayout
-        android:id="@+id/write"
+    <FrameLayout
+        android:id="@+id/overlay"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.073"
-        android:foreground="?attr/selectableItemBackground"
-        android:background="@drawable/bg_feed_pop_up_top"
-        android:gravity="center_vertical"
-        android:minHeight="44dp"
-        android:focusable="true"
+        android:background="@android:color/transparent"
         android:clickable="true"
-        app:layout_constraintStart_toStartOf="@id/view_pop_up"
-        app:layout_constraintTop_toTopOf="@id/view_pop_up"
-        app:layout_constraintEnd_toEndOf="@id/ic_over_menu">
-
-        <ImageView
-            android:id="@+id/ic_write"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/ic_write"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-            android:id="@+id/tv_write"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:includeFontPadding="false"
-            android:textColor="@color/text_description"
-            android:text="написать в лс"
-            app:layout_constraintStart_toEndOf="@id/ic_write"
-            app:layout_constraintTop_toTopOf="@id/ic_write"
-            app:layout_constraintBottom_toBottomOf="@id/ic_write"/>
-
-    </LinearLayout>
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/subscribe"
@@ -306,32 +295,42 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/imagesProgressContainer"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="18dp"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:gravity="center"
-        android:progressTint="@color/white"
-        android:progressBackgroundTint="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/overlay"
+        android:id="@+id/write"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/transparent"
-        android:clickable="true"
+        app:layout_constraintHeight_percent="0.073"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="@drawable/bg_feed_pop_up_top"
+        android:gravity="center_vertical"
+        android:minHeight="44dp"
         android:focusable="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="@id/view_pop_up"
+        app:layout_constraintTop_toTopOf="@id/view_pop_up"
+        app:layout_constraintEnd_toEndOf="@id/ic_over_menu">
+
+        <ImageView
+            android:id="@+id/ic_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_write"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/text_description"
+            android:text="написать в лс"
+            app:layout_constraintStart_toEndOf="@id/ic_write"
+            app:layout_constraintTop_toTopOf="@id/ic_write"
+            app:layout_constraintBottom_toBottomOf="@id/ic_write"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,21 +51,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/progressContainer"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="4dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        android:layout_marginStart="18dp"-->
-<!--        android:layout_marginEnd="18dp"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:visibility="visible"-->
-<!--        android:gravity="center"-->
-<!--        android:progressTint="@color/white"-->
-<!--        android:progressBackgroundTint="@color/white"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/header"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+    <LinearLayout
+        android:id="@+id/progressContainer"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:gravity="center"
+        android:progressTint="@color/white"
+        android:progressBackgroundTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bg_the_end"
