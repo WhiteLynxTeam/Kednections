@@ -116,6 +116,7 @@ class FilterFeedFragment : Fragment() {
         val isCommunicationFormatSelected = radioGroup.checkedRadioButtonId != -1
         // Кнопка активна, если выбрана специализация ИЛИ формат общения
         binding.btnResume.isEnabled = selectedViews.isNotEmpty() || isCommunicationFormatSelected
+        binding.etGeoposition.length() > 0 || isCommunicationFormatSelected
     }
 
     private fun resetAllFilters() {
