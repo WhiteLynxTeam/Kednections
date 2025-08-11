@@ -45,9 +45,9 @@ class FormActivityViewModel(
 
     fun register() {
         viewModelScope.launch {
-//            val result = registerUserApiUseCase(_regUser.value)
+            val result = registerUserApiUseCase(_regUser.value)
             println("_regUser ${_regUser.value}")
-            _isReg.emit(true)
+            _isReg.emit(result)
         }
     }
 

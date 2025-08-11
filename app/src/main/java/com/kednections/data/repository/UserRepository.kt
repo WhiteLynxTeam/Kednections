@@ -5,11 +5,10 @@ import com.google.firebase.auth.FirebaseUser
 import com.kednections.data.network.api.UserApi
 import com.kednections.data.network.dto.token.response.AuthTokenResponse
 import com.kednections.data.network.dto.user.request.LoginUserRequest
+import com.kednections.data.network.dto.user.request.RegTempUserRequest
 import com.kednections.data.network.dto.user.request.RegUserRequest
 import com.kednections.domain.irepository.IUserRepository
 import com.kednections.domain.models.RegUser
-import com.kednections.domain.models.Specialization
-import com.kednections.domain.models.Tag
 import com.kednections.domain.models.Token
 import com.kednections.domain.models.User
 
@@ -23,7 +22,7 @@ class UserRepository(
     }
 
     override suspend fun register(user: RegUser): Result<Token> {
-        val result = userApi.register(mapperRegUserToRegUserDto(user))
+        val result = userApi.register(mapperTempRegUserToRegUserDto(user))
         return result.map { mapperTokenResponseToToken(it) }
     }
 
@@ -63,6 +62,17 @@ class UserRepository(
             communication_method = user.communicationMethod,
             photo = user.photo,
             status = user.status,
+        )
+    }
+
+    private fun mapperTempRegUserToRegUserDto(
+        user: RegUser
+    ): RegTempUserRequest {
+        return RegTempUserRequest(
+            email = user.username,
+            username = user.fio,
+            password = user.password,
+            description = user.description,
         )
     }
 }
