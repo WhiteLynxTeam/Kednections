@@ -475,6 +475,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_resume"
+        style="@style/btn_resume_style"
+        android:text="применить"
+        app:layout_constraintStart_toStartOf="@id/btn_reset"
+        app:layout_constraintBottom_toTopOf="@id/btn_reset"
+        app:layout_constraintEnd_toEndOf="@id/btn_reset" />
+
     <TextView
         android:id="@+id/btn_reset"
         style="@style/skip_btn"
@@ -485,12 +493,5 @@
         app:layout_constraintEnd_toEndOf="@id/specialization_scroll"
         app:layout_constraintStart_toStartOf="@id/img_back" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_resume"
-        style="@style/btn_resume_style"
-        android:text="применить"
-        app:layout_constraintStart_toStartOf="@id/btn_reset"
-        app:layout_constraintBottom_toTopOf="@id/btn_reset"
-        app:layout_constraintEnd_toEndOf="@id/btn_reset" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
