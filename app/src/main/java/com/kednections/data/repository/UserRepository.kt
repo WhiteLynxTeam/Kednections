@@ -72,6 +72,12 @@ class UserRepository(
     private fun RegUser.toMultipartParts(): Map<String, @JvmSuppressWildcards RequestBody> {
         val map = mutableMapOf<String, RequestBody>()
 
+        //[red]бэк немного корявый, поэтому и мы жестко закинули uuid для всех полей?
+        //чтобы проскачить регистрацию и перейти к главному функционалу
+
+        //[yellow] бэк не проверяет совпадение по тэгам и специализации
+        //забыл поменять при копировании uuid с communication_method
+        //в тэгах и специализации - регистрация прошла
         map["email"] = this.username.toRequestBody("text/plain".toMediaType())
         map["password"] = this.password.toRequestBody("text/plain".toMediaType())
         map["username"] = this.fio.toRequestBody("text/plain".toMediaType())
@@ -82,9 +88,9 @@ class UserRepository(
         map["communication_method"] =
             "{\"id\" : \"462b89cd-950a-4681-a0b0-44eba9eb84cb\"}".toRequestBody("text/plain".toMediaType())
         map["tags"] =
-            "[{\"id\" : \"462b89cd-950a-4681-a0b0-44eba9eb84cb\"}]".toRequestBody("text/plain".toMediaType())
+            "[{\"id\" : \"fda241ce-9fe9-4f6c-a396-a40a3510fcd6\"}]".toRequestBody("text/plain".toMediaType())
         map["specializations"] =
-            "[{\"id\" : \"462b89cd-950a-4681-a0b0-44eba9eb84cb\"}]".toRequestBody("text/plain".toMediaType())
+            "[{\"id\" : \"8f50a456-9cfa-40a9-a1f2-60da676a33e2\"}]".toRequestBody("text/plain".toMediaType())
 
         // map["specialization"] = this.specialization.joinToString(",").toRequestBody("text/plain".toMediaType())
         // map["tags"] = this.tags.joinToString(",").toRequestBody("text/plain".toMediaType())
