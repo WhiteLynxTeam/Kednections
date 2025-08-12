@@ -11,6 +11,10 @@ import com.kednections.domain.irepository.IUserRepository
 import com.kednections.domain.models.RegUser
 import com.kednections.domain.models.Token
 import com.kednections.domain.models.User
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class UserRepository(
     private val userApi: UserApi,
@@ -22,7 +26,7 @@ class UserRepository(
     }
 
     override suspend fun register(user: RegUser): Result<Token> {
-        val result = userApi.register(mapperTempRegUserToRegUserDto(user))
+        val result = userApi.register(user.toMultipartParts())
         return result.map { mapperTokenResponseToToken(it) }
     }
 
@@ -34,7 +38,7 @@ class UserRepository(
         authTokenResponse: AuthTokenResponse
     ): Token {
         return Token(
-            token = authTokenResponse.token,
+            token = authTokenResponse.access_token,
         )
     }
 
@@ -42,7 +46,7 @@ class UserRepository(
         user: User
     ): LoginUserRequest {
         return LoginUserRequest(
-            username = user.username,
+            email = user.username,
             password = user.password,
         )
     }
@@ -65,14 +69,34 @@ class UserRepository(
         )
     }
 
-    private fun mapperTempRegUserToRegUserDto(
-        user: RegUser
-    ): RegTempUserRequest {
-        return RegTempUserRequest(
-            email = user.username,
-            username = user.fio,
-            password = user.password,
-            description = user.description,
-        )
+    private fun RegUser.toMultipartParts(): Map<String, @JvmSuppressWildcards RequestBody> {
+        val map = mutableMapOf<String, RequestBody>()
+
+        map["email"] = this.username.toRequestBody("text/plain".toMediaType())
+        map["password"] = this.password.toRequestBody("text/plain".toMediaType())
+        map["username"] = this.fio.toRequestBody("text/plain".toMediaType())
+        map["nickname"] = this.nick.toRequestBody("text/plain".toMediaType())
+        map["city"] = "{\"id\" : \"${this.city.id}\"}".toRequestBody("text/plain".toMediaType())
+        map["description"] = this.description.toRequestBody("text/plain".toMediaType())
+//        map["communication_method"] = this.communicationMethod.toRequestBody("text/plain".toMediaType())
+        map["communication_method"] =
+            "{\"id\" : \"462b89cd-950a-4681-a0b0-44eba9eb84cb\"}".toRequestBody("text/plain".toMediaType())
+        map["tags"] =
+            "[{\"id\" : \"462b89cd-950a-4681-a0b0-44eba9eb84cb\"}]".toRequestBody("text/plain".toMediaType())
+        map["specializations"] =
+            "[{\"id\" : \"462b89cd-950a-4681-a0b0-44eba9eb84cb\"}]".toRequestBody("text/plain".toMediaType())
+
+        // map["specialization"] = this.specialization.joinToString(",").toRequestBody("text/plain".toMediaType())
+        // map["tags"] = this.tags.joinToString(",").toRequestBody("text/plain".toMediaType())
+
+        // Опциональные поля со строками
+        this.status?.let {
+            map["status"] = it.toRequestBody("text/plain".toMediaType())
+        }
+        this.photo?.let {
+            map["photo"] = it.toRequestBody("text/plain".toMediaType())
+        }
+
+        return map
     }
 }

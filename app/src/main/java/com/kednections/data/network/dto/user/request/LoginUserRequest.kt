@@ -1,6 +1,6 @@
 package com.kednections.data.network.dto.user.request
 
 data class LoginUserRequest(
-    val username: String,
+    val email: String,
     val password: String,
 )

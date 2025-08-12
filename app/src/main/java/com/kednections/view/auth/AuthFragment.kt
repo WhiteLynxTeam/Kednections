@@ -1,6 +1,7 @@
 package com.kednections.view.auth
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,9 @@ import com.kednections.utils.startMarquee
 import com.kednections.utils.uiextensions.showSnackbarLong
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
+import com.kednections.view.activity.MainActivity
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -66,9 +69,11 @@ class AuthFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isLogin.collect {
                 if (it) {
-                    //[green] переход на главный экран, а пока сообщение о авторизации
-                    showSnackbarLong("Вы авторизировались.")
-//                    findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
+                    lifecycleScope.launch {
+                        delay(2000)
+                        startActivity(Intent(requireContext(), MainActivity::class.java))
+                    }
+//                    showSnackbarLong("Вы авторизировались.")
                 } else {
                     showSnackbarLong("Ошибка авторизации.")
                 }
