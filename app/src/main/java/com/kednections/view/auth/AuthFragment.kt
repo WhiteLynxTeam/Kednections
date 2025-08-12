@@ -1,6 +1,7 @@
 package com.kednections.view.auth
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.kednections.utils.startMarquee
 import com.kednections.utils.uiextensions.showSnackbarLong
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
+import com.kednections.view.activity.MainActivity
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -66,9 +68,10 @@ class AuthFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isLogin.collect {
                 if (it) {
-                    //[green] переход на главный экран, а пока сообщение о авторизации
-                    showSnackbarLong("Вы авторизировались.")
-//                    findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
+                    lifecycleScope.launch {
+                        startActivity(Intent(requireContext(), MainActivity::class.java))
+                    }
+//                    showSnackbarLong("Вы авторизировались.")
                 } else {
                     showSnackbarLong("Ошибка авторизации.")
                 }
@@ -98,41 +101,52 @@ class AuthFragment : Fragment() {
         validatorSwitcher.attach()
 
         binding.btnResume.setOnClickListener {
+            //[green] паттерны Regex перенести в константы в утилиты, потому что еще почту надо
+            //на корректность проверить
+            //[green] и проверку по Regex также можно перенести в утилиты
+            val regex = Regex("^(?=.*[A-Za-zА-Яа-я])(?=.*\\d).+$")
+            val email = binding.etEmail.text.toString().trim()
+            val pass = binding.etPassword.text.toString().trim()
             //[yellow] Сделать проверку на валидность email
             //[green] посмотреть какое ограничение на максимальное количестов символов для полей
-            if (binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString()
-                    .isEmpty()
-            ) {
+            if (email.isEmpty()) {
                 showSnackbarLong("Заполните поля.")
-                return@setOnClickListener
-            }
-
-            when (validatorSwitcher.getGelectedInt()) {
-                0 -> {
-                    viewModel.login(
-                        User(
-                            username = binding.etEmail.text.toString(),
-                            password = binding.etPassword.text.toString(),
-                        )
-                    )
-                }
-
-                1 -> {
-                    activityViewModel.updateData {
-                        it.copy(
-                            username = binding.etEmail.text.toString(),
-                            password = binding.etPassword.text.toString(),
+                binding.etEmail.requestFocus()
+            } else if (pass.isEmpty()) {
+                showSnackbarLong("Заполните поля.")
+                binding.etPassword.requestFocus()
+            } else if (pass.length < 6) {
+                showSnackbarLong("Пароль должен содержать минимум 6 знаков.")
+                binding.etPassword.requestFocus()
+            } else if (!regex.matches(pass)) {
+                showSnackbarLong("Пароль должен содержать хотя бы одну букву и цифру.")
+                binding.etPassword.requestFocus()
+            } else {
+                when (validatorSwitcher.getGelectedInt()) {
+                    0 -> {
+                        viewModel.login(
+                            User(
+                                username = binding.etEmail.text.toString(),
+                                password = binding.etPassword.text.toString(),
+                            )
                         )
                     }
-                    findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
-                }
 
-                else -> {
-                    //*** переключатель null или цифра выше 1
+                    1 -> {
+                        activityViewModel.updateData {
+                            it.copy(
+                                username = binding.etEmail.text.toString(),
+                                password = binding.etPassword.text.toString(),
+                            )
+                        }
+                        findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
+                    }
+
+                    else -> {
+                        //*** переключатель null или цифра выше 1
+                    }
                 }
             }
-
-
         }
 
         binding.icGoogle.setOnClickListener {
