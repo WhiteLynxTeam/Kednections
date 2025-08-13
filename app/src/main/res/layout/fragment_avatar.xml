@@ -7,11 +7,12 @@
     tools:context=".view.form.avatar.AvatarFragment">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_image_margin"
+        android:id="@+id/guideline_image_margin_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.209" />
+        app:layout_constraintGuide_percent="0.021" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_title_margin"
@@ -24,10 +25,11 @@
         android:id="@+id/img_logo"
         style="@style/img_logo"
         android:src="@drawable/img_logo_avatar_fragment"
+        app:layout_constraintHeight_percent="0.19"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_image_margin_top"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin"/>
+        />
 
     <TextView
         android:id="@+id/tv_face"
@@ -63,17 +65,19 @@
     </FrameLayout>
 
     <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_specializations"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="32dp"
+        app:layout_constraintWidth_percent="0.911"
         app:constraint_referenced_ids="add_ava,ava_1,ava_2,ava_3,ava_4,ava_5,ava_6,ava_7,ava_8"
         app:flow_wrapMode="chain"
         app:flow_horizontalStyle="spread_inside"
         app:flow_verticalGap="12dp"
-        app:layout_constraintStart_toStartOf="@id/tv_face"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_logo"
         app:layout_constraintBottom_toTopOf="@id/btn_resume"
-        app:layout_constraintEnd_toEndOf="@id/tv_face"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <FrameLayout
         android:id="@+id/add_ava"
@@ -179,8 +183,8 @@
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
         android:enabled="true"
-        app:layout_constraintEnd_toEndOf="@id/tv_face"
-        app:layout_constraintStart_toStartOf="@id/tv_face"
+        app:layout_constraintEnd_toEndOf="@id/flow_specializations"
+        app:layout_constraintStart_toStartOf="@id/flow_specializations"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin" />
 
     <TextView

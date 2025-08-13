@@ -66,9 +66,9 @@
         app:layout_constraintHeight_percent="0.072"
         app:hintEnabled="false"
         android:textColorHint="@color/color_4"
-        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_et_margin"
-        app:layout_constraintStart_toStartOf="@id/tv_where_are_you">
+        app:layout_constraintStart_toStartOf="parent">
 
         <AutoCompleteTextView
             android:id="@+id/auctv_geolocation"
@@ -145,9 +145,9 @@
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
         android:enabled="true"
-        app:layout_constraintStart_toStartOf="@id/tv_where_are_you"
+        app:layout_constraintStart_toStartOf="@id/geolocation"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
-        app:layout_constraintEnd_toEndOf="@id/tv_where_are_you"/>
+        app:layout_constraintEnd_toEndOf="@id/geolocation"/>
 
     <TextView
         android:id="@+id/skipped"

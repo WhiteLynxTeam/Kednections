@@ -114,8 +114,8 @@ class FeedAdapter(
             }
             tvSpecialization.text = item.specialization
 
-            if (item.isOnline) isOnline.visibility = View.VISIBLE
-            else isOnline.visibility = View.GONE
+//            if (item.isOnline) isOnline.visibility = View.VISIBLE
+//            else isOnline.visibility = View.GONE
 //            if (isSubscribe) {
 //                tvSubscribe.text = "отписаться"
 //                tvSubscribeDone.text = "отписка done"

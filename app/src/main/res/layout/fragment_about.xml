@@ -20,6 +20,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.86" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_text_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.187" />
+
     <ImageView
         android:id="@+id/bg"
         android:layout_width="0dp"
@@ -31,13 +38,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/guideline_image_bottom"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_yellow_text_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.155" />
+
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
         style="@style/tv_running_line"
-        android:layout_marginTop="100dp"
         android:rotation="15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_yellow_text_margin"
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
@@ -50,6 +63,8 @@
 
     </FrameLayout>
 
+
+
     <EditText
         android:id="@+id/et_about"
         android:layout_width="0dp"
@@ -59,15 +74,15 @@
         android:gravity="start|top"
         android:padding="16dp"
         android:maxLength="200"
-        app:layout_constraintHeight_percent="0.25"
-        app:layout_constraintWidth_percent="0.95"
+        app:layout_constraintHeight_percent="0.229"
+        app:layout_constraintWidth_percent="0.911"
         android:inputType="textMultiLine"
         android:maxLines="5"
         android:fontFamily="@font/raleway_medium"
         android:textColor="@color/text_description"
         android:textColorHint="@color/color_4"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/text_horizontal_scroll"
+        app:layout_constraintTop_toTopOf="@id/guideline_text_top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -76,7 +91,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/char_count"
-        android:textSize="14sp"
         android:textColor="@color/color_4"
         app:layout_constraintTop_toBottomOf="@id/et_about"
         app:layout_constraintEnd_toEndOf="@id/et_about"

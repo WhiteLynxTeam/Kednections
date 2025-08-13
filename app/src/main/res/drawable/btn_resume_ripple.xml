@@ -1,5 +1,5 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/dialog_limit_text_color">
+    android:color="#252409">
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@color/text_description"/>

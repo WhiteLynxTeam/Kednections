@@ -11,30 +11,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.069" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_margin_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.291" />
+        app:layout_constraintGuide_percent="0.063" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_view_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.237" />
+        app:layout_constraintGuide_percent="0.238" />
 
     <ImageView
         android:id="@+id/img_logo"
         style="@style/img_logo"
+        app:layout_constraintHeight_percent="0.201"
         android:src="@drawable/img_logo_communicate_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline_margin_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_margin_bottom"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 <!--    <androidx.constraintlayout.widget.Guideline-->
 <!--        android:id="@+id/guideline_title_margin"-->
@@ -54,10 +47,11 @@
     <View
         android:id="@+id/view_online"
         style="@style/purposes_view"
+        app:layout_constraintWidth_percent="0.911"
         android:background="@drawable/bg_auth_input"
-        app:layout_constraintTop_toBottomOf="@id/img_logo"
-        app:layout_constraintEnd_toEndOf="@id/tv_how_to_communicate"
-        app:layout_constraintStart_toStartOf="@id/tv_how_to_communicate"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline_view_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageView
         android:id="@+id/iv_online"
@@ -109,15 +103,14 @@
         app:layout_constraintEnd_toEndOf="@id/view_online"
         app:layout_constraintBottom_toBottomOf="@id/view_online"/>
 
-
     <View
         android:id="@+id/view_offline"
         style="@style/purposes_view"
         android:layout_marginTop="12dp"
         android:background="@drawable/bg_auth_input"
         app:layout_constraintTop_toBottomOf="@id/view_online"
-        app:layout_constraintEnd_toEndOf="@id/tv_how_to_communicate"
-        app:layout_constraintStart_toStartOf="@id/tv_how_to_communicate"/>
+        app:layout_constraintEnd_toEndOf="@id/view_online"
+        app:layout_constraintStart_toStartOf="@id/view_online"/>
 
     <ImageView
         android:id="@+id/iv_offline"
@@ -180,7 +173,7 @@
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
-        app:layout_constraintEnd_toEndOf="@id/tv_how_to_communicate"
-        app:layout_constraintStart_toStartOf="@id/tv_how_to_communicate" />
+        app:layout_constraintEnd_toEndOf="@id/view_online"
+        app:layout_constraintStart_toStartOf="@id/view_online" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

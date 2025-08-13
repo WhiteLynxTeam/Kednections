@@ -3,8 +3,11 @@ package com.kednections.view.activity
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.kednections.R
@@ -35,21 +38,41 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.acquaintances -> {
                     navController.navigate(R.id.acquaintancesFragment)
+                    updateBottomNavColors(
+                        iconColorRes = R.color.bottom_nav_color,
+                        textColorRes = R.color.bottom_nav_color,
+                        backgroundRes = R.drawable.bottom_nav_background
+                    )
                     true
                 }
 
                 R.id.feed -> {
                     navController.navigate(R.id.feedFragment)
+                    updateBottomNavColors(
+                        iconColorRes = R.color.bottom_nav_color,
+                        textColorRes = R.color.bottom_nav_color,
+                        backgroundRes = R.drawable.bottom_nav_background
+                    )
                     true
                 }
 
                 R.id.communication -> {
                     navController.navigate(R.id.communicationFragment)
+                    updateBottomNavColors(
+                        iconColorRes = R.color.bottom_nav_color,
+                        textColorRes = R.color.bottom_nav_color,
+                        backgroundRes = R.drawable.bottom_nav_background
+                    )
                     true
                 }
 
                 R.id.profile -> {
                     navController.navigate(R.id.profileFragment)
+                    updateBottomNavColors(
+                        iconColorRes = R.color.bottom_nav_color_profile,
+                        textColorRes = R.color.bottom_nav_color_profile,
+                        backgroundRes = R.color.orange
+                    )
                     true
                 }
 
@@ -60,5 +83,17 @@ class MainActivity : AppCompatActivity() {
 
     fun setUIVisibility(showHeader: Boolean) {
         binding.bottomNavigation.visibility = if (showHeader) View.VISIBLE else View.GONE
+    }
+
+    private fun updateBottomNavColors(
+        @ColorRes iconColorRes: Int,
+        @ColorRes textColorRes: Int,
+        @DrawableRes backgroundRes: Int
+    ) {
+        binding.bottomNavigation.apply {
+            itemIconTintList = ContextCompat.getColorStateList(context, iconColorRes)
+            itemTextColor = ContextCompat.getColorStateList(context, textColorRes)
+            setBackgroundResource(backgroundRes)
+        }
     }
 }
