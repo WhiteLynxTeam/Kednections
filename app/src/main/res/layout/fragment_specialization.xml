@@ -11,14 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.026" />
+        app:layout_constraintGuide_percent="0.023" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_image_margin_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.22" />
+        app:layout_constraintGuide_percent="0.201" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_title_margin"
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline_image_margin_top"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_image_margin_bottom"/>
+        app:layout_constraintBottom_toBottomOf="@+id/guideline_image_margin_bottom"/>
 
     <TextView
         android:id="@+id/tv_suit"
@@ -246,8 +246,9 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
+        app:layout_constraintWidth_percent="0.911"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
-        app:layout_constraintEnd_toEndOf="@id/tv_suit"
-        app:layout_constraintStart_toStartOf="@id/tv_suit" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

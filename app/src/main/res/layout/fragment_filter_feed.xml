@@ -20,11 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/img_logo"
@@ -44,11 +40,11 @@
                 app:layout_constraintWidth_percent="0.8"
                 android:fontFamily="@font/nauryz_red_keds"
                 android:text="фильтры"
-                android:textAllCaps="true"
+                android:textAllCaps="false"
                 android:textColor="@color/text_description"
                 android:textStyle="bold"
-                app:autoSizeMaxTextSize="42sp"
-                app:autoSizeMinTextSize="32sp"
+                app:autoSizeMaxTextSize="48sp"
+                app:autoSizeMinTextSize="38sp"
                 app:autoSizeStepGranularity="1sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="@id/img_logo"

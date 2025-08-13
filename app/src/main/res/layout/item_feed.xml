@@ -103,7 +103,7 @@
         android:layout_height="0dp"
         android:scaleType="fitXY"
         app:layout_constraintWidth_percent="0.433"
-        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHeight_percent="0.085"
         app:layout_constraintHeight_max="64dp"
         android:src="@drawable/ic_button_skip_for_feed"
         app:layout_constraintStart_toStartOf="@id/buttons_view"
@@ -115,7 +115,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth_percent="0.433"
-        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHeight_percent="0.085"
         app:layout_constraintHeight_max="64dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_button_like_for_feed"
@@ -166,20 +166,20 @@
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         app:layout_constraintWidth_percent="0.156"
-        app:layout_constraintHeight_percent="0.092"
+        app:layout_constraintHeight_percent="0.085"
         android:src="@drawable/img_ava_1"
         app:layout_constraintStart_toStartOf="@id/btn_skip"
         app:layout_constraintTop_toBottomOf="@id/img_feed"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <View
-        android:id="@+id/is_online"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
-        android:layout_marginEnd="4dp"
-        android:background="@drawable/bg_oval_orange"
-        app:layout_constraintEnd_toEndOf="@id/img_avatar"
-        app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
+<!--    <View-->
+<!--        android:id="@+id/is_online"-->
+<!--        android:layout_width="8dp"-->
+<!--        android:layout_height="8dp"-->
+<!--        android:layout_marginEnd="4dp"-->
+<!--        android:background="@drawable/bg_oval_orange"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/img_avatar"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>-->
 
     <TextView
         android:id="@+id/tv_name"
@@ -218,16 +218,27 @@
         app:layout_constraintEnd_toEndOf="@id/tv_name"
         app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
 
-    <ImageView
+    <View
         android:id="@+id/ic_over_menu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.133"
+        app:layout_constraintHeight_percent="0.073"
+        app:layout_constraintTop_toTopOf="@id/img_avatar"
+        app:layout_constraintEnd_toEndOf="@id/btn_like"
+        app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
+
+    <ImageView
+        android:id="@+id/ic_over_me"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth_percent="0.078"
         app:layout_constraintHeight_percent="0.046"
         android:src="@drawable/ic_more_vert"
-        app:layout_constraintTop_toTopOf="@id/img_avatar"
-        app:layout_constraintEnd_toEndOf="@id/btn_like"
-        app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
+        app:layout_constraintStart_toStartOf="@id/ic_over_menu"
+        app:layout_constraintTop_toTopOf="@id/ic_over_menu"
+        app:layout_constraintEnd_toEndOf="@id/ic_over_menu"
+        app:layout_constraintBottom_toBottomOf="@id/ic_over_menu"/>
 
     <View
         android:id="@+id/view_pop_up"

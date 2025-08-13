@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -53,8 +52,7 @@ class FeedFragment : Fragment() {
             city = "Комсомольск-на-Амуре",
             avatar = R.drawable.img_ava_1_selected,
             name = "дизайнер",
-            specialization = "UX/UI дизайнер, Веб-дизайнер, продуктовый дизайнер",
-            isOnline = true
+            specialization = "UX/UI дизайнер, Веб-дизайнер, продуктовый дизайнер"
         ),
         Feed(
             images = listOf(
@@ -87,7 +85,6 @@ class FeedFragment : Fragment() {
             R.drawable.img_ava_3_selected,
             "Креативная фрида 3",
             "UX/UI-дизайнер, Веб-дизайнер",
-            isOnline = true
         ),
         Feed(
             images = listOf(
@@ -112,7 +109,6 @@ class FeedFragment : Fragment() {
             avatar = R.drawable.img_ava_6_selected,
             name = "дизайнер",
             specialization = "UX/UI дизайнер, Веб-дизайнер, продуктовый дизайнер",
-            isOnline = true
         ),
     )
 
@@ -150,10 +146,10 @@ class FeedFragment : Fragment() {
             feedList,
             onLike = { position ->
                 removeFeed(position)
-                     },
+            },
             onSkip = { position ->
                 removeFeed(position)
-                     },
+            },
             onImageClick = { imageList, imagePosition, feedPosition ->
                 FullscreenImageDialog.newInstance(imageList, imagePosition, feedPosition)
                     .show(parentFragmentManager, "dialog")
@@ -191,7 +187,6 @@ class FeedFragment : Fragment() {
         (activity as MainActivity).setUIVisibility(
             showHeader = true
         )
-
     }
 
 }
