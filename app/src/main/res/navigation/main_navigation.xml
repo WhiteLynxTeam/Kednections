@@ -33,7 +33,11 @@
         android:id="@+id/profileFragment"
         android:name="com.kednections.view.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_showCaseFragment"
+            app:destination="@id/showCaseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/filterFeedFragment"
         android:name="com.kednections.view.feed.filter.FilterFeedFragment"
@@ -43,5 +47,10 @@
             android:id="@+id/action_filterFeedFragment_to_screenSaverFragment"
             app:destination="@id/screenSaverFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/showCaseFragment"
+        android:name="com.kednections.view.profile.showcase.ShowCaseFragment"
+        android:label="fragment_show_case"
+        tools:layout="@layout/fragment_show_case" />
 
 </navigation>
