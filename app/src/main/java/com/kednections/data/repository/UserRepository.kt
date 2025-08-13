@@ -5,13 +5,16 @@ import com.google.firebase.auth.FirebaseUser
 import com.kednections.data.network.api.UserApi
 import com.kednections.data.network.dto.token.response.AuthTokenResponse
 import com.kednections.data.network.dto.user.request.LoginUserRequest
+import com.kednections.data.network.dto.user.request.RegTempUserRequest
 import com.kednections.data.network.dto.user.request.RegUserRequest
 import com.kednections.domain.irepository.IUserRepository
 import com.kednections.domain.models.RegUser
-import com.kednections.domain.models.Specialization
-import com.kednections.domain.models.Tag
 import com.kednections.domain.models.Token
 import com.kednections.domain.models.User
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class UserRepository(
     private val userApi: UserApi,
@@ -23,7 +26,7 @@ class UserRepository(
     }
 
     override suspend fun register(user: RegUser): Result<Token> {
-        val result = userApi.register(mapperRegUserToRegUserDto(user))
+        val result = userApi.register(user.toMultipartParts())
         return result.map { mapperTokenResponseToToken(it) }
     }
 
@@ -35,7 +38,7 @@ class UserRepository(
         authTokenResponse: AuthTokenResponse
     ): Token {
         return Token(
-            token = authTokenResponse.token,
+            token = authTokenResponse.access_token,
         )
     }
 
@@ -43,7 +46,7 @@ class UserRepository(
         user: User
     ): LoginUserRequest {
         return LoginUserRequest(
-            username = user.username,
+            email = user.username,
             password = user.password,
         )
     }
@@ -64,5 +67,42 @@ class UserRepository(
             photo = user.photo,
             status = user.status,
         )
+    }
+
+    private fun RegUser.toMultipartParts(): Map<String, @JvmSuppressWildcards RequestBody> {
+        val map = mutableMapOf<String, RequestBody>()
+
+        //[red]бэк немного корявый, поэтому и мы жестко закинули uuid для всех полей?
+        //чтобы проскачить регистрацию и перейти к главному функционалу
+
+        //[yellow] бэк не проверяет совпадение по тэгам и специализации
+        //забыл поменять при копировании uuid с communication_method
+        //в тэгах и специализации - регистрация прошла
+        map["email"] = this.username.toRequestBody("text/plain".toMediaType())
+        map["password"] = this.password.toRequestBody("text/plain".toMediaType())
+        map["username"] = this.fio.toRequestBody("text/plain".toMediaType())
+        map["nickname"] = this.nick.toRequestBody("text/plain".toMediaType())
+        map["city"] = "{\"id\" : \"${this.city.id}\"}".toRequestBody("text/plain".toMediaType())
+        map["description"] = this.description.toRequestBody("text/plain".toMediaType())
+//        map["communication_method"] = this.communicationMethod.toRequestBody("text/plain".toMediaType())
+        map["communication_method"] =
+            "{\"id\" : \"462b89cd-950a-4681-a0b0-44eba9eb84cb\"}".toRequestBody("text/plain".toMediaType())
+        map["tags"] =
+            "[{\"id\" : \"fda241ce-9fe9-4f6c-a396-a40a3510fcd6\"}]".toRequestBody("text/plain".toMediaType())
+        map["specializations"] =
+            "[{\"id\" : \"8f50a456-9cfa-40a9-a1f2-60da676a33e2\"}]".toRequestBody("text/plain".toMediaType())
+
+        // map["specialization"] = this.specialization.joinToString(",").toRequestBody("text/plain".toMediaType())
+        // map["tags"] = this.tags.joinToString(",").toRequestBody("text/plain".toMediaType())
+
+        // Опциональные поля со строками
+        this.status?.let {
+            map["status"] = it.toRequestBody("text/plain".toMediaType())
+        }
+        this.photo?.let {
+            map["photo"] = it.toRequestBody("text/plain".toMediaType())
+        }
+
+        return map
     }
 }
