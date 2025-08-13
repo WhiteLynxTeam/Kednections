@@ -80,12 +80,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_geoposition">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/et_geoposition"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_auth_input"
-                    android:hint="Начни вводить город"
+                    android:paddingStart="14dp"
+                    android:hint=" Начни вводить город"
                     android:inputType="textAutoComplete"
                     android:maxLines="1"
                     android:textColorHint="@color/color_4" />
