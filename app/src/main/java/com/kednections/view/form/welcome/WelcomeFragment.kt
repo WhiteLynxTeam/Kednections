@@ -1,49 +1,32 @@
 package com.kednections.view.form.welcome
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentWelcomeBinding
 import com.kednections.view.activity.FormActivity
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class WelcomeFragment : Fragment() {
-    private var _binding: FragmentWelcomeBinding? = null
-    private val binding get() = _binding!!
-
+class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>() {
 
     @Inject
     lateinit var viewModelFactory: WelcomeViewModel.Factory
 
-
     private val viewModel: WelcomeViewModel by viewModels { viewModelFactory }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        // Внедрение зависимостей во фрагмент с помощью Dagger
-        AndroidSupportInjection.inject(this)
-    }
-
-    override fun onCreateView(
+    override fun inflaterViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Инициализация binding
-        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        container: ViewGroup?
+    ) = FragmentWelcomeBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -91,11 +74,5 @@ class WelcomeFragment : Fragment() {
     // Переход на главный экран приложения
     private fun navigateToMain() {
         findNavController().navigate(R.id.feedFragment)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // Очищаем binding при уничтожении View
-        _binding = null
     }
 }

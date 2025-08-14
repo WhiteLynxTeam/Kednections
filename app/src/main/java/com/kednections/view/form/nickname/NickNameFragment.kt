@@ -1,28 +1,22 @@
 package com.kednections.view.form.nickname
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentNickNameBinding
 import com.kednections.utils.NickNameValidator
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
-import com.kednections.view.auth.AuthViewModel
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class NickNameFragment : Fragment() {
-
-    private var _binding: FragmentNickNameBinding? = null
-    private val binding get() = _binding!!
+class NickNameFragment : BaseFragment<FragmentNickNameBinding>() {
 
     private val activityViewModel: FormActivityViewModel by activityViewModels()
     private lateinit var viewModel: NickNameViewModel
@@ -30,19 +24,10 @@ class NickNameFragment : Fragment() {
     @Inject
     lateinit var vmFactory: NickNameViewModel.Factory
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentNickNameBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentNickNameBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
