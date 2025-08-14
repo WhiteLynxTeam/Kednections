@@ -9,11 +9,13 @@ import com.kednections.data.repository.GeoRepository
 import com.kednections.data.repository.SpecializationRepository
 import com.kednections.data.repository.TagRepository
 import com.kednections.data.repository.UserRepository
+import com.kednections.data.storage.TokenStorage
 import com.kednections.data.storage.UserStorage
 import com.kednections.domain.irepository.IGeoRepository
 import com.kednections.domain.irepository.ISpecializationRepository
 import com.kednections.domain.irepository.ITagRepository
 import com.kednections.domain.irepository.IUserRepository
+import com.kednections.domain.istorage.ITokenStorage
 import com.kednections.domain.istorage.IUserStorage
 import dagger.Module
 import dagger.Provides
@@ -28,6 +30,16 @@ class DataModule {
         sharedPreferences: SharedPreferences,
     ): IUserStorage {
         return UserStorage(
+            sharedPreferences = sharedPreferences,
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideTokenStorage(
+        sharedPreferences: SharedPreferences,
+    ): ITokenStorage {
+        return TokenStorage(
             sharedPreferences = sharedPreferences,
         )
     }
