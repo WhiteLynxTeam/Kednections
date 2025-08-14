@@ -7,17 +7,27 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentFilterFeedBinding
 import com.kednections.view.activity.MainActivity
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class FilterFeedFragment : Fragment() {
+
+    @Inject
+    lateinit var vmFactory: FilterFeedViewModel.Factory
+    private val viewModel: FilterFeedViewModel by viewModels { vmFactory }
+    private lateinit var cityAdapter: ArrayAdapter<String>
 
     private var _binding: FragmentFilterFeedBinding? = null
     private val binding get() = _binding!!
@@ -42,6 +52,37 @@ class FilterFeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Инициализация адаптера для автодополнения
+        cityAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            mutableListOf()
+        )
+        binding.etGeoposition.apply {
+            setAdapter(cityAdapter)
+            threshold = 2 // Минимальное кол-во символов для показа подсказок
+        }
+
+        // Наблюдение за списком городов
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.cities.collect { cities ->
+                cityAdapter.clear()
+                cityAdapter.addAll(cities.map { it.name })
+                cityAdapter.notifyDataSetChanged()
+            }
+        }
+
+        // Обновляем TextWatcher
+        binding.etGeoposition.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                updateApplyButtonState()
+            }
+        })
+
+
 
         selectedViews = mutableSetOf()
 
@@ -112,6 +153,7 @@ class FilterFeedFragment : Fragment() {
     }
 
     private fun updateApplyButtonState() {
+        val isCitySelected = binding.etGeoposition.length() > 0
         // Проверяем, выбран ли хотя бы один формат общения
         val isCommunicationFormatSelected = radioGroup.checkedRadioButtonId != -1
         // Кнопка активна, если выбрана специализация ИЛИ формат общения
@@ -120,6 +162,7 @@ class FilterFeedFragment : Fragment() {
 
     private fun resetAllFilters() {
         // Сбрасываем выбранные специализации
+        binding.etGeoposition.text?.clear()
         selectedViews.forEach { textView ->
             deselectView(textView)
         }
