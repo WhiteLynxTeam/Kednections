@@ -40,15 +40,5 @@ class UserStorage(
     override fun setQuestionnaireCompleted(completed: Boolean) {
         _isQuestionnaireCompleted = completed
     }
-
-    //[green] Сделай константы под ключ
-//    companion object {
-/*        private const val FULL_NAME = "full_name"
-        private const val EMAIL = "email"
-        private const val PHONE = "phone"
-        private const val PHOTO = "photo"
-        private const val OFFICE_NAME = "office_name"
-        private const val OFFICE_LOCATION = "office_location"
-        private const val DEPARTMENT = "department"*/
-    }
+}
 
