@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.kednections.domain.models.User
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
-import com.kednections.domain.usecase.user.RegisterUserApiUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -41,7 +40,7 @@ class AuthViewModel(
 
     fun login(user: User) {
         viewModelScope.launch {
-            _isLogin.emit(loginUserApiUseCase(user) != null)
+            _isLogin.emit(loginUserApiUseCase(user))
         }
     }
 

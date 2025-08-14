@@ -4,10 +4,13 @@ import com.kednections.domain.irepository.IGeoRepository
 import com.kednections.domain.irepository.ISpecializationRepository
 import com.kednections.domain.irepository.ITagRepository
 import com.kednections.domain.irepository.IUserRepository
+import com.kednections.domain.istorage.ITokenStorage
 import com.kednections.domain.istorage.IUserStorage
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
+import com.kednections.domain.usecase.token.GetTokenPrefUseCase
+import com.kednections.domain.usecase.token.SaveTokenPrefUseCase
 import com.kednections.domain.usecase.user.GetIsFirstRunUseCase
 import com.kednections.domain.usecase.user.IsQuestionnaireCompletedUseCase
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
@@ -61,14 +64,35 @@ class DomainModule {
 //        )
 //    }
 
+    @Singleton
+    @Provides
+    fun provideGetTokenPrefUseCase(
+        tokenStorage: ITokenStorage,
+    ): GetTokenPrefUseCase {
+        return GetTokenPrefUseCase(
+            tokenStorage = tokenStorage,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideSaveTokenPrefUseCase(
+        tokenStorage: ITokenStorage,
+    ): SaveTokenPrefUseCase {
+        return SaveTokenPrefUseCase(
+            tokenStorage = tokenStorage,
+        )
+    }
 
     @Singleton
     @Provides
     fun provideLoginUserApiUseCase(
         userRepository: IUserRepository,
+        saveTokenPrefUseCase: SaveTokenPrefUseCase,
     ): LoginUserApiUseCase {
         return LoginUserApiUseCase(
             userRepository = userRepository,
+            saveTokenPrefUseCase = saveTokenPrefUseCase,
         )
     }
 
@@ -76,9 +100,11 @@ class DomainModule {
     @Provides
     fun provideRegisterUserApiUseCase(
         userRepository: IUserRepository,
+        saveTokenPrefUseCase: SaveTokenPrefUseCase,
     ): RegisterUserApiUseCase {
         return RegisterUserApiUseCase(
             userRepository = userRepository,
+            saveTokenPrefUseCase = saveTokenPrefUseCase,
         )
     }
 
