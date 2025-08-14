@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.profile.showcase.ShowCaseFragment">
+
+    <ImageView
+        android:id="@+id/ic_back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.067"
+        app:layout_constraintHeight_percent="0.033"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_image_margin_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_title_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.109" />
+
+    <ImageView
+        android:id="@+id/img_logo"
+        style="@style/img_logo"
+        android:src="@drawable/img_logo_avatar_fragment"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_image_margin_top"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_face"
+        style="@style/title_fragments"
+        android:text="дизайн-витрина"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_title_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_yellow_text_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_black_text_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.21" />
+
+    <FrameLayout
+        android:id="@+id/text_horizontal_scroll_2"
+        style="@style/tv_running_line"
+        android:layout_marginTop="32dp"
+        android:background="@color/text_description"
+        android:rotation="5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_black_text_margin">
+
+        <TextView
+            android:id="@+id/text_description_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:text="загружай в формате 3:4, чтобы шоты не обрезались"
+            android:textColor="@color/white"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/text_horizontal_scroll"
+        style="@style/tv_running_line"
+        android:rotation="-5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_yellow_text_margin">
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:text="до 6 шотов — укажи автора, если не твои"
+            android:textColor="@color/text_description" />
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.911"
+        app:layout_constraintHeight_percent="0.5"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_horizontal_scroll_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_publish"/>
+
+    <ImageView
+        android:id="@+id/ic_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.067"
+        app:layout_constraintHeight_percent="0.033"
+        android:src="@drawable/ic_info_img_showcase"
+        app:layout_constraintStart_toStartOf="@id/ic_back"
+        app:layout_constraintTop_toBottomOf="@id/rc_image"
+        app:layout_constraintBottom_toTopOf="@id/btn_publish"/>
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="зажми и перетащи, чтобы изменить порядок"
+        android:textSize="12sp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toEndOf="@id/ic_info"
+        app:layout_constraintTop_toTopOf="@id/ic_info"
+        app:layout_constraintBottom_toBottomOf="@id/ic_info"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_publish"
+        style="@style/btn_resume_style"
+        android:layout_margin="20dp"
+        android:text="опубликовать"
+        app:layout_constraintWidth_percent="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

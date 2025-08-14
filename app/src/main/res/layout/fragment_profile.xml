@@ -321,6 +321,8 @@
                 android:id="@+id/rc_view_img"
                 android:layout_width="match_parent"
                 android:layout_height="294dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="24dp"
                 android:visibility="gone"

@@ -18,6 +18,7 @@ import com.kednections.view.form.specialization.SpecializationFragment
 import com.kednections.view.form.success_reg.SuccessRegFragment
 import com.kednections.view.form.welcome.WelcomeFragment
 import com.kednections.view.profile.ProfileFragment
+import com.kednections.view.profile.showcase.ShowCaseFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -76,4 +77,9 @@ interface MainModule {
 
     @ContributesAndroidInjector
     fun bindScreenSaverFragment(): ScreenSaverFragment
+
+    @ContributesAndroidInjector
+    fun bindShowCaseFragment(): ShowCaseFragment
+
+
 }
