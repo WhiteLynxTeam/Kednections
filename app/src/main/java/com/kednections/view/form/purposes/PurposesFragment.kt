@@ -1,44 +1,30 @@
 package com.kednections.view.form.purposes
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentPurposesBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class PurposesFragment : Fragment() {
-
-    private var _binding: FragmentPurposesBinding? = null
-    private val binding get() = _binding!!
+class PurposesFragment : BaseFragment<FragmentPurposesBinding>() {
     private val activityViewModel: FormActivityViewModel by activityViewModels()
     private lateinit var viewModel: PurposesViewModel
 
     @Inject
     lateinit var vmFactory: PurposesViewModel.Factory
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentPurposesBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentPurposesBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

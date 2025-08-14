@@ -1,6 +1,5 @@
 package com.kednections.view.profile.showcase
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
@@ -10,23 +9,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentShowCaseBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.MainActivity
 import com.kednections.view.profile.ProfileViewModel
 import com.kednections.view.profile.showcase.AddImagesAdapter.Companion.MAX_ITEMS
-import dagger.android.support.AndroidSupportInjection
 
-class ShowCaseFragment : Fragment() {
+class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
 
-    private var _binding: FragmentShowCaseBinding? = null
-    private val binding get() = _binding!!
     private val profileViewModel: ProfileViewModel by activityViewModels()
     private lateinit var adapter: AddImagesAdapter
     private val imageUris = mutableListOf<Uri>()
@@ -47,19 +43,10 @@ class ShowCaseFragment : Fragment() {
         }
     }
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
+    override fun inflaterViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentShowCaseBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        container: ViewGroup?
+    ) = FragmentShowCaseBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -79,12 +66,12 @@ class ShowCaseFragment : Fragment() {
         binding.btnPublish.isEnabled = imageUris.isNotEmpty()
 
         binding.btnPublish.setOnClickListener {
-                // Сохраняем выбранные изображения в ViewModel
-                profileViewModel.selectedImages.value = imageUris.toList()
+            // Сохраняем выбранные изображения в ViewModel
+            profileViewModel.selectedImages.value = imageUris.toList()
 
-                // Возвращаемся назад
-                findNavController().popBackStack()
-            }
+            // Возвращаемся назад
+            findNavController().popBackStack()
+        }
 
 
     }
@@ -114,9 +101,10 @@ class ShowCaseFragment : Fragment() {
     private fun openGallery() {
         if (imageUris.size >= 6) return
 
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
-            type = "image/*"
-        }
+        val intent =
+            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
+                type = "image/*"
+            }
         galleryLauncher.launch(intent)
     }
 

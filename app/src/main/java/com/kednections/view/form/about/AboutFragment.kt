@@ -1,31 +1,26 @@
 package com.kednections.view.form.about
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentAboutBinding
 import com.kednections.utils.startMarquee
 import com.kednections.utils.uiextensions.showSnackbarLong
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class AboutFragment : Fragment() {
-
-    private var _binding: FragmentAboutBinding? = null
-    private val binding get() = _binding!!
+class AboutFragment : BaseFragment<FragmentAboutBinding>() {
 
     private val activityViewModel: FormActivityViewModel by activityViewModels()
     private lateinit var viewModel: AboutViewModel
@@ -33,19 +28,10 @@ class AboutFragment : Fragment() {
     @Inject
     lateinit var vmFactory: AboutViewModel.Factory
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentAboutBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentAboutBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -97,7 +83,7 @@ class AboutFragment : Fragment() {
 
     }
 
-    private fun updateRegUser(){
+    private fun updateRegUser() {
         activityViewModel.updateData {
             it.copy(
                 //[red] заглушка для проверки регистрации - передаем второй город

@@ -1,30 +1,25 @@
 package com.kednections.view.feed
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentFeedBinding
 import com.kednections.domain.models.feed.Feed
 import com.kednections.domain.models.feed.ImageDetail
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.MainActivity
 import com.kednections.view.feed.filter.NothingFilterDialog
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class FeedFragment : Fragment() {
-
-    private var _binding: FragmentFeedBinding? = null
-    private val binding get() = _binding!!
+class FeedFragment : BaseFragment<FragmentFeedBinding>() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var adapter: FeedAdapter
@@ -112,24 +107,18 @@ class FeedFragment : Fragment() {
         ),
     )
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentFeedBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentFeedBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        parentFragmentManager.setFragmentResultListener("fullscreen_result", viewLifecycleOwner) { _, bundle ->
+        parentFragmentManager.setFragmentResultListener(
+            "fullscreen_result",
+            viewLifecycleOwner
+        ) { _, bundle ->
             val action = bundle.getString("action")
             val feedPosition = bundle.getInt("feedPosition")
             lifecycleScope.launch {
@@ -181,7 +170,10 @@ class FeedFragment : Fragment() {
             binding.textHorizontalScroll.visibility = View.VISIBLE
             startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
         } else {
-            binding.viewPager.setCurrentItem(positionToRemove.coerceAtMost(feedList.size - 1), false)
+            binding.viewPager.setCurrentItem(
+                positionToRemove.coerceAtMost(feedList.size - 1),
+                false
+            )
         }
 
         (activity as MainActivity).setUIVisibility(
