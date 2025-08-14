@@ -1,22 +1,27 @@
 package com.kednections.view.profile
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kednections.R
 import com.kednections.databinding.FragmentProfileBinding
 import com.kednections.domain.models.profile.Purposes
+import com.kednections.view.activity.MainActivity
 import dagger.android.support.AndroidSupportInjection
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private val profileViewModel: ProfileViewModel by activityViewModels()
+    private val imageUris = mutableListOf<Uri>()
     private var isProfileTop = true
 
     val purposesList = listOf(
@@ -25,20 +30,13 @@ class ProfileFragment : Fragment() {
         Purposes(R.drawable.ic_company_selected, "ищу компанию")
     )
 
-    private val imageList = listOf(
-        R.drawable.image,
-        R.drawable.image_2,
-        R.drawable.image,
-        R.drawable.image_2,
-        R.drawable.image,
-        R.drawable.image_2,
-        R.drawable.image,
-        R.drawable.image_2,
-        R.drawable.image,
-        R.drawable.image_2,
-        R.drawable.image,
-        R.drawable.image_2,
-    )
+//    private val imageList = listOf(
+//        R.drawable.image,
+//        R.drawable.image_2,
+//        R.drawable.image,
+//        R.drawable.image_2,
+//        R.drawable.image
+//    )
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -64,7 +62,17 @@ class ProfileFragment : Fragment() {
         val recyclerView = binding.rcViewImg
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = ShowCaseImageAdapter(imageList)
+
+        profileViewModel.selectedImages.observe(viewLifecycleOwner) { uris ->
+            uris?.let {
+                imageUris.clear()
+                imageUris.addAll(it)
+                recyclerView.adapter = ShowCaseImageAdapter(imageUris)
+            }
+        }
+
+
+
 
         if (purposesList.size == 1) {
             binding.viewPurposes.isEnabled = false
@@ -94,6 +102,8 @@ class ProfileFragment : Fragment() {
         binding.btnEdit.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_showCaseFragment)
         }
+
+        (activity as MainActivity).setUIVisibility(showHeader = true)
 
     }
 

@@ -1,41 +1,36 @@
 package com.kednections.view.profile
 
+import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.kednections.R
 import com.kednections.databinding.ItemShowcaseImageBinding
 
 class ShowCaseImageAdapter(
-    private val images: List<Int>,
-//    private val onItemClick: (Int) -> Unit
-) : RecyclerView.Adapter<ShowCaseImageAdapter.ImageViewHolder>() {
+    private val imageUris: List<Uri>
+) : RecyclerView.Adapter<ShowCaseImageAdapter.ViewHolder>() {
 
-    inner class ImageViewHolder(private val binding: ItemShowcaseImageBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: ItemShowcaseImageBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
-//        init {
-//            binding.root.setOnClickListener {
-//                onItemClick(adapterPosition)
-//            }
-//        }
-
-        fun bind(imageRes: Int) {
-            binding.imgItem.setImageResource(imageRes)
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemShowcaseImageBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-        return ImageViewHolder(binding)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        holder.bind(images[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Glide.with(holder.binding.root.context)
+            .load(imageUris[position])
+            .into(holder.binding.imgItem)
     }
 
-    override fun getItemCount(): Int = images.size
+    override fun getItemCount() = imageUris.size
 }

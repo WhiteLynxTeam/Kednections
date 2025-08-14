@@ -14,7 +14,7 @@
     <style name="btn_resume_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
-        <item name="layout_constraintWidth_min">340dp</item>
+        <item name="layout_constraintWidth_min">250dp</item>
         <item name="layout_constraintWidth_max">450dp</item>
         <item name="layout_constraintHeight_min">40dp</item>
         <item name="layout_constraintHeight_max">72dp</item>
