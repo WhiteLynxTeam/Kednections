@@ -13,4 +13,9 @@ interface IUserStorage {
 
     // Метод для установки флага анкеты
     fun setQuestionnaireCompleted(completed: Boolean)
+
+    // Методы для сохранения данных
+    fun saveFio(fio: String)
+    fun saveNick(nick: String)
+    fun saveFioOrNickSelection(selection: String)
 }

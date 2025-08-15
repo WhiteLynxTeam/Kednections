@@ -12,6 +12,9 @@ class UserStorage(
         // Константы для ключей SharedPreferences
         private const val KEY_FIRST_RUN = "is_first_run"
         private const val KEY_QUESTIONNAIRE_COMPLETED = "questionnaire_completed"
+        private const val KEY_FIO = "user_fio"
+        private const val KEY_NICK = "user_nick"
+        private const val KEY_FIO_OR_NICK = "fio_or_nick_selection"
     }
 
     // Реализация для флага первого запуска
@@ -39,6 +42,24 @@ class UserStorage(
     // Метод для установки флага анкеты
     override fun setQuestionnaireCompleted(completed: Boolean) {
         _isQuestionnaireCompleted = completed
+    }
+
+    override fun saveFio(fio: String) {
+        sharedPreferences.edit {
+            putString(KEY_FIO, fio)
+        }
+    }
+
+    override fun saveNick(nick: String) {
+        sharedPreferences.edit {
+            putString(KEY_NICK, nick)
+        }
+    }
+
+    override fun saveFioOrNickSelection(selection: String) {
+        sharedPreferences.edit {
+            putString(KEY_FIO_OR_NICK, selection)
+        }
     }
 }
 
