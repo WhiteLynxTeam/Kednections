@@ -58,8 +58,14 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>() {
         validatorSwitcher.attach()
 
         binding.btnResume.setOnClickListener {
-            //[yellow] отсутствует поля в модели регистрации юзера на сервере
-            //[yellow] флаг, что выбрали - ник или фио
+           // Получаем значения полей ввода
+            val fio = binding.etName.text.toString()
+            val nick = binding.etNick.text.toString()
+            val fioOrNick = validatorSwitcher.getSelected() ?: "NAME"
+
+            // СОХРАНЕНИЕ ДАННЫХ: вызываем метод ViewModel для сохранения в SharedPreferences
+            viewModel.saveUserData(fio, nick, fioOrNick)
+
             activityViewModel.updateData {
                 it.copy(
                     fio = binding.etName.text.toString(),
@@ -67,6 +73,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>() {
                     fioOrNick = validatorSwitcher.getSelected() ?: "NAME"
                 )
             }
+            // Навигация к следующему фрагменту
             findNavController().navigate(R.id.action_nickNameFragment_to_avatarFragment)
         }
 
@@ -74,6 +81,5 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>() {
             showHeader = true
         )
     }
-
 }
 
