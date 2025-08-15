@@ -11,11 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.databinding.FragmentNickNameBinding
+import com.kednections.domain.models.NameOrNick
 import com.kednections.utils.NickNameValidator
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
-import com.kednections.view.auth.AuthViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -73,13 +73,11 @@ class NickNameFragment : Fragment() {
         validatorSwitcher.attach()
 
         binding.btnResume.setOnClickListener {
-            //[yellow] отсутствует поля в модели регистрации юзера на сервере
-            //[yellow] флаг, что выбрали - ник или фио
             activityViewModel.updateData {
                 it.copy(
                     fio = binding.etName.text.toString(),
                     nick = binding.etNick.text.toString(),
-                    fioOrNick = validatorSwitcher.getSelected() ?: "NAME"
+                    nameOrNick = validatorSwitcher.getSelected() ?: NameOrNick.NAME
                 )
             }
             findNavController().navigate(R.id.action_nickNameFragment_to_avatarFragment)
