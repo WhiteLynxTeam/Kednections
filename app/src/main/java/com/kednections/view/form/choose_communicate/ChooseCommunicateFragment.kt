@@ -1,46 +1,30 @@
 package com.kednections.view.form.choose_communicate
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentChooseCommunicateBinding
 import com.kednections.view.activity.FormActivityViewModel
-import com.kednections.view.form.purposes.PurposesFragment.PurposeItem
-import com.kednections.view.form.purposes.PurposesViewModel
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 
-class ChooseCommunicateFragment : Fragment() {
-
-    private var _binding: FragmentChooseCommunicateBinding? = null
-    private val binding get() = _binding!!
+class ChooseCommunicateFragment : BaseFragment<FragmentChooseCommunicateBinding>() {
     private val activityViewModel: FormActivityViewModel by activityViewModels()
     private lateinit var viewModel: ChooseCommunicateViewModel
 
     @Inject
     lateinit var vmFactory: ChooseCommunicateViewModel.Factory
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentChooseCommunicateBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentChooseCommunicateBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

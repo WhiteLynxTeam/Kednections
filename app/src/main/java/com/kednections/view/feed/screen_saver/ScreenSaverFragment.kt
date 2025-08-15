@@ -23,11 +23,12 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentScreenSaverBinding
 import com.kednections.view.activity.MainActivity
 import dagger.android.support.AndroidSupportInjection
 
-class ScreenSaverFragment : Fragment() {
+class ScreenSaverFragment : BaseFragment<FragmentScreenSaverBinding>() {
 
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -39,8 +40,10 @@ class ScreenSaverFragment : Fragment() {
         }
     }
 
-    private var _binding: FragmentScreenSaverBinding? = null
-    private val binding get() = _binding!!
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentScreenSaverBinding.inflate(inflater, container, false)
 
     private fun dpToPx(dp: Float): Float {
         return TypedValue.applyDimension(
@@ -48,20 +51,6 @@ class ScreenSaverFragment : Fragment() {
             dp,
             resources.displayMetrics
         )
-    }
-
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentScreenSaverBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     @Suppress("DEPRECATION")

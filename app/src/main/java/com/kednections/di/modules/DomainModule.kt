@@ -15,14 +15,15 @@ import com.kednections.domain.usecase.user.GetIsFirstRunUseCase
 import com.kednections.domain.usecase.user.IsQuestionnaireCompletedUseCase
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
 import com.kednections.domain.usecase.user.RegisterUserApiUseCase
+import com.kednections.domain.usecase.user.SaveUserDataPrefUseCase
 import com.kednections.domain.usecase.user.SetFirstRunCompletedUseCase
+import com.kednections.view.form.nickname.NickNameViewModel
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
 class DomainModule {
-
 
     @Singleton
     @Provides
@@ -138,4 +139,14 @@ class DomainModule {
         )
     }
 
-}
+        @Provides
+        fun provideSaveUserDataPrefUseCase(
+            userStorage: IUserStorage
+        ): SaveUserDataPrefUseCase {
+            return SaveUserDataPrefUseCase(userStorage)
+        }
+    }
+
+
+
+

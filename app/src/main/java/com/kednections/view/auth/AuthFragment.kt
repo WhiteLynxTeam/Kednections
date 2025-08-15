@@ -1,18 +1,17 @@
 package com.kednections.view.auth
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentAuthBinding
 import com.kednections.domain.models.User
 import com.kednections.utils.AuthValidator
@@ -21,14 +20,10 @@ import com.kednections.utils.uiextensions.showSnackbarLong
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
 import com.kednections.view.activity.MainActivity
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class AuthFragment : Fragment() {
-
-    private var _binding: FragmentAuthBinding? = null
-    private val binding get() = _binding!!
+class AuthFragment : BaseFragment<FragmentAuthBinding>() {
 
     private val activityViewModel: FormActivityViewModel by activityViewModels()
     private lateinit var viewModel: AuthViewModel
@@ -36,19 +31,10 @@ class AuthFragment : Fragment() {
     @Inject
     lateinit var vmFactory: AuthViewModel.Factory
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentAuthBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentAuthBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

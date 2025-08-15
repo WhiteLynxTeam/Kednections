@@ -10,6 +10,7 @@ import com.kednections.domain.usecase.user.GetCurrentUserUseCase
 import com.kednections.domain.usecase.user.GetIsFirstRunUseCase
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
 import com.kednections.domain.usecase.user.RegisterUserApiUseCase
+import com.kednections.domain.usecase.user.SaveUserDataPrefUseCase
 import com.kednections.domain.usecase.user.SetFirstRunCompletedUseCase
 import com.kednections.view.activity.FormActivityViewModel
 import com.kednections.view.auth.AuthViewModel
@@ -64,10 +65,10 @@ class AppModule() {
 
     @Provides
     fun provideNickNameViewModelFactory(
-
-    ) = NickNameViewModel.Factory(
-
-    )
+        saveUserDataPrefUseCase: SaveUserDataPrefUseCase
+    ): NickNameViewModel.Factory {
+        return NickNameViewModel.Factory(saveUserDataPrefUseCase)
+    }
 
     @Provides
     fun provideSpecializationViewModelFactory(

@@ -16,39 +16,28 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentFilterFeedBinding
 import com.kednections.view.activity.MainActivity
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FilterFeedFragment : Fragment() {
+class FilterFeedFragment : BaseFragment<FragmentFilterFeedBinding>() {
 
     @Inject
     lateinit var vmFactory: FilterFeedViewModel.Factory
     private val viewModel: FilterFeedViewModel by viewModels { vmFactory }
     private lateinit var cityAdapter: ArrayAdapter<String>
 
-    private var _binding: FragmentFilterFeedBinding? = null
-    private val binding get() = _binding!!
-
     private lateinit var selectedViews: MutableSet<TextView>
 
     private lateinit var radioGroup: RadioGroup
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentFilterFeedBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentFilterFeedBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -157,7 +146,8 @@ class FilterFeedFragment : Fragment() {
         // Проверяем, выбран ли хотя бы один формат общения
         val isCommunicationFormatSelected = radioGroup.checkedRadioButtonId != -1
         // Кнопка активна, если выбрана специализация ИЛИ формат общения
-        binding.btnResume.isEnabled = selectedViews.isNotEmpty() || isCommunicationFormatSelected || binding.etGeoposition.length() > 0
+        binding.btnResume.isEnabled =
+            selectedViews.isNotEmpty() || isCommunicationFormatSelected || binding.etGeoposition.length() > 0
     }
 
     private fun resetAllFilters() {

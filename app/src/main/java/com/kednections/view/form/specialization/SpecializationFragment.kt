@@ -1,27 +1,22 @@
 package com.kednections.view.form.specialization
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kednections.R
+import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentSpecializationBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class SpecializationFragment : Fragment() {
-
-    private var _binding: FragmentSpecializationBinding? = null
-    private val binding get() = _binding!!
+class SpecializationFragment : BaseFragment<FragmentSpecializationBinding>() {
     private val activityViewModel: FormActivityViewModel by activityViewModels()
     private lateinit var viewModel: SpecializationViewModel
 
@@ -31,19 +26,10 @@ class SpecializationFragment : Fragment() {
     private lateinit var selectedViews: MutableSet<TextView>
     private val maxSelection = 3
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentSpecializationBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentSpecializationBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
