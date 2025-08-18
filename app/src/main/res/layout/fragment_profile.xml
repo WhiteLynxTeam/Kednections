@@ -42,22 +42,32 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white">
+            android:background="@color/orange">
 
             <View
+                android:id="@+id/view_header"
                 android:layout_width="0dp"
                 android:layout_height="112dp"
-                android:background="@color/orange"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/img_bg_description"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/view_bottom"/>
 
             <ImageView
                 android:id="@+id/img_avatar"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="-20dp"
+                android:layout_marginEnd="-12dp"
                 android:src="@drawable/img_ava_8_selected"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -67,8 +77,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/nauryz_red_keds"
                 android:includeFontPadding="false"
+                android:text="Очень длинный текст..."
                 android:maxLines="1"
                 android:textColor="@color/text_description"
                 android:textSize="26sp"
@@ -102,18 +114,19 @@
 
             <TextView
                 android:id="@+id/tv_specializations"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/nauryz_red_keds"
                 android:includeFontPadding="false"
                 android:lineHeight="24dp"
-                android:text="UX/UI-дизайнер . Веб-дизайнер\nграфический дизайнер"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/ic_geo"
-                app:layout_constraintTop_toBottomOf="@id/ic_geo" />
+                app:layout_constraintTop_toBottomOf="@id/ic_geo"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_horizontal_center"
@@ -128,7 +141,7 @@
                 android:layout_height="64dp"
                 app:layout_constraintWidth_percent="0.389"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_auth_input"
+                android:background="@drawable/bg_my_purposes"
                 app:layout_constraintStart_toStartOf="@id/tv_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_specializations" />
 

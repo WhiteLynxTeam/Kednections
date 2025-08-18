@@ -5,6 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ProfileViewModel: ViewModel() {
-
     val selectedImages = MutableLiveData<List<Uri>>()
+    val isProfileTop = MutableLiveData(true)
 }

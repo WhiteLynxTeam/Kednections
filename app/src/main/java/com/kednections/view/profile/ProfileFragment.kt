@@ -21,19 +21,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private val imageUris = mutableListOf<Uri>()
     private var isProfileTop = true
 
+    val specializationList = listOf(
+        "UX/UI-дизайнер",
+        "Веб-дизайнер",
+        "графический дизайнер"
+    )
+
     val purposesList = listOf(
         Purposes(R.drawable.ic_friends_selected, "ищу друзей"),
         Purposes(R.drawable.ic_romance_selected, "ищу романтику"),
         Purposes(R.drawable.ic_company_selected, "ищу компанию")
     )
-
-//    private val imageList = listOf(
-//        R.drawable.image,
-//        R.drawable.image_2,
-//        R.drawable.image,
-//        R.drawable.image_2,
-//        R.drawable.image
-//    )
 
     override fun inflaterViewBinding(
         inflater: LayoutInflater,
@@ -57,6 +55,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 imageUris.addAll(it)
                 recyclerView.adapter = ShowCaseImageAdapter(imageUris)
             }
+        }
+        profileViewModel.isProfileTop.observe(viewLifecycleOwner) { isTop ->
+            isProfileTop = isTop
+            updateUI() // Обновляем UI в соответствии с новым состоянием
+        }
+
+        when (specializationList.size) {
+            1 -> binding.tvSpecializations.text = "${ specializationList[0] }"
+            2 -> binding.tvSpecializations.text = "${specializationList[0]} \u25CF ${specializationList[1]}"
+            3 -> binding.tvSpecializations.text = "${specializationList[0]} \u25CF ${specializationList[1]}\n${specializationList[2]}"
         }
 
         if (purposesList.size == 1) {
@@ -93,12 +101,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private fun toggleSwitcher() {
-        // Проверяем, какое изображение сейчас в состоянии "bottom"
-        if (!isProfileTop) {
-            // Клик по profile switcher (он в bottom состоянии)
-            isProfileTop = true
-            with(binding) {
+        isProfileTop = !isProfileTop
+        updateUI()
+    }
+
+    private fun updateUI() {
+        with(binding) {
+            if (isProfileTop) {
+                // Настройки для режима Profile
                 profileSwitcher.setImageResource(R.drawable.ic_profile_switcher_top)
+                imgBgDescription.setImageResource(R.drawable.bg_profile)
                 designShowcaseSwitcher.setImageResource(R.drawable.ic_design_showcase_switcher_bottom)
                 viewBottom.setBackgroundResource(R.color.orange)
                 btnBase.visibility = View.VISIBLE
@@ -111,12 +123,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 btnEdit.visibility = View.GONE
                 rcViewImg.visibility = View.GONE
                 bgShowcaseNull.visibility = View.GONE
-            }
-        } else {
-            // Клик по design showcase switcher (он в bottom состоянии)
-            isProfileTop = false
-            with(binding) {
+                textHorizontalScroll.visibility = View.GONE
+            } else {
+                // Настройки для режима Showcase
                 profileSwitcher.setImageResource(R.drawable.ic_profile_switcher_bottom)
+                imgBgDescription.setImageResource(R.drawable.bg_profile_2)
                 designShowcaseSwitcher.setImageResource(R.drawable.ic_design_showcase_switcher_top)
                 viewBottom.setBackgroundResource(R.color.background_color)
                 btnBase.visibility = View.GONE
@@ -127,19 +138,19 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 btnTests.visibility = View.GONE
                 btnSettings.visibility = View.GONE
                 btnEdit.visibility = View.VISIBLE
-                rcViewImg.visibility = View.VISIBLE
-            }
-            if (imageUris.isEmpty()) {
-                binding.rcViewImg.visibility = View.GONE
-                binding.bgShowcaseNull.visibility = View.VISIBLE
-                binding.textHorizontalScroll.visibility = View.VISIBLE
-                startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
-            } else {
-                binding.bgShowcaseNull.visibility = View.GONE
-                binding.textHorizontalScroll.visibility = View.GONE
-                binding.rcViewImg.visibility = View.VISIBLE
-            }
 
+                // Дополнительные условия для Showcase
+                if (imageUris.isEmpty()) {
+                    rcViewImg.visibility = View.GONE
+                    bgShowcaseNull.visibility = View.VISIBLE
+                    textHorizontalScroll.visibility = View.VISIBLE
+                    startMarquee(textDescription, textHorizontalScroll, speed = 5000L)
+                } else {
+                    rcViewImg.visibility = View.VISIBLE
+                    bgShowcaseNull.visibility = View.GONE
+                    textHorizontalScroll.visibility = View.GONE
+                }
+            }
         }
     }
 

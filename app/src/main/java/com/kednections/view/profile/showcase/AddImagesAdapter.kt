@@ -2,6 +2,7 @@ package com.kednections.view.profile.showcase
 
 import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -9,7 +10,7 @@ import com.kednections.databinding.ItemAddButtonBinding
 import com.kednections.databinding.ItemAddShowcaseImageBinding
 
 class AddImagesAdapter(
-    private val items: List<Uri>,
+    private val items: MutableList<Uri>,
     private val itemWidth: Int,
     private val itemHeight: Int,
     private val onAddClick: () -> Unit
@@ -19,6 +20,10 @@ class AddImagesAdapter(
         private const val TYPE_IMAGE = 0
         private const val TYPE_ADD_BUTTON = 1
         const val MAX_ITEMS = 6
+    }
+
+    init {
+        setHasStableIds(true) // чтобы RV правильно обновлял элементы
     }
 
     override fun getItemId(position: Int): Long {
@@ -77,6 +82,7 @@ class AddImagesAdapter(
                         .override(itemWidth, itemHeight)
                         .centerCrop()
                         .into(holder.binding.imgItem)
+                    holder.binding.tvMain.visibility = if (position == 0) View.VISIBLE else View.GONE
                 }
             }
         }
