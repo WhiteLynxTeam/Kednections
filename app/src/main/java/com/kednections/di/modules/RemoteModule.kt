@@ -1,5 +1,6 @@
 package com.kednections.di.modules
 
+import com.kednections.data.network.api.FileApi
 import com.kednections.data.network.api.GeoApi
 import com.kednections.data.network.api.SpecializationsApi
 import com.kednections.data.network.api.TagApi
@@ -56,6 +57,10 @@ class RemoteModule {
     @Provides
     @Singleton
     fun provideSpecializationsApi(retrofit: Retrofit): SpecializationsApi = retrofit.create(SpecializationsApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideFileApi(retrofit: Retrofit): FileApi = retrofit.create(FileApi::class.java)
 
     companion object {
         private const val HALF_MINUTE_FOR_SLOW_INTERNET = 30L

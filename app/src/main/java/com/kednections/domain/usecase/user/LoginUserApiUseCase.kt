@@ -1,7 +1,7 @@
 package com.kednections.domain.usecase.user
 
 import com.kednections.domain.irepository.IUserRepository
-import com.kednections.domain.models.User
+import com.kednections.domain.models.user.User
 import com.kednections.domain.usecase.token.SaveTokenPrefUseCase
 
 class LoginUserApiUseCase(
