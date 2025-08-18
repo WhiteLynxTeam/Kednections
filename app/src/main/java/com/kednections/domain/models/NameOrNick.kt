@@ -12,5 +12,8 @@ enum class NameOrNick(val value: String) {
     companion object {
         fun fromName(name: String?): NameOrNick? =
             entries.find { it.name == name }
+
+        fun fromValue(value: String?): NameOrNick? =
+            entries.find { it.value == value }
     }
 }

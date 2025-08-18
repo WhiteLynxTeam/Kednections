@@ -6,17 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentProfileBinding
 import com.kednections.domain.models.profile.Purposes
+import com.kednections.utils.decodeStringToBitmap
 import com.kednections.view.activity.MainActivity
+import com.kednections.view.activity.MainActivityViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
-    private val profileViewModel: ProfileViewModel by activityViewModels()
+    private val activityViewModel: MainActivityViewModel by activityViewModels()
+    private lateinit var profileViewModel: ProfileViewModel
     private val imageUris = mutableListOf<Uri>()
     private var isProfileTop = true
 
@@ -34,6 +41,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 //        R.drawable.image
 //    )
 
+    @Inject
+    lateinit var vmFactory: ProfileViewModel.Factory
+
     override fun inflaterViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -41,6 +51,27 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        profileViewModel =
+            ViewModelProvider(this, vmFactory)[ProfileViewModel::class.java]
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            profileViewModel.photo.collect {
+                println("ProfileFragment photo=$it")
+                binding.imgAvatar.setImageBitmap(decodeStringToBitmap(it))
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            activityViewModel.selectedImages.collect { uris ->
+                uris.let {
+                    imageUris.clear()
+                    imageUris.addAll(it)
+                    binding.rcViewImg.adapter = ShowCaseImageAdapter(imageUris)
+                }
+
+            }
+        }
 
         val originalText = "Очень длинный текст который нужно обрезать"
         val maxLength = 20
@@ -50,13 +81,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        profileViewModel.selectedImages.observe(viewLifecycleOwner) { uris ->
-            uris?.let {
-                imageUris.clear()
-                imageUris.addAll(it)
-                recyclerView.adapter = ShowCaseImageAdapter(imageUris)
-            }
-        }
+        /*        profileViewModel.selectedImages.observe(viewLifecycleOwner) { uris ->
+                    uris?.let {
+                        imageUris.clear()
+                        imageUris.addAll(it)
+                        recyclerView.adapter = ShowCaseImageAdapter(imageUris)
+                    }
+                }*/
 
 
 
@@ -91,6 +122,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }
 
         (activity as MainActivity).setUIVisibility(showHeader = true)
+
+        profileViewModel.getUser()
 
     }
 

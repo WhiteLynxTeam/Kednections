@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentAuthBinding
-import com.kednections.domain.models.User
+import com.kednections.domain.models.user.User
 import com.kednections.utils.AuthValidator
 import com.kednections.utils.startMarquee
 import com.kednections.utils.uiextensions.showSnackbarLong

@@ -4,11 +4,13 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import com.google.firebase.auth.FirebaseAuth
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
+import com.kednections.domain.usecase.photo.GetPhotoApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
 import com.kednections.domain.usecase.user.GetCommMethodApiUseCase
 import com.kednections.domain.usecase.user.GetCurrentUserUseCase
 import com.kednections.domain.usecase.user.GetIsFirstRunUseCase
+import com.kednections.domain.usecase.user.GetUserApiUseCase
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
 import com.kednections.domain.usecase.user.RegisterUserApiUseCase
 import com.kednections.domain.usecase.user.SaveUserDataPrefUseCase
@@ -23,6 +25,7 @@ import com.kednections.view.form.nickname.NickNameViewModel
 import com.kednections.view.form.purposes.PurposesViewModel
 import com.kednections.view.form.specialization.SpecializationViewModel
 import com.kednections.view.form.welcome.WelcomeViewModel
+import com.kednections.view.profile.ProfileViewModel
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -108,5 +111,14 @@ class AppModule() {
     @Provides
     fun provideAboutViewModelFactory(
     ) = AboutViewModel.Factory(
+    )
+
+    @Provides
+    fun provideProfileViewModelFactory(
+        getUserApiUseCase: GetUserApiUseCase,
+        getPhotoApiUseCase: GetPhotoApiUseCase,
+    ) = ProfileViewModel.Factory(
+        getUserApiUseCase = getUserApiUseCase,
+        getPhotoApiUseCase = getPhotoApiUseCase,
     )
 }

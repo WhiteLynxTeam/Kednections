@@ -18,12 +18,12 @@ import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentShowCaseBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.MainActivity
-import com.kednections.view.profile.ProfileViewModel
+import com.kednections.view.activity.MainActivityViewModel
 import com.kednections.view.profile.showcase.AddImagesAdapter.Companion.MAX_ITEMS
 
 class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
 
-    private val profileViewModel: ProfileViewModel by activityViewModels()
+    private val activityViewModel: MainActivityViewModel by activityViewModels()
     private lateinit var adapter: AddImagesAdapter
     private val imageUris = mutableListOf<Uri>()
     private var itemWidth = 0
@@ -67,7 +67,8 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
 
         binding.btnPublish.setOnClickListener {
             // Сохраняем выбранные изображения в ViewModel
-            profileViewModel.selectedImages.value = imageUris.toList()
+//            activityViewModel.selectedImages.value = imageUris.toList()
+            activityViewModel.saveImages(imageUris)
 
             // Возвращаемся назад
             findNavController().popBackStack()
