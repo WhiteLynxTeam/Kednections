@@ -3,7 +3,7 @@ package com.kednections.view.activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.kednections.domain.models.RegUser
+import com.kednections.domain.models.user.RegUser
 import com.kednections.domain.usecase.user.RegisterUserApiUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

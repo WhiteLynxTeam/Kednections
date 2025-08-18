@@ -7,11 +7,14 @@ import com.kednections.data.network.dto.token.response.AuthTokenResponse
 import com.kednections.data.network.dto.user.request.LoginUserRequest
 import com.kednections.data.network.dto.user.request.RegUserRequest
 import com.kednections.data.network.dto.user.response.UserCommunicationMethodResponse
+import com.kednections.data.network.dto.user.response.UserResponse
 import com.kednections.domain.irepository.IUserRepository
 import com.kednections.domain.models.CommunicationMethod
-import com.kednections.domain.models.RegUser
+import com.kednections.domain.models.NameOrNick
 import com.kednections.domain.models.Token
-import com.kednections.domain.models.User
+import com.kednections.domain.models.user.RegUser
+import com.kednections.domain.models.user.User
+import com.kednections.domain.models.user.UserProfile
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -30,6 +33,12 @@ class UserRepository(
     override suspend fun register(user: RegUser): Result<Token> {
         val result = userApi.register(user.toMultipartParts())
         return result.map { mapperTokenResponseToToken(it) }
+    }
+
+    override suspend fun getUser(token: Token): Result<UserProfile> {
+        val result = userApi.getUser(token.token)
+        println("UserRepository getUser result = $result")
+        return result.map { it.toUserProfile() }
     }
 
     override suspend fun getCommunicationMethod(): Result<List<CommunicationMethod>> {
@@ -130,5 +139,20 @@ class UserRepository(
         }
 
         return map
+    }
+
+    private fun UserResponse.toUserProfile(): UserProfile {
+        return UserProfile(
+            username = email,
+            fio = username,
+            nick = nickname,
+            photo = photo,
+            specializations = specializations,
+            city = city,
+            description = description,
+            tags = tags,
+            communicationMethod = communicationMethod,
+            nameOrNick = NameOrNick.fromValue(nameOrNick) ?: NameOrNick.NAME,
+        )
     }
 }

@@ -1,18 +1,21 @@
 package com.kednections.di.modules
 
 import com.kednections.domain.irepository.IGeoRepository
+import com.kednections.domain.irepository.IPhotoRepository
 import com.kednections.domain.irepository.ISpecializationRepository
 import com.kednections.domain.irepository.ITagRepository
 import com.kednections.domain.irepository.IUserRepository
 import com.kednections.domain.istorage.ITokenStorage
 import com.kednections.domain.istorage.IUserStorage
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
+import com.kednections.domain.usecase.photo.GetPhotoApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
 import com.kednections.domain.usecase.token.GetTokenPrefUseCase
 import com.kednections.domain.usecase.token.SaveTokenPrefUseCase
 import com.kednections.domain.usecase.user.GetCommMethodApiUseCase
 import com.kednections.domain.usecase.user.GetIsFirstRunUseCase
+import com.kednections.domain.usecase.user.GetUserApiUseCase
 import com.kednections.domain.usecase.user.IsQuestionnaireCompletedUseCase
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
 import com.kednections.domain.usecase.user.RegisterUserApiUseCase
@@ -149,13 +152,37 @@ class DomainModule {
         )
     }
 
-        @Provides
-        fun provideSaveUserDataPrefUseCase(
-            userStorage: IUserStorage
-        ): SaveUserDataPrefUseCase {
-            return SaveUserDataPrefUseCase(userStorage)
-        }
+    @Singleton
+    @Provides
+    fun provideGetUserApiUseCase(
+        userRepository: IUserRepository,
+        getTokenPrefUseCase: GetTokenPrefUseCase
+    ): GetUserApiUseCase {
+        return GetUserApiUseCase(
+            userRepository = userRepository,
+            getTokenPrefUseCase = getTokenPrefUseCase,
+        )
     }
+
+    @Singleton
+    @Provides
+    fun provideGetPhotoApiUseCase(
+        photoRepository: IPhotoRepository,
+        getTokenPrefUseCase: GetTokenPrefUseCase
+    ): GetPhotoApiUseCase {
+        return GetPhotoApiUseCase(
+            photoRepository = photoRepository,
+            getTokenPrefUseCase = getTokenPrefUseCase,
+        )
+    }
+
+    @Provides
+    fun provideSaveUserDataPrefUseCase(
+        userStorage: IUserStorage
+    ): SaveUserDataPrefUseCase {
+        return SaveUserDataPrefUseCase(userStorage)
+    }
+}
 
 
 
