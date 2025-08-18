@@ -11,13 +11,13 @@ import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
 import com.kednections.domain.usecase.token.GetTokenPrefUseCase
 import com.kednections.domain.usecase.token.SaveTokenPrefUseCase
+import com.kednections.domain.usecase.user.GetCommMethodApiUseCase
 import com.kednections.domain.usecase.user.GetIsFirstRunUseCase
 import com.kednections.domain.usecase.user.IsQuestionnaireCompletedUseCase
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
 import com.kednections.domain.usecase.user.RegisterUserApiUseCase
 import com.kednections.domain.usecase.user.SaveUserDataPrefUseCase
 import com.kednections.domain.usecase.user.SetFirstRunCompletedUseCase
-import com.kednections.view.form.nickname.NickNameViewModel
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -116,6 +116,16 @@ class DomainModule {
     ): GetCitiesApiUseCase {
         return GetCitiesApiUseCase(
             geoRepository = geoRepository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetCommMethodApiUseCase(
+        userRepository: IUserRepository,
+    ): GetCommMethodApiUseCase {
+        return GetCommMethodApiUseCase(
+            userRepository = userRepository,
         )
     }
 

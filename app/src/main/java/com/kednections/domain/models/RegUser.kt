@@ -5,7 +5,7 @@ data class RegUser(
     val password: String  = "",
     val fio: String  = "",
     val nick: String  = "",
-    val fioOrNick: String  = "",
+    val nameOrNick: NameOrNick  = NameOrNick.NAME,
     val specializations: List<Specialization> = emptyList(),
     val city: City  = City("",""),
     val description: String  = "",

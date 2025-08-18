@@ -1,5 +1,7 @@
 package com.kednections.domain.istorage
 
+import com.kednections.domain.models.NameOrNick
+
 
 interface IUserStorage {
     // Свойство для первого запуска
@@ -17,5 +19,7 @@ interface IUserStorage {
     // Методы для сохранения данных
     fun saveFio(fio: String)
     fun saveNick(nick: String)
-    fun saveFioOrNickSelection(selection: String)
+    fun saveFioOrNickSelection(selection: NameOrNick)
+
+    fun getFioOrNickSelection() : NameOrNick?
 }

@@ -3,6 +3,7 @@ package com.kednections.data.storage
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.kednections.domain.istorage.IUserStorage
+import com.kednections.domain.models.NameOrNick
 
 class UserStorage(
     private val sharedPreferences: SharedPreferences
@@ -56,10 +57,15 @@ class UserStorage(
         }
     }
 
-    override fun saveFioOrNickSelection(selection: String) {
+    override fun saveFioOrNickSelection(selection: NameOrNick) {
         sharedPreferences.edit {
-            putString(KEY_FIO_OR_NICK, selection)
+            putString(KEY_FIO_OR_NICK, selection.name)
         }
+    }
+
+    override fun getFioOrNickSelection() : NameOrNick? {
+        val name = sharedPreferences.getString(KEY_FIO_OR_NICK, null)
+        return NameOrNick.fromName(name)
     }
 }
 

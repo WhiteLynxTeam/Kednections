@@ -1,12 +1,9 @@
-package com.kednections.view.form.nickname
+package com.kednections.view.form.avatar
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.kednections.domain.models.NameOrNick
-import com.kednections.domain.usecase.user.SaveUserDataPrefUseCase
 
-class NickNameViewModel(
-    private val saveUserDataPrefUseCase: SaveUserDataPrefUseCase
+class AvatarViewModel(
     ) : ViewModel() {
 
 
@@ -15,16 +12,15 @@ class NickNameViewModel(
 //      @param nick Никнейм пользователя
 //      @param fioOrNick Выбранный вариант ("NAME" или "NICK")
 
-    fun saveUserData(fio: String, nick: String, nameOrNick: NameOrNick) {
+/*    fun saveUserData(fio: String, nick: String, nameOrNick: NameOrNick) {
         saveUserDataPrefUseCase(fio, nick, nameOrNick)
-    }
+    }*/
 
     class Factory(
-        private val saveUserDataPrefUseCase: SaveUserDataPrefUseCase
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(NickNameViewModel::class.java)) {
-                return NickNameViewModel(saveUserDataPrefUseCase) as T
+            if (modelClass.isAssignableFrom(AvatarViewModel::class.java)) {
+                return AvatarViewModel() as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

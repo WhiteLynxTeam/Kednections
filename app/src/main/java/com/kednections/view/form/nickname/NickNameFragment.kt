@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentNickNameBinding
+import com.kednections.domain.models.NameOrNick
 import com.kednections.utils.NickNameValidator
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivity
@@ -61,16 +62,16 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>() {
            // Получаем значения полей ввода
             val fio = binding.etName.text.toString()
             val nick = binding.etNick.text.toString()
-            val fioOrNick = validatorSwitcher.getSelected() ?: "NAME"
+            val nameOrNick = validatorSwitcher.getSelected() ?: NameOrNick.NAME
 
             // СОХРАНЕНИЕ ДАННЫХ: вызываем метод ViewModel для сохранения в SharedPreferences
-            viewModel.saveUserData(fio, nick, fioOrNick)
+            viewModel.saveUserData(fio, nick, nameOrNick)
 
             activityViewModel.updateData {
                 it.copy(
-                    fio = binding.etName.text.toString(),
-                    nick = binding.etNick.text.toString(),
-                    fioOrNick = validatorSwitcher.getSelected() ?: "NAME"
+                    fio = fio,
+                    nick = nick,
+                    nameOrNick = nameOrNick
                 )
             }
             // Навигация к следующему фрагменту
