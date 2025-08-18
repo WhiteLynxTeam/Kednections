@@ -16,6 +16,7 @@ class ProfileViewModel(
 ) : ViewModel() {
 
 //    val selectedImages = MutableLiveData<List<Uri>>()
+//    val isProfileTop = MutableLiveData(true)
 
     private var _photo = MutableSharedFlow<String>()
     val photo: SharedFlow<String>
