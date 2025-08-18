@@ -12,6 +12,7 @@ import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentProfileBinding
 import com.kednections.domain.models.profile.Purposes
+import com.kednections.utils.startMarquee
 import com.kednections.view.activity.MainActivity
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
@@ -57,9 +58,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 recyclerView.adapter = ShowCaseImageAdapter(imageUris)
             }
         }
-
-
-
 
         if (purposesList.size == 1) {
             binding.viewPurposes.isEnabled = false
@@ -112,6 +110,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 btnSettings.visibility = View.VISIBLE
                 btnEdit.visibility = View.GONE
                 rcViewImg.visibility = View.GONE
+                bgShowcaseNull.visibility = View.GONE
             }
         } else {
             // Клик по design showcase switcher (он в bottom состоянии)
@@ -129,6 +128,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 btnSettings.visibility = View.GONE
                 btnEdit.visibility = View.VISIBLE
                 rcViewImg.visibility = View.VISIBLE
+            }
+            if (imageUris.isEmpty()) {
+                binding.rcViewImg.visibility = View.GONE
+                binding.bgShowcaseNull.visibility = View.VISIBLE
+                binding.textHorizontalScroll.visibility = View.VISIBLE
+                startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
+            } else {
+                binding.bgShowcaseNull.visibility = View.GONE
+                binding.textHorizontalScroll.visibility = View.GONE
+                binding.rcViewImg.visibility = View.VISIBLE
             }
 
         }

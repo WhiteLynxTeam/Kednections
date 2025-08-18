@@ -305,6 +305,26 @@
                 app:layout_constraintTop_toBottomOf="@id/profile_switcher"
                 app:layout_constraintBottom_toTopOf="@id/btn_edit"/>
 
+            <FrameLayout
+                android:id="@+id/text_horizontal_scroll"
+                style="@style/tv_running_line"
+                android:rotation="5"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bg_showcase_null"
+                app:layout_constraintBottom_toBottomOf="@id/bg_showcase_null">
+
+                <TextView
+                    android:id="@+id/text_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="здесь могут висеть твои шоты"
+                    android:textColor="@color/text_description"
+                    />
+
+            </FrameLayout>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_edit"
                 style="@style/profile_buttons"
