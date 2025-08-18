@@ -13,8 +13,16 @@ class MainActivityViewModel(
     val selectedImages: StateFlow<List<Uri>>
         get() = _selectedImages.asStateFlow()
 
+    private var _isProfileTop = MutableStateFlow<Boolean>(true)
+    val isProfileTop: StateFlow<Boolean>
+        get() = _isProfileTop.asStateFlow()
+
     fun saveImages(uris: MutableList<Uri>){
         _selectedImages.value = uris
+    }
+
+    fun setIsProfileTop(flag: Boolean) {
+        _isProfileTop.value = flag
     }
 
     class Factory(

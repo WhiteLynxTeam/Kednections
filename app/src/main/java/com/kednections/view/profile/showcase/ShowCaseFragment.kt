@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -136,8 +135,8 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
             // Сохраняем выбранные изображения в ViewModel
 //            activityViewModel.selectedImages.value = imageUris.toList()
 //            profileViewModel.isProfileTop.value = false
-
             activityViewModel.saveImages(imageUris)
+            activityViewModel.setIsProfileTop(false)
 
             // Возвращаемся назад
             findNavController().popBackStack()

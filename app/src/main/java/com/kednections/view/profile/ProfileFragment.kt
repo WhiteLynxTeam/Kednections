@@ -80,6 +80,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            activityViewModel.isProfileTop.collect { isTop ->
+                isProfileTop = isTop
+                updateUI() // Обновляем UI в соответствии с новым состоянием
+            }
+        }
+
         val originalText = "Очень длинный текст который нужно обрезать"
         val maxLength = 20
         binding.tvName.text = originalText.substring(0, maxLength) + "..."
@@ -88,7 +95,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        profileViewModel.selectedImages.observe(viewLifecycleOwner) { uris ->
+/*        profileViewModel.selectedImages.observe(viewLifecycleOwner) { uris ->
             uris?.let {
                 imageUris.clear()
                 imageUris.addAll(it)
@@ -98,7 +105,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         profileViewModel.isProfileTop.observe(viewLifecycleOwner) { isTop ->
             isProfileTop = isTop
             updateUI() // Обновляем UI в соответствии с новым состоянием
-        }
+        }*/
 
         when (specializationList.size) {
             1 -> binding.tvSpecializations.text = "${ specializationList[0] }"
