@@ -15,7 +15,6 @@ import com.kednections.utils.NickNameValidator
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.FormActivityViewModel
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 class NickNameFragment : BaseFragment<FragmentNickNameBinding>() {
@@ -63,16 +62,16 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>() {
            // Получаем значения полей ввода
             val fio = binding.etName.text.toString()
             val nick = binding.etNick.text.toString()
-            val fioOrNick = validatorSwitcher.getSelected() ?: "NAME"
+            val nameOrNick = validatorSwitcher.getSelected() ?: NameOrNick.NAME
 
             // СОХРАНЕНИЕ ДАННЫХ: вызываем метод ViewModel для сохранения в SharedPreferences
-            viewModel.saveUserData(fio, nick, fioOrNick)
+            viewModel.saveUserData(fio, nick, nameOrNick)
 
             activityViewModel.updateData {
                 it.copy(
-                    fio = binding.etName.text.toString(),
-                    nick = binding.etNick.text.toString(),
-                    nameOrNick = validatorSwitcher.getSelected() ?: NameOrNick.NAME
+                    fio = fio,
+                    nick = nick,
+                    nameOrNick = nameOrNick
                 )
             }
             // Навигация к следующему фрагменту

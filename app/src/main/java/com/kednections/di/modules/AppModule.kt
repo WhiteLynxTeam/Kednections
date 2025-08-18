@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
+import com.kednections.domain.usecase.user.GetCommMethodApiUseCase
 import com.kednections.domain.usecase.user.GetCurrentUserUseCase
 import com.kednections.domain.usecase.user.GetIsFirstRunUseCase
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
@@ -15,6 +16,7 @@ import com.kednections.domain.usecase.user.SetFirstRunCompletedUseCase
 import com.kednections.view.activity.FormActivityViewModel
 import com.kednections.view.auth.AuthViewModel
 import com.kednections.view.form.about.AboutViewModel
+import com.kednections.view.form.avatar.AvatarViewModel
 import com.kednections.view.form.choose_communicate.ChooseCommunicateViewModel
 import com.kednections.view.form.geolocation.GeolocationViewModel
 import com.kednections.view.form.nickname.NickNameViewModel
@@ -93,7 +95,14 @@ class AppModule() {
 
     @Provides
     fun provideChooseCommunicateViewModelFactory(
+        getCommMethodApiUseCase: GetCommMethodApiUseCase,
     ) = ChooseCommunicateViewModel.Factory(
+        getCommMethodApiUseCase = getCommMethodApiUseCase,
+    )
+
+    @Provides
+    fun provideAvatarViewModelFactory(
+    ) = AvatarViewModel.Factory(
     )
 
     @Provides

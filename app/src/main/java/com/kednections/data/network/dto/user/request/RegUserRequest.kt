@@ -1,6 +1,7 @@
 package com.kednections.data.network.dto.user.request
 
 import com.google.gson.annotations.SerializedName
+import com.kednections.domain.models.NameOrNick
 
 data class RegUserRequest(
     val email: String,
@@ -8,7 +9,7 @@ data class RegUserRequest(
     val password: String,
     val description: String,
     @SerializedName("name_display")
-    val nameDisplay: String,
+    val nameDisplay: NameOrNick,
     val city: String,
     val tags: List<String>,
     @SerializedName("communication_method")

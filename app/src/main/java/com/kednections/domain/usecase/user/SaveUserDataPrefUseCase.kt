@@ -1,6 +1,7 @@
 package com.kednections.domain.usecase.user
 
 import com.kednections.domain.istorage.IUserStorage
+import com.kednections.domain.models.NameOrNick
 
 
 //  UseCase для сохранения данных пользователя в SharedPreferences.
@@ -9,10 +10,10 @@ import com.kednections.domain.istorage.IUserStorage
 class SaveUserDataPrefUseCase(
     private val userStorage: IUserStorage
 ) {
-    operator fun invoke(fio: String, nick: String, fioOrNick: String) {
+    operator fun invoke(fio: String, nick: String, nameOrNick: NameOrNick) {
         // Сохраняем данные через существующий интерфейс
         userStorage.saveFio(fio)
         userStorage.saveNick(nick)
-        userStorage.saveFioOrNickSelection(fioOrNick)
+        userStorage.saveFioOrNickSelection(nameOrNick)
     }
 }
