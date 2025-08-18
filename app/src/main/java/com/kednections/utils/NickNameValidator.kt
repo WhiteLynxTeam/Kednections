@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.kednections.R
+import com.kednections.domain.models.NameOrNick
 
 class NickNameValidator(
     private val field1: EditText, // имя
@@ -25,8 +26,7 @@ class NickNameValidator(
     private val image2SelectedTop: Int,
     private val image2SelectedBottom: Int
 ) {
-    private enum class SelectedField { NAME, NICK }
-    private var selectedField: SelectedField? = null
+    private var selectedField: NameOrNick? = null
 
     fun attach() {
         field1.addTextChangedListener(watcher)
@@ -35,9 +35,8 @@ class NickNameValidator(
         setupClickListeners()
     }
 
-    //*** [yellow] сделать нормально вынести enum в модели
-    fun getSelected(): String? {
-        return selectedField?.name
+    fun getSelected(): NameOrNick? {
+        return selectedField
     }
 
     private val watcher = object : TextWatcher {
@@ -53,19 +52,19 @@ class NickNameValidator(
         // Автовыбор топового поля, если ещё ничего не выбрано
         if (selectedField == null) {
             selectedField = when {
-                isNameValid -> SelectedField.NAME
-                isNickValid -> SelectedField.NICK
+                isNameValid -> NameOrNick.NAME
+                isNickValid -> NameOrNick.NICK
                 else -> null
             }
         }
 
         // Если выбранное поле стало невалидным — сбрасываем
-        if ((selectedField == SelectedField.NAME && !isNameValid) ||
-            (selectedField == SelectedField.NICK && !isNickValid)
+        if ((selectedField == NameOrNick.NAME && !isNameValid) ||
+            (selectedField == NameOrNick.NICK && !isNickValid)
         ) {
             selectedField = when {
-                isNameValid -> SelectedField.NAME
-                isNickValid -> SelectedField.NICK
+                isNameValid -> NameOrNick.NAME
+                isNickValid -> NameOrNick.NICK
                 else -> null
             }
         }
@@ -80,14 +79,14 @@ class NickNameValidator(
         )
 
         when (selectedField) {
-            SelectedField.NAME -> {
+            NameOrNick.NAME -> {
                 image1.setImageResource(image1SelectedTop)
                 image2.setImageResource(
                     if (isNickValid) image2SelectedBottom else image2Bottom
                 )
             }
 
-            SelectedField.NICK -> {
+            NameOrNick.NICK -> {
                 image2.setImageResource(image2SelectedTop)
                 image1.setImageResource(
                     if (isNameValid) image1SelectedBottom else image1Bottom
@@ -108,14 +107,14 @@ class NickNameValidator(
     private fun setupClickListeners() {
         image1.setOnClickListener {
             if ((field1.text?.length ?: 0) >= length1) {
-                selectedField = SelectedField.NAME
+                selectedField = NameOrNick.NAME
                 updateVisualStates()
             }
         }
 
         image2.setOnClickListener {
             if ((field2.text?.length ?: 0) >= length2) {
-                selectedField = SelectedField.NICK
+                selectedField = NameOrNick.NICK
                 updateVisualStates()
             }
         }

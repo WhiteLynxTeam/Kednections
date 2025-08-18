@@ -10,11 +10,13 @@ import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentChooseCommunicateBinding
+import com.kednections.domain.models.Communication
 import com.kednections.view.activity.FormActivityViewModel
 import javax.inject.Inject
 
 
 class ChooseCommunicateFragment : BaseFragment<FragmentChooseCommunicateBinding>() {
+    //[yellow] Переделать чекбоксы, чтобы можно было определить что нажимается для отправки на сервер
     private val activityViewModel: FormActivityViewModel by activityViewModels()
     private lateinit var viewModel: ChooseCommunicateViewModel
 
@@ -38,31 +40,45 @@ class ChooseCommunicateFragment : BaseFragment<FragmentChooseCommunicateBinding>
                 checkbox = binding.checkboxOnline,
                 imageView = binding.ivOnline,
                 selectedIcon = R.drawable.ic_online_selected,
-                unselectedIcon = R.drawable.ic_online
+                unselectedIcon = R.drawable.ic_online,
+                name = "online",
             ),
             RadioButtonItem(
                 view = binding.viewOffline,
                 checkbox = binding.checkboxOffline,
                 imageView = binding.ivOffline,
                 selectedIcon = R.drawable.ic_offline_selected,
-                unselectedIcon = R.drawable.ic_offline
+                unselectedIcon = R.drawable.ic_offline,
+                name = "offline",
             )
         )
 
         // Устанавливаем слушатели
         items.forEach { item ->
             item.checkbox.setOnCheckedChangeListener { _, isChecked ->
+                //[yellow] самый простой тупой вариант, переделать
+                if (isChecked) {
+                    if (item.name == "online") {
+                        Communication.ONLINE.isCheck = true
+                        Communication.OFFLINE.isCheck = false
+                    } else if (item.name == "offline") {
+                        Communication.ONLINE.isCheck = false
+                        Communication.OFFLINE.isCheck = true
+                    } else {
+                        Communication.ONLINE.isCheck = false
+                        Communication.OFFLINE.isCheck = false
+                    }
+                }
                 handleSingleSelection(items, item, isChecked)
             }
         }
 
         binding.btnResume.setOnClickListener {
-            activityViewModel.updateData {
-                it.copy(
-                    //[red] заглушка для проверки регистрации - передаем uuid коммуникации
-                    // на сервере нет ручки для получения способов коммуницирования
-                    communicationMethod = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-                )
+            val uuid = Communication.getCheckedUuid()
+            if (uuid != null) {
+                activityViewModel.updateData {
+                    it.copy(communicationMethod = uuid)
+                }
             }
             findNavController().navigate(R.id.action_chooseCommunicateFragment_to_aboutFragment)
             activityViewModel.increaseProgress()
@@ -114,6 +130,9 @@ class ChooseCommunicateFragment : BaseFragment<FragmentChooseCommunicateBinding>
         val checkbox: android.widget.RadioButton,
         val imageView: android.widget.ImageView,
         val selectedIcon: Int,
-        val unselectedIcon: Int
+        val unselectedIcon: Int,
+        //[yellow] тупо по быстрому вставим название кнопки, чтобы знать какая нажата
+        //потом подправим
+        val name: String,
     )
 }
