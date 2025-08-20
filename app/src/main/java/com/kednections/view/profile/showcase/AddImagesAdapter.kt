@@ -13,7 +13,8 @@ class AddImagesAdapter(
     private val items: MutableList<Uri>,
     private val itemWidth: Int,
     private val itemHeight: Int,
-    private val onAddClick: () -> Unit
+    private val onAddClick: () -> Unit,
+    private val onEditClick: (Uri, Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -83,6 +84,9 @@ class AddImagesAdapter(
                         .centerCrop()
                         .into(holder.binding.imgItem)
                     holder.binding.tvMain.visibility = if (position == 0) View.VISIBLE else View.GONE
+                    holder.binding.cvEdit.setOnClickListener {
+                        onEditClick(items[position], position)
+                    }
                 }
             }
         }

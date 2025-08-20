@@ -253,7 +253,7 @@ class ScreenSaverFragment : BaseFragment<FragmentScreenSaverBinding>() {
         }
 
         (activity as MainActivity).setUIVisibility(
-            showHeader = false
+            showBottom = false
         )
 
     }

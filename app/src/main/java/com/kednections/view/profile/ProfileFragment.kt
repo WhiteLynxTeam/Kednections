@@ -1,10 +1,12 @@
 package com.kednections.view.profile
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +20,7 @@ import com.kednections.utils.decodeStringToBitmap
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.MainActivity
 import com.kednections.view.activity.MainActivityViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,6 +30,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private lateinit var profileViewModel: ProfileViewModel
     private val imageUris = mutableListOf<Uri>()
     private var isProfileTop = true
+//    private val pickPhotoLauncher =
+//        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+//            uri?.let {
+//                try {
+//                    requireContext().contentResolver.takePersistableUriPermission(
+//                        it, Intent.FLAG_GRANT_READ_URI_PERMISSION
+//                    )
+//
+//                } catch (_: SecurityException) {  }
+//            }
+//        }
 
     val specializationList = listOf(
         "UX/UI-дизайнер",
@@ -39,14 +53,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         Purposes(R.drawable.ic_romance_selected, "ищу романтику"),
         Purposes(R.drawable.ic_company_selected, "ищу компанию")
     )
-
-//    private val imageList = listOf(
-//        R.drawable.image,
-//        R.drawable.image_2,
-//        R.drawable.image,
-//        R.drawable.image_2,
-//        R.drawable.image
-//    )
 
     @Inject
     lateinit var vmFactory: ProfileViewModel.Factory
@@ -95,18 +101,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-/*        profileViewModel.selectedImages.observe(viewLifecycleOwner) { uris ->
-            uris?.let {
-                imageUris.clear()
-                imageUris.addAll(it)
-                recyclerView.adapter = ShowCaseImageAdapter(imageUris)
-            }
-        }
-        profileViewModel.isProfileTop.observe(viewLifecycleOwner) { isTop ->
-            isProfileTop = isTop
-            updateUI() // Обновляем UI в соответствии с новым состоянием
-        }*/
-
         when (specializationList.size) {
             1 -> binding.tvSpecializations.text = "${ specializationList[0] }"
             2 -> binding.tvSpecializations.text = "${specializationList[0]} \u25CF ${specializationList[1]}"
@@ -121,28 +115,91 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             binding.viewPurposes.isEnabled = true
         }
 
-        binding.viewPurposes.setOnClickListener {
-            val dialog = PurposeDialog.newInstance(purposesList)
-            dialog.show(parentFragmentManager, "PurposesDialog")
-        }
+        with(binding) {
+            viewPurposes.setOnClickListener {
+                lifecycleScope.launch {
+                    binding.viewPurposes.setBackgroundResource(R.drawable.bg_my_purposes_pressed)
+                    delay(200)
+                    val dialog = PurposeDialog.newInstance(purposesList)
+                    dialog.show(parentFragmentManager, "PurposesDialog")
+                    binding.viewPurposes.setBackgroundResource(R.drawable.bg_my_purposes)
+                }
 
-        binding.profileSwitcher.setOnClickListener {
-            if (!isProfileTop) {
-                toggleSwitcher()
             }
-        }
 
-        binding.designShowcaseSwitcher.setOnClickListener {
-            if (isProfileTop) {
-                toggleSwitcher()
+            profileSwitcher.setOnClickListener {
+                if (!isProfileTop) {
+                    toggleSwitcher()
+                }
             }
+
+            designShowcaseSwitcher.setOnClickListener {
+                if (isProfileTop) {
+                    toggleSwitcher()
+                }
+            }
+
+            btnEdit.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_showCaseFragment)
+            }
+
+            imgAvatar.setOnClickListener {
+                viewPopUpAvatar.visibility = View.VISIBLE
+                overlay.visibility = View.VISIBLE
+                overlayHeader.visibility = View.VISIBLE
+
+                overlay.setOnClickListener {
+                    viewPopUpAvatar.visibility = View.GONE
+                    overlay.visibility = View.GONE
+                    overlayHeader.visibility = View.GONE
+                }
+                overlayHeader.setOnClickListener {
+                    viewPopUpAvatar.visibility = View.GONE
+                    overlay.visibility = View.GONE
+                    overlayHeader.visibility = View.GONE
+                }
+            }
+
+            chooseAvatar.setOnClickListener {
+                lifecycleScope.launch {
+                    delay(300)
+                    viewPopUpAvatar.visibility = View.GONE
+                    overlay.visibility = View.GONE
+                    overlayHeader.visibility = View.GONE
+                }
+            }
+
+            uploadPhoto.setOnClickListener {
+                //pickPhotoLauncher.launch("image/*")
+                lifecycleScope.launch {
+                    delay(300)
+                    viewPopUpAvatar.visibility = View.GONE
+                    overlay.visibility = View.GONE
+                    overlayHeader.visibility = View.GONE
+                }
+            }
+
+            uploadPhoto.setOnClickListener {
+                lifecycleScope.launch {
+                    delay(300)
+                    viewPopUpAvatar.visibility = View.GONE
+                    overlay.visibility = View.GONE
+                    overlayHeader.visibility = View.GONE
+                }
+            }
+
+            takePhoto.setOnClickListener {
+                lifecycleScope.launch {
+                    delay(300)
+                    viewPopUpAvatar.visibility = View.GONE
+                    overlay.visibility = View.GONE
+                    overlayHeader.visibility = View.GONE
+                }
+            }
+
         }
 
-        binding.btnEdit.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_showCaseFragment)
-        }
-
-        (activity as MainActivity).setUIVisibility(showHeader = true)
+        (activity as MainActivity).setUIVisibility(showBottom = true)
 
         profileViewModel.getUser()
 

@@ -81,8 +81,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setUIVisibility(showHeader: Boolean) {
-        binding.bottomNavigation.visibility = if (showHeader) View.VISIBLE else View.GONE
+    fun setUIVisibility(showBottom: Boolean) {
+        binding.bottomNavigation.visibility = if (showBottom) View.VISIBLE else View.GONE
     }
 
     private fun updateBottomNavColors(

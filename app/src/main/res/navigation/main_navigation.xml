@@ -51,6 +51,22 @@
         android:id="@+id/showCaseFragment"
         android:name="com.kednections.view.profile.showcase.ShowCaseFragment"
         android:label="fragment_show_case"
-        tools:layout="@layout/fragment_show_case" />
+        tools:layout="@layout/fragment_show_case" >
+        <action
+            android:id="@+id/action_showCaseFragment_to_editingImageFragment"
+            app:destination="@id/editingImageFragment" />
+        <action
+            android:id="@+id/action_showCaseFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editingImageFragment"
+        android:name="com.kednections.view.profile.editing_image.EditingImageFragment"
+        android:label="fragment_editing_image"
+        tools:layout="@layout/fragment_editing_image" >
+        <action
+            android:id="@+id/action_editingImageFragment_to_showCaseFragment"
+            app:destination="@id/showCaseFragment" />
+    </fragment>
 
 </navigation>
