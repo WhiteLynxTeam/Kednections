@@ -132,9 +132,7 @@ class FilterFeedFragment : BaseFragment<FragmentFilterFeedBinding>() {
             findNavController().navigate(R.id.action_filterFeedFragment_to_screenSaverFragment)
         }
 
-        (activity as MainActivity).setUIVisibility(
-            showHeader = true
-        )
+        (activity as MainActivity).setUIVisibility(showBottom = true)
 
         binding.btnReset.setOnClickListener {
             resetAllFilters()

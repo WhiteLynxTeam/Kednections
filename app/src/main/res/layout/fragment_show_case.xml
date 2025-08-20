@@ -149,7 +149,6 @@
         style="@style/btn_resume_style"
         android:layout_margin="20dp"
         android:text="опубликовать"
-        app:layout_constraintWidth_percent="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
