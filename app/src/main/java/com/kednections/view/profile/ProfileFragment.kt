@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentProfileBinding
+import com.kednections.domain.models.Ava
 import com.kednections.domain.models.profile.Purposes
 import com.kednections.utils.decodeStringToBitmap
 import com.kednections.utils.startMarquee
@@ -69,9 +70,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             ViewModelProvider(this, vmFactory)[ProfileViewModel::class.java]
 
         viewLifecycleOwner.lifecycleScope.launch {
-            profileViewModel.photo.collect {
-                println("ProfileFragment photo=$it")
-                binding.imgAvatar.setImageBitmap(decodeStringToBitmap(it))
+            profileViewModel.icon.collect { icon ->
+                if (icon.first != null) {
+                    binding.imgAvatar.setImageBitmap(decodeStringToBitmap(icon.first))
+                } else {
+                    binding.imgAvatar.setImageResource(Ava.fromName(icon.second).imgResSelected)
+                }
             }
         }
 
