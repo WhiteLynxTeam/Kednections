@@ -140,6 +140,7 @@ class FeedAdapter(
                 holder.scope.launch {
                     delay(300)
                     viewPopUp.visibility = View.GONE
+                    overlay.visibility = View.GONE
                     //delay(1700)
                     //tvWriteClick.visibility = View.GONE
                 }
@@ -157,6 +158,8 @@ class FeedAdapter(
 //                    tvSubscribe.text = "подписаться"
 //                    tvSubscribeDone.text = "отписка done"
 //                }
+
+                overlay.visibility = View.GONE
 
                 holder.scope.launch {
                     tvSubscribeDone.visibility = View.VISIBLE

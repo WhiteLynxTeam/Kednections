@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.profile.editing_image.EditingImageFragment">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_arrow_left"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/specialization_scroll"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/img_main"
+                android:layout_width="0dp"
+                android:layout_height="436dp"
+                android:elevation="2dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintWidth_percent="0.911"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_image"
+                android:layout_width="0dp"
+                android:layout_height="84dp"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:overScrollMode="never"
+                app:layout_constraintStart_toStartOf="@id/img_main"
+                app:layout_constraintTop_toBottomOf="@id/img_main"
+                app:layout_constraintEnd_toEndOf="@id/img_main"
+                tools:listitem="@layout/item_editing_image"/>
+
+            <EditText
+                android:id="@+id/et_comment"
+                android:layout_width="0dp"
+                android:layout_height="68dp"
+                android:layout_marginTop="24dp"
+                android:hint="коммент или указание авторства"
+                android:background="@drawable/bg_auth_input"
+                android:gravity="start|top"
+                android:padding="8dp"
+                android:maxLength="80"
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                android:fontFamily="@font/raleway_medium"
+                android:textColor="@color/text_description"
+                android:textColorHint="@color/color_4"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/img_main"
+                app:layout_constraintTop_toBottomOf="@id/rc_image"
+                app:layout_constraintEnd_toEndOf="@id/img_main"/>
+
+            <TextView
+                android:id="@+id/tv_char_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="0/80"
+                android:textColor="@color/color_4"
+                app:layout_constraintTop_toBottomOf="@id/et_comment"
+                app:layout_constraintEnd_toEndOf="@id/et_comment" />
+
+            <LinearLayout
+                android:id="@+id/change"
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="@id/img_main"
+                app:layout_constraintTop_toBottomOf="@id/tv_char_count"
+                app:layout_constraintEnd_toEndOf="@id/img_main"
+                android:stateListAnimator="@animator/anim_btn_motion">
+
+                <ImageView
+                    android:id="@+id/ic_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_change_img"/>
+
+                <TextView
+                    android:id="@+id/tv_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/color_2"
+                    android:text="заменить"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/delete"
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_height="32dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="36dp"
+                app:layout_constraintStart_toStartOf="@id/img_main"
+                app:layout_constraintTop_toBottomOf="@id/change"
+                app:layout_constraintEnd_toEndOf="@id/img_main"
+                app:layout_constraintBottom_toTopOf="@id/btn_save"
+                android:stateListAnimator="@animator/anim_btn_motion">
+
+                <ImageView
+                    android:id="@+id/ic_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_delete_img"/>
+
+                <TextView
+                    android:id="@+id/tv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="18dp"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/color_2"
+                    android:text="удалить"/>
+
+            </LinearLayout>
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_save"
+                style="@style/profile_buttons"
+                android:includeFontPadding="false"
+                android:textAllCaps="false"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/btn_resume_background"
+                android:text="сохранить"
+                app:layout_constraintStart_toStartOf="@id/img_main"
+                app:layout_constraintEnd_toEndOf="@id/img_main"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

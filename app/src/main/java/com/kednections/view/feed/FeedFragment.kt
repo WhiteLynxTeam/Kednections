@@ -176,9 +176,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
             )
         }
 
-        (activity as MainActivity).setUIVisibility(
-            showHeader = true
-        )
+        (activity as MainActivity).setUIVisibility(showBottom = true)
     }
 
 }

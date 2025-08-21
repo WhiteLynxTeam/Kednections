@@ -9,17 +9,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentShowCaseBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.MainActivity
 import com.kednections.view.activity.MainActivityViewModel
+import com.kednections.view.profile.ShowCaseImageAdapter
 import com.kednections.view.profile.showcase.AddImagesAdapter.Companion.MAX_ITEMS
+import kotlinx.coroutines.launch
 import java.util.Collections
 
 class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
@@ -58,20 +62,6 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
         }
     }
 
-//    private val galleryLauncher = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) { result ->
-//        result.data?.data?.let { uri ->
-//            if (imageUris.size < MAX_ITEMS) {
-//                imageUris.add(uri)
-//                adapter.notifyItemInserted(imageUris.size - 1)
-//                // Обновляем кнопку добавления
-//                adapter.notifyItemChanged(imageUris.size)
-//                binding.btnPublish.isEnabled = imageUris.isNotEmpty()
-//            }
-//        }
-//    }
-
     override fun inflaterViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -84,14 +74,24 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 4500L)
         startMarquee(binding.textDescription2, binding.textHorizontalScroll2, speed = 5500L)
 
-        (activity as MainActivity).setUIVisibility(showHeader = false)
+        (activity as MainActivity).setUIVisibility(showBottom = false)
 
         // Рассчитываем размеры элементов
         val displayMetrics = resources.displayMetrics
         itemWidth = (displayMetrics.widthPixels * 0.278).toInt()
         itemHeight = (displayMetrics.heightPixels * 0.137).toInt()
 
-        setupRecyclerView()
+        viewLifecycleOwner.lifecycleScope.launch {
+            activityViewModel.selectedImages.collect { uris ->
+                uris.let {
+                    imageUris.clear()
+                    imageUris.addAll(it)
+                    setupRecyclerView()
+                }
+
+            }
+        }
+
         binding.btnPublish.isEnabled = imageUris.isNotEmpty()
 
         val callback = object : ItemTouchHelper.SimpleCallback(
@@ -133,15 +133,12 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
 
         binding.btnPublish.setOnClickListener {
             // Сохраняем выбранные изображения в ViewModel
-//            activityViewModel.selectedImages.value = imageUris.toList()
-//            profileViewModel.isProfileTop.value = false
             activityViewModel.saveImages(imageUris)
             activityViewModel.setIsProfileTop(false)
 
             // Возвращаемся назад
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_showCaseFragment_to_profileFragment)
         }
-
 
     }
 
@@ -150,7 +147,11 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
             items = imageUris,
             itemWidth = itemWidth,
             itemHeight = itemHeight,
-            onAddClick = { openGallery() }
+            onAddClick = { openGallery() },
+            onEditClick = { uri, position ->
+                activityViewModel.saveImages(imageUris, position)
+                findNavController().navigate(R.id.action_showCaseFragment_to_editingImageFragment)
+            }
         )
 
         binding.rcImage.apply {
@@ -176,16 +177,6 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
         }
         galleryLauncher.launch(intent)
     }
-
-//    private fun openGallery() {
-//        if (imageUris.size >= 6) return
-//
-//        val intent =
-//            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
-//                type = "image/*"
-//            }
-//        galleryLauncher.launch(intent)
-//    }
 
     private fun Int.dpToPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
 
