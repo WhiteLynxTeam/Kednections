@@ -13,4 +13,5 @@ data class UserProfile(
     val tags: List<String>? = emptyList(),
     val communicationMethod: String? = "",
     val nameOrNick: NameOrNick,
+    val status: String? = null,
 )

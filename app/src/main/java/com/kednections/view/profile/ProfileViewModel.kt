@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.kednections.domain.usecase.photo.GetPhotoApiUseCase
 import com.kednections.domain.usecase.user.GetUserApiUseCase
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
@@ -18,21 +18,24 @@ class ProfileViewModel(
 //    val selectedImages = MutableLiveData<List<Uri>>()
 //    val isProfileTop = MutableLiveData(true)
 
-    private var _photo = MutableSharedFlow<String>()
-    val photo: SharedFlow<String>
-        get() = _photo.asSharedFlow()
+    private var _icon = MutableStateFlow<Pair<String?,String?>>(Pair(null, null))
+    val icon: StateFlow<Pair<String?,String?>>
+        get() = _icon.asStateFlow()
 
     fun getUser() {
         viewModelScope.launch {
             val user = getUserApiUseCase()
             if (user != null) {
                 val photo = user.photo?.let { getPhotoApiUseCase(it) }
+                val status = user.status
                 println("ProfileViewModel photo = ${photo == null} ")
                 if (photo != null) {
 
                     println("ProfileViewModel photo != null ")
 
-                    _photo.emit(photo)
+                    _icon.emit(Pair(photo, null))
+                } else {
+                    _icon.emit(Pair(null, status))
                 }
             }
         }

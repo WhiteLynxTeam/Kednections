@@ -2,15 +2,16 @@ package com.kednections.data.network.api
 
 import com.kednections.data.network.dto.token.response.AuthTokenResponse
 import com.kednections.data.network.dto.user.request.LoginUserRequest
-import com.kednections.data.network.dto.user.request.RegUserRequest
 import com.kednections.data.network.dto.user.response.UserCommunicationMethodResponse
 import com.kednections.data.network.dto.user.response.UserResponse
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.PartMap
 
 interface UserApi {
@@ -19,10 +20,10 @@ interface UserApi {
         @Body loginUserRequest: LoginUserRequest
     ): Result<AuthTokenResponse>
 
-    @POST("/auth/register")
+/*    @POST("/auth/v2/register")
     suspend fun register(
         @Body regUserRequest: RegUserRequest
-    ): Result<AuthTokenResponse>
+    ): Result<AuthTokenResponse>*/
 
     @GET("/user/")
     suspend fun getUser(
@@ -33,8 +34,10 @@ interface UserApi {
     suspend fun getCommunicationMethod(): Result<List<UserCommunicationMethodResponse>>
 
     @Multipart
-    @POST("/auth/register")
+    @POST("/auth/v2/register")
     suspend fun register(
-        @PartMap parts: Map<String, @JvmSuppressWildcards RequestBody>,
+        @PartMap partMap: Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part partTags: List<MultipartBody.Part>,
+        @Part partsSpecialization: List<MultipartBody.Part>
     ): Result<AuthTokenResponse>
 }

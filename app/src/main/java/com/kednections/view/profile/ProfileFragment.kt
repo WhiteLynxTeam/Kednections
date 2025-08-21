@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentProfileBinding
+import com.kednections.domain.models.Ava
 import com.kednections.domain.models.profile.Purposes
 import com.kednections.utils.decodeStringToBitmap
 import com.kednections.utils.startMarquee
@@ -63,9 +64,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             ViewModelProvider(this, vmFactory)[ProfileViewModel::class.java]
 
         viewLifecycleOwner.lifecycleScope.launch {
-            profileViewModel.photo.collect {
-                println("ProfileFragment photo=$it")
-                binding.imgAvatar.setImageBitmap(decodeStringToBitmap(it))
+            profileViewModel.icon.collect { icon ->
+                if (icon.first != null) {
+                    binding.imgAvatar.setImageBitmap(decodeStringToBitmap(icon.first))
+                } else {
+                    binding.imgAvatar.setImageResource(Ava.fromName(icon.second).imgResSelected)
+                }
             }
         }
 
@@ -95,22 +99,25 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-/*        profileViewModel.selectedImages.observe(viewLifecycleOwner) { uris ->
-            uris?.let {
-                imageUris.clear()
-                imageUris.addAll(it)
-                recyclerView.adapter = ShowCaseImageAdapter(imageUris)
-            }
-        }
-        profileViewModel.isProfileTop.observe(viewLifecycleOwner) { isTop ->
-            isProfileTop = isTop
-            updateUI() // Обновляем UI в соответствии с новым состоянием
-        }*/
+        /*        profileViewModel.selectedImages.observe(viewLifecycleOwner) { uris ->
+                    uris?.let {
+                        imageUris.clear()
+                        imageUris.addAll(it)
+                        recyclerView.adapter = ShowCaseImageAdapter(imageUris)
+                    }
+                }
+                profileViewModel.isProfileTop.observe(viewLifecycleOwner) { isTop ->
+                    isProfileTop = isTop
+                    updateUI() // Обновляем UI в соответствии с новым состоянием
+                }*/
 
         when (specializationList.size) {
-            1 -> binding.tvSpecializations.text = "${ specializationList[0] }"
-            2 -> binding.tvSpecializations.text = "${specializationList[0]} \u25CF ${specializationList[1]}"
-            3 -> binding.tvSpecializations.text = "${specializationList[0]} \u25CF ${specializationList[1]}\n${specializationList[2]}"
+            1 -> binding.tvSpecializations.text = "${specializationList[0]}"
+            2 -> binding.tvSpecializations.text =
+                "${specializationList[0]} \u25CF ${specializationList[1]}"
+
+            3 -> binding.tvSpecializations.text =
+                "${specializationList[0]} \u25CF ${specializationList[1]}\n${specializationList[2]}"
         }
 
         if (purposesList.size == 1) {
