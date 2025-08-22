@@ -161,11 +161,10 @@
 
             </LinearLayout>
 
-
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_save"
                 style="@style/profile_buttons"
+                android:layout_height="48dp"
                 android:includeFontPadding="false"
                 android:textAllCaps="false"
                 android:layout_marginBottom="18dp"

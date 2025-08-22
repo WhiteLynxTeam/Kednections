@@ -28,7 +28,12 @@
         android:id="@+id/communicationFragment"
         android:name="com.kednections.view.communication.CommunicationFragment"
         android:label="fragment_communication"
-        tools:layout="@layout/fragment_communication" />
+        tools:layout="@layout/fragment_communication" >
+        <action
+            android:id="@+id/action_communicationFragment_to_singleChatFragment"
+            app:destination="@id/singleChatFragment"
+            />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.kednections.view.profile.ProfileFragment"
@@ -37,6 +42,9 @@
         <action
             android:id="@+id/action_profileFragment_to_showCaseFragment"
             app:destination="@id/showCaseFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_choosingAvatarFragment"
+            app:destination="@id/choosingAvatarFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFeedFragment"
@@ -68,5 +76,19 @@
             android:id="@+id/action_editingImageFragment_to_showCaseFragment"
             app:destination="@id/showCaseFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/choosingAvatarFragment"
+        android:name="com.kednections.view.profile.choosing_avatar.ChoosingAvatarFragment"
+        android:label="fragment_choosing_avatar"
+        tools:layout="@layout/fragment_choosing_avatar" >
+        <action
+            android:id="@+id/action_choosingAvatarFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleChatFragment"
+        android:name="com.kednections.view.communication.single_chat.SingleChatFragment"
+        android:label="fragment_single_chat"
+        tools:layout="@layout/fragment_single_chat" />
 
 </navigation>

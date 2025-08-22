@@ -4,22 +4,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.form.avatar.AvatarFragment">
+    tools:context=".view.profile.choosing_avatar.ChoosingAvatarFragment">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.088"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_arrow_left"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_image_margin_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.021" />
-
+        app:layout_constraintGuide_percent="0.102" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_title_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.051" />
+        app:layout_constraintGuide_percent="0.135" />
 
     <ImageView
         android:id="@+id/img_logo"
@@ -44,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.115" />
+        app:layout_constraintGuide_percent="0.2" />
 
     <FrameLayout
         android:id="@+id/text_horizontal_scroll"
@@ -58,11 +82,18 @@
             android:id="@+id/text_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_description_for_avatar_fragment"
+            android:text="выбери свой drip"
             android:textColor="@color/text_description"
             />
 
     </FrameLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_flow_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.304" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow_specializations"
@@ -70,42 +101,31 @@
         android:layout_height="0dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintWidth_percent="0.911"
-        app:constraint_referenced_ids="add_ava,ava_1,ava_2,ava_3,ava_4,ava_5,ava_6,ava_7,ava_8"
+        app:layout_constraintHeight_percent="0.451"
+        app:constraint_referenced_ids="ava_9,ava_1,ava_2,ava_3,ava_4,ava_5,ava_6,ava_7,ava_8"
         app:flow_wrapMode="chain"
         app:flow_horizontalStyle="spread_inside"
         app:flow_verticalGap="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_logo"
-        app:layout_constraintBottom_toTopOf="@id/btn_resume"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/guideline_flow_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_save"/>
 
-    <FrameLayout
-        android:id="@+id/add_ava"
+    <ImageView
+        android:id="@+id/ava_9"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:src="@drawable/img_ava_9"
         android:minHeight="100dp"
-        app:layout_constraintHeight_percent="0.151"
-        app:layout_constraintWidth_percent="0.278">
-        <ImageView
-            android:id="@+id/border"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/img_bg_add_avatar"
-            app:layout_constraintWidth_percent="0.28"/>
-        <ImageView
-            android:id="@+id/add"
-            android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_add_24"/>
-    </FrameLayout>
+        app:layout_constraintHeight_percent="0.137"
+        app:layout_constraintWidth_percent="0.278"/>
 
     <ImageView
         android:id="@+id/ava_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:minHeight="100dp"
-        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintHeight_percent="0.137"
         app:layout_constraintWidth_percent="0.278"
         android:src="@drawable/img_ava_1"
         />
@@ -115,7 +135,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:minHeight="100dp"
-        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintHeight_percent="0.137"
         app:layout_constraintWidth_percent="0.278"
         android:src="@drawable/img_ava_2"/>
 
@@ -124,7 +144,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:minHeight="100dp"
-        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintHeight_percent="0.137"
         app:layout_constraintWidth_percent="0.278"
         android:src="@drawable/img_ava_3"/>
 
@@ -133,7 +153,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:minHeight="100dp"
-        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintHeight_percent="0.137"
         app:layout_constraintWidth_percent="0.278"
         android:src="@drawable/img_ava_4"/>
 
@@ -142,7 +162,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:minHeight="100dp"
-        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintHeight_percent="0.137"
         app:layout_constraintWidth_percent="0.278"
         android:src="@drawable/img_ava_5"/>
 
@@ -151,7 +171,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:minHeight="100dp"
-        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintHeight_percent="0.137"
         app:layout_constraintWidth_percent="0.278"
         android:src="@drawable/img_ava_6"/>
 
@@ -160,7 +180,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:minHeight="100dp"
-        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintHeight_percent="0.137"
         app:layout_constraintWidth_percent="0.278"
         android:src="@drawable/img_ava_7"/>
 
@@ -169,7 +189,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:minHeight="100dp"
-        app:layout_constraintHeight_percent="0.151"
+        app:layout_constraintHeight_percent="0.137"
         app:layout_constraintWidth_percent="0.278"
         android:src="@drawable/img_ava_8"/>
 
@@ -178,22 +198,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.813" />
+        app:layout_constraintGuide_percent="0.901" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_resume"
+        android:id="@+id/btn_save"
         style="@style/btn_resume_style"
-        android:enabled="true"
+        android:text="сохранить"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="@id/flow_specializations"
         app:layout_constraintStart_toStartOf="@id/flow_specializations"
-        app:layout_constraintTop_toTopOf="@id/guideline_btn_margin" />
-
-    <TextView
-        android:id="@+id/skipped"
-        style="@style/skip_btn"
-        app:layout_constraintStart_toStartOf="@id/btn_resume"
-        app:layout_constraintTop_toBottomOf="@id/btn_resume"
-        app:layout_constraintEnd_toEndOf="@id/btn_resume"/>
-
+        app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

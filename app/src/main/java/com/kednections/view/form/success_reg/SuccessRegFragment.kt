@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.net.toUri
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -47,6 +48,8 @@ class SuccessRegFragment : BaseFragment<FragmentSuccessRegBinding>() {
         (activity as FormActivity).setUIVisibility(
             showHeader = false
         )
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
 
     }
 
