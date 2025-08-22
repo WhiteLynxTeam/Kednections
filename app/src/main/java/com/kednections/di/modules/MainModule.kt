@@ -5,6 +5,7 @@ import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.MainActivity
 import com.kednections.view.auth.AuthFragment
 import com.kednections.view.communication.CommunicationFragment
+import com.kednections.view.communication.single_chat.SingleChatFragment
 import com.kednections.view.feed.FeedFragment
 import com.kednections.view.feed.filter.FilterFeedFragment
 import com.kednections.view.feed.screen_saver.ScreenSaverFragment
@@ -18,6 +19,7 @@ import com.kednections.view.form.specialization.SpecializationFragment
 import com.kednections.view.form.success_reg.SuccessRegFragment
 import com.kednections.view.form.welcome.WelcomeFragment
 import com.kednections.view.profile.ProfileFragment
+import com.kednections.view.profile.choosing_avatar.ChoosingAvatarFragment
 import com.kednections.view.profile.editing_image.EditingImageFragment
 import com.kednections.view.profile.showcase.ShowCaseFragment
 import dagger.Module
@@ -84,6 +86,12 @@ interface MainModule {
 
     @ContributesAndroidInjector
     fun bindEditingImageFragment(): EditingImageFragment
+
+    @ContributesAndroidInjector
+    fun bindChoosingAvatarFragment(): ChoosingAvatarFragment
+
+    @ContributesAndroidInjector
+    fun bindSingleChatFragment(): SingleChatFragment
 
 
 }

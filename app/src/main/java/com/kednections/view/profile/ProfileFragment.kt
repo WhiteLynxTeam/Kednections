@@ -170,6 +170,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     viewPopUpAvatar.visibility = View.GONE
                     overlay.visibility = View.GONE
                     overlayHeader.visibility = View.GONE
+                    findNavController().navigate(R.id.action_profileFragment_to_choosingAvatarFragment)
                 }
             }
 

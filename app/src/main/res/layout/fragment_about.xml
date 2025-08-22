@@ -57,7 +57,7 @@
             android:id="@+id/text_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_description_for_avatar_fragment"
+            android:text="кто ты по жизни и в дизайне?"
             android:textColor="@color/text_description"
             />
 

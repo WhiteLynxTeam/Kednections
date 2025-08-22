@@ -1,0 +1,70 @@
+package com.kednections.view.profile.choosing_avatar
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
+import com.kednections.R
+import com.kednections.core.base.BaseFragment
+import com.kednections.databinding.FragmentChoosingAvatarBinding
+import com.kednections.utils.startMarquee
+import com.kednections.view.activity.MainActivity
+
+class ChoosingAvatarFragment : BaseFragment<FragmentChoosingAvatarBinding>() {
+
+    private var selectedImageView: ImageView? = null
+
+    override fun inflaterViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentChoosingAvatarBinding.inflate(inflater, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val imageMap: Map<ImageView, Pair<Int, Int>> = mapOf(
+            binding.ava1 to (R.drawable.img_ava_1 to R.drawable.img_ava_1_selected),
+            binding.ava2 to (R.drawable.img_ava_2 to R.drawable.img_ava_2_selected),
+            binding.ava3 to (R.drawable.img_ava_3 to R.drawable.img_ava_3_selected),
+            binding.ava4 to (R.drawable.img_ava_4 to R.drawable.img_ava_4_selected),
+            binding.ava5 to (R.drawable.img_ava_5 to R.drawable.img_ava_5_selected),
+            binding.ava6 to (R.drawable.img_ava_6 to R.drawable.img_ava_6_selected),
+            binding.ava7 to (R.drawable.img_ava_7 to R.drawable.img_ava_7_selected),
+            binding.ava8 to (R.drawable.img_ava_8 to R.drawable.img_ava_8_selected),
+            binding.ava9 to (R.drawable.img_ava_9 to R.drawable.img_ava_9_selected)
+        )
+
+        // Назначаем каждому ImageView обработчик клика
+        imageMap.forEach { (imageView, imagePair) ->
+            imageView.setOnClickListener {
+                // Возврат предыдущего в исходное состояние
+                selectedImageView?.let { prev ->
+                    val prevImages = imageMap[prev]
+                    prevImages?.let { (original, _) ->
+                        prev.setImageResource(original)
+                    }
+                }
+
+                // Установка нового изображения
+                imageView.setImageResource(imagePair.second)
+
+                // Обновляем текущий активный ImageView
+                selectedImageView = imageView
+
+                // Активировать кнопку
+                binding.btnSave.isEnabled = true
+            }
+        }
+
+        binding.btnSave.setOnClickListener {
+            findNavController().navigate(R.id.action_choosingAvatarFragment_to_profileFragment)
+        }
+
+        //бегущая строка (Анимация)
+        startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
+
+        (activity as MainActivity).setUIVisibility(showBottom = false)
+    }
+}
