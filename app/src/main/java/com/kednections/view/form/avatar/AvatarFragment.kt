@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentAvatarBinding
+import com.kednections.domain.models.Ava
 import com.kednections.utils.encodeBitmapToString
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
@@ -60,33 +61,33 @@ class AvatarFragment : BaseFragment<FragmentAvatarBinding>() {
         viewModel =
             ViewModelProvider(this, vmFactory)[AvatarViewModel::class.java]
 
-        val imageMap: Map<ImageView, Pair<Int, Int>> = mapOf(
-            binding.ava1 to (R.drawable.img_ava_1 to R.drawable.img_ava_1_selected),
-            binding.ava2 to (R.drawable.img_ava_2 to R.drawable.img_ava_2_selected),
-            binding.ava3 to (R.drawable.img_ava_3 to R.drawable.img_ava_3_selected),
-            binding.ava4 to (R.drawable.img_ava_4 to R.drawable.img_ava_4_selected),
-            binding.ava5 to (R.drawable.img_ava_5 to R.drawable.img_ava_5_selected),
-            binding.ava6 to (R.drawable.img_ava_6 to R.drawable.img_ava_6_selected),
-            binding.ava7 to (R.drawable.img_ava_7 to R.drawable.img_ava_7_selected),
-            binding.ava8 to (R.drawable.img_ava_8 to R.drawable.img_ava_8_selected)
+        val imageMap: Map<ImageView, Ava> = mapOf(
+            binding.ava1 to Ava.AVA1,
+            binding.ava2 to Ava.AVA2,
+            binding.ava3 to Ava.AVA3,
+            binding.ava4 to Ava.AVA4,
+            binding.ava5 to Ava.AVA5,
+            binding.ava6 to Ava.AVA6,
+            binding.ava7 to Ava.AVA7,
+            binding.ava8 to Ava.AVA8,
         )
 
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
         // Назначаем каждому ImageView обработчик клика
-        imageMap.forEach { (imageView, imagePair) ->
+        imageMap.forEach { (imageView, ava) ->
             imageView.setOnClickListener {
                 // Возврат предыдущего в исходное состояние
                 selectedImageView?.let { prev ->
-                    val prevImages = imageMap[prev]
-                    prevImages?.let { (original, _) ->
-                        prev.setImageResource(original)
+                    val prevAvaImages = imageMap[prev]
+                    if (prevAvaImages != null) {
+                        prev.setImageResource(prevAvaImages.imgRes)
                     }
                 }
 
                 // Установка нового изображения
-                imageView.setImageResource(imagePair.second)
+                imageView.setImageResource(ava.imgResSelected)
 
                 // Обновляем текущий активный ImageView
                 selectedImageView = imageView
@@ -104,7 +105,10 @@ class AvatarFragment : BaseFragment<FragmentAvatarBinding>() {
         binding.btnResume.setOnClickListener {
             activityViewModel.updateData {
                 it.copy(
-                    photo = currentUserAvatar
+                    photo = currentUserAvatar,
+                    status = selectedImageView?.let { imgView ->
+                        imageMap[imgView]?.name
+                    }
                 )
             }
             findNavController().navigate(R.id.action_avatarFragment_to_specializationFragment)
@@ -112,6 +116,12 @@ class AvatarFragment : BaseFragment<FragmentAvatarBinding>() {
         }
 
         binding.skipped.setOnClickListener {
+            activityViewModel.updateData {
+                it.copy(
+                    status = Ava.AVA0.name,
+                    photo = null,
+                )
+            }
             findNavController().navigate(R.id.action_avatarFragment_to_specializationFragment)
             activityViewModel.increaseProgress()
         }

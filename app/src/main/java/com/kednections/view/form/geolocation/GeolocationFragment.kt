@@ -56,29 +56,45 @@ class GeolocationFragment : BaseFragment<FragmentGeolocationBinding>() {
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
         binding.btnResume.setOnClickListener {
-            updateRegUser(binding.auctvGeolocation.text.toString().trim())
+
+            val cityName = binding.auctvGeolocation.text.toString().trim()
+            val selectedCity = viewModel.cities.value.find { it.name == cityName }
+            if (selectedCity != null) {
+                activityViewModel.updateData {
+                    it.copy(
+                        city = selectedCity
+                    )
+                }
+            } else {
+                showSnackbarLong("Выберите город из списка.")
+            }
+
             findNavController().navigate(R.id.action_geolocationFragment_to_purposesFragment)
             activityViewModel.increaseProgress()
         }
 
         binding.skipped.setOnClickListener {
+
+            // [green] Дублироание кода, перенести логику во вьюмодель
+            val defaultCityName = getString(R.string.city_default)
+            val selectedCity = viewModel.cities.value.firstOrNull {
+                it.name.contains(
+                    defaultCityName,
+                    ignoreCase = true
+                )
+            }
+            if (selectedCity != null) {
+                activityViewModel.updateData {
+                    it.copy(
+                        city = selectedCity
+                    )
+                }
+            } else {
+                println("Error!!! Изменено название дефолтного города!!!")
+            }
+
             findNavController().navigate(R.id.action_geolocationFragment_to_purposesFragment)
             activityViewModel.increaseProgress()
         }
-    }
-
-    private fun updateRegUser(cityName: String) {
-        val selectedCity = viewModel.cities.value.find { it.name == cityName }
-        if (selectedCity != null) {
-            activityViewModel.updateData {
-                it.copy(
-                    //[red] заглушка для проверки регистрации - передаем второй город
-                    city = selectedCity
-                )
-            }
-        } else {
-            showSnackbarLong("Выберите город из списка.")
-        }
-
     }
 }

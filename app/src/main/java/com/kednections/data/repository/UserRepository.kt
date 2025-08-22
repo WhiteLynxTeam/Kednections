@@ -16,6 +16,7 @@ import com.kednections.domain.models.user.RegUser
 import com.kednections.domain.models.user.User
 import com.kednections.domain.models.user.UserProfile
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
@@ -31,7 +32,16 @@ class UserRepository(
     }
 
     override suspend fun register(user: RegUser): Result<Token> {
-        val result = userApi.register(user.toMultipartParts())
+        //[green] Вынести это дело в отдельную функцию
+        val partsTags = user.tags.map { tag ->
+            MultipartBody.Part.createFormData("tags", tag.id)
+        }
+        val partsSpecialization = user.specializations.map { specialization ->
+            MultipartBody.Part.createFormData("specializations", specialization.id)
+        }
+
+        val result = userApi.register(user.toReg2MultipartParts(), partsTags, partsSpecialization)
+//        val result = userApi.register(mapperRegUserToRegUserDto(user))
         return result.map { mapperTokenResponseToToken(it) }
     }
 
@@ -93,15 +103,45 @@ class UserRepository(
             username = user.fio,
             password = user.password,
             description = user.description,
-            nameDisplay = user.nameOrNick,
             city = user.city.id,
-            tags = user.tags.map { it.id },
             communicationMethod = user.communicationMethod,
+            nameDisplay = user.nameOrNick,
+            tags = user.tags.map { it.id },
             specialization = user.specializations.map { it.id },
             nickname = user.nick,
             photo = user.photo,
             status = user.status,
         )
+    }
+
+    private fun RegUser.toReg2MultipartParts(): Map<String, @JvmSuppressWildcards RequestBody> {
+        val map = mutableMapOf<String, RequestBody>()
+
+        //[red]бэк немного корявый, поэтому и мы жестко закинули uuid для всех полей?
+        //чтобы проскачить регистрацию и перейти к главному функционалу
+
+        //[yellow] бэк не проверяет совпадение по тэгам и специализации
+        //забыл поменять при копировании uuid с communication_method
+        //в тэгах и специализации - регистрация прошла
+        map["email"] = this.username.toRequestBody("text/plain".toMediaType())
+        map["username"] = this.fio.toRequestBody("text/plain".toMediaType())
+        map["password"] = this.password.toRequestBody("text/plain".toMediaType())
+        map["description"] = this.description.toRequestBody("text/plain".toMediaType())
+        map["name_display"] = this.nameOrNick.value.toRequestBody("text/plain".toMediaType())
+        map["city"] = this.city.id.toRequestBody("text/plain".toMediaType())
+        map["communication_method"] =
+            this.communicationMethod.toRequestBody("text/plain".toMediaType())
+        map["nickname"] = this.nick.toRequestBody("text/plain".toMediaType())
+
+        // Опциональные поля со строками
+        this.status?.let {
+            map["status"] = it.toRequestBody("text/plain".toMediaType())
+        }
+        this.photo?.let {
+            map["photo"] = it.toRequestBody("text/plain".toMediaType())
+        }
+
+        return map
     }
 
     private fun RegUser.toMultipartParts(): Map<String, @JvmSuppressWildcards RequestBody> {
@@ -153,6 +193,7 @@ class UserRepository(
             tags = tags,
             communicationMethod = communicationMethod,
             nameOrNick = NameOrNick.fromValue(nameOrNick) ?: NameOrNick.NAME,
+            status = status,
         )
     }
 }
