@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -203,6 +204,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
 
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
 
         (activity as MainActivity).setUIVisibility(showBottom = true)
 

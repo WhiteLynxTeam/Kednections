@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -75,15 +76,7 @@ class CommunicationFragment : BaseFragment<FragmentCommunicationBinding>() {
             binding.rcChats.visibility = View.VISIBLE
         }
 
-//        binding.btnEmpty.setOnClickListener {
-//            binding.bgEmptyChat.visibility = View.VISIBLE
-//            binding.rcChats.visibility = View.GONE
-//        }
-//
-//        binding.btnChats.setOnClickListener {
-//            binding.bgEmptyChat.visibility = View.GONE
-//            binding.rcChats.visibility = View.VISIBLE
-//        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
 
         (activity as MainActivity).setUIVisibility(showBottom = true)
     }
