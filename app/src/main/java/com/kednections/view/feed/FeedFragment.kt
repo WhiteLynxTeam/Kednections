@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -155,6 +156,10 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
             } else findNavController().navigate(R.id.action_feedFragment_to_filterFeedFragment)
         }
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
+
+        (activity as MainActivity).setUIVisibility(showBottom = true)
+
     }
 
     private fun removeFeed(positionToRemove: Int) {
@@ -176,7 +181,6 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
             )
         }
 
-        (activity as MainActivity).setUIVisibility(showBottom = true)
     }
 
 }

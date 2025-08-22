@@ -17,7 +17,11 @@
         tools:layout="@layout/fragment_feed" >
         <action
             android:id="@+id/action_feedFragment_to_filterFeedFragment"
-            app:destination="@id/filterFeedFragment" />
+            app:destination="@id/filterFeedFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/acquaintancesFragment"
@@ -32,6 +36,10 @@
         <action
             android:id="@+id/action_communicationFragment_to_singleChatFragment"
             app:destination="@id/singleChatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             />
     </fragment>
     <fragment
@@ -41,10 +49,19 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_showCaseFragment"
-            app:destination="@id/showCaseFragment" />
+            app:destination="@id/showCaseFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
         <action
             android:id="@+id/action_profileFragment_to_choosingAvatarFragment"
-            app:destination="@id/choosingAvatarFragment" />
+            app:destination="@id/choosingAvatarFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/filterFeedFragment"
@@ -62,10 +79,18 @@
         tools:layout="@layout/fragment_show_case" >
         <action
             android:id="@+id/action_showCaseFragment_to_editingImageFragment"
-            app:destination="@id/editingImageFragment" />
+            app:destination="@id/editingImageFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_showCaseFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/editingImageFragment"
