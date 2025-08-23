@@ -52,6 +52,9 @@ class AuthModule {
 
     companion object {
         const val WEB_CLIENT_ID =
-            "1085539908512-rl3upol0ar4ci67d09lhsnv81m1p8feh.apps.googleusercontent.com"
+            "656594934317-flug8osqqchllts4orv4sds0i2r9pp9c.apps.googleusercontent.com"
+        //Сверху почта зарегистрированная на приложение - общая
+        //Под моим личным аккаунтом.
+//            "1085539908512-rl3upol0ar4ci67d09lhsnv81m1p8feh.apps.googleusercontent.com"
     }
 }
