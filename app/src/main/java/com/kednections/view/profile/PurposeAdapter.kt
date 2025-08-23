@@ -2,12 +2,11 @@ package com.kednections.view.profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.kednections.databinding.ItemPurposeBinding
+import androidx.recyclerview.widget.RecyclerView import com.kednections.databinding.ItemPurposeBinding
 import com.kednections.domain.models.profile.Purposes
 
 class PurposeAdapter(
-    private val purposes: List<Purposes>
+    private val purposes: List<Purposes> // Добавляем private val для создания свойства
 ) : RecyclerView.Adapter<PurposeAdapter.PurposeViewHolder>() {
 
     inner class PurposeViewHolder(private val binding: ItemPurposeBinding) :
@@ -29,8 +28,8 @@ class PurposeAdapter(
     }
 
     override fun onBindViewHolder(holder: PurposeViewHolder, position: Int) {
-        holder.bind(purposes[position])
+        holder.bind(purposes[position]) // Теперь используем свойство purposes
     }
 
-    override fun getItemCount(): Int = purposes.size
+    override fun getItemCount(): Int = purposes.size // Теперь используем свойство purposes
 }
