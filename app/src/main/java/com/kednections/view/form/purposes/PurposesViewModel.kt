@@ -23,7 +23,9 @@ class PurposesViewModel(
 
     private fun getTags() {
         viewModelScope.launch {
-            _tags.emit(getTagsApiUseCase())
+//            _tags.emit(getTagsApiUseCase())
+            //[red] костыль. удалить после исправления бэка
+            _tags.emit(getTagsApiUseCase(Tag.defaultTags))
             println("_tags = ${_tags.value}")
         }
     }

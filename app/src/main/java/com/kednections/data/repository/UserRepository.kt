@@ -34,7 +34,7 @@ class UserRepository(
     override suspend fun register(user: RegUser): Result<Token> {
         //[green] Вынести это дело в отдельную функцию
         val partsTags = user.tags.map { tag ->
-            MultipartBody.Part.createFormData("tags", tag.id)
+            tag.id?.let { MultipartBody.Part.createFormData("tags", it) }
         }
         val partsSpecialization = user.specializations.map { specialization ->
             MultipartBody.Part.createFormData("specializations", specialization.id)
@@ -106,7 +106,8 @@ class UserRepository(
             city = user.city.id,
             communicationMethod = user.communicationMethod,
             nameDisplay = user.nameOrNick,
-            tags = user.tags.map { it.id },
+//            tags = user.tags.map { it.id},
+            tags = user.tags.map { "" },
             specialization = user.specializations.map { it.id },
             nickname = user.nick,
             photo = user.photo,

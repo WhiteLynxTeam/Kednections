@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kednections.R
@@ -13,6 +14,7 @@ import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentPurposesBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.FormActivityViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PurposesFragment : BaseFragment<FragmentPurposesBinding>() {
@@ -26,7 +28,11 @@ class PurposesFragment : BaseFragment<FragmentPurposesBinding>() {
     lateinit var vmFactory: PurposesViewModel.Factory
 
     // Адаптер для RecyclerView, отображающего список целей
-    private lateinit var purposesAdapter: PurposesAdapter
+    private val purposesAdapter: PurposesAdapter by lazy {
+        PurposesAdapter {
+            updateResumeButtonState()
+        }
+    }
 
     // Создание и возврат binding для фрагмента
     override fun inflaterViewBinding(
@@ -44,10 +50,12 @@ class PurposesFragment : BaseFragment<FragmentPurposesBinding>() {
 
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
-        // Инициализация адаптера для RecyclerView
-        purposesAdapter = PurposesAdapter(requireContext()) {
-            // Колбэк, вызываемый при изменении состояния выбора целей
-            updateResumeButtonState()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.tags.collect { tags ->
+                if (tags.isNotEmpty()) {
+                    purposesAdapter.setData(tags.filter { it.id != null })
+                }
+            }
         }
 
         // Настройка RecyclerView
@@ -66,8 +74,7 @@ class PurposesFragment : BaseFragment<FragmentPurposesBinding>() {
             activityViewModel.updateData {
                 // Копируем текущие данные, обновляя список тегов
                 it.copy(
-                    // Берем первые два тега из ViewModel (заглушка для проверки)
-                    tags = viewModel.tags.value.take(2)
+                    tags = viewModel.tags.value.filter { tag -> tag.isChecked }
                 )
             }
             // Переход к следующему фрагменту
@@ -81,6 +88,6 @@ class PurposesFragment : BaseFragment<FragmentPurposesBinding>() {
     // Обновление состояния кнопки "Продолжить" в зависимости от выбора целей
     private fun updateResumeButtonState() {
         // Активируем кнопку только если есть выбранные цели
-        binding.btnResume.isEnabled = purposesAdapter.hasCheckedItems()
+        binding.btnResume.isEnabled = viewModel.tags.value.any {it.isChecked}
     }
 }
