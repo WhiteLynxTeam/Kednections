@@ -37,7 +37,7 @@ interface UserApi {
     @POST("/auth/v2/register")
     suspend fun register(
         @PartMap partMap: Map<String, @JvmSuppressWildcards RequestBody>,
-        @Part partTags: List<MultipartBody.Part>,
+        @Part partTags: List<MultipartBody.Part?>,
         @Part partsSpecialization: List<MultipartBody.Part>
     ): Result<AuthTokenResponse>
 }

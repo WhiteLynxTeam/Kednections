@@ -61,6 +61,8 @@
     <string name="fill_it_out_later">заполнишь потом</string>
 
     <!-- TODO: Текст для fragment_purposes -->
+    <!-- Название переменных должны соответствовать title и desc, а не в разнобой называться -->
+    <!-- Текст не в паре по целям, сложить нормально -->
     <string name="purposes">Цели</string>
     <string name="text_description_for_purposes_fragment">можно несколько</string>
     <string name="looking_for_friends">ищу друзей</string>
