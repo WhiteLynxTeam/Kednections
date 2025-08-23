@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentPurposesBinding
@@ -15,104 +16,71 @@ import com.kednections.view.activity.FormActivityViewModel
 import javax.inject.Inject
 
 class PurposesFragment : BaseFragment<FragmentPurposesBinding>() {
+
     private val activityViewModel: FormActivityViewModel by activityViewModels()
+
     private lateinit var viewModel: PurposesViewModel
+
 
     @Inject
     lateinit var vmFactory: PurposesViewModel.Factory
 
+    // Адаптер для RecyclerView, отображающего список целей
+    private lateinit var purposesAdapter: PurposesAdapter
+
+    // Создание и возврат binding для фрагмента
     override fun inflaterViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
     ) = FragmentPurposesBinding.inflate(inflater, container, false)
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel =
-            ViewModelProvider(this, vmFactory)[PurposesViewModel::class.java]
+
+        viewModel = ViewModelProvider(this, vmFactory)[PurposesViewModel::class.java]
+
 
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
-        val items = listOf(
-            PurposeItem(
-                view = binding.viewFriends,
-                checkbox = binding.checkboxFriends,
-                imageView = binding.ivFriends,
-                selectedIcon = R.drawable.ic_friends_selected,
-                unselectedIcon = R.drawable.ic_friends
-            ),
-            PurposeItem(
-                view = binding.viewRomance,
-                checkbox = binding.checkboxRomance,
-                imageView = binding.ivRomance,
-                selectedIcon = R.drawable.ic_romance_selected,
-                unselectedIcon = R.drawable.ic_romance
-            ),
-            PurposeItem(
-                view = binding.viewCompany,
-                checkbox = binding.checkboxCompany,
-                imageView = binding.ivCompany,
-                selectedIcon = R.drawable.ic_company_selected,
-                unselectedIcon = R.drawable.ic_company
-            ),
-            PurposeItem(
-                view = binding.viewLookingTeam,
-                checkbox = binding.checkboxLookingTeam,
-                imageView = binding.ivLookingTeam,
-                selectedIcon = R.drawable.ic_looking_team_selected,
-                unselectedIcon = R.drawable.ic_looking_team
-            ),
-            PurposeItem(
-                view = binding.viewAssemblingTeam,
-                checkbox = binding.checkboxAssemblingTeam,
-                imageView = binding.ivAssemblingTeam,
-                selectedIcon = R.drawable.ic_assembling_team_selected,
-                unselectedIcon = R.drawable.ic_assembling_team
-            )
-        )
-
-        items.forEach { item ->
-            item.checkbox.setOnCheckedChangeListener { _, isChecked ->
-                item.view.setBackgroundResource(
-                    if (isChecked) R.drawable.bg_view_purpose_fragment else R.drawable.bg_auth_input
-                )
-                item.imageView.setImageResource(
-                    if (isChecked) item.selectedIcon else item.unselectedIcon
-                )
-                updateResumeButtonState()
-            }
+        // Инициализация адаптера для RecyclerView
+        purposesAdapter = PurposesAdapter(requireContext()) {
+            // Колбэк, вызываемый при изменении состояния выбора целей
+            updateResumeButtonState()
         }
 
+        // Настройка RecyclerView
+        binding.recyclerViewPurposes.apply {
+            // Установка LinearLayoutManager для вертикального списка
+            layoutManager = LinearLayoutManager(requireContext())
+            // Установка адаптера
+            adapter = purposesAdapter
+            // Оптимизация - все элементы имеют одинаковый размер
+            setHasFixedSize(true)
+        }
+
+        // Обработчик клика по кнопке "Продолжить"
         binding.btnResume.setOnClickListener {
+            // Обновление данных в активности формы
             activityViewModel.updateData {
+                // Копируем текущие данные, обновляя список тегов
                 it.copy(
-                    //[red] заглушка для проверки регистрации - передаем два первых элемента
+                    // Берем первые два тега из ViewModel (заглушка для проверки)
                     tags = viewModel.tags.value.take(2)
                 )
             }
+            // Переход к следующему фрагменту
             findNavController().navigate(R.id.action_purposesFragment_to_chooseCommunicateFragment)
         }
+
+        // Инициализация состояния кнопки при создании фрагмента
+        updateResumeButtonState()
     }
 
+    // Обновление состояния кнопки "Продолжить" в зависимости от выбора целей
     private fun updateResumeButtonState() {
-        val isAnyChecked = listOf(
-            binding.checkboxCompany.isChecked,
-            binding.checkboxFriends.isChecked,
-            binding.checkboxRomance.isChecked,
-            binding.checkboxLookingTeam.isChecked,
-            binding.checkboxAssemblingTeam.isChecked
-        ).any { it }
-
-        binding.btnResume.isEnabled = isAnyChecked
+        // Активируем кнопку только если есть выбранные цели
+        binding.btnResume.isEnabled = purposesAdapter.hasCheckedItems()
     }
-
-    data class PurposeItem(
-        val view: View,
-        val checkbox: android.widget.CheckBox,
-        val imageView: android.widget.ImageView,
-        val selectedIcon: Int,
-        val unselectedIcon: Int
-    )
-
 }
