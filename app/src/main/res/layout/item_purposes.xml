@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp">
+
+    <View
+        android:id="@+id/view_purpose"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:background="@drawable/bg_auth_input"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="@id/view_purpose"
+        app:layout_constraintTop_toTopOf="@id/view_purpose"
+        app:layout_constraintBottom_toBottomOf="@id/view_purpose"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/raleway_medium"
+        android:textColor="@color/text_description"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/icon"
+        app:layout_constraintBottom_toTopOf="@id/tv_description"
+        app:layout_constraintEnd_toStartOf="@id/checkbox_purpose"/>
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.42"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/color_2"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        app:layout_constraintBottom_toBottomOf="@id/icon" />
+
+    <CheckBox
+        android:id="@+id/checkbox_purpose"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:buttonTint="@color/checkbox_color_selector"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintTop_toTopOf="@id/view_purpose"
+        app:layout_constraintEnd_toEndOf="@id/view_purpose"
+        app:layout_constraintBottom_toBottomOf="@id/view_purpose"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
