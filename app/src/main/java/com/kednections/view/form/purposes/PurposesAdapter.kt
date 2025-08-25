@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kednections.R
-import com.kednections.databinding.ItemPurposeBinding
+import com.kednections.databinding.ItemPurposesBinding
 import com.kednections.domain.models.Tag
 
 class PurposesAdapter(
@@ -14,7 +14,7 @@ class PurposesAdapter(
 
     private var tags: MutableList<Tag> = mutableListOf()
 
-    inner class PurposeViewHolder(private val binding: ItemPurposeBinding) :
+    inner class PurposeViewHolder(private val binding: ItemPurposesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Tag, position: Int) {
@@ -45,7 +45,7 @@ class PurposesAdapter(
 
     // Создание нового ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PurposeViewHolder {
-        val binding = ItemPurposeBinding.inflate(
+        val binding = ItemPurposesBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
