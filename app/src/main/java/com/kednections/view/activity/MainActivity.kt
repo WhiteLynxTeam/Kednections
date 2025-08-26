@@ -14,16 +14,22 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.kednections.R
 import com.kednections.databinding.ActivityMainBinding
+import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var activityViewModel: MainActivityViewModel
+
+    private lateinit var viewModel: MainActivityViewModel
+    @Inject
+    lateinit var vmFactory: MainActivityViewModel.Factory
 
     private val navController by lazy {
         NavHostFragment.findNavController(supportFragmentManager.findFragmentById(R.id.fragment_placeholder_activity_main) as NavHostFragment)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -32,8 +38,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        activityViewModel =
-            ViewModelProvider(this)[MainActivityViewModel::class.java]
+        viewModel =
+            ViewModelProvider(this, vmFactory)[MainActivityViewModel::class.java]
 
         binding.bottomNavigation.selectedItemId = R.id.feed
         binding.bottomNavigation.setupWithNavController(navController)
@@ -73,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.profile -> {
-                    activityViewModel.setIsProfileTop(true)
+                    viewModel.setIsProfileTop(true)
                     navController.navigate(R.id.profileFragment)
                     updateBottomNavColors(
                         iconColorRes = R.color.bottom_nav_color_profile,
