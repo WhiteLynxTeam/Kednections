@@ -4,6 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kednections.databinding.ItemPurposeBinding
+import com.kednections.domain.models.profile.Purposes
+import androidx.recyclerview.widget.RecyclerView
+import com.kednections.databinding.ItemPurposeBinding
 import com.kednections.domain.models.Tag
 
 class PurposeAdapter(
@@ -29,8 +32,8 @@ class PurposeAdapter(
     }
 
     override fun onBindViewHolder(holder: PurposeViewHolder, position: Int) {
-        holder.bind(purposes[position]) // Теперь используем свойство purposes
+        holder.bind(purpose[position])
     }
 
-    override fun getItemCount(): Int = purposes.size // Теперь используем свойство purposes
+    override fun getItemCount(): Int = purpose.size
 }
