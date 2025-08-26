@@ -208,7 +208,7 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
                     activityViewModel.saveImages(imageUris)
                     activityViewModel.saveChanges()
                     activityViewModel.setIsProfileTop(false)
-                    findNavController().popBackStack()
+                    findNavController().navigate(R.id.action_showCaseFragment_to_profileFragment)
                 },
                 onDiscard = {
                     // Восстанавливаем оригинальные изображения
@@ -216,13 +216,13 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
                     imageUris.addAll(activityViewModel.originalImages.value)
                     activityViewModel.discardChanges()
                     activityViewModel.setIsProfileTop(false)
-                    findNavController().popBackStack()
+                    findNavController().navigate(R.id.action_showCaseFragment_to_profileFragment)
                 }
             ).show(parentFragmentManager, "BackInEditingDialog")
         } else {
             // Нет изменений - просто выходим
             activityViewModel.setIsProfileTop(false)
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_showCaseFragment_to_profileFragment)
         }
     }
 
