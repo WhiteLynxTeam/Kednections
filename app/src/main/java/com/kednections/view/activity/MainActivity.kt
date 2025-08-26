@@ -8,19 +8,27 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.kednections.R
 import com.kednections.databinding.ActivityMainBinding
+import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var viewModel: MainActivityViewModel
+    @Inject
+    lateinit var vmFactory: MainActivityViewModel.Factory
 
     private val navController by lazy {
         NavHostFragment.findNavController(supportFragmentManager.findFragmentById(R.id.fragment_placeholder_activity_main) as NavHostFragment)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -28,6 +36,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel =
+            ViewModelProvider(this, vmFactory)[MainActivityViewModel::class.java]
 
         binding.bottomNavigation.selectedItemId = R.id.feed
         binding.bottomNavigation.setupWithNavController(navController)

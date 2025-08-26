@@ -1,13 +1,11 @@
 package com.kednections.view.profile
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -17,7 +15,7 @@ import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentProfileBinding
 import com.kednections.domain.models.Ava
-import com.kednections.domain.models.profile.Purposes
+import com.kednections.domain.models.NameOrNick
 import com.kednections.utils.decodeStringToBitmap
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.MainActivity
@@ -32,29 +30,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private lateinit var profileViewModel: ProfileViewModel
     private val imageUris = mutableListOf<Uri>()
     private var isProfileTop = true
-//    private val pickPhotoLauncher =
-//        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-//            uri?.let {
-//                try {
-//                    requireContext().contentResolver.takePersistableUriPermission(
-//                        it, Intent.FLAG_GRANT_READ_URI_PERMISSION
-//                    )
-//
-//                } catch (_: SecurityException) {  }
-//            }
-//        }
-
-    val specializationList = listOf(
-        "UX/UI-дизайнер",
-        "Веб-дизайнер",
-        "графический дизайнер"
-    )
-
-    val purposesList = listOf(
-        Purposes(R.drawable.ic_friends_selected, "ищу друзей"),
-        Purposes(R.drawable.ic_romance_selected, "ищу романтику"),
-        Purposes(R.drawable.ic_company_selected, "ищу компанию")
-    )
 
     @Inject
     lateinit var vmFactory: ProfileViewModel.Factory
@@ -71,11 +46,52 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             ViewModelProvider(this, vmFactory)[ProfileViewModel::class.java]
 
         viewLifecycleOwner.lifecycleScope.launch {
-            profileViewModel.icon.collect { icon ->
-                if (icon.first != null) {
-                    binding.imgAvatar.setImageBitmap(decodeStringToBitmap(icon.first))
-                } else {
-                    binding.imgAvatar.setImageResource(Ava.fromName(icon.second).imgResSelected)
+            activityViewModel.user.collect { user ->
+                if (user != null) {
+                    if (user.photo != null) {
+                        binding.imgAvatar.setImageBitmap(decodeStringToBitmap(user.photo))
+                    } else {
+                        binding.imgAvatar.setImageResource(Ava.fromName(user.status).imgResSelected)
+                    }
+
+                    val maxLength = 20
+                    binding.tvName.text = when (user.nameOrNick) {
+                        NameOrNick.NAME -> {
+                            if (user.fio != null && user.fio.length > maxLength) {
+                                user.fio.substring(0, maxLength) + "..."
+                            } else {
+                                user.fio ?: ""
+                            }
+                        }
+
+                        NameOrNick.NICK -> {
+                            if (user.nick != null && user.nick.length > maxLength) {
+                                user.nick.substring(0, maxLength) + "..."
+                            } else {
+                                user.nick ?: ""
+                            }
+                        }
+                    }
+
+                    binding.tvGeo.text = user.city.name
+
+                    when (user.specializations.size) {
+                        1 -> binding.tvSpecializations.text = user.specializations[0].name
+                        2 -> binding.tvSpecializations.text =
+                            "${user.specializations[0].name} \u25CF ${user.specializations[1].name}"
+
+                        3 -> binding.tvSpecializations.text =
+                            "${user.specializations[0].name} \u25CF ${user.specializations[1].name}\n${user.specializations[2].name}"
+                    }
+
+                    if (user.tags.size <= 1) {
+                        binding.viewPurposes.isEnabled = false
+                        user.tags[0].selectedIcon?.let { binding.icPurposes.setImageResource(it) }
+                        binding.tvPurposes.text = user.tags[0].description
+                    } else {
+                        binding.viewPurposes.isEnabled = true
+                    }
+
                 }
             }
         }
@@ -98,38 +114,21 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
         }
 
-        val originalText = "Очень длинный текст который нужно обрезать"
-        val maxLength = 20
-        binding.tvName.text = originalText.substring(0, maxLength) + "..."
-
         val recyclerView = binding.rcViewImg
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        when (specializationList.size) {
-            1 -> binding.tvSpecializations.text = "${ specializationList[0] }"
-            2 -> binding.tvSpecializations.text = "${specializationList[0]} \u25CF ${specializationList[1]}"
-            3 -> binding.tvSpecializations.text = "${specializationList[0]} \u25CF ${specializationList[1]}\n${specializationList[2]}"
-        }
-
-        if (purposesList.size == 1) {
-            binding.viewPurposes.isEnabled = false
-            binding.icPurposes.setImageResource(purposesList[0].icon)
-            binding.tvPurposes.text = purposesList[0].description
-        } else {
-            binding.viewPurposes.isEnabled = true
-        }
-
         with(binding) {
             viewPurposes.setOnClickListener {
-                lifecycleScope.launch {
-                    binding.viewPurposes.setBackgroundResource(R.drawable.bg_my_purposes_pressed)
-                    delay(200)
-                    val dialog = PurposeDialog.newInstance(purposesList)
-                    dialog.show(parentFragmentManager, "PurposesDialog")
-                    binding.viewPurposes.setBackgroundResource(R.drawable.bg_my_purposes)
+                if (activityViewModel.user.value?.tags?.isNotEmpty() == true) {
+                    lifecycleScope.launch {
+                        binding.viewPurposes.setBackgroundResource(R.drawable.bg_my_purposes_pressed)
+                        delay(200)
+                        val dialog = PurposeDialog.newInstance()
+                        dialog.show(parentFragmentManager, "PurposesDialog")
+                        binding.viewPurposes.setBackgroundResource(R.drawable.bg_my_purposes)
+                    }
                 }
-
             }
 
             profileSwitcher.setOnClickListener {
@@ -209,7 +208,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
         (activity as MainActivity).setUIVisibility(showBottom = true)
 
-        profileViewModel.getUser()
+        activityViewModel.getUser()
 
     }
 

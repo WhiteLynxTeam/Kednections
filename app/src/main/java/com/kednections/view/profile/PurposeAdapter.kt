@@ -2,18 +2,19 @@ package com.kednections.view.profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView import com.kednections.databinding.ItemPurposeBinding
-import com.kednections.domain.models.profile.Purposes
+import androidx.recyclerview.widget.RecyclerView
+import com.kednections.databinding.ItemPurposeBinding
+import com.kednections.domain.models.Tag
 
 class PurposeAdapter(
-    private val purposes: List<Purposes> // Добавляем private val для создания свойства
+    private val purposes: List<Tag> // Добавляем private val для создания свойства
 ) : RecyclerView.Adapter<PurposeAdapter.PurposeViewHolder>() {
 
     inner class PurposeViewHolder(private val binding: ItemPurposeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(purpose: Purposes) {
-            binding.icon.setImageResource(purpose.icon)
+        fun bind(purpose: Tag) {
+            purpose.selectedIcon?.let { binding.icon.setImageResource(it) }
             binding.text.text = purpose.description
         }
     }

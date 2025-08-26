@@ -9,8 +9,11 @@ import com.kednections.data.network.dto.user.request.RegUserRequest
 import com.kednections.data.network.dto.user.response.UserCommunicationMethodResponse
 import com.kednections.data.network.dto.user.response.UserResponse
 import com.kednections.domain.irepository.IUserRepository
+import com.kednections.domain.models.City
 import com.kednections.domain.models.CommunicationMethod
 import com.kednections.domain.models.NameOrNick
+import com.kednections.domain.models.Specialization
+import com.kednections.domain.models.Tag
 import com.kednections.domain.models.Token
 import com.kednections.domain.models.user.RegUser
 import com.kednections.domain.models.user.User
@@ -188,11 +191,11 @@ class UserRepository(
             fio = username,
             nick = nickname,
             photo = photo,
-            specializations = specializations,
-            city = city,
+            specializations = this.specialization.map { Specialization(it, "") },
+            city = City(this.city, ""),
             description = description,
-            tags = tags,
-            communicationMethod = communicationMethod,
+            tags = this.tags.map { Tag(it, "") },
+            communicationMethod = CommunicationMethod(this.communicationMethod, ""),
             nameOrNick = NameOrNick.fromValue(nameOrNick) ?: NameOrNick.NAME,
             status = status,
         )
