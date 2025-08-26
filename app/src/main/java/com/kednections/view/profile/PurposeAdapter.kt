@@ -4,13 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kednections.databinding.ItemPurposeBinding
-import com.kednections.domain.models.profile.Purposes
-import androidx.recyclerview.widget.RecyclerView
-import com.kednections.databinding.ItemPurposeBinding
 import com.kednections.domain.models.Tag
 
 class PurposeAdapter(
-    private val purposes: List<Tag> // Добавляем private val для создания свойства
+    private val purpose: List<Tag> // Добавляем private val для создания свойства
 ) : RecyclerView.Adapter<PurposeAdapter.PurposeViewHolder>() {
 
     inner class PurposeViewHolder(private val binding: ItemPurposeBinding) :
