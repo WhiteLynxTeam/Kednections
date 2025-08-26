@@ -21,9 +21,15 @@ class MainActivityViewModel(
     val isProfileTop: StateFlow<Boolean>
         get() = _isProfileTop.asStateFlow()
 
+    private var _originalImages = MutableStateFlow<List<Uri>>(emptyList())
+    val originalImages: StateFlow<List<Uri>>
+        get() = _originalImages.asStateFlow()
+
     fun saveImages(uris: List<Uri>, position: Int = 0) {
-        _selectedImages.value = uris.toList() // новый инстанс
+        _selectedImages.value = uris.toList()
         _selectedPosition.value = position
+        // Сохраняем также как оригинальные
+        _originalImages.value = uris.toList()
     }
 
     fun replaceImageAt(index: Int, newUri: Uri) {
@@ -55,6 +61,25 @@ class MainActivityViewModel(
 
     fun setIsProfileTop(flag: Boolean) {
         _isProfileTop.value = flag
+    }
+
+    fun setOriginalImages(uris: List<Uri>) {
+        _originalImages.value = uris.toList()
+    }
+
+    fun hasChanges(): Boolean {
+        // Сравниваем текущие изображения с оригинальными
+        return _selectedImages.value != _originalImages.value
+    }
+
+    fun saveChanges() {
+        // Сохраняем текущее состояние как оригинальное
+        _originalImages.value = _selectedImages.value.toList()
+    }
+
+    fun discardChanges() {
+        // Восстанавливаем оригинальные изображения
+        _selectedImages.value = _originalImages.value.toList()
     }
 
     class Factory(

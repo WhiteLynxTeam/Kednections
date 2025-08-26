@@ -7,31 +7,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.DialogFragment
-import com.kednections.databinding.DialogDeleteImageBinding
+import com.kednections.databinding.DialogBackInEditingBinding
 
-class DeleteDialog(
-    private val onConfirm: () -> Unit
+class BackInEditingDialog(
+    private val onSave: () -> Unit,
+    private val onDiscard: () -> Unit
 ) : DialogFragment() {
 
-    private var _binding: DialogDeleteImageBinding? = null
+    private var _binding: DialogBackInEditingBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireContext())
 
-        _binding = DialogDeleteImageBinding.inflate(LayoutInflater.from(requireContext()))
+        _binding = DialogBackInEditingBinding.inflate(LayoutInflater.from(requireContext()))
         val view = binding.root
 
         builder.setView(view)
-
         val dialog = builder.create()
 
-        binding.delete.setOnClickListener {
-            onConfirm.invoke()
+        binding.yes.setOnClickListener {
+            onSave.invoke()
             dialog.dismiss()
         }
 
-        binding.cancel.setOnClickListener {
+        binding.no.setOnClickListener {
+            onDiscard.invoke()
             dialog.dismiss()
         }
 
