@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -43,6 +44,13 @@ class EditingImageFragment : BaseFragment<FragmentEditingImageBinding>() {
             }
         }
 
+    // Добавляем callback для системной кнопки назад
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            handleBackPress()
+        }
+    }
+
     override fun inflaterViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -50,6 +58,16 @@ class EditingImageFragment : BaseFragment<FragmentEditingImageBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Регистрируем обработчик back press
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback
+        )
+
+        if (activityViewModel.originalImages.value.isEmpty()) {
+            activityViewModel.setOriginalImages(activityViewModel.selectedImages.value)
+        }
 
         adapter = EditingImageAdapter { uri, position ->
             Glide.with(this)
@@ -93,24 +111,54 @@ class EditingImageFragment : BaseFragment<FragmentEditingImageBinding>() {
                     }
             }
         }
-        binding.change.setOnClickListener {
-            activityViewModel.selectedImages
-            pickImageLauncher.launch("image/*")
-        }
 
-        binding.delete.setOnClickListener {
-            val pos = activityViewModel.selectedPosition.value
-            if (pos in activityViewModel.selectedImages.value.indices) {
-                DeleteDialog {
-                    activityViewModel.removeImageAt(pos)
-                }.show(parentFragmentManager, "DeleteDialog")
+        binding.apply {
+
+            change.setOnClickListener {
+                pickImageLauncher.launch("image/*")
             }
-        }
 
-        binding.btnSave.setOnClickListener {
-            findNavController().navigate(R.id.action_editingImageFragment_to_showCaseFragment)
+            delete.setOnClickListener {
+                val pos = activityViewModel.selectedPosition.value
+                if (pos in activityViewModel.selectedImages.value.indices) {
+                    DeleteDialog {
+                        activityViewModel.removeImageAt(pos)
+                    }.show(parentFragmentManager, "DeleteDialog")
+                }
+            }
+
+            btnSave.setOnClickListener {
+                // Сохраняем изменения перед переходом
+                activityViewModel.saveChanges()
+                findNavController().navigate(R.id.action_editingImageFragment_to_showCaseFragment)
+            }
+
+            icBack.setOnClickListener {
+                handleBackPress()
+            }
+
         }
 
         (activity as MainActivity).setUIVisibility(showBottom = false)
+    }
+
+    private fun handleBackPress() {
+        if (activityViewModel.hasChanges()) {
+            // Показываем диалог только если есть изменения
+            BackInEditingDialog(
+                onSave = {
+                    activityViewModel.saveChanges() // Сохраняем изменения
+                    findNavController().popBackStack()
+                },
+                onDiscard = {
+                    activityViewModel.discardChanges() // Отменяем изменения
+                    findNavController().popBackStack()
+                }
+            ).show(parentFragmentManager, "BackInEditingDialog")
+        } else {
+            // Нет изменений - просто выходим
+            activityViewModel.setIsProfileTop(false)
+            findNavController().popBackStack()
+        }
     }
 }

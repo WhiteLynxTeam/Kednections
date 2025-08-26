@@ -8,6 +8,7 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -78,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.profile -> {
+                    viewModel.setIsProfileTop(true)
                     navController.navigate(R.id.profileFragment)
                     updateBottomNavColors(
                         iconColorRes = R.color.bottom_nav_color_profile,
@@ -90,6 +92,10 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        //темные иконки для светлого фона нижнего navigation_bar
+        val windowInsetsController = ViewCompat.getWindowInsetsController(window.decorView)
+        windowInsetsController?.isAppearanceLightNavigationBars = true
     }
 
     fun setUIVisibility(showBottom: Boolean) {

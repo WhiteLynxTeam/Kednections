@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -21,7 +22,7 @@ import com.kednections.databinding.FragmentShowCaseBinding
 import com.kednections.utils.startMarquee
 import com.kednections.view.activity.MainActivity
 import com.kednections.view.activity.MainActivityViewModel
-import com.kednections.view.profile.ShowCaseImageAdapter
+import com.kednections.view.profile.editing_image.BackInEditingDialog
 import com.kednections.view.profile.showcase.AddImagesAdapter.Companion.MAX_ITEMS
 import kotlinx.coroutines.launch
 import java.util.Collections
@@ -38,27 +39,39 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         result.data?.let { intent ->
+            val newUris = mutableListOf<Uri>().apply {
+                addAll(imageUris) // добавляем существующие URI
+            }
             // Для множественного выбора
             if (intent.clipData != null) {
                 val clipData = intent.clipData!!
                 for (i in 0 until clipData.itemCount) {
-                    if (imageUris.size >= MAX_ITEMS) break
+                    if (newUris.size >= MAX_ITEMS) break
                     clipData.getItemAt(i).uri?.let { uri ->
-                        imageUris.add(uri)
+                        newUris.add(uri)
                     }
                 }
             }
             // Для единичного выбора
             else {
                 intent.data?.let { uri ->
-                    if (imageUris.size < MAX_ITEMS) {
-                        imageUris.add(uri)
+                    if (newUris.size < MAX_ITEMS) {
+                        newUris.add(uri)
                     }
                 }
             }
 
+            imageUris.clear()
+            imageUris.addAll(newUris)
+
             adapter.notifyDataSetChanged()
             binding.btnPublish.isEnabled = imageUris.isNotEmpty()
+        }
+    }
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            handleBackPress()
         }
     }
 
@@ -69,6 +82,16 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Регистрируем обработчик back press
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback
+        )
+
+        if (activityViewModel.originalImages.value.isEmpty()) {
+            activityViewModel.setOriginalImages(activityViewModel.selectedImages.value)
+        }
 
         // Бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 4500L)
@@ -134,10 +157,15 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
         binding.btnPublish.setOnClickListener {
             // Сохраняем выбранные изображения в ViewModel
             activityViewModel.saveImages(imageUris)
+            activityViewModel.saveChanges() // Сохраняем как оригинальные
             activityViewModel.setIsProfileTop(false)
 
-            // Возвращаемся назад
+            // Переходим к профилю
             findNavController().navigate(R.id.action_showCaseFragment_to_profileFragment)
+        }
+
+        binding.icBack.setOnClickListener {
+            handleBackPress()
         }
 
     }
@@ -165,6 +193,36 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
             }
             addItemDecoration(VerticalSpaceItemDecoration(8.dpToPx()))
             setItemViewCacheSize(20) // Увеличиваем кэш
+        }
+    }
+
+    private fun handleBackPress() {
+        // Сравниваем текущие imageUris с оригинальными из ViewModel
+        val hasChanges = imageUris != activityViewModel.originalImages.value
+
+        if (hasChanges) {
+            // Показываем диалог только если есть изменения
+            BackInEditingDialog(
+                onSave = {
+                    // Сохраняем изменения в ViewModel
+                    activityViewModel.saveImages(imageUris)
+                    activityViewModel.saveChanges()
+                    activityViewModel.setIsProfileTop(false)
+                    findNavController().popBackStack()
+                },
+                onDiscard = {
+                    // Восстанавливаем оригинальные изображения
+                    imageUris.clear()
+                    imageUris.addAll(activityViewModel.originalImages.value)
+                    activityViewModel.discardChanges()
+                    activityViewModel.setIsProfileTop(false)
+                    findNavController().popBackStack()
+                }
+            ).show(parentFragmentManager, "BackInEditingDialog")
+        } else {
+            // Нет изменений - просто выходим
+            activityViewModel.setIsProfileTop(false)
+            findNavController().popBackStack()
         }
     }
 
