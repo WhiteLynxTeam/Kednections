@@ -4,7 +4,6 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import com.google.firebase.auth.FirebaseAuth
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
-import com.kednections.domain.usecase.photo.GetPhotoApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
 import com.kednections.domain.usecase.user.GetCommMethodApiUseCase
@@ -16,6 +15,7 @@ import com.kednections.domain.usecase.user.RegisterUserApiUseCase
 import com.kednections.domain.usecase.user.SaveUserDataPrefUseCase
 import com.kednections.domain.usecase.user.SetFirstRunCompletedUseCase
 import com.kednections.view.activity.FormActivityViewModel
+import com.kednections.view.activity.MainActivityViewModel
 import com.kednections.view.auth.AuthViewModel
 import com.kednections.view.form.about.AboutViewModel
 import com.kednections.view.form.avatar.AvatarViewModel
@@ -38,6 +38,13 @@ class AppModule() {
         registerUserApiUseCase: RegisterUserApiUseCase,
     ) = FormActivityViewModel.Factory(
         registerUserApiUseCase = registerUserApiUseCase,
+    )
+
+    @Provides
+    fun provideMainActivityViewModelFactory(
+        getUserApiUseCase: GetUserApiUseCase,
+    ) = MainActivityViewModel.Factory(
+        getUserApiUseCase = getUserApiUseCase,
     )
 
     @Provides
@@ -115,10 +122,6 @@ class AppModule() {
 
     @Provides
     fun provideProfileViewModelFactory(
-        getUserApiUseCase: GetUserApiUseCase,
-        getPhotoApiUseCase: GetPhotoApiUseCase,
     ) = ProfileViewModel.Factory(
-        getUserApiUseCase = getUserApiUseCase,
-        getPhotoApiUseCase = getPhotoApiUseCase,
     )
 }

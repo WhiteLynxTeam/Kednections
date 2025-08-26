@@ -6,23 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kednections.R
 import com.kednections.databinding.DialogPurposesBinding
-import com.kednections.domain.models.profile.Purposes
+import com.kednections.view.activity.MainActivityViewModel
 
 class PurposeDialog : DialogFragment() {
     private var _binding: DialogPurposesBinding? = null
     private val binding get() = _binding!!
 
+    private val activityViewModel: MainActivityViewModel by activityViewModels()
+
     companion object {
-        fun newInstance(purposes: List<Purposes>): PurposeDialog {
-            val args = Bundle().apply {
-                putParcelableArrayList("purposes_list", ArrayList(purposes))
-            }
-            return PurposeDialog().apply {
-                arguments = args
-            }
+        fun newInstance(): PurposeDialog {
+            return PurposeDialog()
         }
     }
 
@@ -49,10 +47,8 @@ class PurposeDialog : DialogFragment() {
             window.setGravity(Gravity.CENTER)
         }
 
-        val purposesList = arguments?.getParcelableArrayList<Purposes>("purposes_list") ?: emptyList()
-
         binding.rcPurposes.layoutManager = LinearLayoutManager(requireContext())
-        binding.rcPurposes.adapter = PurposeAdapter(purposesList)
+        binding.rcPurposes.adapter = activityViewModel.user.value?.let { PurposeAdapter(it.tags) }
 
         binding.ivClosed.setOnClickListener { dismiss() }
     }

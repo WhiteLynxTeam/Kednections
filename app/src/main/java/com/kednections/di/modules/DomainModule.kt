@@ -156,11 +156,19 @@ class DomainModule {
     @Provides
     fun provideGetUserApiUseCase(
         userRepository: IUserRepository,
-        getTokenPrefUseCase: GetTokenPrefUseCase
+        getTokenPrefUseCase: GetTokenPrefUseCase,
+        getCitiesApiUseCase: GetCitiesApiUseCase,
+        getSpecializationApiUseCase: GetSpecializationApiUseCase,
+        getTagsApiUseCase: GetTagsApiUseCase,
+        getCommMethodApiUseCase: GetCommMethodApiUseCase,
     ): GetUserApiUseCase {
         return GetUserApiUseCase(
             userRepository = userRepository,
             getTokenPrefUseCase = getTokenPrefUseCase,
+            getCitiesApiUseCase = getCitiesApiUseCase,
+            getSpecializationApiUseCase = getSpecializationApiUseCase,
+            getTagsApiUseCase = getTagsApiUseCase,
+            getCommMethodApiUseCase = getCommMethodApiUseCase,
         )
     }
 

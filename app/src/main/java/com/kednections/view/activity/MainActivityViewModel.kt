@@ -3,21 +3,31 @@ package com.kednections.view.activity
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.kednections.domain.models.user.UserProfile
+import com.kednections.domain.usecase.user.GetUserApiUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
+    private val getUserApiUseCase: GetUserApiUseCase,
 ) : ViewModel() {
+
+    private var _user = MutableStateFlow<UserProfile?>(null)
+    val user: StateFlow<UserProfile?>
+        get() = _user.asStateFlow()
+
     private var _selectedImages = MutableStateFlow<List<Uri>>(emptyList())
     val selectedImages: StateFlow<List<Uri>>
         get() = _selectedImages.asStateFlow()
 
-    private var _selectedPosition = MutableStateFlow<Int>(0)
+    private var _selectedPosition = MutableStateFlow(0)
     val selectedPosition: StateFlow<Int>
         get() = _selectedPosition.asStateFlow()
 
-    private var _isProfileTop = MutableStateFlow<Boolean>(true)
+    private var _isProfileTop = MutableStateFlow(true)
     val isProfileTop: StateFlow<Boolean>
         get() = _isProfileTop.asStateFlow()
 
@@ -57,11 +67,34 @@ class MainActivityViewModel(
         _isProfileTop.value = flag
     }
 
+    fun getUser() {
+        viewModelScope.launch {
+//            val user = getUserApiUseCase()
+            _user.emit(getUserApiUseCase())
+            /*//            if (user != null) {
+
+                            val photo = user.photo?.let { getPhotoApiUseCase(it) }
+                            val status = user.status
+                            println("ProfileViewModel photo = ${photo == null} ")
+                            if (photo != null) {
+
+                                println("ProfileViewModel photo != null ")
+
+                                _icon.emit(Pair(photo, null))
+                            } else {
+                                _icon.emit(Pair(null, status))
+                            }
+                        }*/
+        }
+    }
+
     class Factory(
+        private val getUserApiUseCase: GetUserApiUseCase,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)) {
                 return MainActivityViewModel(
+                    getUserApiUseCase = getUserApiUseCase,
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")

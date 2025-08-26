@@ -7,7 +7,7 @@ data class UserResponse(
     val username: String,
     val nickname: String,
     val photo: String,
-    val specializations: List<String>,
+    val specialization: List<String>,
     val city: String,
     val description: String,
     val tags: List<String>,
