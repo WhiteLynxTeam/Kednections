@@ -70,11 +70,11 @@ class CommunicationFragment : BaseFragment<FragmentCommunicationBinding>() {
                 findNavController().navigate(R.id.action_communicationFragment_to_singleChatFragment)
             })
 
-        lifecycleScope.launch {
-            delay(1500)
-            binding.bgEmptyChat.visibility = View.GONE
-            binding.rcChats.visibility = View.VISIBLE
-        }
+//        lifecycleScope.launch {
+//            delay(1500)
+//            binding.bgEmptyChat.visibility = View.GONE
+//            binding.rcChats.visibility = View.VISIBLE
+//        }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
 

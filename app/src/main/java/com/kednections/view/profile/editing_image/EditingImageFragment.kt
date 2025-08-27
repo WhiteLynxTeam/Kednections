@@ -148,17 +148,17 @@ class EditingImageFragment : BaseFragment<FragmentEditingImageBinding>() {
             BackInEditingDialog(
                 onSave = {
                     activityViewModel.saveChanges() // Сохраняем изменения
-                    findNavController().popBackStack()
+                    findNavController().navigate(R.id.action_editingImageFragment_to_showCaseFragment)
                 },
                 onDiscard = {
                     activityViewModel.discardChanges() // Отменяем изменения
-                    findNavController().popBackStack()
+                    findNavController().navigate(R.id.action_editingImageFragment_to_showCaseFragment)
                 }
             ).show(parentFragmentManager, "BackInEditingDialog")
         } else {
             // Нет изменений - просто выходим
             activityViewModel.setIsProfileTop(false)
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_editingImageFragment_to_showCaseFragment)
         }
     }
 }
