@@ -218,29 +218,17 @@
         app:layout_constraintEnd_toEndOf="@id/tv_name"
         app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
 
-    <View
+    <ImageView
         android:id="@+id/ic_over_menu"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth_percent="0.133"
         app:layout_constraintHeight_percent="0.073"
+        android:src="@drawable/ic_more_vert"
         app:layout_constraintTop_toTopOf="@id/img_avatar"
         app:layout_constraintEnd_toEndOf="@id/btn_like"
-        app:layout_constraintBottom_toBottomOf="@id/img_avatar"/>
-
-    <ImageView
-        android:id="@+id/ic_over_me"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/ic_more_vert"
-        app:layout_constraintBottom_toBottomOf="@id/ic_over_menu"
-        app:layout_constraintEnd_toEndOf="@id/ic_over_menu"
-        app:layout_constraintHeight_percent="0.046"
-        app:layout_constraintHorizontal_bias="0.391"
-        app:layout_constraintStart_toStartOf="@id/ic_over_menu"
-        app:layout_constraintTop_toTopOf="@id/ic_over_menu"
-        app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintWidth_percent="0.078" />
+        app:layout_constraintBottom_toBottomOf="@id/img_avatar"
+        />
 
     <View
         android:id="@+id/view_pop_up"

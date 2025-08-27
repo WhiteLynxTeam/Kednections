@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
@@ -67,16 +68,16 @@ class SingleChatFragment : BaseFragment<FragmentSingleChatBinding>() {
 
         setupMessageInput()
 
-        binding.messageEditText.addTextChangedListener {
-            val text = it.toString()
-            if (text.isNotBlank()) {
-                binding.messageInputLayout.endIconDrawable =
-                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_send_btn_orange)
-            } else {
-                binding.messageInputLayout.endIconDrawable =
-                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_add_document)
-            }
-        }
+//        binding.messageEditText.addTextChangedListener {
+//            val text = it.toString()
+//            if (text.isNotBlank()) {
+//                binding.messageInputLayout.endIconDrawable =
+//                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_send_btn_orange)
+//            } else {
+//                binding.messageInputLayout.endIconDrawable =
+//                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_add_document)
+//            }
+//        }
 
         (activity as MainActivity).setUIVisibility(showBottom = false)
     }
@@ -106,6 +107,10 @@ class SingleChatFragment : BaseFragment<FragmentSingleChatBinding>() {
         // Убираем обработчик Enter - сообщения отправляются только по клику на иконку
         binding.messageEditText.setOnEditorActionListener { _, _, _ ->
             false // Не обрабатываем Enter
+        }
+
+        binding.icBack.setOnClickListener {
+            findNavController().navigate(R.id.communicationFragment)
         }
     }
 
