@@ -1,5 +1,6 @@
 package com.kednections.domain.models.user
 
+import com.kednections.domain.models.AvaPhoto
 import com.kednections.domain.models.City
 import com.kednections.domain.models.CommunicationMethod
 import com.kednections.domain.models.NameOrNick
@@ -10,7 +11,7 @@ data class UserProfile(
     val username: String? = "",
     val fio: String? = "",
     val nick: String? = "",
-    val photo: String? = null,
+    var photo: AvaPhoto? = null,
 //    val specializations: List<String>? = emptyList(),
     //[yellow] все var сделаны для того, чтобы подтягивать название по id
     var specializations: List<Specialization> = emptyList(),
