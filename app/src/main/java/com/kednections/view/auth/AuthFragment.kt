@@ -27,6 +27,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
 
     private val activityViewModel: FormActivityViewModel by activityViewModels()
     private lateinit var viewModel: AuthViewModel
+    private lateinit var validatorSwitcher: AuthValidator
 
     @Inject
     lateinit var vmFactory: AuthViewModel.Factory
@@ -39,8 +40,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel =
-            ViewModelProvider(this, vmFactory)[AuthViewModel::class.java]
+        viewModel = ViewModelProvider(this, vmFactory)[AuthViewModel::class.java]
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isRegistry.collect {
@@ -67,7 +67,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
-        val validatorSwitcher = AuthValidator(
+        validatorSwitcher = AuthValidator(
             field1 = binding.etEmail,
             field2 = binding.etPassword,
             image1 = binding.logInSwitcher,
@@ -87,33 +87,35 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         validatorSwitcher.attach()
 
         binding.btnResume.setOnClickListener {
-            //[green] паттерны Regex перенести в константы в утилиты, потому что еще почту надо
-            //на корректность проверить
-            //[green] и проверку по Regex также можно перенести в утилиты
-            val regex = Regex("^(?=.*[A-Za-zА-Яа-я])(?=.*\\d).+$")
-            val email = binding.etEmail.text.toString().trim()
-            val pass = binding.etPassword.text.toString().trim()
-            //[yellow] Сделать проверку на валидность email
-            //[green] посмотреть какое ограничение на максимальное количестов символов для полей
+
+            val email = validatorSwitcher.getEmail()
+            val pass = validatorSwitcher.getPassword()
+
             if (email.isEmpty()) {
-                showSnackbarLong("Заполните поля.")
+                showSnackbarLong("Заполните поле email.")
+                binding.etEmail.requestFocus()
+            } else if (!validatorSwitcher.validateEmail()) {
+                showSnackbarLong("Введите корректный email адрес.")
                 binding.etEmail.requestFocus()
             } else if (pass.isEmpty()) {
-                showSnackbarLong("Заполните поля.")
+                showSnackbarLong("Заполните поле пароля.")
                 binding.etPassword.requestFocus()
-            } else if (pass.length < 6) {
-                showSnackbarLong("Пароль должен содержать минимум 6 знаков.")
-                binding.etPassword.requestFocus()
-            } else if (!regex.matches(pass)) {
-                showSnackbarLong("Пароль должен содержать хотя бы одну букву и цифру.")
+            } else if (!validatorSwitcher.validatePassword()) {
+                if (pass.length < AuthValidator.MIN_PASSWORD_LENGTH) {
+                    showSnackbarLong("Пароль должен содержать минимум 6 знаков.")
+                } else if (pass.length > AuthValidator.MAX_PASSWORD_LENGTH) {
+                    showSnackbarLong("Пароль слишком длинный.")
+                } else {
+                    showSnackbarLong("Пароль должен содержать хотя бы одну букву и цифру.")
+                }
                 binding.etPassword.requestFocus()
             } else {
                 when (validatorSwitcher.getGelectedInt()) {
                     0 -> {
                         viewModel.login(
                             User(
-                                username = binding.etEmail.text.toString(),
-                                password = binding.etPassword.text.toString(),
+                                username = email,
+                                password = pass,
                             )
                         )
                     }
@@ -121,8 +123,8 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
                     1 -> {
                         activityViewModel.updateData {
                             it.copy(
-                                username = binding.etEmail.text.toString(),
-                                password = binding.etPassword.text.toString(),
+                                username = email,
+                                password = pass,
                             )
                         }
                         findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
@@ -130,6 +132,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
 
                     else -> {
                         //*** переключатель null или цифра выше 1
+                        showSnackbarLong("Выберите тип авторизации")
                     }
                 }
             }
@@ -168,6 +171,5 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         (activity as FormActivity).setUIVisibility(
             showHeader = false
         )
-
     }
 }
