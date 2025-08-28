@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentProfileBinding
@@ -49,7 +50,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             activityViewModel.user.collect { user ->
                 if (user != null) {
                     if (user.photo != null) {
-                        binding.imgAvatar.setImageBitmap(decodeStringToBitmap(user.photo))
+//                        binding.imgAvatar.setImageBitmap(decodeStringToBitmap(user.photo!!.photo))
+                        val bitmap = decodeStringToBitmap(user.photo!!.photo)
+                        Glide.with(binding.imgAvatar.context)
+                            .load(bitmap)
+                            .into(binding.imgAvatar)
                     } else {
                         binding.imgAvatar.setImageResource(Ava.fromName(user.status).imgResSelected)
                     }
@@ -87,11 +92,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     if (user.tags.size <= 1) {
                         binding.viewPurposes.isEnabled = false
                         user.tags[0].selectedIcon?.let { binding.icPurposes.setImageResource(it) }
-                        binding.tvPurposes.text = user.tags[0].description
+                        binding.tvPurposes.text = user.tags[0].title
                     } else {
                         binding.viewPurposes.isEnabled = true
                     }
 
+                    //[red] это позор стереть, после того как бэк будет выдавать все.
+                    binding.icConnection.setImageResource(
+                        if ("онлайн" in user.communicationMethod.name)
+                            R.drawable.ic_online_selected else R.drawable.ic_offline_selected
+                    )
+                    binding.tvConnection.text = user.communicationMethod.name
                 }
             }
         }

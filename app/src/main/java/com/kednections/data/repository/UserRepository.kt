@@ -9,6 +9,7 @@ import com.kednections.data.network.dto.user.request.RegUserRequest
 import com.kednections.data.network.dto.user.response.UserCommunicationMethodResponse
 import com.kednections.data.network.dto.user.response.UserResponse
 import com.kednections.domain.irepository.IUserRepository
+import com.kednections.domain.models.AvaPhoto
 import com.kednections.domain.models.City
 import com.kednections.domain.models.CommunicationMethod
 import com.kednections.domain.models.NameOrNick
@@ -190,7 +191,7 @@ class UserRepository(
             username = email,
             fio = username,
             nick = nickname,
-            photo = photo,
+            photo = AvaPhoto(photo, ""),
             specializations = this.specialization.map { Specialization(it, "") },
             city = City(this.city, ""),
             description = description,

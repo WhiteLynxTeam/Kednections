@@ -4,6 +4,7 @@ import com.kednections.domain.irepository.IUserRepository
 import com.kednections.domain.models.Tag
 import com.kednections.domain.models.user.UserProfile
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
+import com.kednections.domain.usecase.photo.GetPhotoApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
 import com.kednections.domain.usecase.token.GetTokenPrefUseCase
@@ -17,7 +18,7 @@ class GetUserApiUseCase(
     private val getSpecializationApiUseCase: GetSpecializationApiUseCase,
     private val getTagsApiUseCase: GetTagsApiUseCase,
     private val getCommMethodApiUseCase: GetCommMethodApiUseCase,
-
+    private val getPhotoApiUseCase: GetPhotoApiUseCase,
     ) {
     suspend operator fun invoke(): UserProfile? {
         val token = getTokenPrefUseCase()
@@ -41,7 +42,7 @@ class GetUserApiUseCase(
                 val specialization = getSpecializationApiUseCase()
                 val specMap = specialization.associateBy({ it.id }, { it.name })
                 val tagsDef = getTagsApiUseCase(Tag.defaultTags)
-
+                val photo = user.photo?.let { getPhotoApiUseCase(it.id) }
 
                 cityMap[user.city.id]?.let {
                     user.city = user.city.copy(name = it)
@@ -68,6 +69,8 @@ class GetUserApiUseCase(
                         )
                     }!!
                 }
+
+                user.photo = user.photo?.copy(photo = photo)
                 //[red] стереть потом нахер этот позор сверху
 
                 println("GetUserApiUseCase user = $user")
