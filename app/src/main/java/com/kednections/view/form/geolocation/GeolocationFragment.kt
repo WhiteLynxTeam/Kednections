@@ -52,6 +52,11 @@ class GeolocationFragment : BaseFragment<FragmentGeolocationBinding>() {
             }
         }
 
+        binding.auctvGeolocation.setOnItemClickListener { parent, view, position, id ->
+            // Активируем кнопку
+            binding.btnResume.isEnabled = true
+        }
+
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
@@ -68,9 +73,9 @@ class GeolocationFragment : BaseFragment<FragmentGeolocationBinding>() {
             } else {
                 showSnackbarLong("Выберите город из списка.")
             }
-
-            findNavController().navigate(R.id.action_geolocationFragment_to_purposesFragment)
             activityViewModel.increaseProgress()
+            findNavController().navigate(R.id.action_geolocationFragment_to_purposesFragment)
+
         }
 
         binding.skipped.setOnClickListener {

@@ -78,6 +78,7 @@ class AvatarFragment : BaseFragment<FragmentAvatarBinding>() {
         // Назначаем каждому ImageView обработчик клика
         imageMap.forEach { (imageView, ava) ->
             imageView.setOnClickListener {
+                binding.btnResume.isEnabled = true
                 // Возврат предыдущего в исходное состояние
                 selectedImageView?.let { prev ->
                     val prevAvaImages = imageMap[prev]
@@ -100,6 +101,7 @@ class AvatarFragment : BaseFragment<FragmentAvatarBinding>() {
         binding.add.setOnClickListener {
 //            animImageAdd(it)
             pickImageFromGallery()
+            binding.btnResume.isEnabled = true
         }
 
         binding.btnResume.setOnClickListener {

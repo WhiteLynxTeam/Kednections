@@ -80,8 +80,6 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="-12dp"
-                android:src="@drawable/img_ava_8_selected"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,7 +91,6 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/nauryz_red_keds"
                 android:includeFontPadding="false"
-                android:text="Очень длинный текст..."
                 android:maxLines="1"
                 android:textColor="@color/text_description"
                 android:textSize="26sp"
@@ -118,7 +115,6 @@
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="Санкт-Петербург"
                 android:textColor="@color/color_4"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/ic_geo"

@@ -1,5 +1,6 @@
 package com.kednections.di.modules
 
+import com.kednections.view.form.intro.IntroFragment
 import com.kednections.view.acquaintances.AcquaintancesFragment
 import com.kednections.view.activity.FormActivity
 import com.kednections.view.activity.MainActivity
@@ -92,6 +93,9 @@ interface MainModule {
 
     @ContributesAndroidInjector
     fun bindSingleChatFragment(): SingleChatFragment
+
+    @ContributesAndroidInjector
+    fun bindIntroFragment(): IntroFragment
 
 
 }

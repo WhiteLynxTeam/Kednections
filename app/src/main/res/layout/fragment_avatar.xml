@@ -183,7 +183,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        android:enabled="true"
         app:layout_constraintEnd_toEndOf="@id/flow_specializations"
         app:layout_constraintStart_toStartOf="@id/flow_specializations"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin" />
