@@ -83,7 +83,7 @@
                     android:background="@drawable/bg_auth_input"
                     android:paddingStart="14dp"
                     android:hint=" Начни вводить город"
-                    android:inputType="textAutoComplete"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:textColorHint="@color/color_4" />
 
@@ -475,20 +475,21 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
         android:text="применить"
-        app:layout_constraintStart_toStartOf="@id/btn_reset"
         app:layout_constraintBottom_toTopOf="@id/btn_reset"
-        app:layout_constraintEnd_toEndOf="@id/btn_reset" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/btn_reset"
         style="@style/skip_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="12dp"
+        android:layout_margin="14dp"
         android:textColor="@color/color_1"
         android:text="сбросить фильтры"
-        app:layout_constraintEnd_toEndOf="@id/specialization_scroll"
-        app:layout_constraintStart_toStartOf="@id/img_back" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,7 @@
 package com.kednections.view.feed.filter
 
-import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +9,6 @@ import android.widget.ArrayAdapter
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,7 +16,7 @@ import com.kednections.R
 import com.kednections.core.base.BaseFragment
 import com.kednections.databinding.FragmentFilterFeedBinding
 import com.kednections.view.activity.MainActivity
-import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,6 +30,8 @@ class FilterFeedFragment : BaseFragment<FragmentFilterFeedBinding>() {
     private lateinit var selectedViews: MutableSet<TextView>
 
     private lateinit var radioGroup: RadioGroup
+    private var lastScrollY = 0
+    private var city = 0
 
     override fun inflaterViewBinding(
         inflater: LayoutInflater,
@@ -41,6 +40,35 @@ class FilterFeedFragment : BaseFragment<FragmentFilterFeedBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //Слушатель изменения размера клавиатуры
+        binding.root.viewTreeObserver.addOnGlobalLayoutListener {
+            val rect = Rect()
+            binding.root.getWindowVisibleDisplayFrame(rect)
+            val screenHeight = binding.root.rootView.height
+            val keypadHeight = screenHeight - rect.bottom
+
+            lifecycleScope.launch {
+                if (keypadHeight > screenHeight * 0.15) {
+                    // Сохраняем позицию ДО изменения layout
+                    lastScrollY = binding.specializationScroll.scrollY
+
+                    binding.btnReset.visibility = View.GONE
+                    binding.btnResume.visibility = View.GONE
+                    (activity as MainActivity).setUIVisibility(showBottom = false)
+
+                    // Ждем перерисовки
+                    delay(16) // ~1 кадр (16ms)
+
+                    // Возвращаем скролл на место
+                    binding.specializationScroll.scrollTo(0, lastScrollY)
+                } else {
+                    binding.btnReset.visibility = View.VISIBLE
+                    binding.btnResume.visibility = View.VISIBLE
+                    (activity as MainActivity).setUIVisibility(showBottom = true)
+                }
+            }
+        }
 
         // Инициализация адаптера для автодополнения
         cityAdapter = ArrayAdapter(
@@ -61,17 +89,6 @@ class FilterFeedFragment : BaseFragment<FragmentFilterFeedBinding>() {
                 cityAdapter.notifyDataSetChanged()
             }
         }
-
-        // Обновляем TextWatcher
-        binding.etGeoposition.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                updateApplyButtonState()
-            }
-        })
-
-
 
         selectedViews = mutableSetOf()
 
@@ -110,14 +127,11 @@ class FilterFeedFragment : BaseFragment<FragmentFilterFeedBinding>() {
         }
 
         // Обработчик изменений текста в поле геопозиции
-        binding.etGeoposition.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                // После изменения текста обновляем кнопку
-                updateApplyButtonState()
-            }
-        })
+        binding.etGeoposition.setOnItemClickListener { parent, view, position, id ->
+            city = 1
+            updateApplyButtonState()
+        }
+
 
 
         binding.imgBack.setOnClickListener {
@@ -132,20 +146,17 @@ class FilterFeedFragment : BaseFragment<FragmentFilterFeedBinding>() {
             findNavController().navigate(R.id.action_filterFeedFragment_to_screenSaverFragment)
         }
 
-        (activity as MainActivity).setUIVisibility(showBottom = true)
-
         binding.btnReset.setOnClickListener {
             resetAllFilters()
         }
     }
 
     private fun updateApplyButtonState() {
-        val isCitySelected = binding.etGeoposition.length() > 0
         // Проверяем, выбран ли хотя бы один формат общения
         val isCommunicationFormatSelected = radioGroup.checkedRadioButtonId != -1
         // Кнопка активна, если выбрана специализация ИЛИ формат общения
         binding.btnResume.isEnabled =
-            selectedViews.isNotEmpty() || isCommunicationFormatSelected || binding.etGeoposition.length() > 0
+            selectedViews.isNotEmpty() || isCommunicationFormatSelected || city == 1
     }
 
     private fun resetAllFilters() {

@@ -65,6 +65,9 @@ class SingleChatFragment : BaseFragment<FragmentSingleChatBinding>() {
         binding.rcChat.adapter = adapter
         adapter.setItems(singleChat)
 
+        binding.icBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         setupMessageInput()
 

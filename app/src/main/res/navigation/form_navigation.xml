@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/form_navigation"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/introFragment">
 
     <fragment
         android:id="@+id/nickNameFragment"
@@ -119,4 +119,13 @@
         android:name="com.kednections.view.form.success_reg.SuccessRegFragment"
         android:label="fragment_success_reg"
         tools:layout="@layout/fragment_success_reg" />
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.kednections.view.form.intro.IntroFragment"
+        android:label="fragment_intro"
+        tools:layout="@layout/fragment_intro" >
+        <action
+            android:id="@+id/action_introFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
 </navigation>

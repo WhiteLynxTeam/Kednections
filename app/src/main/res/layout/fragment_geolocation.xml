@@ -144,7 +144,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_resume"
         style="@style/btn_resume_style"
-        android:enabled="true"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@id/geolocation"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_margin"
         app:layout_constraintEnd_toEndOf="@id/geolocation"/>
