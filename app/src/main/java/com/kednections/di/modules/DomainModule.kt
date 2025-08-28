@@ -2,6 +2,7 @@ package com.kednections.di.modules
 
 import com.kednections.domain.irepository.IGeoRepository
 import com.kednections.domain.irepository.IPhotoRepository
+import com.kednections.domain.irepository.IShowCaseRepository
 import com.kednections.domain.irepository.ISpecializationRepository
 import com.kednections.domain.irepository.ITagRepository
 import com.kednections.domain.irepository.IUserRepository
@@ -9,6 +10,7 @@ import com.kednections.domain.istorage.ITokenStorage
 import com.kednections.domain.istorage.IUserStorage
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
 import com.kednections.domain.usecase.photo.GetPhotoApiUseCase
+import com.kednections.domain.usecase.showcase.UploadPhotoShowCaseApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
 import com.kednections.domain.usecase.token.GetTokenPrefUseCase
@@ -161,6 +163,7 @@ class DomainModule {
         getSpecializationApiUseCase: GetSpecializationApiUseCase,
         getTagsApiUseCase: GetTagsApiUseCase,
         getCommMethodApiUseCase: GetCommMethodApiUseCase,
+        getPhotoApiUseCase: GetPhotoApiUseCase,
     ): GetUserApiUseCase {
         return GetUserApiUseCase(
             userRepository = userRepository,
@@ -169,6 +172,7 @@ class DomainModule {
             getSpecializationApiUseCase = getSpecializationApiUseCase,
             getTagsApiUseCase = getTagsApiUseCase,
             getCommMethodApiUseCase = getCommMethodApiUseCase,
+            getPhotoApiUseCase = getPhotoApiUseCase,
         )
     }
 
@@ -189,6 +193,13 @@ class DomainModule {
         userStorage: IUserStorage
     ): SaveUserDataPrefUseCase {
         return SaveUserDataPrefUseCase(userStorage)
+    }
+
+    @Provides
+    fun provideUploadPhotoShowCaseApiUseCase(
+        showCaseRepository: IShowCaseRepository
+    ): UploadPhotoShowCaseApiUseCase {
+        return UploadPhotoShowCaseApiUseCase(showCaseRepository)
     }
 }
 

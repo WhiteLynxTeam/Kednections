@@ -15,7 +15,7 @@ class PurposeAdapter(
 
         fun bind(purpose: Tag) {
             purpose.selectedIcon?.let { binding.icon.setImageResource(it) }
-            binding.text.text = purpose.description
+            binding.text.text = purpose.title
         }
     }
 
