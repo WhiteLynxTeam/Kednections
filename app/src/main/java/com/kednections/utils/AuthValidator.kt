@@ -8,9 +8,18 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import com.kednections.R
 
+//*** [yellow] сделать нормально вынести enum в модели
+enum class SelectedField { LOGIN, REG }
+
+//*** прикрутить интерфейс с событиями onReg и onAuth. Пока так
+interface AuthValidatorListener {
+    fun onLoginSelected()
+    fun onRegisterSelected()
+}
+
 class AuthValidator(
-    private val field1: EditText, // имя
-    private val field2: EditText, // ник
+    private val field1: EditText, // email
+    private val field2: EditText, // пароль
     private val actionButton: Button,
     private val image1: ImageView,
     private val image2: ImageView,
@@ -23,9 +32,31 @@ class AuthValidator(
     private val image1SelectedBottom: Int,
     private val image2Bottom: Int,
     private val image2SelectedTop: Int,
-    private val image2SelectedBottom: Int
+    private val image2SelectedBottom: Int,
+    private val listener: AuthValidatorListener? = null
 ) {
-    private enum class SelectedField { LOGIN, REG }
+
+    companion object {
+        const val PASSWORD_PATTERN = "^(?=.*[A-Za-zА-Яа-я])(?=.*\\d).+$"
+        const val EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\$"
+
+        const val MAX_EMAIL_LENGTH = 50
+        const val MAX_PASSWORD_LENGTH = 50
+        const val MIN_PASSWORD_LENGTH = 6
+
+        fun isValidEmail(email: String): Boolean {
+            return email.isNotBlank() &&
+                    email.length <= MAX_EMAIL_LENGTH &&
+                    Regex(EMAIL_PATTERN).matches(email.trim())
+        }
+
+        fun isValidPassword(password: String): Boolean {
+            return password.isNotBlank() &&
+                    password.length >= MIN_PASSWORD_LENGTH &&
+                    password.length <= MAX_PASSWORD_LENGTH &&
+                    Regex(PASSWORD_PATTERN).matches(password)
+        }
+    }
 
     private var selectedField: SelectedField? = null
 
@@ -36,12 +67,30 @@ class AuthValidator(
         setupClickListeners()
     }
 
-    //*** [yellow] сделать нормально вынести enum в модели
-    //*** прикрутить интерфейс с событиями onReg и onAuth. Пока так
-    //*** 0 - LOGIN, 1 - REG
+
     fun getGelectedInt(): Int? {
         return selectedField?.ordinal
     }
+
+    fun getSelectedField(): SelectedField? = selectedField
+
+    //[yellow] Сделать проверку на валидность email
+    fun validateEmail(): Boolean {
+        val email = field1.text.toString().trim()
+        return isValidEmail(email)
+    }
+
+    fun validatePassword(): Boolean {
+        val password = field2.text.toString().trim()
+        return isValidPassword(password)
+    }
+
+    fun validateAll(): Boolean {
+        return validateEmail() && validatePassword()
+    }
+
+    fun getEmail(): String = field1.text.toString().trim()
+    fun getPassword(): String = field2.text.toString().trim()
 
     private val watcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) = updateVisualStates()
@@ -105,6 +154,7 @@ class AuthValidator(
             if ((field1.text?.length ?: 0) >= length1) {
                 selectedField = SelectedField.LOGIN
                 updateVisualStates()
+                listener?.onLoginSelected()
             }
         }
 
@@ -112,6 +162,7 @@ class AuthValidator(
             if ((field2.text?.length ?: 0) >= length2) {
                 selectedField = SelectedField.REG
                 updateVisualStates()
+                listener?.onRegisterSelected()
             }
         }
     }
