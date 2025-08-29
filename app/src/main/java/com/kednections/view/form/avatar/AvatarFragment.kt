@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -38,6 +40,7 @@ class AvatarFragment : BaseFragment<FragmentAvatarBinding>() {
                 // фото с галереи
                 intent.data?.data?.let { uri ->
                     binding.add.setImageURI(uri)
+                    binding.btnResume.isEnabled = !hasAddIcon()
                 }
 
                 currentUserAvatar = encodeBitmapToString(binding.add.drawable.toBitmap())
@@ -79,6 +82,7 @@ class AvatarFragment : BaseFragment<FragmentAvatarBinding>() {
         imageMap.forEach { (imageView, ava) ->
             imageView.setOnClickListener {
                 binding.btnResume.isEnabled = true
+                if (!hasAddIcon()) binding.add.setImageResource(R.drawable.ic_baseline_add_24)
                 // Возврат предыдущего в исходное состояние
                 selectedImageView?.let { prev ->
                     val prevAvaImages = imageMap[prev]
@@ -101,7 +105,6 @@ class AvatarFragment : BaseFragment<FragmentAvatarBinding>() {
         binding.add.setOnClickListener {
 //            animImageAdd(it)
             pickImageFromGallery()
-            binding.btnResume.isEnabled = true
         }
 
         binding.btnResume.setOnClickListener {
@@ -127,6 +130,11 @@ class AvatarFragment : BaseFragment<FragmentAvatarBinding>() {
             findNavController().navigate(R.id.action_avatarFragment_to_specializationFragment)
             activityViewModel.increaseProgress()
         }
+    }
+
+    fun hasAddIcon(@DrawableRes expectedDrawableRes: Int = R.drawable.ic_baseline_add_24): Boolean {
+        val expectedDrawable = ContextCompat.getDrawable(requireContext(), expectedDrawableRes)
+        return expectedDrawable?.constantState == binding.add.drawable?.constantState
     }
 
     private fun animImageAdd(view: View) {
