@@ -5,6 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
         <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:navigationBarColor">@color/background_color</item>
         <item name="android:fontFamily">@font/raleway_medium</item>
 
         <!-- главный цвет фона для приложения -->
