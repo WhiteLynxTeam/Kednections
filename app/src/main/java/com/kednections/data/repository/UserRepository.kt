@@ -191,12 +191,16 @@ class UserRepository(
             username = email,
             fio = username,
             nick = nickname,
-            photo = AvaPhoto(photo, ""),
-            specializations = this.specialization.map { Specialization(it, "") },
-            city = City(this.city, ""),
+            photo = photo?.let { AvaPhoto(it, "") },
+            specializations = this.specialization?.let { specialization ->
+                specialization.map { Specialization(it, "") }
+            }
+                ?: emptyList(),
+            city = this.city?.let { City(it, "") } ?: City("", ""),
             description = description,
-            tags = this.tags.map { Tag(it, "") },
-            communicationMethod = CommunicationMethod(this.communicationMethod, ""),
+            tags = this.tags?.let { tags -> tags.map { Tag(it, "") } } ?: emptyList(),
+            communicationMethod = this.communicationMethod?.let { CommunicationMethod(it, "") }
+                ?: CommunicationMethod("", ""),
             nameOrNick = NameOrNick.fromValue(nameOrNick) ?: NameOrNick.NAME,
             status = status,
         )
