@@ -9,6 +9,7 @@ import com.kednections.di.modules.DomainModule
 import com.kednections.di.modules.MainModule
 import com.kednections.di.modules.RemoteModule
 import com.kednections.di.modules.SharedPreferencesModule
+import com.kednections.di.modules.MediaStoreModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -26,6 +27,7 @@ import javax.inject.Singleton
         MainModule::class,
         RemoteModule::class,
         SharedPreferencesModule::class,
+        MediaStoreModule::class,
     ]
 )
 

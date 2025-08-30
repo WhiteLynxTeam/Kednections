@@ -64,6 +64,45 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isIt.collect { isIt ->
+                if (isIt.first) {
+                    showSnackbarLong("Этот пользователь уже зарегистрирован.")
+                    binding.etEmail.requestFocus()
+                } else {
+                    if (isIt.second) {
+                        when (validatorSwitcher.getGelectedInt()) {
+                            0 -> {
+                                viewModel.login(
+                                    User(
+                                        username = viewModel.login.value,
+                                        password = viewModel.pass.value,
+                                    )
+                                )
+                            }
+
+                            1 -> {
+                                activityViewModel.updateData {
+                                    it.copy(
+                                        username = viewModel.login.value,
+                                        password = viewModel.pass.value,
+                                    )
+                                }
+                                findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
+                            }
+
+                            else -> {
+                                //*** переключатель null или цифра выше 1
+                                showSnackbarLong("Выберите тип авторизации")
+                            }
+                        }
+                    } else {
+                        showSnackbarLong("Ошибка сервера. Попробуйте ещё раз.")
+                    }
+                }
+            }
+        }
+
         //бегущая строка (Анимация)
         startMarquee(binding.textDescription, binding.textHorizontalScroll, speed = 5000L)
 
@@ -110,31 +149,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
                 }
                 binding.etPassword.requestFocus()
             } else {
-                when (validatorSwitcher.getGelectedInt()) {
-                    0 -> {
-                        viewModel.login(
-                            User(
-                                username = email,
-                                password = pass,
-                            )
-                        )
-                    }
-
-                    1 -> {
-                        activityViewModel.updateData {
-                            it.copy(
-                                username = email,
-                                password = pass,
-                            )
-                        }
-                        findNavController().navigate(R.id.action_authFragment_to_nickNameFragment)
-                    }
-
-                    else -> {
-                        //*** переключатель null или цифра выше 1
-                        showSnackbarLong("Выберите тип авторизации")
-                    }
-                }
+                viewModel.setLoginPass(email, pass, validatorSwitcher)
             }
         }
 

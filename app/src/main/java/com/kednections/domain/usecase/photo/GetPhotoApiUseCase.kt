@@ -7,7 +7,8 @@ class GetPhotoApiUseCase(
     private val photoRepository: IPhotoRepository,
     private val getTokenPrefUseCase: GetTokenPrefUseCase,
 ) {
-    suspend operator fun invoke(uuid: String): String? {
+//    suspend operator fun invoke(uuid: String): String? {
+    suspend operator fun invoke(uuid: String): ByteArray? {
         val token = getTokenPrefUseCase()
         val result = photoRepository.getFile(token, uuid)
         println("GetPhotoApiUseCase result = $result")

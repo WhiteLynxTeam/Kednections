@@ -9,6 +9,7 @@ import com.kednections.domain.models.user.UserProfile
 
 interface IUserRepository {
     suspend fun login(user: User): Result<Token>
+    suspend fun verify(email: String): Result<Boolean>
     suspend fun register(user: RegUser): Result<Token>
     suspend fun getUser(token: Token): Result<UserProfile>
     fun getCurrentUser(): FirebaseUser?

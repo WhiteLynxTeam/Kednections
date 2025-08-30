@@ -10,11 +10,14 @@ import com.kednections.domain.istorage.ITokenStorage
 import com.kednections.domain.istorage.IUserStorage
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
 import com.kednections.domain.usecase.photo.GetPhotoApiUseCase
+import com.kednections.domain.usecase.showcase.GetAllShowCaseApiUseCase
+import com.kednections.domain.usecase.showcase.UploadListPhotoShowCaseApiUseCase
 import com.kednections.domain.usecase.showcase.UploadPhotoShowCaseApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
 import com.kednections.domain.usecase.token.GetTokenPrefUseCase
 import com.kednections.domain.usecase.token.SaveTokenPrefUseCase
+import com.kednections.domain.usecase.user.CheckUserApiUseCase
 import com.kednections.domain.usecase.user.GetCommMethodApiUseCase
 import com.kednections.domain.usecase.user.GetIsFirstRunUseCase
 import com.kednections.domain.usecase.user.GetUserApiUseCase
@@ -99,6 +102,16 @@ class DomainModule {
         return LoginUserApiUseCase(
             userRepository = userRepository,
             saveTokenPrefUseCase = saveTokenPrefUseCase,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideCheckUserApiUseCase(
+        userRepository: IUserRepository,
+    ): CheckUserApiUseCase {
+        return CheckUserApiUseCase(
+            userRepository = userRepository,
         )
     }
 
@@ -197,9 +210,35 @@ class DomainModule {
 
     @Provides
     fun provideUploadPhotoShowCaseApiUseCase(
-        showCaseRepository: IShowCaseRepository
+        showCaseRepository: IShowCaseRepository,
+        getTokenPrefUseCase: GetTokenPrefUseCase,
     ): UploadPhotoShowCaseApiUseCase {
-        return UploadPhotoShowCaseApiUseCase(showCaseRepository)
+        return UploadPhotoShowCaseApiUseCase(
+            showCaseRepository = showCaseRepository,
+            getTokenPrefUseCase = getTokenPrefUseCase,
+        )
+    }
+
+    @Provides
+    fun provideUploadListPhotoShowCaseApiUseCase(
+        uploadPhotoShowCaseApiUseCase: UploadPhotoShowCaseApiUseCase,
+    ): UploadListPhotoShowCaseApiUseCase {
+        return UploadListPhotoShowCaseApiUseCase(
+            uploadPhotoShowCaseApiUseCase = uploadPhotoShowCaseApiUseCase,
+        )
+    }
+
+    @Provides
+    fun provideGetAllShowCaseApiUseCase(
+        showCaseRepository: IShowCaseRepository,
+        getTokenPrefUseCase: GetTokenPrefUseCase,
+        getPhotoApiUseCase: GetPhotoApiUseCase,
+    ): GetAllShowCaseApiUseCase {
+        return GetAllShowCaseApiUseCase(
+            showCaseRepository = showCaseRepository,
+            getTokenPrefUseCase = getTokenPrefUseCase,
+            getPhotoApiUseCase = getPhotoApiUseCase,
+        )
     }
 }
 

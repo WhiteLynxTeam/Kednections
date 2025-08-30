@@ -47,8 +47,21 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             ViewModelProvider(this, vmFactory)[ProfileViewModel::class.java]
 
         viewLifecycleOwner.lifecycleScope.launch {
+            profileViewModel.itemShowCase.collect { item ->
+                println("*** ProfileFragment itemShowCase =  $item")
+                updateUI()
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             activityViewModel.user.collect { user ->
                 if (user != null) {
+                    //Запустим в начале загрузку работ, чтобы заранее подгрузить
+                    if (user.showcase != null) {
+                        println("*** ProfileFragment getAllShowCase ***")
+                        profileViewModel.getAllShowCase(user.showcase)
+                    }
+
                     if (user.photo != null) {
 //                        binding.imgAvatar.setImageBitmap(decodeStringToBitmap(user.photo!!.photo))
                         val bitmap = decodeStringToBitmap(user.photo!!.photo)
@@ -263,7 +276,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 btnEdit.visibility = View.VISIBLE
 
                 // Дополнительные условия для Showcase
-                if (imageUris.isEmpty()) {
+//                if (imageUris.isEmpty()) {
+                if (profileViewModel.itemShowCase.value.none {it.photo!= null && it.photo.isNotEmpty() }) {
                     rcViewImg.visibility = View.GONE
                     bgShowcaseNull.visibility = View.VISIBLE
                     textHorizontalScroll.visibility = View.VISIBLE

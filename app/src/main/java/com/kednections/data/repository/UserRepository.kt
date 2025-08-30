@@ -35,6 +35,10 @@ class UserRepository(
         return result.map { mapperTokenResponseToToken(it) }
     }
 
+    override suspend fun verify(email: String): Result<Boolean> {
+        return userApi.verify(email)
+    }
+
     override suspend fun register(user: RegUser): Result<Token> {
         //[green] Вынести это дело в отдельную функцию
         val partsTags = user.tags.map { tag ->
@@ -202,6 +206,7 @@ class UserRepository(
             communicationMethod = this.communicationMethod?.let { CommunicationMethod(it, "") }
                 ?: CommunicationMethod("", ""),
             nameOrNick = NameOrNick.fromValue(nameOrNick) ?: NameOrNick.NAME,
+            showcase = showcase,
             status = status,
         )
     }

@@ -70,7 +70,8 @@ class GetUserApiUseCase(
                     }!!
                 }
 
-                user.photo = user.photo?.copy(photo = photo)
+//                user.photo = user.photo?.copy(photo = photo)
+                user.photo = user.photo?.copy(photo = photo.toString())
                 //[red] стереть потом нахер этот позор сверху
 
                 println("GetUserApiUseCase user = $user")
