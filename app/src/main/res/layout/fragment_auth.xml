@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:padding="4dp"
-        android:background="@drawable/bg_switcher"
+        android:background="@drawable/bg_switcher_border"
         app:layout_constraintStart_toStartOf="@+id/email"
         app:layout_constraintBottom_toTopOf="@id/email">
 
@@ -128,13 +128,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
-            android:src="@drawable/ic_login_switcher_bottom"/>
+            android:src="@drawable/ic_login_switcher_selected_top"/>
 
         <ImageView
             android:id="@+id/reg_switcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_reg_switcher_top"/>
+            android:src="@drawable/ic_reg_switcher_selected_bottom"/>
 
     </LinearLayout>
 
