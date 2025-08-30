@@ -52,7 +52,7 @@ class AuthValidator(
         }
     }
 
-    private var selectedField: SelectedField? = null
+    private var selectedField: SelectedField? = SelectedField.LOGIN
 
     fun attach() {
         field1.addTextChangedListener(watcher)
