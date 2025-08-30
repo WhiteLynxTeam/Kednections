@@ -13,6 +13,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.PartMap
+import retrofit2.http.Query
 
 interface UserApi {
     @POST("/auth/login")
@@ -29,6 +30,12 @@ interface UserApi {
     suspend fun getUser(
         @Header("token") token: String,
     ): Result<UserResponse>
+
+    @POST("/auth/verify_login/")
+    suspend fun verify(
+        @Query("email") email: String,
+//        @Body email: String,
+    ): Result<Boolean>
 
     @GET("/communication_method/")
     suspend fun getCommunicationMethod(): Result<List<UserCommunicationMethodResponse>>

@@ -21,5 +21,6 @@ data class UserProfile(
     var tags: List<Tag> = emptyList(),
     var communicationMethod: CommunicationMethod,
     val nameOrNick: NameOrNick,
+    val showcase: String? = null,
     val status: String? = null,
 )

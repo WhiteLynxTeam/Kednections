@@ -8,11 +8,13 @@ class PhotoRepository(
     private val fileApi: FileApi,
 ) : IPhotoRepository {
 
-    override suspend fun getFile(token: Token, uuid: String): Result<String> {
+//    override suspend fun getFile(token: Token, uuid: String): Result<String> {
+    override suspend fun getFile(token: Token, uuid: String): Result<ByteArray?> {
         val response = fileApi.getFile(token.token, uuid)
 
-        val result: Result<String> = if (response.isSuccessful) {
-            val bodyString = response.body()?.string()
+//        val result: Result<String> = if (response.isSuccessful) {
+        val result: Result<ByteArray?> = if (response.isSuccessful) {
+            val bodyString = response.body()?.bytes()
             if (bodyString != null) {
                 Result.success(bodyString)
             } else {

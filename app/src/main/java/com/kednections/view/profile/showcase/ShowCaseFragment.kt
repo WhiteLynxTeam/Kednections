@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -26,10 +27,12 @@ import com.kednections.view.profile.editing_image.BackInEditingDialog
 import com.kednections.view.profile.showcase.AddImagesAdapter.Companion.MAX_ITEMS
 import kotlinx.coroutines.launch
 import java.util.Collections
+import javax.inject.Inject
 
 class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
 
     private val activityViewModel: MainActivityViewModel by activityViewModels()
+    private lateinit var showCaseViewModel: ShowCaseViewModel
     private lateinit var adapter: AddImagesAdapter
     private val imageUris = mutableListOf<Uri>()
     private var itemWidth = 0
@@ -75,6 +78,9 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
         }
     }
 
+    @Inject
+    lateinit var vmFactory: ShowCaseViewModel.Factory
+
     override fun inflaterViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -82,6 +88,9 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        showCaseViewModel =
+            ViewModelProvider(this, vmFactory)[ShowCaseViewModel::class.java]
 
         // Регистрируем обработчик back press
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -103,6 +112,13 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
         val displayMetrics = resources.displayMetrics
         itemWidth = (displayMetrics.widthPixels * 0.278).toInt()
         itemHeight = (displayMetrics.heightPixels * 0.137).toInt()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            showCaseViewModel.isUpload.collect {
+                if (it) findNavController().navigate(R.id.action_showCaseFragment_to_profileFragment)
+            }
+        }
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             activityViewModel.selectedImages.collect { uris ->
@@ -160,8 +176,10 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>() {
             activityViewModel.saveChanges() // Сохраняем как оригинальные
             activityViewModel.setIsProfileTop(false)
 
+            showCaseViewModel.uploadAll(imageUris.toList())
+
             // Переходим к профилю
-            findNavController().navigate(R.id.action_showCaseFragment_to_profileFragment)
+//            findNavController().navigate(R.id.action_showCaseFragment_to_profileFragment)
         }
 
         binding.icBack.setOnClickListener {

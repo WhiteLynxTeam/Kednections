@@ -12,10 +12,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.kednections.domain.models.user.User
+import com.kednections.domain.usecase.user.CheckUserApiUseCase
 import com.kednections.domain.usecase.user.LoginUserApiUseCase
+import com.kednections.utils.AuthValidator
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -24,7 +29,17 @@ class AuthViewModel(
     private val credentialManager: CredentialManager,
     private val request: GetCredentialRequest,
     private val loginUserApiUseCase: LoginUserApiUseCase,
-    ) : ViewModel() {
+    private val checkUserApiUseCase: CheckUserApiUseCase,
+) : ViewModel() {
+    private var _login = MutableStateFlow("")
+    val login: StateFlow<String>
+        get() = _login.asStateFlow()
+    private var _pass = MutableStateFlow("")
+    val pass: StateFlow<String>
+        get() = _pass.asStateFlow()
+    private var _switcher = MutableStateFlow<Int?>(null)
+    val switcher: StateFlow<Int?>
+        get() = _switcher.asStateFlow()
 
 //    private var _currentUser = MutableStateFlow<FirebaseUser?>(null)
 //    val currentUser: SharedFlow<FirebaseUser?>
@@ -38,9 +53,36 @@ class AuthViewModel(
     val isLogin: SharedFlow<Boolean>
         get() = _isLogin.asSharedFlow()
 
+    private var _isIt = MutableSharedFlow<Pair<Boolean,Boolean>>()
+    val isIt: SharedFlow<Pair<Boolean,Boolean>>
+        get() = _isIt.asSharedFlow()
+
+    fun setLoginPass(login: String, pass: String, authValidator: AuthValidator) {
+        _login.value = login
+        _pass.value = pass
+        _switcher.value = authValidator.getGelectedInt()
+        if (_switcher.value == 0) {
+            login()
+        } else {
+            verify(_login.value)
+        }
+    }
+
+    private fun login() {
+        viewModelScope.launch {
+            _isLogin.emit(loginUserApiUseCase(User(_login.value, _pass.value)))
+        }
+    }
+
     fun login(user: User) {
         viewModelScope.launch {
             _isLogin.emit(loginUserApiUseCase(user))
+        }
+    }
+
+    fun verify(email: String) {
+        viewModelScope.launch {
+            _isIt.emit(checkUserApiUseCase(email))
         }
     }
 
@@ -112,6 +154,7 @@ class AuthViewModel(
         private val credentialManager: CredentialManager,
         private val request: GetCredentialRequest,
         private val loginUserApiUseCase: LoginUserApiUseCase,
+        private val checkUserApiUseCase: CheckUserApiUseCase,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(AuthViewModel::class.java)) {
@@ -120,6 +163,7 @@ class AuthViewModel(
                     credentialManager = credentialManager,
                     request = request,
                     loginUserApiUseCase = loginUserApiUseCase,
+                    checkUserApiUseCase = checkUserApiUseCase,
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")

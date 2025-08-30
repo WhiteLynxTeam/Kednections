@@ -1,11 +1,15 @@
 package com.kednections.di.modules
 
+import android.content.ContentResolver
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import com.google.firebase.auth.FirebaseAuth
 import com.kednections.domain.usecase.geo.GetCitiesApiUseCase
+import com.kednections.domain.usecase.showcase.GetAllShowCaseApiUseCase
+import com.kednections.domain.usecase.showcase.UploadListPhotoShowCaseApiUseCase
 import com.kednections.domain.usecase.specialization.GetSpecializationApiUseCase
 import com.kednections.domain.usecase.tag.GetTagsApiUseCase
+import com.kednections.domain.usecase.user.CheckUserApiUseCase
 import com.kednections.domain.usecase.user.GetCommMethodApiUseCase
 import com.kednections.domain.usecase.user.GetCurrentUserUseCase
 import com.kednections.domain.usecase.user.GetIsFirstRunUseCase
@@ -26,6 +30,7 @@ import com.kednections.view.form.purposes.PurposesViewModel
 import com.kednections.view.form.specialization.SpecializationViewModel
 import com.kednections.view.form.welcome.WelcomeViewModel
 import com.kednections.view.profile.ProfileViewModel
+import com.kednections.view.profile.showcase.ShowCaseViewModel
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -53,11 +58,13 @@ class AppModule() {
         credentialManager: CredentialManager,
         request: GetCredentialRequest,
         loginUserApiUseCase: LoginUserApiUseCase,
+        checkUserApiUseCase: CheckUserApiUseCase,
     ) = AuthViewModel.Factory(
         authFirebase = authFirebase,
         credentialManager = credentialManager,
         request = request,
         loginUserApiUseCase = loginUserApiUseCase,
+        checkUserApiUseCase = checkUserApiUseCase,
     )
 
 
@@ -122,6 +129,17 @@ class AppModule() {
 
     @Provides
     fun provideProfileViewModelFactory(
-    ) = ProfileViewModel.Factory(
+        getAllShowCaseApiUseCase: GetAllShowCaseApiUseCase,
+        ) = ProfileViewModel.Factory(
+        getAllShowCaseApiUseCase = getAllShowCaseApiUseCase,
+    )
+
+    @Provides
+    fun provideShowCaseViewModelFactory(
+        uploadListPhotoShowCaseApiUseCase: UploadListPhotoShowCaseApiUseCase,
+        contentResolver: ContentResolver,
+        ) = ShowCaseViewModel.Factory(
+        uploadListPhotoShowCaseApiUseCase = uploadListPhotoShowCaseApiUseCase,
+        contentResolver = contentResolver,
     )
 }

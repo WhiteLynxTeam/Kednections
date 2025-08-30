@@ -57,6 +57,23 @@ class ChooseCommunicateFragment : BaseFragment<FragmentChooseCommunicateBinding>
         items.forEach { item ->
             // обработка нажатия на сам чекбокс
             item.checkbox.setOnCheckedChangeListener { _, isChecked ->
+
+                //[yellow] самый простой тупой вариант, переделать
+                // потеряли переключение для вывбора коммуникации
+                // для чего мы это делаем - потому что сервер ничего путного не возвращает
+                if (isChecked) {
+                    if (item.name == "online") {
+                        Communication.ONLINE.isCheck = true
+                        Communication.OFFLINE.isCheck = false
+                    } else if (item.name == "offline") {
+                        Communication.ONLINE.isCheck = false
+                        Communication.OFFLINE.isCheck = true
+                    } else {
+                        Communication.ONLINE.isCheck = false
+                        Communication.OFFLINE.isCheck = false
+                    }
+                }
+
                 handleSingleSelection(items, item, isChecked)
             }
 

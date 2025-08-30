@@ -6,6 +6,8 @@ import com.kednections.domain.irepository.IShowCaseRepository
 import com.kednections.domain.models.Token
 import com.kednections.domain.models.showcase.PhotoShowCase
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
@@ -13,8 +15,20 @@ class ShowCaseRepository(
     private val showCaseApi: ShowCaseApi,
 ) : IShowCaseRepository {
 
-    override suspend fun upload(item: PhotoShowCase): Result<String> {
-        val response = showCaseApi.upload(item.toMultipartParts())
+    override suspend fun upload(token: Token, item: PhotoShowCase): Result<String> {
+
+        val mimeType = "image/*"
+        val fileName = "photo.jpg"
+        val requestBody = item.photo?.toRequestBody(mimeType.toMediaTypeOrNull())
+        val partFile = requestBody?.let {
+            MultipartBody.Part.createFormData(
+                name = "file",
+                filename = null,
+                body = it
+            )
+        }
+
+        val response = showCaseApi.upload(token.token, item.toMultipartParts(), partFile)
 
         val result: Result<String> = if (response.isSuccessful) {
             val bodyString = response.body()?.string()
@@ -44,12 +58,10 @@ class ShowCaseRepository(
         //[yellow] бэк не проверяет совпадение по тэгам и специализации
         //забыл поменять при копировании uuid с communication_method
         //в тэгах и специализации - регистрация прошла
-        if (title != null) {
-            map["title"] = this.title.toRequestBody("text/plain".toMediaType())
-        }
+        val title = this.title ?: ""
+        map["title"] = title.toRequestBody("text/plain".toMediaType())
         map["description"] = this.description.toRequestBody("text/plain".toMediaType())
-        map["photo"] = this.photo.toRequestBody("text/plain".toMediaType())
-
+//        map["file"] = this.photo.toRequestBody("image/*".toMediaType())
         return map
     }
 
@@ -58,7 +70,8 @@ class ShowCaseRepository(
             id = this.filePath,
             title = this.title,
             description = this.description,
-            photo = ""
+            photo = null
+//            photo = ""
         )
     }
 
