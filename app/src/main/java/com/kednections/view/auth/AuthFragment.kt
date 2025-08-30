@@ -114,12 +114,8 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
             actionButton = binding.btnResume,
             length1 = 1,
             length2 = 1,
-            switcherBorder = binding.switcherBorder,
-            image1Top = R.drawable.ic_login_switcher_top,
-            image1Bottom = R.drawable.ic_login_switcher_bottom,
             image1SelectedTop = R.drawable.ic_login_switcher_selected_top,
             image1SelectedBottom = R.drawable.ic_login_switcher_selected_bottom,
-            image2Bottom = R.drawable.ic_reg_switcher_bottom,
             image2SelectedTop = R.drawable.ic_reg_switcher_selected_top,
             image2SelectedBottom = R.drawable.ic_reg_switcher_selected_bottom
         )
