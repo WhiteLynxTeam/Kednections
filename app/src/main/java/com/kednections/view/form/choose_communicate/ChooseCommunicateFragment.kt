@@ -55,23 +55,41 @@ class ChooseCommunicateFragment : BaseFragment<FragmentChooseCommunicateBinding>
 
         // Устанавливаем слушатели
         items.forEach { item ->
+            // обработка нажатия на сам чекбокс
             item.checkbox.setOnCheckedChangeListener { _, isChecked ->
-                //[yellow] самый простой тупой вариант, переделать
-                if (isChecked) {
-                    if (item.name == "online") {
-                        Communication.ONLINE.isCheck = true
-                        Communication.OFFLINE.isCheck = false
-                    } else if (item.name == "offline") {
-                        Communication.ONLINE.isCheck = false
-                        Communication.OFFLINE.isCheck = true
-                    } else {
-                        Communication.ONLINE.isCheck = false
-                        Communication.OFFLINE.isCheck = false
-                    }
-                }
                 handleSingleSelection(items, item, isChecked)
             }
+
+            // обработка нажатия на весь контейнер (view)
+            item.view.setOnClickListener {
+                // ставим галочку на выбранный
+                if (!item.checkbox.isChecked) {
+                    item.checkbox.isChecked = true
+                } else {
+                    // если хочешь запретить снятие выбора — оставь пусто
+                    // или разреши переключать
+                    item.checkbox.isChecked = false
+                }
+            }
         }
+//        items.forEach { item ->
+//            item.checkbox.setOnCheckedChangeListener { _, isChecked ->
+//                //[yellow] самый простой тупой вариант, переделать
+//                if (isChecked) {
+//                    if (item.name == "online") {
+//                        Communication.ONLINE.isCheck = true
+//                        Communication.OFFLINE.isCheck = false
+//                    } else if (item.name == "offline") {
+//                        Communication.ONLINE.isCheck = false
+//                        Communication.OFFLINE.isCheck = true
+//                    } else {
+//                        Communication.ONLINE.isCheck = false
+//                        Communication.OFFLINE.isCheck = false
+//                    }
+//                }
+//                handleSingleSelection(items, item, isChecked)
+//            }
+//        }
 
         binding.btnResume.setOnClickListener {
             val uuid = Communication.getCheckedUuid()
@@ -91,19 +109,15 @@ class ChooseCommunicateFragment : BaseFragment<FragmentChooseCommunicateBinding>
         isChecked: Boolean
     ) {
         if (isChecked) {
-            // Снимаем выделение со всех остальных
+            // снимаем выбор со всех остальных
             allItems.filter { it != selectedItem }.forEach { item ->
-                item.checkbox.setOnCheckedChangeListener(null)
                 item.checkbox.isChecked = false
                 item.view.setBackgroundResource(R.drawable.bg_auth_input)
                 item.imageView.setImageResource(item.unselectedIcon)
-                item.checkbox.setOnCheckedChangeListener { _, isCheckedNew ->
-                    handleSingleSelection(allItems, item, isCheckedNew)
-                }
             }
         }
 
-        // Обновляем UI текущего элемента
+        // обновляем UI текущего элемента
         selectedItem.view.setBackgroundResource(
             if (isChecked) R.drawable.bg_view_purpose_fragment else R.drawable.bg_auth_input
         )
@@ -111,9 +125,40 @@ class ChooseCommunicateFragment : BaseFragment<FragmentChooseCommunicateBinding>
             if (isChecked) selectedItem.selectedIcon else selectedItem.unselectedIcon
         )
 
-        // Обновляем кнопку
+        // обновляем кнопку
         updateResumeButtonState()
     }
+
+
+//    private fun handleSingleSelection(
+//        allItems: List<RadioButtonItem>,
+//        selectedItem: RadioButtonItem,
+//        isChecked: Boolean
+//    ) {
+//        if (isChecked) {
+//            // Снимаем выделение со всех остальных
+//            allItems.filter { it != selectedItem }.forEach { item ->
+//                item.checkbox.setOnCheckedChangeListener(null)
+//                item.checkbox.isChecked = false
+//                item.view.setBackgroundResource(R.drawable.bg_auth_input)
+//                item.imageView.setImageResource(item.unselectedIcon)
+//                item.checkbox.setOnCheckedChangeListener { _, isCheckedNew ->
+//                    handleSingleSelection(allItems, item, isCheckedNew)
+//                }
+//            }
+//        }
+//
+//        // Обновляем UI текущего элемента
+//        selectedItem.view.setBackgroundResource(
+//            if (isChecked) R.drawable.bg_view_purpose_fragment else R.drawable.bg_auth_input
+//        )
+//        selectedItem.imageView.setImageResource(
+//            if (isChecked) selectedItem.selectedIcon else selectedItem.unselectedIcon
+//        )
+//
+//        // Обновляем кнопку
+//        updateResumeButtonState()
+//    }
 
 
     private fun updateResumeButtonState() {
