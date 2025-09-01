@@ -43,6 +43,53 @@ class ShowCaseRepository(
         }
         return result
     }
+    // метод для удаления элемента showcase
+    override suspend fun delete(token: Token, itemId: String): Result<Boolean> {
+        val response = showCaseApi.delete(token.token, itemId)
+
+        val result: Result<Boolean> = if (response.isSuccessful) {
+            Result.success(true)
+        } else {
+            val errorBody = response.errorBody()?.string()
+            Result.failure(Exception("Delete error: ${response.code()} ${response.message()} - $errorBody"))
+        }
+        return result
+    }
+
+    // метод для обновления элемента showcase (PATCH запрос)
+    override suspend fun update(token: Token, item: PhotoShowCase): Result<String> {
+        // Подготовка файла для загрузки, если он есть
+        val mimeType = "image/*"
+        val requestBody = item.photo?.toRequestBody(mimeType.toMediaTypeOrNull())
+        val partFile = requestBody?.let {
+            MultipartBody.Part.createFormData(
+                name = "file",
+                filename = null,
+                body = it
+            )
+        }
+
+        // Вызов API для обновления с указанием ID элемента
+        val response = showCaseApi.update(
+            token.token,
+            item.id ?: "", // ID элемента для обновления
+            item.toMultipartParts(),
+            partFile
+        )
+
+        val result: Result<String> = if (response.isSuccessful) {
+            val bodyString = response.body()?.string()
+            if (bodyString != null) {
+                Result.success(bodyString)
+            } else {
+                Result.failure(Exception("Response body is null"))
+            }
+        } else {
+            val errorBody = response.errorBody()?.string()
+            Result.failure(Exception("Update error: ${response.code()} ${response.message()} - $errorBody"))
+        }
+        return result
+    }
 
     override suspend fun getAll(token: Token, showcaseId: String): Result<List<PhotoShowCase>> {
         val result = showCaseApi.getAll(token.token, showcaseId)
