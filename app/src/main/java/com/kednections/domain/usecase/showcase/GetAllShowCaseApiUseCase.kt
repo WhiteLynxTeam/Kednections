@@ -12,7 +12,7 @@ class GetAllShowCaseApiUseCase(
     private val showCaseRepository: IShowCaseRepository,
     private val getTokenPrefUseCase: GetTokenPrefUseCase,
     private val getPhotoApiUseCase: GetPhotoApiUseCase,
-    ) {
+) {
     suspend operator fun invoke(showcaseId: String): List<PhotoShowCase> {
         val token = getTokenPrefUseCase()
         val result = showCaseRepository.getAll(token, showcaseId)
@@ -20,10 +20,10 @@ class GetAllShowCaseApiUseCase(
         if (result.isSuccess) {
             val photos = result.getOrNull()
             if (photos != null) {
-/*              [yellow]  Рекомендации
-                При большом числе элементов можно ограничить количество параллельных загрузок с помощью Semaphore.
+                /*              [yellow]  Рекомендации
+                                При большом числе элементов можно ограничить количество параллельных загрузок с помощью Semaphore.
 
-                Можно добавить обработку ошибок для отдельных загрузок, чтобы одна не сломала всю цепочку.*/
+                                Можно добавить обработку ошибок для отдельных загрузок, чтобы одна не сломала всю цепочку.*/
                 return coroutineScope {
                     photos.map { photoShowCase ->
                         async {
